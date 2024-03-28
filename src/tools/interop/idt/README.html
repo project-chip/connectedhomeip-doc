@@ -1,0 +1,1251 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Interoperability Debugging Tool &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/tools/interop/idt/README';</script>
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="NXP Factory Data Generator" href="../../../../scripts/tools/nxp/factory_data_generator/README.html" />
+    <link rel="prev" title="SPAKE2+ Python Tool" href="../../../../scripts/tools/spake2p/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../QUICK_START.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/index.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/device_runner.html">CHIP on-device testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/device_runner_dispatch.html">CHIP on-device test dispatch</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../discussion/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../discussion/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/SDKBasics.html">SDK Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">New Clusters &amp; Device Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/README.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/android_building.html">Building Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/darwin.html">Testing with Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nxp_rw61x_ota_software_update.html">Matter Over-The-Air Software Update with NXP RW61x example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openiotsdk_examples.html">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/python_chip_controller_building.html">Deprecation notice</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../guides/esp32/README.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guides/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/ti/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/ti/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/ti/ti_platform_overview.html">Texas Instruments platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/cc13x2x7_26x2x7/README.html">Matter CC1352 CC2652 All-clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/cc13x4_26x4/README.html">Matter All-clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/contact-sensor-app/nxp/k32w/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/contact-sensor-app/nxp/k32w/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/energy-management-app/esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/energy-management-app/linux/README.html">CHIP Linux Energy Management Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/bouffalolab/README.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/cc13x2x7_26x2x7/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/nxp/k32w/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/nxp/k32w/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/cc13x2x7_26x2x7/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/log-source-app/linux/README.html">log-source-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/infineon/cyw30739/README.html">Matter CYW30739 OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/ota-requestor-app/telink/README.html">Build and flash</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/cc13x2x7_26x2x7/README.html">Matter Persistent Storage Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/cc13x2x7_26x2x7/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/cc13x2x7_26x2x7/doc/programming-ccs.html">Programming and Debugging with CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-app/cc13x2x7_26x2x7/doc/programming-uniflash.html">Programming with UniFlash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/cc13x2x7_26x2x7/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/cc13x2x7_26x2x7/doc/programming-ccs.html">Programming and Debugging with CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/pump-controller-app/cc13x2x7_26x2x7/doc/programming-uniflash.html">Programming with UniFlash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/cc13x2x7_26x2x7/README.html">Matter Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/dishwasher-app/linux/README.html">Matter Linux Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/rvc-app/README.html">RVC example app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/network-manager-app/README.html">network-manager-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../../tools/index.html">Tools</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Interoperability Debugging Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../clusters.html">List of currently defined clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/src/tools/interop/idt/README.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/src/tools/interop/idt/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Interoperability Debugging Tool</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discovery">Discovery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capture">Capture</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-host-installation-no-raspberry-pi">Single host installation (no Raspberry Pi)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raspberry-pi-installation">Raspberry Pi installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-overview">Environment overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-details">Environment details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-rpi">Prepare the RPi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-admin-computer-and-push-to-the-rpi">Configure admin computer and push to the RPi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-and-macos-admin-computers">Linux and macOS admin computers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-admin-computers">Windows admin computers</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-rpi">Configure the RPi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-updates">Install updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide">User guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Capture</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#artifacts">Artifacts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Discovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ble">BLE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mdns">mDNS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Artifacts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probe">Probe</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-overview">Project overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">capture</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">discovery</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">probe</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utils"><code class="docutils literal notranslate"><span class="pre">utils</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-functionality">Extending functionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Capture</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="interoperability-debugging-tool">
+<h1>Interoperability Debugging Tool<a class="headerlink" href="#interoperability-debugging-tool" title="Permalink to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>The “Interoperability Debugging Tool” (IDT) is a python-based tool that supports
+a variety of commands that are useful in the context of interoperability testing
+of Matter devices and app controllers.</p>
+<section id="discovery">
+<h3>Discovery<a class="headerlink" href="#discovery" title="Permalink to this heading">#</a></h3>
+<p>While in discovery mode, the tool displays all Matter devices that are in
+commission and/or operational mode. This is useful to have a clear understanding
+of all Matter devices currently “active” in the testing environment.</p>
+<p>See section “4.3. Discovery” of the Matter spec for official documentation.</p>
+<p>When run interactively, discovery functions in one of two modes: BLE and DNS-SD.</p>
+</section>
+<section id="capture">
+<h3>Capture<a class="headerlink" href="#capture" title="Permalink to this heading">#</a></h3>
+<p>While in capture mode, the tool starts capturing all data of interest (e.g.
+video recording of interactions with the mobile app, logs from all components
+involved, network packets capture, etc.) while a test is being conducted
+manually. It also provides feedback to the user on test setup and execution.</p>
+<p>When the test completes, capture mode is stopped and all captured data is zipped
+in a file that can then be sent to all parties involved in investigating any
+issue uncovered via the manual test. Each ecosystem may implement an analysis
+that analyzes capture data, displays info to the user, probes the local
+environment and generates additional artifacts.</p>
+</section>
+</section>
+<section id="single-host-installation-no-raspberry-pi">
+<h2>Single host installation (no Raspberry Pi)<a class="headerlink" href="#single-host-installation-no-raspberry-pi" title="Permalink to this heading">#</a></h2>
+<p>All features of <code class="docutils literal notranslate"><span class="pre">idt</span></code> are available on macOS and Linux (tested with Debian based
+systems).<br />
+If you would prefer to execute capture and discovery from a Raspberry Pi, read
+the next section instead.</p>
+<p>The machine running <code class="docutils literal notranslate"><span class="pre">idt</span></code> should be connected to the same Wi-Fi network used for
+testing.<br />
+Follow the steps below to execute capture and discovery without a Raspberry Pi:</p>
+<ul class="simple">
+<li><p>From the parent directory of <code class="docutils literal notranslate"><span class="pre">idt</span></code>, run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">idt/scripts/alias.sh</span></code>.</p></li>
+<li><p>Optionally, run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">idt/scripts/setup_shell.sh</span></code> to install aliases
+permanently.</p></li>
+<li><p>After <code class="docutils literal notranslate"><span class="pre">idt</span></code> aliases are available in your environment, calling any <code class="docutils literal notranslate"><span class="pre">idt</span></code>
+command will automatically create a new virtual environment and install
+python dependencies.</p>
+<ul>
+<li><p>If you’re missing non-Python dependencies, you’ll be prompted to install
+them until they’re available.</p></li>
+</ul>
+</li>
+<li><p>Bluetooth discovery on macOS will require granting the program where <code class="docutils literal notranslate"><span class="pre">idt</span></code>
+is run, e.g. terminal emulator or IDE permission to access bluetooth in
+macOS settings.</p>
+<ul>
+<li><p>Failure to do so may result in any of the following:</p>
+<ul>
+<li><p>A single <code class="docutils literal notranslate"><span class="pre">abort</span></code> message and no further output in the terminal.</p></li>
+<li><p>Failure with a relevant stack trace in the terminal.</p></li>
+<li><p>A prompt to allow the application access to bluetooth.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="raspberry-pi-installation">
+<h2>Raspberry Pi installation<a class="headerlink" href="#raspberry-pi-installation" title="Permalink to this heading">#</a></h2>
+<section id="environment-overview">
+<h3>Environment overview<a class="headerlink" href="#environment-overview" title="Permalink to this heading">#</a></h3>
+<p>The execution environment of IDT when using Raspberry Pi is shown in the figure
+below.</p>
+<p>[TODO] add figure.</p>
+<p>The Raspberry Pi is where “discovery” and “capture” are executed.</p>
+<p>The “admin” computer is the machine used to connect to and control the RPi, and
+to fetch artifacts which were created during capture from the RPi.</p>
+<p>This directory contains tools for use on both the admin computer and the RPi.</p>
+</section>
+<section id="environment-details">
+<h3>Environment details<a class="headerlink" href="#environment-details" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">idt</span></code> will be used on both the admin computer and the RPi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scripts</span></code> only points to one installation location at a time. It is ideal to
+maintain a single <code class="docutils literal notranslate"><span class="pre">idt</span></code> directory on each (admin and RPi) system accordingly.</p></li>
+<li><p>The expected install location on the RPi is the home directory of the user
+specified in <code class="docutils literal notranslate"><span class="pre">idt/scripts/vars.sh</span></code>, which will be generated by running a
+script in the next section.</p></li>
+<li><p>Helper scripts may be used on admin computers that support <code class="docutils literal notranslate"><span class="pre">zsh</span></code> and <code class="docutils literal notranslate"><span class="pre">bash</span></code>
+(Linux and macOS).</p></li>
+<li><p>Windows may be used as the admin computer via tools like <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MobaXterm</span></code> and <code class="docutils literal notranslate"><span class="pre">FileZilla</span></code>.</p></li>
+<li><p>This setup is intended to work with the admin computer and RPi connected to
+the same Wi-Fi network, which is also the Wi-Fi network used for testing.</p></li>
+<li><p>Corporate networks are not expected to be used as test networks.</p></li>
+</ol>
+</section>
+<section id="prepare-the-rpi">
+<h3>Prepare the RPi<a class="headerlink" href="#prepare-the-rpi" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>A &gt;= 128 GB SD card is recommended.</p></li>
+<li><p>Flash the RPi SD with the debian based distribution of your choice.</p></li>
+<li><p>Plug the SD into the RPi.</p></li>
+<li><p>Ensure the RPi is connected to your network, either via ethernet or with
+Wi-Fi configured in the disk image.</p></li>
+<li><p>Boot the RPi.</p></li>
+</ol>
+</section>
+<section id="configure-admin-computer-and-push-to-the-rpi">
+<h3>Configure admin computer and push to the RPi<a class="headerlink" href="#configure-admin-computer-and-push-to-the-rpi" title="Permalink to this heading">#</a></h3>
+<section id="linux-and-macos-admin-computers">
+<h4>Linux and macOS admin computers<a class="headerlink" href="#linux-and-macos-admin-computers" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>On your admin computer, source the <code class="docutils literal notranslate"><span class="pre">alias</span></code> script from the parent directory
+of <code class="docutils literal notranslate"><span class="pre">idt</span></code> to get <code class="docutils literal notranslate"><span class="pre">idt</span></code> commands in your current shell.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">source</span> <span class="n">idt</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">alias</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To avoid having to repeat this step for each session, optionally configure
+automatic aliases permanently.</p></li>
+<li><p><strong><em>NOTE:</em></strong> Once run, <code class="docutils literal notranslate"><span class="pre">idt</span></code> commands will be globally and automatically
+available. If you need to remove the installation, edit the <code class="docutils literal notranslate"><span class="pre">.rc</span></code> files
+mentioned in <code class="docutils literal notranslate"><span class="pre">setup_shell</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">idt</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">setup_shell</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">idt_create_vars</span></code> and follow the prompts to set IDs for the target RPi.</p></li>
+<li><p>Send <code class="docutils literal notranslate"><span class="pre">idt</span></code> to the RPi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_push</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span></code> to the RPi:</p>
+<ul class="simple">
+<li><p><strong><em>NOTE:</em></strong> You may need to wait a few minutes after boot for the <code class="docutils literal notranslate"><span class="pre">ssh</span></code>
+server to be available on the RPi. Retry if needed!</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_connect</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="windows-admin-computers">
+<h4>Windows admin computers<a class="headerlink" href="#windows-admin-computers" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code>, cd to the directory containing <code class="docutils literal notranslate"><span class="pre">idt</span></code> and send <code class="docutils literal notranslate"><span class="pre">idt</span></code> to the
+RPi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>scp -r ./idt/* $PIUSER@$PIHOST:/home/$PIUSER/idt
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssh</span></code> to the RPi, e.g. with <code class="docutils literal notranslate"><span class="pre">MobaXterm</span></code></p>
+<ul class="simple">
+<li><p><strong><em>NOTE:</em></strong> You may need to wait a few minutes after boot for the <code class="docutils literal notranslate"><span class="pre">ssh</span></code>
+server to be available on the RPi. Retry if needed!</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">$PIUSER&#64;$PIHOST</span></code> or <code class="docutils literal notranslate"><span class="pre">$PIUSER&#64;$ip</span></code> where <code class="docutils literal notranslate"><span class="pre">$ip</span></code> is the RPi’s IP found
+in your router admin panel.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="configure-the-rpi">
+<h3>Configure the RPi<a class="headerlink" href="#configure-the-rpi" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Configure passwords or ssh keys.</p></li>
+<li><p>Configure Wi-Fi networks if needed.</p></li>
+<li><p>Set up <code class="docutils literal notranslate"><span class="pre">idt</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>                               <span class="c1"># Go to idt parent dir</span>
+<span class="n">source</span> <span class="n">idt</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">setup_shell</span><span class="o">.</span><span class="n">sh</span>  <span class="c1"># Setup atuo aliases</span>
+<span class="n">source</span> <span class="n">idt</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">alias</span><span class="o">.</span><span class="n">sh</span>        <span class="c1"># Get aliases now</span>
+<span class="n">idt_bootstrap</span>                      <span class="c1"># Initial configuration</span>
+<span class="n">idt_build</span>                          <span class="c1"># Build the container image</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="install-updates">
+<h3>Install updates<a class="headerlink" href="#install-updates" title="Permalink to this heading">#</a></h3>
+<p>SCP may not overwrite all files. To clear the <code class="docutils literal notranslate"><span class="pre">idt</span></code> dir off of the RPi safely
+between pushes, exit the container and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_clean</span>
+</pre></div>
+</div>
+<p>NOTE the idt artifacts directory is contained in idt, so running this will
+delete any artifacts.</p>
+<p>Then from the admin computer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_push</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="user-guide">
+<h2>User guide<a class="headerlink" href="#user-guide" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p><strong><em>IMPORTANT</em></strong><br />
+<code class="docutils literal notranslate"><span class="pre">idt_</span></code> commands are shell aliases helpful for administrative commands.<br />
+<code class="docutils literal notranslate"><span class="pre">idt</span></code> invokes the <code class="docutils literal notranslate"><span class="pre">idt</span></code> python package.<br />
+Output from <code class="docutils literal notranslate"><span class="pre">idt</span></code> will generally be colorized while output from sub processes
+is generally not.</p>
+</div></blockquote>
+<p>RPi users, as needed:</p>
+<ul>
+<li><p>For users with Windows admin computers, reconnect e.g., using <code class="docutils literal notranslate"><span class="pre">MobaXterm</span></code></p></li>
+<li><p>Other users reconnect <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to the RPi (from your admin computer):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_connect</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">idt</span></code> container (from the RPi):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt_activate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<section id="id1">
+<h3>Capture<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p><strong><em>IMPORTANT</em></strong><br />
+Ensure you’ve made it to the log line “Starting real time analysis, press
+enter to stop!” before launching the app under test.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt</span> <span class="n">capture</span> <span class="o">-</span><span class="n">h</span>
+
+<span class="n">usage</span><span class="p">:</span> <span class="n">idt</span> <span class="n">capture</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">platform</span> <span class="p">{</span><span class="n">Android</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">ecosystem</span> <span class="p">{</span><span class="n">PlayServicesUser</span><span class="p">,</span><span class="n">PlayServices</span><span class="p">,</span><span class="n">ALL</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">pcap</span> <span class="p">{</span><span class="n">t</span><span class="p">,</span><span class="n">f</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">interface</span> <span class="p">{</span><span class="n">wlp0s20f3</span><span class="p">,</span><span class="n">lo</span><span class="p">,</span><span class="n">docker0</span><span class="p">,</span><span class="nb">any</span><span class="p">}]</span>
+
+<span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">platform</span> <span class="p">{</span><span class="n">Android</span><span class="p">},</span> <span class="o">-</span><span class="n">p</span> <span class="p">{</span><span class="n">Android</span><span class="p">}</span>
+                        <span class="n">Run</span> <span class="n">capture</span> <span class="k">for</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">platform</span> <span class="p">(</span><span class="n">default</span> <span class="n">Android</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">ecosystem</span> <span class="p">{</span><span class="n">PlayServicesUser</span><span class="p">,</span><span class="n">PlayServices</span><span class="p">,</span><span class="n">ALL</span><span class="p">},</span> <span class="o">-</span><span class="n">e</span> <span class="p">{</span><span class="n">PlayServicesUser</span><span class="p">,</span><span class="n">PlayServices</span><span class="p">,</span><span class="n">ALL</span><span class="p">}</span>
+                        <span class="n">Run</span> <span class="n">capture</span> <span class="k">for</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">ecosystem</span> <span class="ow">or</span> <span class="n">ALL</span> <span class="n">ecosystems</span> <span class="p">(</span><span class="n">default</span> <span class="n">ALL</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">pcap</span> <span class="p">{</span><span class="n">t</span><span class="p">,</span><span class="n">f</span><span class="p">},</span> <span class="o">-</span><span class="n">c</span> <span class="p">{</span><span class="n">t</span><span class="p">,</span><span class="n">f</span><span class="p">}</span>
+                        <span class="n">Run</span> <span class="n">packet</span> <span class="n">capture</span> <span class="p">(</span><span class="n">default</span> <span class="n">t</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">interface</span> <span class="p">{</span><span class="n">wlp0s20f3</span><span class="p">,</span><span class="n">lo</span><span class="p">,</span><span class="n">docker0</span><span class="p">,</span><span class="nb">any</span><span class="p">},</span> <span class="o">-</span><span class="n">i</span> <span class="p">{</span><span class="n">wlp0s20f3</span><span class="p">,</span><span class="n">lo</span><span class="p">,</span><span class="n">docker0</span><span class="p">,</span><span class="nb">any</span><span class="p">}</span>
+                        <span class="n">Specify</span> <span class="n">packet</span> <span class="n">capture</span> <span class="n">interface</span> <span class="p">(</span><span class="n">default</span> <span class="nb">any</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For packet capture interface (<code class="docutils literal notranslate"><span class="pre">-i</span></code>/<code class="docutils literal notranslate"><span class="pre">--interface</span></code>:</p>
+<ul class="simple">
+<li><p>On macOS, the only available interface is <code class="docutils literal notranslate"><span class="pre">any</span></code>.</p></li>
+<li><p>On Linux, <code class="docutils literal notranslate"><span class="pre">idt</span></code> checks available interfaces from <code class="docutils literal notranslate"><span class="pre">/sys/class/net/</span></code> as well
+as allowing <code class="docutils literal notranslate"><span class="pre">any</span></code>.</p></li>
+</ul>
+<section id="artifacts">
+<h4>Artifacts<a class="headerlink" href="#artifacts" title="Permalink to this heading">#</a></h4>
+<p>Each ecosystem and platform involved in the capture will have their own
+subdirectory in the root artifact dir.</p>
+</section>
+</section>
+<section id="id2">
+<h3>Discovery<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt</span> <span class="n">discover</span> <span class="o">-</span><span class="n">h</span>
+
+<span class="n">usage</span><span class="p">:</span> <span class="n">idt</span> <span class="n">discover</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">--</span><span class="nb">type</span> <span class="p">{</span><span class="n">ble</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">dnssd</span><span class="p">,</span><span class="n">d</span><span class="p">}</span>
+
+<span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="nb">type</span> <span class="p">{</span><span class="n">ble</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">dnssd</span><span class="p">,</span><span class="n">d</span><span class="p">},</span> <span class="o">-</span><span class="n">t</span> <span class="p">{</span><span class="n">ble</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">dnssd</span><span class="p">,</span><span class="n">d</span><span class="p">}</span>
+                        <span class="n">Specify</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">discovery</span> <span class="n">to</span> <span class="n">execute</span>
+</pre></div>
+</div>
+<section id="ble">
+<h4>BLE<a class="headerlink" href="#ble" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt</span> <span class="n">discover</span> <span class="o">-</span><span class="n">t</span> <span class="n">b</span>
+</pre></div>
+</div>
+</section>
+<section id="mdns">
+<h4>mDNS<a class="headerlink" href="#mdns" title="Permalink to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idt</span> <span class="n">discover</span> <span class="o">-</span><span class="n">t</span> <span class="n">d</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Artifacts<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>There is a per device log in <code class="docutils literal notranslate"><span class="pre">ble</span></code> and <code class="docutils literal notranslate"><span class="pre">dnssd</span></code> subdirectory of the root artifact
+dir.</p>
+</section>
+</section>
+<section id="probe">
+<h3>Probe<a class="headerlink" href="#probe" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">idt</span> <span class="n">probe</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+
+<span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>  <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+</pre></div>
+</div>
+<p>Collect contextually relevant networking info from the local environment and
+provide artifacts.</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Wireless <code class="docutils literal notranslate"><span class="pre">adb</span></code> may fail to connect indefinitely depending on network
+configuration. Use a wired connection if wireless fails repeatedly.</p></li>
+<li><p>Change log level from <code class="docutils literal notranslate"><span class="pre">INFO</span></code> to <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> in root <code class="docutils literal notranslate"><span class="pre">config.py</span></code> for additional
+logging.</p></li>
+<li><p>Compiling <code class="docutils literal notranslate"><span class="pre">tcpdump</span></code> for android may require additional dependencies.</p>
+<ul>
+<li><p>If the build script fails for you, try
+<code class="docutils literal notranslate"><span class="pre">idt_go</span> <span class="pre">&amp;&amp;</span> <span class="pre">source</span> <span class="pre">idt/scripts/compilers.sh</span></code>.</p></li>
+</ul>
+</li>
+<li><p>You may disable colors and splash by setting <code class="docutils literal notranslate"><span class="pre">enable_color</span></code> in <code class="docutils literal notranslate"><span class="pre">config.py</span></code>
+to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idt_clean_child</span></code> will kill any stray <code class="docutils literal notranslate"><span class="pre">tcpdump</span></code> and <code class="docutils literal notranslate"><span class="pre">adb</span></code> commands.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">idt_check_child</span></code> will look for leftover processes.</p></li>
+<li><p>Not expected to be needed outside of development scenarios.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="project-overview">
+<h2>Project overview<a class="headerlink" href="#project-overview" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The entry point is in <code class="docutils literal notranslate"><span class="pre">idt.py</span></code> which contains simple CLI parsing with
+<code class="docutils literal notranslate"><span class="pre">argparse</span></code>.</p></li>
+</ul>
+<section id="id4">
+<h3><code class="docutils literal notranslate"><span class="pre">capture</span></code><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code> contains the base classes for ecosystems and platforms.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">controller</span></code> contains the ecosystem and platform producer and controller</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loader</span></code> is a generic class loader that dynamically imports classes matching
+a given super class from a given directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/platform</span></code> and <code class="docutils literal notranslate"><span class="pre">/ecosystem</span></code> contain one package for each platform and
+ecosystem, which should each contain one implementation of the respective
+base class.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3><code class="docutils literal notranslate"><span class="pre">discovery</span></code><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matter_ble</span></code> provides a simple ble scanner that shows matter devices being
+discovered and lost, as well as their VID/PID, RSSI, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matter_dnssd</span></code> provides a simple DNS-SD browser that searches for matter
+devices and thread border routers.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3><code class="docutils literal notranslate"><span class="pre">probe</span></code><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">probe</span></code> contains the base class for (<code class="docutils literal notranslate"><span class="pre">idt</span></code>’s) host platform specific
+implementation.</p>
+<ul>
+<li><p>Reuses the dnssd discovery implementation to build probe targets.</p></li>
+<li><p>Calls platform + addr type specific probe methods for each target.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux</span></code> and <code class="docutils literal notranslate"><span class="pre">mac</span></code> contain <code class="docutils literal notranslate"><span class="pre">probe</span></code> implementations for each host platform.</p></li>
+</ul>
+</section>
+<section id="utils">
+<h3><code class="docutils literal notranslate"><span class="pre">utils</span></code><a class="headerlink" href="#utils" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">log</span></code> contains logging utilities used by everything in the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">artifact</span></code> contains helper functions for managing artifacts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code> contains a simple helper class for background and foreground Bash
+commands.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">host_platform</span></code> contains helper functions for the interacting with the host
+running <code class="docutils literal notranslate"><span class="pre">idt</span></code>.</p></li>
+</ul>
+</section>
+<section id="conventions">
+<h3>Conventions<a class="headerlink" href="#conventions" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config.py</span></code> should be used to hold development configs within the directory
+where they are needed.</p>
+<ul>
+<li><p>It may also hold configs for flaky/cumbersome features that might need
+to be disabled in an emergency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.py</span></code> <strong>should not</strong> be used for everyday operation.</p></li>
+</ul>
+</li>
+<li><p>When needed, execute builds in a folder called <code class="docutils literal notranslate"><span class="pre">BUILD</span></code> within the source
+tree.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">idt_clean_all</span></code> deletes all <code class="docutils literal notranslate"><span class="pre">BUILD</span></code> dirs and <code class="docutils literal notranslate"><span class="pre">BUILD</span></code> is in <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="extending-functionality">
+<h2>Extending functionality<a class="headerlink" href="#extending-functionality" title="Permalink to this heading">#</a></h2>
+<section id="id7">
+<h3>Capture<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>Ecosystem and Platform implementations are dynamically loaded.</p>
+<p>For each package in <code class="docutils literal notranslate"><span class="pre">capture/ecosystem</span></code>, the ecosystem loader expects a module
+name matching the package name.<br />
+This module must contain a single class which is a subclass of
+<code class="docutils literal notranslate"><span class="pre">capture.base.EcosystemCapture</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">/capture/ecosystem/play_services_user</span></code> contains a minimal example
+implementation.</p>
+<p>As another example, link <code class="docutils literal notranslate"><span class="pre">/res/plugin_demo/ecosystem/demo_ext_ecosystem</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ idt_go &amp;&amp; ln -s $PWD/idt/res/plugin_demo/ecosystem/demo_ext_ecosystem/ idt/capture/ecosystem
+$ idt capture -h
+usage: idt capture [-h] [--platform {Android}] [--ecosystem {DemoExtEcosystem...
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>IMPORTANT:</strong> Note the following runtime expectations of ecosystems:<br />
+<code class="docutils literal notranslate"><span class="pre">analyze_capture()</span></code> must not block the async event loop excessively and must
+not interact with standard in</p>
+</div></blockquote>
+<p>The platform loader functions the same as <code class="docutils literal notranslate"><span class="pre">capture/ecosystem</span></code>.</p>
+<p>For each package in <code class="docutils literal notranslate"><span class="pre">capture/platform</span></code>, the platform loader expects a module
+name matching the package name.<br />
+This module must contain a single class which is a subclass of
+<code class="docutils literal notranslate"><span class="pre">capture.base.PlatformLogStreamer</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../../../scripts/tools/spake2p/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SPAKE2+ Python Tool</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../../scripts/tools/nxp/factory_data_generator/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NXP Factory Data Generator</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discovery">Discovery</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capture">Capture</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-host-installation-no-raspberry-pi">Single host installation (no Raspberry Pi)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raspberry-pi-installation">Raspberry Pi installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-overview">Environment overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-details">Environment details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-rpi">Prepare the RPi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-admin-computer-and-push-to-the-rpi">Configure admin computer and push to the RPi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-and-macos-admin-computers">Linux and macOS admin computers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-admin-computers">Windows admin computers</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-rpi">Configure the RPi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-updates">Install updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-guide">User guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Capture</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#artifacts">Artifacts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Discovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ble">BLE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mdns">mDNS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Artifacts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probe">Probe</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-overview">Project overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">capture</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">discovery</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">probe</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utils"><code class="docutils literal notranslate"><span class="pre">utils</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-functionality">Extending functionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Capture</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

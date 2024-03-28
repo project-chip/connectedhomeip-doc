@@ -1,0 +1,1452 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Deprecation notice &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guides/python_chip_controller_building';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Silabs CLI Guide" href="silabs_cli_guide.html" />
+    <link rel="prev" title="Using Python CHIP Controller advanced features" href="python_chip_controller_advanced_usage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../QUICK_START.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/device_runner.html">CHIP on-device testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/device_runner_dispatch.html">CHIP on-device test dispatch</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../discussion/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../discussion/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/SDKBasics.html">SDK Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/cluster_and_device_type_dev.html">New Clusters &amp; Device Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html">Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="android_building.html">Building Android</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chip_tool_guide.html">Working with the CHIP Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="darwin.html">Testing with Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxp_rw61x_ota_software_update.html">Matter Over-The-Air Software Update with NXP RW61x example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openiotsdk_examples.html">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Deprecation notice</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="esp32/README.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ti/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ti/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ti/ti_platform_overview.html">Texas Instruments platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/cc13x2x7_26x2x7/README.html">Matter CC1352 CC2652 All-clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/cc13x4_26x4/README.html">Matter All-clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/contact-sensor-app/nxp/k32w/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/contact-sensor-app/nxp/k32w/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/energy-management-app/esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/energy-management-app/linux/README.html">CHIP Linux Energy Management Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/bouffalolab/README.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/cc13x2x7_26x2x7/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/nxp/k32w/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/nxp/k32w/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/cc13x2x7_26x2x7/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/log-source-app/linux/README.html">log-source-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/infineon/cyw30739/README.html">Matter CYW30739 OTA Requestor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ota-requestor-app/telink/README.html">Build and flash</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/cc13x2x7_26x2x7/README.html">Matter Persistent Storage Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/cc13x2x7_26x2x7/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/cc13x2x7_26x2x7/doc/programming-ccs.html">Programming and Debugging with CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-app/cc13x2x7_26x2x7/doc/programming-uniflash.html">Programming with UniFlash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/cc13x2x7_26x2x7/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/cc13x2x7_26x2x7/doc/programming-ccs.html">Programming and Debugging with CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/pump-controller-app/cc13x2x7_26x2x7/doc/programming-uniflash.html">Programming with UniFlash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/cc13x2x7_26x2x7/README.html">Matter Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/dishwasher-app/linux/README.html">Matter Linux Lighting Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/rvc-app/README.html">RVC example app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/network-manager-app/README.html">network-manager-app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/interop/idt/README.html">Interoperability Debugging Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clusters.html">List of currently defined clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/guides/python_chip_controller_building.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/guides/python_chip_controller_building.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Deprecation notice</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Deprecation notice</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-python-chip-controller">Working with Python CHIP Controller</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-files">Source files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-and-installing">Building and installing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tool">Running the tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-chip-controller-for-matter-accessory-testing">Using Python CHIP Controller for Matter accessory testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-prepare-the-matter-accessory">Step 1: Prepare the Matter accessory.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-enable-bluetooth-le-advertising-on-matter-accessory-device">Step 2: Enable Bluetooth LE advertising on Matter accessory device.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-discover-matter-accessory-device-over-bluetooth-le">Step 3: Discover Matter accessory device over Bluetooth LE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-set-network-pairing-credentials">Step 4: Set network pairing credentials</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-thread-network-credentials">Setting Thread network credentials</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-wi-fi-network-credentials">Setting Wi-Fi network credentials</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-commission-the-matter-accessory-device-over-bluetooth-le">Step 5: Commission the Matter accessory device over Bluetooth LE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-control-application-zcl-clusters">Step 6: Control application ZCL clusters.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-read-basic-information-out-of-the-accessory">Step 7: Read basic information out of the accessory.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-commands">List of commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-adapter-print"><code class="docutils literal notranslate"><span class="pre">ble-adapter-print</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-debug-log"><code class="docutils literal notranslate"><span class="pre">ble-debug-log</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-scan-t-timeout-identifier"><code class="docutils literal notranslate"><span class="pre">ble-scan</span> <span class="pre">[-t</span> <span class="pre">&lt;timeout&gt;]</span> <span class="pre">[identifier]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pairing-thread-credential-threadoperationaldataset"><code class="docutils literal notranslate"><span class="pre">set-pairing-thread-credential</span> <span class="pre">&lt;threadOperationalDataset&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pairing-wifi-credential-ssid-credentials"><code class="docutils literal notranslate"><span class="pre">set-pairing-wifi-credential</span> <span class="pre">&lt;ssid&gt;</span> <span class="pre">&lt;credentials&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-ip-address-setuppincode-nodeid"><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ip</span> <span class="pre">&lt;address&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-ble-discriminator-setuppincode-nodeid"><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ble</span> <span class="pre">&lt;discriminator&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-session-nodeid"><code class="docutils literal notranslate"><span class="pre">close-session</span> <span class="pre">&lt;nodeid&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discover"><code class="docutils literal notranslate"><span class="pre">discover</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolve-node-id"><code class="docutils literal notranslate"><span class="pre">resolve</span> <span class="pre">&lt;node_id&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-generate-v-vendor-id-p-product-id-cf-custom-flow-dc-discovery-capabilities-dv-discriminator-value-ps-passcode"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">generate</span> <span class="pre">[-v</span> <span class="pre">&lt;Vendor</span> <span class="pre">ID&gt;]</span> <span class="pre">[-p</span> <span class="pre">&lt;Product</span> <span class="pre">ID&gt;]</span> <span class="pre">[-cf</span> <span class="pre">&lt;Custom</span> <span class="pre">Flow&gt;]</span> <span class="pre">[-dc</span> <span class="pre">&lt;Discovery</span> <span class="pre">Capabilities&gt;]</span> <span class="pre">[-dv</span> <span class="pre">&lt;Discriminator</span> <span class="pre">Value&gt;]</span> <span class="pre">[-ps</span> <span class="pre">&lt;Passcode&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-parse-manual-manual-pairing-code"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-manual</span> <span class="pre">&lt;manual-pairing-code&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-parse-qr-qr-code"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-qr</span> <span class="pre">&lt;qr-code&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl-cluster-command-nodeid-endpointid-groupid-arguments"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Command&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl-cluster"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span> <span class="pre">&lt;Cluster&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclread-cluster-attribute-nodeid-endpointid-groupid-arguments"><code class="docutils literal notranslate"><span class="pre">zclread</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclwrite-cluster-attribute-nodeid-endpoint-groupid-value"><code class="docutils literal notranslate"><span class="pre">zclwrite</span> <span class="pre">&lt;cluster&gt;</span> <span class="pre">&lt;attribute&gt;</span> <span class="pre">&lt;nodeid&gt;</span> <span class="pre">&lt;endpoint&gt;</span> <span class="pre">&lt;groupid&gt;</span> <span class="pre">&lt;value&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclsubscribe-cluster-attribute-nodeid-endpoint-mininterval-maxinterval"><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;Nodeid&gt;</span> <span class="pre">&lt;Endpoint&gt;</span> <span class="pre">&lt;MinInterval&gt;</span> <span class="pre">&lt;MaxInterval&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclsubscribe-shutdown-subscription-id"><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">-shutdown</span> <span class="pre">&lt;subscription</span> <span class="pre">id&gt;</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="deprecation-notice">
+<h1>Deprecation notice<a class="headerlink" href="#deprecation-notice" title="Permalink to this heading">#</a></h1>
+<p>chip-device-ctrl is no longer maintained and should not be used.</p>
+<p>Matter-repl is the current python controller implementation.</p>
+</section>
+<section id="working-with-python-chip-controller">
+<h1>Working with Python CHIP Controller<a class="headerlink" href="#working-with-python-chip-controller" title="Permalink to this heading">#</a></h1>
+<p>The Python CHIP Controller is a tool that allows to commission a Matter device
+into the network and to communicate with it using the Zigbee Cluster Library
+(ZCL) messages.</p>
+<blockquote>
+<div><p>The chip-device-ctrl tool will be deprecated, and will be replaced by
+chip-repl. Continue reading to see how to do the same thing with chip-repl.</p>
+</div></blockquote>
+<hr>
+<ul class="simple">
+<li><p><a class="reference internal" href="#source-files">Source files</a></p></li>
+<li><p><a class="reference internal" href="#building-and-installing">Building Android CHIPTool</a></p></li>
+<li><p><a class="reference internal" href="#running-the-tool">Running the tool</a></p></li>
+<li><p><a class="reference internal" href="#using-python-chip-controller-for-matter-accessory-testing">Using Python CHIP Controller for Matter accessory testing</a></p></li>
+<li><p><a class="reference internal" href="#list-of-commands">List of commands</a></p></li>
+</ul>
+<hr>
+<section id="source-files">
+<h2>Source files<a class="headerlink" href="#source-files" title="Permalink to this heading">#</a></h2>
+<p>You can find source files of the Python CHIP Controller tool in the
+<code class="docutils literal notranslate"><span class="pre">src/controller/python</span></code> directory.</p>
+<p>The tool uses the generic CHIP Device Controller library, available in the
+<code class="docutils literal notranslate"><span class="pre">src/controller</span></code> directory.</p>
+<hr>
+</section>
+<section id="building-and-installing">
+<h2>Building and installing<a class="headerlink" href="#building-and-installing" title="Permalink to this heading">#</a></h2>
+<p>Before you can use the Python controller, you must compile it from the source on
+Linux (amd64 / aarch64) or macOS.</p>
+<blockquote>
+<div><p>To ensure compatibility, build the Python CHIP controller and the Matter
+device from the same revision of the connectedhomeip repository.</p>
+</div></blockquote>
+<p>To build and run the Python CHIP controller:</p>
+<ol class="arabic">
+<li><p>Install all necessary packages and prepare the build system. For more
+details, see the <a class="reference internal" href="BUILDING.html"><span class="std std-doc">Building Matter</span></a> documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span>
+
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span> <span class="n">gcc</span> <span class="n">g</span><span class="o">++</span> <span class="n">python</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libdbus</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dev</span> <span class="n">libglib2</span><span class="mf">.0</span><span class="o">-</span><span class="n">dev</span> <span class="n">libavahi</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">dev</span> <span class="n">ninja</span><span class="o">-</span><span class="n">build</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span> <span class="n">python3</span><span class="o">-</span><span class="n">dev</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">unzip</span> <span class="n">libgirepository1</span><span class="mf">.0</span><span class="o">-</span><span class="n">dev</span> <span class="n">libcairo2</span><span class="o">-</span><span class="n">dev</span> <span class="n">bluez</span>
+</pre></div>
+</div>
+<p>If the Python CHIP controller is built on a Raspberry Pi, install additional
+packages and reboot the device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">pi</span><span class="o">-</span><span class="n">bluetooth</span>
+<span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+</li>
+<li><p>Clone the Project CHIP repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">project</span><span class="o">-</span><span class="n">chip</span><span class="o">/</span><span class="n">connectedhomeip</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Enter the <code class="docutils literal notranslate"><span class="pre">connectedhomeip</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">connectedhomeip</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialize the git submodules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build and install the Python CHIP controller:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">/</span><span class="n">build_python</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">m</span> <span class="n">platform</span> <span class="o">-</span><span class="n">i</span> <span class="n">separate</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: To get more details about available build configurations, run the
+following command: <code class="docutils literal notranslate"><span class="pre">scripts/build_python.sh</span> <span class="pre">--help</span></code></p>
+</div></blockquote>
+</li>
+</ol>
+<hr>
+</section>
+<section id="running-the-tool">
+<h2>Running the tool<a class="headerlink" href="#running-the-tool" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Activate the Python virtual environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">out</span><span class="o">/</span><span class="n">python_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the Python CHIP controller with root privileges, which is required to
+obtain access to the Bluetooth interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">out</span><span class="o">/</span><span class="n">python_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span>
+</pre></div>
+</div>
+<p>You can also select the Bluetooth LE interface using command line argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">out</span><span class="o">/</span><span class="n">python_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">--</span><span class="n">bluetooth</span><span class="o">-</span><span class="n">adapter</span><span class="o">=</span><span class="n">hci2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<hr>
+</section>
+<section id="using-python-chip-controller-for-matter-accessory-testing">
+<h2>Using Python CHIP Controller for Matter accessory testing<a class="headerlink" href="#using-python-chip-controller-for-matter-accessory-testing" title="Permalink to this heading">#</a></h2>
+<p>This section describes how to use Python CHIP controller to test the Matter
+accessory. Below steps depend on the application clusters that you implemented
+on the device side and may be different for your accessory.</p>
+<section id="step-1-prepare-the-matter-accessory">
+<h3>Step 1: Prepare the Matter accessory.<a class="headerlink" href="#step-1-prepare-the-matter-accessory" title="Permalink to this heading">#</a></h3>
+<p>This tutorial is using the Matter Light Bulb example with the Bluetooth LE
+commissioning. However, you can adapt this procedure to other available Matter
+examples.</p>
+<p>Build and program the device with the Matter accessory firmware by following the
+example’s documentation.</p>
+</section>
+<section id="step-2-enable-bluetooth-le-advertising-on-matter-accessory-device">
+<h3>Step 2: Enable Bluetooth LE advertising on Matter accessory device.<a class="headerlink" href="#step-2-enable-bluetooth-le-advertising-on-matter-accessory-device" title="Permalink to this heading">#</a></h3>
+<p>Some examples are configured to advertise automatically on boot. Other examples
+require physical trigger, for example pushing a button. Follow the documentation
+of the Matter accessory example to learn how Bluetooth LE advertising is enabled
+for the given example.</p>
+</section>
+<section id="step-3-discover-matter-accessory-device-over-bluetooth-le">
+<h3>Step 3: Discover Matter accessory device over Bluetooth LE<a class="headerlink" href="#step-3-discover-matter-accessory-device-over-bluetooth-le" title="Permalink to this heading">#</a></h3>
+<p>An uncommissioned accessory device advertises over Bluetooth LE. Run the
+following command to scan all advertised Matter devices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">ble</span><span class="o">-</span><span class="n">scan</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-set-network-pairing-credentials">
+<h3>Step 4: Set network pairing credentials<a class="headerlink" href="#step-4-set-network-pairing-credentials" title="Permalink to this heading">#</a></h3>
+<p>You must provide the controller with network credentials that will be further
+used in the device commissioning procedure to configure the device with a
+network interface, such as Thread or Wi-Fi.</p>
+<section id="setting-thread-network-credentials">
+<h4>Setting Thread network credentials<a class="headerlink" href="#setting-thread-network-credentials" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Fetch and store the current Active Operational Dataset from the Thread Border
+Router. Depending on if the Thread Border Router is running on Docker or
+natively on Raspberry Pi, execute the following commands:</p>
+<ul>
+<li><p>For Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">otbr</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;sudo ot-ctl dataset active -x&quot;</span>
+<span class="mf">0e080000000000010000000300001335060004001</span><span class="n">fffe002084fe76e9a8b5edaf50708fde46f999f0698e20510d47f5027a414ffeebaefa92285cc84fa030f4f70656e5468726561642d653439630102e49c0410b92f8c7fbb4f9f3e08492ee3915fbd2f0c0402a0fff8</span>
+<span class="n">Done</span>
+</pre></div>
+</div>
+</li>
+<li><p>For native installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ot</span><span class="o">-</span><span class="n">ctl</span> <span class="n">dataset</span> <span class="n">active</span> <span class="o">-</span><span class="n">x</span>
+<span class="mf">0e080000000000010000000300001335060004001</span><span class="n">fffe002084fe76e9a8b5edaf50708fde46f999f0698e20510d47f5027a414ffeebaefa92285cc84fa030f4f70656e5468726561642d653439630102e49c0410b92f8c7fbb4f9f3e08492ee3915fbd2f0c0402a0fff8</span>
+<span class="n">Done</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Matter specification does not define how the Thread or Wi-Fi credentials are
+obtained by Controller. For example, for Thread, instead of fetching
+datasets directly from the Thread Border Router, you might also use a
+different out-of-band method.</p>
+</li>
+<li><p>Set the previously obtained Active Operational Dataset as a hex-encoded value
+using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="o">-</span><span class="n">pairing</span><span class="o">-</span><span class="n">thread</span><span class="o">-</span><span class="n">credential</span> <span class="mf">0e080000000000010000000300001335060004001</span><span class="n">fffe002084fe76e9a8b5edaf50708fde46f999f0698e20510d47f5027a414ffeebaefa92285cc84fa030f4f70656e5468726561642d653439630102e49c0410b92f8c7fbb4f9f3e08492ee3915fbd2f0c0402a0fff8</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="setting-wi-fi-network-credentials">
+<h4>Setting Wi-Fi network credentials<a class="headerlink" href="#setting-wi-fi-network-credentials" title="Permalink to this heading">#</a></h4>
+<p>Assuming your Wi-Fi SSID is <em>TESTSSID</em>, and your Wi-Fi password is <em>P455W4RD</em>,
+set the credentials to the controller by executing the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="o">-</span><span class="n">pairing</span><span class="o">-</span><span class="n">wifi</span><span class="o">-</span><span class="n">credential</span> <span class="n">TESTSSID</span> <span class="n">P455W4RD</span>
+</pre></div>
+</div>
+<p><strong>REPL Command</strong>: <code class="docutils literal notranslate"><span class="pre">devCtrl.SetWiFiCredentials(&lt;ssid&gt;,</span> <span class="pre">&lt;password&gt;)</span></code></p>
+</section>
+</section>
+<section id="step-5-commission-the-matter-accessory-device-over-bluetooth-le">
+<h3>Step 5: Commission the Matter accessory device over Bluetooth LE<a class="headerlink" href="#step-5-commission-the-matter-accessory-device-over-bluetooth-le" title="Permalink to this heading">#</a></h3>
+<p>The controller uses a 12-bit value called <strong>discriminator</strong> to discern between
+multiple commissionable device advertisements, as well as a 27-bit <strong>setup PIN
+code</strong> to authenticate the device. You can find these values in the logging
+terminal of the device (for example, UART). For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span><span class="p">:</span> <span class="mi">254</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span><span class="n">Device</span> <span class="n">Configuration</span><span class="p">:</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">257</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Serial</span> <span class="n">Number</span><span class="p">:</span> <span class="n">TEST_SN</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">260</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Vendor</span> <span class="n">Id</span><span class="p">:</span> <span class="mi">65521</span> <span class="p">(</span><span class="mh">0xFFF1</span><span class="p">)</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">263</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Product</span> <span class="n">Id</span><span class="p">:</span> <span class="mi">32768</span> <span class="p">(</span><span class="mh">0x8000</span><span class="p">)</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">267</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Hardware</span> <span class="n">Version</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">270</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Setup</span> <span class="n">Pin</span> <span class="n">Code</span><span class="p">:</span> <span class="mi">20202021</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">273</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Setup</span> <span class="n">Discriminator</span><span class="p">:</span> <span class="mi">3840</span> <span class="p">(</span><span class="mh">0xF00</span><span class="p">)</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">278</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Manufacturing</span> <span class="n">Date</span><span class="p">:</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">set</span><span class="p">)</span>
+<span class="n">I</span><span class="p">:</span> <span class="mi">281</span> <span class="p">[</span><span class="n">DL</span><span class="p">]</span> <span class="n">Device</span> <span class="n">Type</span><span class="p">:</span> <span class="mi">65535</span> <span class="p">(</span><span class="mh">0xFFFF</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run the following command to establish the secure connection over Bluetooth LE,
+with the following assumptions for the Matter accessory device:</p>
+<ul class="simple">
+<li><p>The discriminator of the device is <em>3840</em></p></li>
+<li><p>The setup pin code of the device is <em>20202021</em></p></li>
+<li><p>The temporary Node ID is <em>1234</em></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">connect</span> <span class="o">-</span><span class="n">ble</span> <span class="mi">3840</span> <span class="mi">20202021</span> <span class="mi">1234</span>
+</pre></div>
+</div>
+<p><strong>REPL Command:</strong>
+<code class="docutils literal notranslate"><span class="pre">devCtrl.ConnectBLE(&lt;discriminator&gt;,</span> <span class="pre">&lt;setup</span> <span class="pre">pincode&gt;,</span> <span class="pre">&lt;temporary</span> <span class="pre">node</span> <span class="pre">id&gt;)</span></code></p>
+<p>You can skip the last parameter, the Node ID, in the command. If you skip it,
+the controller will assign it randomly. In that case, note down the Node ID,
+because it is required later in the configuration process.</p>
+<p>After connecting the device over Bluetooth LE, the controller will go through
+the following stages:</p>
+<ul>
+<li><p>Establishing a secure connection that completes the PASE
+(Password-Authenticated Session Establishment) session using SPAKE2+
+protocol and results in printing the following log:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+Secure Session to Device Established
+```
+</pre></div>
+</div>
+</li>
+<li><p>Providing the device with a network interface using ZCL Network
+Commissioning cluster commands, and the network pairing credentials set in
+the previous step.</p></li>
+<li><p>Discovering the IPv6 address of the Matter accessory using the SRP (Service
+Registration Protocol) for Thread devices, or the mDNS (Multicast Domain
+Name System) protocol for Wi-Fi or Ethernet devices. It results in printing
+log that indicates that the node address has been updated. The IPv6 address
+of the device is cached in the controller for later usage.</p></li>
+<li><p>Closing the Bluetooth LE connection, as the commissioning process is
+finished and the Python CHIP controller is now using only the IPv6 traffic
+to reach the device.</p></li>
+</ul>
+</section>
+<section id="step-6-control-application-zcl-clusters">
+<h3>Step 6: Control application ZCL clusters.<a class="headerlink" href="#step-6-control-application-zcl-clusters" title="Permalink to this heading">#</a></h3>
+<p>For the light bulb example, execute the following command to toggle the LED
+state:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zcl</span> <span class="n">OnOff</span> <span class="n">Toggle</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>REPL Command:</strong>
+<code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">devCtrl.SendCommand(1234,</span> <span class="pre">1,</span> <span class="pre">Clusters.OnOff.Commands.Toggle())</span></code></p>
+<p>To change the brightness of the LED, use the following command, with the level
+value somewhere between 0 and 255.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zcl</span> <span class="n">LevelControl</span> <span class="n">MoveToLevel</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">level</span><span class="o">=</span><span class="mi">50</span>
+</pre></div>
+</div>
+<p><strong>REPL Command:</strong>
+<code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">devCtrl.SendCommand(1234,</span> <span class="pre">1,</span> <span class="pre">LevelControl.Commands.MoveToLevel(level=50,</span> <span class="pre">transitionTime=Null,</span> <span class="pre">optionsMask=0,</span> <span class="pre">optionsOverride=0))</span></code></p>
+</section>
+<section id="step-7-read-basic-information-out-of-the-accessory">
+<h3>Step 7: Read basic information out of the accessory.<a class="headerlink" href="#step-7-read-basic-information-out-of-the-accessory" title="Permalink to this heading">#</a></h3>
+<p>Every Matter accessory device supports a Basic Information Cluster, which
+maintains collection of attributes that a controller can obtain from a device,
+such as the vendor name, the product name, or software version. Use <code class="docutils literal notranslate"><span class="pre">zclread</span></code>
+command to read those values from the device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclread</span> <span class="n">BasicInformation</span> <span class="n">VendorName</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclread</span> <span class="n">BasicInformation</span> <span class="n">ProductName</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclread</span> <span class="n">BasicInformation</span> <span class="n">SoftwareVersion</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>REPL Command:</strong>
+<code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">devCtrl.ReadAttribute(1234,</span> <span class="pre">[(1,</span> <span class="pre">Clusters.BasicInformation.Attributes.VendorName)])</span></code></p>
+<blockquote>
+<div><p>Use the <code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span> <span class="pre">BasicInformation</span></code> command to list all available commands for
+Basic Information Cluster.</p>
+<p>In REPL, you can type <code class="docutils literal notranslate"><span class="pre">Clusters.BasicInformation.Attributes.</span></code> and then use the
+TAB key.</p>
+</div></blockquote>
+<hr>
+</section>
+</section>
+<section id="list-of-commands">
+<h2>List of commands<a class="headerlink" href="#list-of-commands" title="Permalink to this heading">#</a></h2>
+<section id="ble-adapter-print">
+<h3><code class="docutils literal notranslate"><span class="pre">ble-adapter-print</span></code><a class="headerlink" href="#ble-adapter-print" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>BLE adapter operations is not yet supported in REPL</p>
+</div></blockquote>
+<p>Print the available Bluetooth adapters on device. Takes no arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">ble</span><span class="o">-</span><span class="n">adapter</span><span class="o">-</span><span class="nb">print</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">04</span> <span class="mi">16</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">40</span><span class="p">,</span><span class="mi">930</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">AdapterName</span><span class="p">:</span> <span class="n">hci0</span>   <span class="n">AdapterAddress</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="n">AA</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">23</span>
+</pre></div>
+</div>
+</section>
+<section id="ble-debug-log">
+<h3><code class="docutils literal notranslate"><span class="pre">ble-debug-log</span></code><a class="headerlink" href="#ble-debug-log" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>BLE adapter operations is not yet supported in REPL</p>
+</div></blockquote>
+<p>Enable the Bluetooth LE debug logs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">ble</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">log</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="ble-scan-t-timeout-identifier">
+<h3><code class="docutils literal notranslate"><span class="pre">ble-scan</span> <span class="pre">[-t</span> <span class="pre">&lt;timeout&gt;]</span> <span class="pre">[identifier]</span></code><a class="headerlink" href="#ble-scan-t-timeout-identifier" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>BLE adapter operations is not yet supported in REPL</p>
+</div></blockquote>
+<p>Start a scan action to search for valid CHIP devices over Bluetooth LE (for at
+most <em>timeout</em> seconds). Stop when the device is matching the identifier or the
+counter times out.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">ble</span><span class="o">-</span><span class="n">scan</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">05</span><span class="p">,</span><span class="mi">461</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">scanning</span> <span class="n">started</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">206</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Name</span>            <span class="o">=</span> <span class="n">ChipLight</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">206</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">ID</span>              <span class="o">=</span> <span class="n">f016e23d</span><span class="o">-</span><span class="mi">0</span><span class="n">d00</span><span class="o">-</span><span class="mi">35</span><span class="n">d5</span><span class="o">-</span><span class="mf">93e7</span><span class="o">-</span><span class="mi">588</span><span class="n">acdbc7e54</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">207</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">RSSI</span>            <span class="o">=</span> <span class="o">-</span><span class="mi">79</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">207</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Address</span>         <span class="o">=</span> <span class="n">E0</span><span class="p">:</span><span class="mi">4</span><span class="n">D</span><span class="p">:</span><span class="mi">84</span><span class="p">:</span><span class="mi">3</span><span class="n">C</span><span class="p">:</span><span class="n">BB</span><span class="p">:</span><span class="n">C3</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">209</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Pairing</span> <span class="n">State</span>   <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">209</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Discriminator</span>   <span class="o">=</span> <span class="mi">3840</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">209</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Vendor</span> <span class="n">Id</span>       <span class="o">=</span> <span class="mi">9050</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">209</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Product</span> <span class="n">Id</span>      <span class="o">=</span> <span class="mi">20044</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">210</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Adv</span> <span class="n">UUID</span>        <span class="o">=</span> <span class="mi">0000</span><span class="n">fff6</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">1000</span><span class="o">-</span><span class="mi">8000</span><span class="o">-</span><span class="mi">00805</span><span class="n">f9b34fb</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">210</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">Adv</span> <span class="n">Data</span>        <span class="o">=</span> <span class="mi">00000</span><span class="n">f5a234c4e</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">07</span><span class="p">,</span><span class="mi">210</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">22</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="mi">246</span> <span class="n">ChipBLEMgr</span>   <span class="n">INFO</span>     <span class="n">scanning</span> <span class="n">stopped</span>
+</pre></div>
+</div>
+</section>
+<section id="set-pairing-thread-credential-threadoperationaldataset">
+<h3><code class="docutils literal notranslate"><span class="pre">set-pairing-thread-credential</span> <span class="pre">&lt;threadOperationalDataset&gt;</span></code><a class="headerlink" href="#set-pairing-thread-credential-threadoperationaldataset" title="Permalink to this heading">#</a></h3>
+<p>Provides the controller with Thread network credentials that will be used in the
+device commissioning procedure to configure the device with a Thread interface.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="o">-</span><span class="n">pairing</span><span class="o">-</span><span class="n">thread</span><span class="o">-</span><span class="n">credential</span> <span class="mf">0e080000000000010000000300001335060004001</span><span class="n">fffe002084fe76e9a8b5edaf50708fde46f999f0698e20510d47f5027a414ffeebaefa92285cc84fa030f4f70656e5468726561642d653439630102e49c0410b92f8c7fbb4f9f3e08492ee3915fbd2f0c0402a0fff8</span>
+</pre></div>
+</div>
+<p><strong>REPL Commands:</strong>
+<code class="docutils literal notranslate"><span class="pre">devCtrl.SetThreadOperationalDataset(bytes.FromHex(&quot;0e080000000000010000000300001335060004001fffe002084fe76e9a8b5edaf50708fde46f999f0698e20510d47f5027a414ffeebaefa92285cc84fa030f4f70656e5468726561642d653439630102e49c0410b92f8c7fbb4f9f3e08492ee3915fbd2f0c0402a0fff8&quot;))</span></code></p>
+</section>
+<section id="set-pairing-wifi-credential-ssid-credentials">
+<h3><code class="docutils literal notranslate"><span class="pre">set-pairing-wifi-credential</span> <span class="pre">&lt;ssid&gt;</span> <span class="pre">&lt;credentials&gt;</span></code><a class="headerlink" href="#set-pairing-wifi-credential-ssid-credentials" title="Permalink to this heading">#</a></h3>
+<p>Provides the controller with Wi-Fi network credentials that will be used in the
+device commissioning procedure to configure the device with a Wi-Fi interface.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="o">-</span><span class="n">pairing</span><span class="o">-</span><span class="n">wifi</span><span class="o">-</span><span class="n">credential</span> <span class="n">TESTSSID</span> <span class="n">P455W4RD</span>
+</pre></div>
+</div>
+<p><strong>REPL Commands:</strong> <code class="docutils literal notranslate"><span class="pre">devCtrl.SetWiFiCredentials('TESTSSID',</span> <span class="pre">'P455W4RD')</span></code></p>
+</section>
+<section id="connect-ip-address-setuppincode-nodeid">
+<h3><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ip</span> <span class="pre">&lt;address&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code><a class="headerlink" href="#connect-ip-address-setuppincode-nodeid" title="Permalink to this heading">#</a></h3>
+<p>Do key exchange and establish a secure session between controller and device
+using IP transport.</p>
+<p>The Node ID will be used by controller to distinguish multiple devices. This
+does not match the spec and will be removed later. The nodeid will not be
+persisted by controller / device.</p>
+<p>If no nodeid given, a random Node ID will be used.</p>
+<p><strong>REPL Commands:</strong>
+<code class="docutils literal notranslate"><span class="pre">devCtrl.CommissionIP(b'&lt;ip</span> <span class="pre">address&gt;',</span> <span class="pre">&lt;setup</span> <span class="pre">pin</span> <span class="pre">code&gt;,</span> <span class="pre">&lt;nodeid&gt;)</span></code></p>
+</section>
+<section id="connect-ble-discriminator-setuppincode-nodeid">
+<h3><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ble</span> <span class="pre">&lt;discriminator&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code><a class="headerlink" href="#connect-ble-discriminator-setuppincode-nodeid" title="Permalink to this heading">#</a></h3>
+<p>Do key exchange and establish a secure session between controller and device
+using Bluetooth LE transport.</p>
+<p>The Node ID will be used by controller to distinguish multiple devices. This
+does not match the spec and will be removed later. The nodeid will not be
+persisted by controller / device.</p>
+<p>If no nodeid given, a random Node ID will be used.</p>
+<p><strong>REPL Commands:</strong>
+<code class="docutils literal notranslate"><span class="pre">devCtrl.ConnectBLE(&lt;discriminator&gt;,</span> <span class="pre">&lt;setup</span> <span class="pre">pin</span> <span class="pre">code&gt;,</span> <span class="pre">&lt;nodeid&gt;)</span></code></p>
+</section>
+<section id="close-session-nodeid">
+<h3><code class="docutils literal notranslate"><span class="pre">close-session</span> <span class="pre">&lt;nodeid&gt;</span></code><a class="headerlink" href="#close-session-nodeid" title="Permalink to this heading">#</a></h3>
+<p>If case there exists an open session (PASE or CASE) to the device with a given
+Node ID, mark it as expired.</p>
+<p><strong>REPL Commands:</strong> <code class="docutils literal notranslate"><span class="pre">devCtrl.CloseSession(&lt;nodeid&gt;)</span></code></p>
+</section>
+<section id="discover">
+<h3><code class="docutils literal notranslate"><span class="pre">discover</span></code><a class="headerlink" href="#discover" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>To be implemented in REPL</p>
+</div></blockquote>
+<p>Discover available Matter accessory devices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">discover</span> <span class="o">-</span><span class="nb">all</span>
+</pre></div>
+</div>
+</section>
+<section id="resolve-node-id">
+<h3><code class="docutils literal notranslate"><span class="pre">resolve</span> <span class="pre">&lt;node_id&gt;</span></code><a class="headerlink" href="#resolve-node-id" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>To be implemented in REPL</p>
+</div></blockquote>
+<p>Resolve DNS-SD name corresponding with the given Node ID and update address of
+the node in the device controller:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">resolve</span> <span class="mi">1234</span>
+</pre></div>
+</div>
+</section>
+<section id="setup-payload-generate-v-vendor-id-p-product-id-cf-custom-flow-dc-discovery-capabilities-dv-discriminator-value-ps-passcode">
+<h3><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">generate</span> <span class="pre">[-v</span> <span class="pre">&lt;Vendor</span> <span class="pre">ID&gt;]</span> <span class="pre">[-p</span> <span class="pre">&lt;Product</span> <span class="pre">ID&gt;]</span> <span class="pre">[-cf</span> <span class="pre">&lt;Custom</span> <span class="pre">Flow&gt;]</span> <span class="pre">[-dc</span> <span class="pre">&lt;Discovery</span> <span class="pre">Capabilities&gt;]</span> <span class="pre">[-dv</span> <span class="pre">&lt;Discriminator</span> <span class="pre">Value&gt;]</span> <span class="pre">[-ps</span> <span class="pre">&lt;Passcode&gt;]</span></code><a class="headerlink" href="#setup-payload-generate-v-vendor-id-p-product-id-cf-custom-flow-dc-discovery-capabilities-dv-discriminator-value-ps-passcode" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>To be implemented in REPL</p>
+</div></blockquote>
+<p>Print the generated Onboarding Payload Contents in human-readable (Manual
+Pairing Code) and machine-readable (QR Code) format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">setup</span><span class="o">-</span><span class="n">payload</span> <span class="n">generate</span> <span class="o">-</span><span class="n">v</span> <span class="mi">9050</span> <span class="o">-</span><span class="n">p</span> <span class="mi">65279</span> <span class="o">-</span><span class="n">cf</span> <span class="mi">0</span> <span class="o">-</span><span class="n">dc</span> <span class="mi">2</span> <span class="o">-</span><span class="n">dv</span> <span class="mi">2976</span> <span class="o">-</span><span class="n">ps</span> <span class="mi">34567890</span>
+<span class="n">Manual</span> <span class="n">pairing</span> <span class="n">code</span><span class="p">:</span> <span class="p">[</span><span class="mi">26318621095</span><span class="p">]</span>
+<span class="n">SetupQRCode</span><span class="p">:</span> <span class="p">[</span><span class="n">MT</span><span class="p">:</span><span class="n">YNJV7VSC00CMVH7SR00</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="setup-payload-parse-manual-manual-pairing-code">
+<h3><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-manual</span> <span class="pre">&lt;manual-pairing-code&gt;</span></code><a class="headerlink" href="#setup-payload-parse-manual-manual-pairing-code" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>To be implemented in REPL</p>
+</div></blockquote>
+<p>Print the commissioning information encoded in the Manual Pairing Code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">setup</span><span class="o">-</span><span class="n">payload</span> <span class="n">parse</span><span class="o">-</span><span class="n">manual</span> <span class="mi">34970112332</span>
+<span class="n">Version</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">VendorID</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">ProductID</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">CommissioningFlow</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">RendezvousInformation</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Discriminator</span><span class="p">:</span> <span class="mi">3840</span>
+<span class="n">SetUpPINCode</span><span class="p">:</span> <span class="mi">20202021</span>
+</pre></div>
+</div>
+</section>
+<section id="setup-payload-parse-qr-qr-code">
+<h3><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-qr</span> <span class="pre">&lt;qr-code&gt;</span></code><a class="headerlink" href="#setup-payload-parse-qr-qr-code" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>To be implemented in REPL</p>
+</div></blockquote>
+<p>Print the commissioning information encoded in the QR Code payload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">setup</span><span class="o">-</span><span class="n">payload</span> <span class="n">parse</span><span class="o">-</span><span class="n">qr</span> <span class="s2">&quot;VP:vendorpayload%MT:W0GU2OTB00KA0648G00&quot;</span>
+<span class="n">Version</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">VendorID</span><span class="p">:</span> <span class="mi">9050</span>
+<span class="n">ProductID</span><span class="p">:</span> <span class="mi">20043</span>
+<span class="n">CommissioningFlow</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">RendezvousInformation</span><span class="p">:</span> <span class="mi">2</span> <span class="p">[</span><span class="n">BLE</span><span class="p">]</span>
+<span class="n">Discriminator</span><span class="p">:</span> <span class="mi">3840</span>
+<span class="n">SetUpPINCode</span><span class="p">:</span> <span class="mi">20202021</span>
+</pre></div>
+</div>
+</section>
+<section id="zcl-cluster-command-nodeid-endpointid-groupid-arguments">
+<h3><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Command&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code><a class="headerlink" href="#zcl-cluster-command-nodeid-endpointid-groupid-arguments" title="Permalink to this heading">#</a></h3>
+<p>Send a ZCL command to the device. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zcl</span> <span class="n">LevelControl</span> <span class="n">MoveWithOnOff</span> <span class="mi">12344321</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">moveMode</span><span class="o">=</span><span class="mi">1</span> <span class="n">rate</span><span class="o">=</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p><strong>Format of arguments</strong></p>
+<p>For any integer and char string (null terminated) types, just use <code class="docutils literal notranslate"><span class="pre">key=value</span></code>,
+for example: <code class="docutils literal notranslate"><span class="pre">rate=2</span></code>, <code class="docutils literal notranslate"><span class="pre">string=123</span></code>, <code class="docutils literal notranslate"><span class="pre">string_2=&quot;123</span> <span class="pre">456&quot;</span></code></p>
+<p>For byte string type, use <code class="docutils literal notranslate"><span class="pre">key=encoding:value</span></code>, currently, we support <code class="docutils literal notranslate"><span class="pre">str</span></code> and
+<code class="docutils literal notranslate"><span class="pre">hex</span></code> encoding, the <code class="docutils literal notranslate"><span class="pre">str</span></code> encoding will encode a NULL terminated string. For
+example, <code class="docutils literal notranslate"><span class="pre">networkId=hex:0123456789abcdef</span></code> (for
+<code class="docutils literal notranslate"><span class="pre">[0x01,</span> <span class="pre">0x23,</span> <span class="pre">0x45,</span> <span class="pre">0x67,</span> <span class="pre">0x89,</span> <span class="pre">0xab,</span> <span class="pre">0xcd,</span> <span class="pre">0xef]</span></code>), <code class="docutils literal notranslate"><span class="pre">ssid=str:Test</span></code> (for
+<code class="docutils literal notranslate"><span class="pre">['T',</span> <span class="pre">'e',</span> <span class="pre">'s',</span> <span class="pre">'t',</span> <span class="pre">0x00]</span></code>).</p>
+<p>For boolean type, use <code class="docutils literal notranslate"><span class="pre">key=True</span></code> or <code class="docutils literal notranslate"><span class="pre">key=False</span></code>.</p>
+<p><strong>REPL Commands:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># await devCtrl.SendCommand(&lt;nodeid&gt;, &lt;endpoint&gt;, Clusters.&lt;cluster&gt;.Commands.&lt;command&gt;(&lt;arguments&gt;))</span>
+<span class="c1"># e.g.</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">12344321</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">LevelControl</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">MoveWithOnOff</span><span class="p">(</span><span class="n">moveMode</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">optionsMask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">optionsOverride</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="zcl">
+<h3><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span></code><a class="headerlink" href="#zcl" title="Permalink to this heading">#</a></h3>
+<p>List available clusters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>chip-device-ctrl &gt; zcl ?
+AccountLogin
+ApplicationBasic
+ApplicationLauncher
+AudioOutput
+BarrierControl
+BasicInformation
+Binding
+BridgedDeviceBasicInformation
+ColorControl
+ContentLaunch
+Descriptor
+DoorLock
+EthernetNetworkDiagnostics
+FixedLabel
+GeneralCommissioning
+GeneralDiagnostics
+GroupKeyManagement
+Groups
+Identify
+KeypadInput
+LevelControl
+LowPower
+MediaInput
+MediaPlayback
+NetworkCommissioning
+OnOff
+OperationalCredentials
+PumpConfigurationAndControl
+RelativeHumidityMeasurement
+ScenesManagement
+SoftwareDiagnostics
+Switch
+Channel
+TargetNavigator
+TemperatureMeasurement
+TestCluster
+Thermostat
+TrustedRootCertificates
+WakeOnLan
+WindowCovering
+</pre></div>
+</div>
+<p><strong>REPL Commands</strong></p>
+<p>Type <code class="docutils literal notranslate"><span class="pre">Clusters.</span></code> and hit TAB</p>
+</section>
+<section id="zcl-cluster">
+<h3><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span> <span class="pre">&lt;Cluster&gt;</span></code><a class="headerlink" href="#zcl-cluster" title="Permalink to this heading">#</a></h3>
+<p>List available commands in cluster. For example, for <em>Basic Information</em>
+cluster:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>chip-device-ctrl &gt; zcl ? BasicInformation
+DataModelRevision
+VendorName
+VendorID
+ProductName
+ProductID
+UserLabel
+Location
+HardwareVersion
+HardwareVersionString
+SoftwareVersion
+SoftwareVersionString
+ManufacturingDate
+PartNumber
+ProductURL
+ProductLabel
+SerialNumber
+LocalConfigDisabled
+ClusterRevision
+</pre></div>
+</div>
+<p><strong>REPL Commands</strong></p>
+<p>Type <code class="docutils literal notranslate"><span class="pre">Clusters.(cluster</span> <span class="pre">name).Commands.</span></code> and hit TAB</p>
+</section>
+<section id="zclread-cluster-attribute-nodeid-endpointid-groupid-arguments">
+<h3><code class="docutils literal notranslate"><span class="pre">zclread</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code><a class="headerlink" href="#zclread-cluster-attribute-nodeid-endpointid-groupid-arguments" title="Permalink to this heading">#</a></h3>
+<p>Read the value of ZCL attribute. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclread</span> <span class="n">BasicInformation</span> <span class="n">VendorName</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>REPL Commands</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># devCtrl.ReadAttribute(&lt;nodeid&gt;, [(&lt;endpoint id&gt;, Clusters.&lt;cluster&gt;.Attributes.&lt;attribute&gt;)])</span>
+<span class="c1"># e.g.</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadAttribute</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">BasicInformation</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">VendorName</span><span class="p">)])</span>
+</pre></div>
+</div>
+</section>
+<section id="zclwrite-cluster-attribute-nodeid-endpoint-groupid-value">
+<h3><code class="docutils literal notranslate"><span class="pre">zclwrite</span> <span class="pre">&lt;cluster&gt;</span> <span class="pre">&lt;attribute&gt;</span> <span class="pre">&lt;nodeid&gt;</span> <span class="pre">&lt;endpoint&gt;</span> <span class="pre">&lt;groupid&gt;</span> <span class="pre">&lt;value&gt;</span></code><a class="headerlink" href="#zclwrite-cluster-attribute-nodeid-endpoint-groupid-value" title="Permalink to this heading">#</a></h3>
+<p>Write the value to a ZCL attribute. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclwrite</span> <span class="n">TestCluster</span> <span class="n">Int8u</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclwrite</span> <span class="n">TestCluster</span> <span class="n">Boolean</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="kc">True</span>
+<span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclwrite</span> <span class="n">TestCluster</span> <span class="n">OctetString</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="nb">str</span><span class="p">:</span><span class="mi">123123</span>
+<span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclwrite</span> <span class="n">TestCluster</span> <span class="n">CharString</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">233233</span>
+</pre></div>
+</div>
+<p>Note: The format of the value is the same as the format of argument values for
+ZCL cluster commands.</p>
+<p><strong>REPL Commands</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># devCtrl.WriteAttribute(&lt;nodeid&gt;, [(&lt;endpointid&gt;, Clusters.&lt;cluster&gt;.Attributes.&lt;attribute&gt;(value=&lt;attribute value&gt;))])</span>
+<span class="c1"># e.g.</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">WriteAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">UnitTesting</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">Int8u</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">))])</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">WriteAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">UnitTesting</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">))])</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">WriteAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">UnitTesting</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">OctetString</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;123123</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))])</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">WriteAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">UnitTesting</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">CharString</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;233233&#39;</span><span class="p">))])</span>
+</pre></div>
+</div>
+</section>
+<section id="zclsubscribe-cluster-attribute-nodeid-endpoint-mininterval-maxinterval">
+<h3><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;Nodeid&gt;</span> <span class="pre">&lt;Endpoint&gt;</span> <span class="pre">&lt;MinInterval&gt;</span> <span class="pre">&lt;MaxInterval&gt;</span></code><a class="headerlink" href="#zclsubscribe-cluster-attribute-nodeid-endpoint-mininterval-maxinterval" title="Permalink to this heading">#</a></h3>
+<p>Configure ZCL attribute reporting settings. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclsubscribe</span> <span class="n">OccupancySensing</span> <span class="n">Occupancy</span> <span class="mi">1234</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">20</span>
+</pre></div>
+</div>
+<p><strong>REPL Commands</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># devCtrl.ReadAttribute(&lt;nodeid&gt;, [(&lt;endpoint&gt;, Clusters.&lt;cluster&gt;.Attributes.&lt;attribute&gt;)], reportInterval=(&lt;min interval&gt;, &lt;max interval&gt;))</span>
+<span class="c1"># e.g.</span>
+<span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">OccupancySensing</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">Occupancy</span><span class="p">)],</span> <span class="n">reportInterval</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="zclsubscribe-shutdown-subscription-id">
+<h3><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">-shutdown</span> <span class="pre">&lt;subscription</span> <span class="pre">id&gt;</span></code><a class="headerlink" href="#zclsubscribe-shutdown-subscription-id" title="Permalink to this heading">#</a></h3>
+<p>Shutdown an existing attribute subscription.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclsubscribe</span> <span class="o">-</span><span class="n">shutdown</span> <span class="mh">0xdeadbeefcafe</span>
+</pre></div>
+</div>
+<p>The subscription id can be obtained from previous subscription messages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">ctrl</span> <span class="o">&gt;</span> <span class="n">zclsubscribe</span> <span class="n">OnOff</span> <span class="n">OnOff</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">20</span>
+<span class="p">(</span><span class="n">omitted</span> <span class="n">messages</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">1633922898.965587</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span> <span class="n">SubscribeResponse</span> <span class="o">=</span>
+<span class="p">[</span><span class="mf">1633922898.965599</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span> <span class="p">{</span>
+<span class="p">[</span><span class="mf">1633922898.965610</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span>  <span class="n">SubscriptionId</span> <span class="o">=</span> <span class="mh">0xdeadbeefcafe</span><span class="p">,</span>
+<span class="p">[</span><span class="mf">1633922898.965622</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span>  <span class="n">MinIntervalFloorSeconds</span> <span class="o">=</span> <span class="mh">0xa</span><span class="p">,</span>
+<span class="p">[</span><span class="mf">1633922898.965633</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span>  <span class="n">MaxIntervalCeilingSeconds</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">,</span>
+<span class="p">[</span><span class="mf">1633922898.965644</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">DMG</span><span class="p">:</span> <span class="p">}</span>
+<span class="p">[</span><span class="mf">1633922898.965662</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">ZCL</span><span class="p">:</span> <span class="n">SubscribeResponse</span><span class="p">:</span>
+<span class="p">[</span><span class="mf">1633922898.965673</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">ZCL</span><span class="p">:</span>   <span class="n">SubscriptionId</span><span class="p">:</span>        <span class="mh">0xdeadbeefcafe</span>
+<span class="p">[</span><span class="mf">1633922898.965683</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">ZCL</span><span class="p">:</span>   <span class="n">ApplicationIdentifier</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">[</span><span class="mf">1633922898.965694</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">ZCL</span><span class="p">:</span>   <span class="n">status</span><span class="p">:</span> <span class="n">EMBER_ZCL_STATUS_SUCCESS</span> <span class="p">(</span><span class="mh">0x00</span><span class="p">)</span>
+<span class="p">[</span><span class="mf">1633922898.965709</span><span class="p">][</span><span class="mi">1117858</span><span class="p">:</span><span class="mi">1117866</span><span class="p">]</span> <span class="n">CHIP</span><span class="p">:</span><span class="n">ZCL</span><span class="p">:</span>   <span class="n">attributeValue</span><span class="p">:</span> <span class="n">false</span>
+<span class="p">(</span><span class="n">omitted</span> <span class="n">messages</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The subscription id is <code class="docutils literal notranslate"><span class="pre">0xdeadbeefcafe</span></code> in this case</p>
+<p><strong>REPL Commands</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SubscriptionTransaction.Shutdown()</span>
+<span class="c1"># e.g.</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadAttribute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Clusters</span><span class="o">.</span><span class="n">OccupancySensing</span><span class="o">.</span><span class="n">Attributes</span><span class="o">.</span><span class="n">Occupancy</span><span class="p">)],</span> <span class="n">reportInterval</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">Shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_chip_controller_advanced_usage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Python CHIP Controller advanced features</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="silabs_cli_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Silabs CLI Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Deprecation notice</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-python-chip-controller">Working with Python CHIP Controller</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-files">Source files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-and-installing">Building and installing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tool">Running the tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-chip-controller-for-matter-accessory-testing">Using Python CHIP Controller for Matter accessory testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-prepare-the-matter-accessory">Step 1: Prepare the Matter accessory.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-enable-bluetooth-le-advertising-on-matter-accessory-device">Step 2: Enable Bluetooth LE advertising on Matter accessory device.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-discover-matter-accessory-device-over-bluetooth-le">Step 3: Discover Matter accessory device over Bluetooth LE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-set-network-pairing-credentials">Step 4: Set network pairing credentials</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-thread-network-credentials">Setting Thread network credentials</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-wi-fi-network-credentials">Setting Wi-Fi network credentials</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-commission-the-matter-accessory-device-over-bluetooth-le">Step 5: Commission the Matter accessory device over Bluetooth LE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-control-application-zcl-clusters">Step 6: Control application ZCL clusters.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-read-basic-information-out-of-the-accessory">Step 7: Read basic information out of the accessory.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-commands">List of commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-adapter-print"><code class="docutils literal notranslate"><span class="pre">ble-adapter-print</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-debug-log"><code class="docutils literal notranslate"><span class="pre">ble-debug-log</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ble-scan-t-timeout-identifier"><code class="docutils literal notranslate"><span class="pre">ble-scan</span> <span class="pre">[-t</span> <span class="pre">&lt;timeout&gt;]</span> <span class="pre">[identifier]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pairing-thread-credential-threadoperationaldataset"><code class="docutils literal notranslate"><span class="pre">set-pairing-thread-credential</span> <span class="pre">&lt;threadOperationalDataset&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-pairing-wifi-credential-ssid-credentials"><code class="docutils literal notranslate"><span class="pre">set-pairing-wifi-credential</span> <span class="pre">&lt;ssid&gt;</span> <span class="pre">&lt;credentials&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-ip-address-setuppincode-nodeid"><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ip</span> <span class="pre">&lt;address&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-ble-discriminator-setuppincode-nodeid"><code class="docutils literal notranslate"><span class="pre">connect</span> <span class="pre">-ble</span> <span class="pre">&lt;discriminator&gt;</span> <span class="pre">&lt;SetUpPinCode&gt;</span> <span class="pre">[&lt;nodeid&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-session-nodeid"><code class="docutils literal notranslate"><span class="pre">close-session</span> <span class="pre">&lt;nodeid&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discover"><code class="docutils literal notranslate"><span class="pre">discover</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resolve-node-id"><code class="docutils literal notranslate"><span class="pre">resolve</span> <span class="pre">&lt;node_id&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-generate-v-vendor-id-p-product-id-cf-custom-flow-dc-discovery-capabilities-dv-discriminator-value-ps-passcode"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">generate</span> <span class="pre">[-v</span> <span class="pre">&lt;Vendor</span> <span class="pre">ID&gt;]</span> <span class="pre">[-p</span> <span class="pre">&lt;Product</span> <span class="pre">ID&gt;]</span> <span class="pre">[-cf</span> <span class="pre">&lt;Custom</span> <span class="pre">Flow&gt;]</span> <span class="pre">[-dc</span> <span class="pre">&lt;Discovery</span> <span class="pre">Capabilities&gt;]</span> <span class="pre">[-dv</span> <span class="pre">&lt;Discriminator</span> <span class="pre">Value&gt;]</span> <span class="pre">[-ps</span> <span class="pre">&lt;Passcode&gt;]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-parse-manual-manual-pairing-code"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-manual</span> <span class="pre">&lt;manual-pairing-code&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-payload-parse-qr-qr-code"><code class="docutils literal notranslate"><span class="pre">setup-payload</span> <span class="pre">parse-qr</span> <span class="pre">&lt;qr-code&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl-cluster-command-nodeid-endpointid-groupid-arguments"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Command&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zcl-cluster"><code class="docutils literal notranslate"><span class="pre">zcl</span> <span class="pre">?</span> <span class="pre">&lt;Cluster&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclread-cluster-attribute-nodeid-endpointid-groupid-arguments"><code class="docutils literal notranslate"><span class="pre">zclread</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;NodeId&gt;</span> <span class="pre">&lt;EndpointId&gt;</span> <span class="pre">&lt;GroupId&gt;</span> <span class="pre">[arguments]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclwrite-cluster-attribute-nodeid-endpoint-groupid-value"><code class="docutils literal notranslate"><span class="pre">zclwrite</span> <span class="pre">&lt;cluster&gt;</span> <span class="pre">&lt;attribute&gt;</span> <span class="pre">&lt;nodeid&gt;</span> <span class="pre">&lt;endpoint&gt;</span> <span class="pre">&lt;groupid&gt;</span> <span class="pre">&lt;value&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclsubscribe-cluster-attribute-nodeid-endpoint-mininterval-maxinterval"><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">&lt;Cluster&gt;</span> <span class="pre">&lt;Attribute&gt;</span> <span class="pre">&lt;Nodeid&gt;</span> <span class="pre">&lt;Endpoint&gt;</span> <span class="pre">&lt;MinInterval&gt;</span> <span class="pre">&lt;MaxInterval&gt;</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zclsubscribe-shutdown-subscription-id"><code class="docutils literal notranslate"><span class="pre">zclsubscribe</span> <span class="pre">-shutdown</span> <span class="pre">&lt;subscription</span> <span class="pre">id&gt;</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
