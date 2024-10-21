@@ -1,0 +1,1337 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NXP Manufacturing data &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'platforms/nxp/nxp_manufacturing_flow';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NXP MCXW71/K32W1 OTA guide" href="nxp_mcxw71_ota_guide.html" />
+    <link rel="prev" title="Commissioning NXP K32W using Android CHIPTool" href="nxp_k32w_android_commissioning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../development_controllers/index.html">Development Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-repl/index.html">chip-repl</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-tool/index.html">chip-tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Platform Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../android/index.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../android/android_building.html">Building Android</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../asr/index.html">ASR</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../bouffalolab/index.html">Bouffalolab</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../esp32/index.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../infineon/index.html">Infineon</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mbedos/index.html">MbedOS</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nrf/index.html">NRF</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">NXP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_k32w0_ota_guide.html">NXP K32W0x1 OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_mcxw71_ota_guide.html">NXP <code class="docutils literal notranslate"><span class="pre">MCXW71/K32W1</span></code> OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openiotsdk/index.html">OpenIoTSDK</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_examples.html">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openthread/index.html">OpenThread</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../silabs/index.html">Silabs</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stm32/index.html">ESP32</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ti/index.html">TI</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_purifier.html">Air Purifier</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_quality.html">Air Quality</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters.html">All clusters</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1060/README.html">CHIP RT1060 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1170/README.html">CHIP RT1170 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/zephyr/README.html">CHIP NXP Zephyr All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters_minimal.html">All clusters minimal</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/bridge.html">Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chef.html">CHEF</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chip_tool.html">CHIP Tool example</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/contact_sensor.html">Contact Sensor</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/darwin.html">CHIP Tool Darwin</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/dishwasher.html">Dishwasher</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/energy_management.html">Energy Management</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/linux/README.html">Matter Linux Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/silabs/README.html">Matter EFR32 Energy Management Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_admin.html">Fabric Admin</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_bridge.html">Fabric Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_sync.html">Fabric Sync</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/java_matter_controller.html">Java matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/kotlin_matter_controller.html">Kotlin matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/laundry_washer.html">Laundry washer</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/light_switch.html">Light switch</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting.html">Lighting</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting_no_unique_id.html">Lighting without unique id</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-43"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lit_icd.html">Lit ICD</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-44"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lock.html">Lock</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-45"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/k32w1/README.html">Matter K32W1 Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/log_source.html">Log source</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-46"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/microwave.html">Microwave ovens</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-47"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/minimal_mdns.html">Minimal MDNS</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-48"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-49"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_provider.html">OTA Provider</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-50"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_requestor.html">OTA Requestor</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-51"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/persistent_storage.html">Persistent storage</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-52"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pigweed.html">Pigweed</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-53"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump.html">Pump</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-54"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump_controler.html">Pump controller</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-55"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/refrigerator.html">Refrigerator</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-56"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/rvc.html">RVC</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-57"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/shell.html">Shell</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-58"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/smoke_co.html">Smoke CO Alarm example</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-59"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tbr.html">Thread Border Router</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-60"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/temperature_measurement.html">Temperature measurement</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-61"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/thermostat.html">Thermostat</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-62"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/zephyr/README.html">CHIP NXP Zephyr Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv.html">TV</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-63"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv_casting.html">TV casting</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-64"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/virtual_device.html">Virtual Device App</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-65"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/window.html">Window</a><input class="toctree-checkbox" id="toctree-checkbox-66" name="toctree-checkbox-66" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-66"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../product_considerations/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-67" name="toctree-checkbox-67" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-67"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-68" name="toctree-checkbox-68" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-68"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-69" name="toctree-checkbox-69" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-69"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tools/index.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-70" name="toctree-checkbox-70" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-70"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zap_clusters.html">List of currently defined ZAP clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/platforms/nxp/nxp_manufacturing_flow.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/platforms/nxp/nxp_manufacturing_flow.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>NXP Manufacturing data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate">2. Generate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-certificates">a. Certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-provisioning-data">c. Provisioning data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-provisioning-data">3. Write provisioning data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-app-and-usage">4. Build app and usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-information-known-issues">5. Useful information/Known issues</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increased-security-for-dac-private-key">6. Increased security for DAC private key</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sss-based-platforms">6.1 SSS-based platforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rw61x">6.2 RW61X</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="nxp-manufacturing-data">
+<h1>NXP Manufacturing data<a class="headerlink" href="#nxp-manufacturing-data" title="Permalink to this heading">#</a></h1>
+<p>By default, the example application is configured to use generic test
+certificates and provisioning data embedded with the application code. It is
+possible for a final stage application to generate its own manufacturing data
+using the procedure described below.</p>
+<section id="prerequisites">
+<h2>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
+<p>Generate build files from Matter root folder by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gn</span> <span class="n">gen</span> <span class="n">out</span>
+</pre></div>
+</div>
+<p>Build <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code> tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ninja</span> <span class="o">-</span><span class="n">C</span> <span class="n">out</span> <span class="n">chip</span><span class="o">-</span><span class="n">cert</span>
+</pre></div>
+</div>
+<p>Build <code class="docutils literal notranslate"><span class="pre">spake2p</span></code> tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ninja</span> <span class="o">-</span><span class="n">C</span> <span class="n">out</span> <span class="n">spake2p</span>
+</pre></div>
+</div>
+</section>
+<section id="generate">
+<h2>2. Generate<a class="headerlink" href="#generate" title="Permalink to this heading">#</a></h2>
+<section id="a-certificates">
+<h3>a. Certificates<a class="headerlink" href="#a-certificates" title="Permalink to this heading">#</a></h3>
+<p>To generate the different certificates, NXP provides a Python script
+<code class="docutils literal notranslate"><span class="pre">scripts/tools/nxp/generate_certs.py</span></code>. This script will always generate the PAI
+and DAC certificates/keys. It can also generate the Certification Declaration
+and the PAA certificate/key depending on the parameters.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--chip_cert_path</span></code></p></td>
+<td><p>Path to chip-cert executable</p></td>
+<td><p>string</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code></p></td>
+<td><p>Output path to store certificates</p></td>
+<td><p>string</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--vendor_id</span></code></p></td>
+<td><p>Vendor Identification Number</p></td>
+<td><p>integer or hex integer</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--product_id</span></code></p></td>
+<td><p>Product Identification Number</p></td>
+<td><p>integer or hex integer</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--vendor_name</span></code></p></td>
+<td><p>Human-readable vendor name</p></td>
+<td><p>string</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--product_name</span></code></p></td>
+<td><p>Human-readable product name</p></td>
+<td><p>string</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--gen_cd</span></code></p></td>
+<td><p>Use this option to enable Certificate Declaration generation</p></td>
+<td><p>boolean</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--cd_type</span></code></p></td>
+<td><p>Type of generated Certification Declaration: <code class="docutils literal notranslate"><span class="pre">0</span></code> - development, <code class="docutils literal notranslate"><span class="pre">1</span></code> - provisional, <code class="docutils literal notranslate"><span class="pre">2</span></code> - official</p></td>
+<td><p>integer</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--device_type</span></code></p></td>
+<td><p>The primary device type implemented by the node</p></td>
+<td><p>int</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--paa_cert</span></code></p></td>
+<td><p>Path to the Product Attestation Authority (PAA) certificate. Will be generated if not provided.</p></td>
+<td><p>string</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--paa_key</span></code></p></td>
+<td><p>Path to the Product Attestation Authority (PAA) key. Will be generated if not provided.</p></td>
+<td><p>string</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--valid_from</span></code></p></td>
+<td><p>The start date for the certificate’s validity period.</p></td>
+<td><p>string</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--lifetime</span></code></p></td>
+<td><p>The lifetime for the certificates, in whole days.</p></td>
+<td><p>string</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can also run the following command to get more details on the parameters and
+their default value (if applicable):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/tools/nxp/generate_certs.py<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Example of a command that will generate CD, PAA, PAI and DAC certificates and
+keys in both .pem and .der formats:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/tools/nxp/generate_certs.py<span class="w"> </span>--gen_cd<span class="w"> </span>--cd_type<span class="w"> </span><span class="m">1</span><span class="w"> </span>--chip_cert_path<span class="w"> </span>./out/chip-cert<span class="w"> </span>--vendor_id<span class="w"> </span>0x1037<span class="w"> </span>--product_id<span class="w"> </span>0xA220<span class="w"> </span>--vendor_name<span class="w"> </span><span class="s2">&quot;NXP Semiconductors&quot;</span><span class="w"> </span>--product_name<span class="w"> </span>all-clusters-app<span class="w"> </span>--device_type<span class="w"> </span><span class="m">65535</span><span class="w"> </span>--output<span class="w"> </span>.
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note</strong>: the commands provided in this guide are just for the example and
+shall be adapted to your use case accordingly</p>
+</div></blockquote>
+</section>
+<section id="c-provisioning-data">
+<h3>c. Provisioning data<a class="headerlink" href="#c-provisioning-data" title="Permalink to this heading">#</a></h3>
+<p>Generate new provisioning data and convert all the data to a binary (unencrypted
+data):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>./scripts/tools/nxp/factory_data_generator/generate.py<span class="w"> </span>-i<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-s<span class="w"> </span>UXKLzwHdN3DZZLBaL2iVGhQi/OoQwIwJRQV4rpEalbA<span class="o">=</span><span class="w"> </span>-p<span class="w"> </span><span class="m">14014</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--vid<span class="w"> </span>0x1037<span class="w"> </span>--pid<span class="w"> </span>0xA220<span class="w"> </span>--vendor_name<span class="w"> </span><span class="s2">&quot;NXP Semiconductors&quot;</span><span class="w"> </span>--product_name<span class="w"> </span><span class="s2">&quot;Lighting app&quot;</span><span class="w"> </span>--serial_num<span class="w"> </span><span class="s2">&quot;12345678&quot;</span><span class="w"> </span>--date<span class="w"> </span><span class="s2">&quot;2023-01-01&quot;</span><span class="w"> </span>--hw_version<span class="w"> </span><span class="m">1</span><span class="w"> </span>--hw_version_str<span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>--cert_declaration<span class="w"> </span>./Chip-Test-CD-1037-A220.der<span class="w"> </span>--dac_cert<span class="w"> </span>./Chip-DAC-NXP-1037-A220-Cert.der<span class="w"> </span>--dac_key<span class="w"> </span>./Chip-DAC-NXP-1037-A220-Key.der<span class="w"> </span>--pai_cert<span class="w"> </span>./Chip-PAI-NXP-1037-A220-Cert.der<span class="w"> </span>--spake2p_path<span class="w"> </span>./out/spake2p<span class="w"> </span>--unique_id<span class="w"> </span><span class="s2">&quot;00112233445566778899aabbccddeeff&quot;</span><span class="w"> </span>--out<span class="w"> </span>./factory_data.bin
+</pre></div>
+</div>
+<p>Same example as above, but with an already generated verifier passed as input:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>./scripts/tools/nxp/factory_data_generator/generate.py<span class="w"> </span>-i<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-s<span class="w"> </span>UXKLzwHdN3DZZLBaL2iVGhQi/OoQwIwJRQV4rpEalbA<span class="o">=</span><span class="w"> </span>-p<span class="w"> </span><span class="m">14014</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--vid<span class="w"> </span><span class="s2">&quot;0x1037&quot;</span><span class="w"> </span>--pid<span class="w"> </span><span class="s2">&quot;0xA220&quot;</span><span class="w"> </span>--vendor_name<span class="w"> </span><span class="s2">&quot;NXP Semiconductors&quot;</span><span class="w"> </span>--product_name<span class="w"> </span><span class="s2">&quot;Lighting app&quot;</span><span class="w"> </span>--serial_num<span class="w"> </span><span class="s2">&quot;12345678&quot;</span><span class="w"> </span>--date<span class="w"> </span><span class="s2">&quot;2023-01-01&quot;</span><span class="w"> </span>--hw_version<span class="w"> </span><span class="m">1</span><span class="w"> </span>--hw_version_str<span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>--cert_declaration<span class="w"> </span>./Chip-Test-CD-1037-A220.der<span class="w"> </span>--dac_cert<span class="w"> </span>./Chip-DAC-NXP-1037-A220-Cert.der<span class="w"> </span>--dac_key<span class="w"> </span>./Chip-DAC-NXP-1037-A220-Key.der<span class="w"> </span>--pai_cert<span class="w"> </span>./Chip-PAI-NXP-1037-A220-Cert.der<span class="w"> </span>--spake2p_path<span class="w"> </span>./out/spake2p<span class="w"> </span>--spake2p_verifier<span class="w"> </span>ivD5n3L2t5+zeFt6SjW7BhHRF30gFXWZVvvXgDxgCNcE+BGuTA5AUaVm3qDZBcMMKn1a6CakI4SxyPUnJr0CpJ4pwpr0DvpTlkQKqaRvkOQfAQ1XDyf55DuavM5KVGdDrg<span class="o">==</span><span class="w"> </span>--unique_id<span class="w"> </span><span class="s2">&quot;00112233445566778899aabbccddeeff&quot;</span><span class="w"> </span>--out<span class="w"> </span>./factory_data.bin
+</pre></div>
+</div>
+<p>Generate new provisioning data and convert all the data to a binary (encrypted
+data with the AES key). Add the following option to one of the above examples:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>--aes128_key<span class="w"> </span>2B7E151628AED2A6ABF7158809CF4F3C
+</pre></div>
+</div>
+<p>Here is the interpretation of the <strong>required</strong> parameters:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-i<span class="w">                 </span>-&gt;<span class="w"> </span>SPAKE2+<span class="w"> </span>iteration
+-s<span class="w">                 </span>-&gt;<span class="w"> </span>SPAKE2+<span class="w"> </span>salt<span class="w"> </span><span class="o">(</span>passed<span class="w"> </span>as<span class="w"> </span>base64<span class="w"> </span>encoded<span class="w"> </span>string<span class="o">)</span>
+-p<span class="w">                 </span>-&gt;<span class="w"> </span>SPAKE2+<span class="w"> </span>passcode
+-d<span class="w">                 </span>-&gt;<span class="w"> </span>discriminator
+--vid<span class="w">              </span>-&gt;<span class="w"> </span>Vendor<span class="w"> </span>ID
+--pid<span class="w">              </span>-&gt;<span class="w"> </span>Product<span class="w"> </span>ID
+--vendor_name<span class="w">      </span>-&gt;<span class="w"> </span>Vendor<span class="w"> </span>Name
+--product_name<span class="w">     </span>-&gt;<span class="w"> </span>Product<span class="w"> </span>Name
+--hw_version<span class="w">       </span>-&gt;<span class="w"> </span>Hardware<span class="w"> </span>Version<span class="w"> </span>as<span class="w"> </span>number
+--hw_version_str<span class="w">   </span>-&gt;<span class="w"> </span>Hardware<span class="w"> </span>Version<span class="w"> </span>as<span class="w"> </span>string
+--cert_declaration<span class="w"> </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Certification<span class="w"> </span>Declaration<span class="w"> </span><span class="o">(</span>der<span class="w"> </span>format<span class="o">)</span><span class="w"> </span>location
+--dac_cert<span class="w">         </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>DAC<span class="w"> </span><span class="o">(</span>der<span class="w"> </span>format<span class="o">)</span><span class="w"> </span>location
+--dac_key<span class="w">          </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>DAC<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>der<span class="w"> </span>format<span class="o">)</span><span class="w"> </span>location
+--pai_cert<span class="w">         </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>PAI<span class="w"> </span><span class="o">(</span>der<span class="w"> </span>format<span class="o">)</span><span class="w"> </span>location
+--spake2p_path<span class="w">     </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>spake2p<span class="w"> </span>tool
+--out<span class="w">              </span>-&gt;<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>binary<span class="w"> </span>that<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>storing<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>data
+</pre></div>
+</div>
+<p>Here is the interpretation of the <strong>optional</strong> parameters:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>--dac_key_password<span class="w">      </span>-&gt;<span class="w"> </span>Password<span class="w"> </span>to<span class="w"> </span>decode<span class="w"> </span>DAC<span class="w"> </span>key
+--dac_key_use_sss_blob<span class="w">  </span>-&gt;<span class="w"> </span>Used<span class="w"> </span>when<span class="w"> </span>--dac_key<span class="w"> </span>contains<span class="w"> </span>a<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>an<span class="w"> </span>encrypted<span class="w"> </span>blob,<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span>the
+<span class="w">                           </span>actual<span class="w"> </span>DAC<span class="w"> </span>private<span class="w"> </span>key.<span class="w"> </span>The<span class="w"> </span>blob<span class="w"> </span>metadata<span class="w"> </span>size<span class="w"> </span>is<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>so<span class="w"> </span>the<span class="w"> </span>total<span class="w"> </span>length
+<span class="w">                           </span>of<span class="w"> </span>the<span class="w"> </span>resulting<span class="w"> </span>value<span class="w"> </span>is<span class="w"> </span>private<span class="w"> </span>key<span class="w"> </span>length<span class="w"> </span><span class="o">(</span><span class="m">32</span><span class="o">)</span><span class="w"> </span>+<span class="w"> </span><span class="nv">24</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">56</span>.<span class="w"> </span>False<span class="w"> </span>by<span class="w"> </span>default.
+--spake2p_verifier<span class="w">      </span>-&gt;<span class="w"> </span>SPAKE2+<span class="w"> </span>verifier<span class="w"> </span><span class="o">(</span>passed<span class="w"> </span>as<span class="w"> </span>base64<span class="w"> </span>encoded<span class="w"> </span>string<span class="o">)</span>.<span class="w"> </span>If<span class="w"> </span>this<span class="w"> </span>option<span class="w"> </span>is<span class="w"> </span>set,
+<span class="w">                           </span>all<span class="w"> </span>SPAKE2+<span class="w"> </span>inputs<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>encoded<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>final<span class="w"> </span>binary.<span class="w"> </span>The<span class="w"> </span>spake2p<span class="w"> </span>tool
+<span class="w">                           </span>will<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>verifier<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>fly.
+--aes128_key<span class="w">            </span>-&gt;<span class="w"> </span><span class="m">128</span><span class="w"> </span>bits<span class="w"> </span>AES<span class="w"> </span>key<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>encrypt<span class="w"> </span>the<span class="w"> </span>whole<span class="w"> </span>dataset.<span class="w"> </span>Please<span class="w"> </span>make<span class="w"> </span>sure
+<span class="w">                           </span>that<span class="w"> </span>the<span class="w"> </span>target<span class="w"> </span>application/board<span class="w"> </span>supports<span class="w"> </span>this<span class="w"> </span>feature:<span class="w"> </span>it<span class="w"> </span>has<span class="w"> </span>access<span class="w"> </span>to
+<span class="w">                           </span>the<span class="w"> </span>private<span class="w"> </span>key<span class="w"> </span>and<span class="w"> </span>implements<span class="w"> </span>a<span class="w"> </span>mechanism<span class="w"> </span>which<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>decrypt
+<span class="w">                           </span>the<span class="w"> </span>factory<span class="w"> </span>data<span class="w"> </span>information.
+--date<span class="w">                  </span>-&gt;<span class="w"> </span>Manufacturing<span class="w"> </span>Date<span class="w"> </span><span class="o">(</span>YYYY-MM-DD<span class="w"> </span>format<span class="o">)</span>
+--part_number<span class="w">           </span>-&gt;<span class="w"> </span>Part<span class="w"> </span>number<span class="w"> </span>as<span class="w"> </span>string
+--product_url<span class="w">           </span>-&gt;<span class="w"> </span>Product<span class="w"> </span>URL<span class="w"> </span>as<span class="w"> </span>string
+--product_label<span class="w">         </span>-&gt;<span class="w"> </span>Product<span class="w"> </span>label<span class="w"> </span>as<span class="w"> </span>string
+--serial_num<span class="w">            </span>-&gt;<span class="w"> </span>Serial<span class="w"> </span>Number
+--unique_id<span class="w">             </span>-&gt;<span class="w"> </span>Unique<span class="w"> </span>id<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>rotating<span class="w"> </span>device<span class="w"> </span>id<span class="w"> </span>generation
+--product_finish<span class="w">        </span>-&gt;<span class="w"> </span>Visible<span class="w"> </span>finish<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>product
+--product_primary_color<span class="w"> </span>-&gt;<span class="w"> </span>Representative<span class="w"> </span>color<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>visible<span class="w"> </span>parts<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>product
+--hw_params<span class="w">             </span>-&gt;<span class="w"> </span>Use<span class="w"> </span>application<span class="w"> </span>factory<span class="w"> </span>data<span class="w"> </span>from<span class="w"> </span>Hardware<span class="w"> </span>Parameters<span class="w"> </span>component
+</pre></div>
+</div>
+</section>
+</section>
+<section id="write-provisioning-data">
+<h2>3. Write provisioning data<a class="headerlink" href="#write-provisioning-data" title="Permalink to this heading">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>platform</p></th>
+<th class="head"><p>tool</p></th>
+<th class="head"><p>command</p></th>
+<th class="head"><p>details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">k32w0x1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DK6Programmer.exe</span></code> or <code class="docutils literal notranslate"><span class="pre">dk6prog</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DK6Programmer.exe</span> <span class="pre">-Y</span> <span class="pre">-V2</span> <span class="pre">-s</span> <span class="pre">&lt;COM_PORT&gt;</span> <span class="pre">-P</span> <span class="pre">1000000</span> <span class="pre">-Y</span> <span class="pre">-p</span> <span class="pre">FLASH&#64;0x9D600=&quot;factory_data.bin&quot;</span></code></p></td>
+<td><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">k32w1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">JLink</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">loadfile</span> <span class="pre">factory_data.bin</span> <span class="pre">0xFE080</span></code></p></td>
+<td><p>NA</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mcxw71</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">JLink</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">loadfile</span> <span class="pre">factory_data.bin</span> <span class="pre">0xFE080</span></code></p></td>
+<td><p>NA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rw61x</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">JLink</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">loadfile</span> <span class="pre">factory_data.bin</span> <span class="pre">0xBFFF000</span></code></p></td>
+<td><p>Here, <code class="docutils literal notranslate"><span class="pre">0xBFFF000</span></code> is the value of symbol <code class="docutils literal notranslate"><span class="pre">__FACTORY_DATA_START</span></code> from the corresponding <code class="docutils literal notranslate"><span class="pre">.map</span></code> file</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rt1060</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MCUXpresso</span> <span class="pre">Flash</span> <span class="pre">Tool</span> <span class="pre">GUI</span></code></p></td>
+<td><p>NA</p></td>
+<td><p>The address is given by the <code class="docutils literal notranslate"><span class="pre">__FACTORY_DATA_START</span></code> symbol in the <code class="docutils literal notranslate"><span class="pre">.map</span></code> file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rt1170</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MCUXpresso</span> <span class="pre">Flash</span> <span class="pre">Tool</span> <span class="pre">GUI</span></code></p></td>
+<td><p>NA</p></td>
+<td><p>The address is given by the <code class="docutils literal notranslate"><span class="pre">__FACTORY_DATA_START</span></code> symbol in the <code class="docutils literal notranslate"><span class="pre">.map</span></code> file</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="build-app-and-usage">
+<h2>4. Build app and usage<a class="headerlink" href="#build-app-and-usage" title="Permalink to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">chip_with_factory_data=1</span></code> when compiling to enable factory data usage.</p>
+<p>Run chip-tool with a new PAA:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./chip-tool<span class="w"> </span>pairing<span class="w"> </span>ble-thread<span class="w"> </span><span class="m">2</span><span class="w"> </span>hex:<span class="w"> </span><span class="nv">$hex_value</span><span class="w"> </span><span class="m">14014</span><span class="w"> </span><span class="m">1000</span><span class="w"> </span>--paa-trust-store-path<span class="w"> </span>/home/ubuntu/certs/paa
+</pre></div>
+</div>
+<p>Here is the interpretation of the parameters:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>--paa-trust-store-path<span class="w"> </span>-&gt;<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>PAA<span class="w"> </span><span class="o">(</span>der<span class="w"> </span>format<span class="o">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">paa-trust-store-path</span></code> must contain only the PAA certificate. Avoid placing
+other certificates in the same location as this may confuse <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code>.</p>
+<p><strong>PAA</strong> certificate can be copied to the chip-tool machine using <strong>SCP</strong> for
+example.</p>
+<p>This is needed for testing self-generated <strong>DACs</strong>, but likely not required for
+“true production” with production <strong>PAI</strong> issued <strong>DACs</strong>.</p>
+</section>
+<section id="useful-information-known-issues">
+<h2>5. Useful information/Known issues<a class="headerlink" href="#useful-information-known-issues" title="Permalink to this heading">#</a></h2>
+<p>Implementation of manufacturing data provisioning has been validated using test
+certificates generated by <code class="docutils literal notranslate"><span class="pre">OpenSSL</span> <span class="pre">1.1.1l</span></code>.</p>
+<p>Also, demo <strong>DAC</strong>, <strong>PAI</strong> and <strong>PAA</strong> certificates needed in case
+<code class="docutils literal notranslate"><span class="pre">chip_with_factory_data=1</span></code> is used can be found in
+<code class="docutils literal notranslate"><span class="pre">./scripts/tools/nxp/demo_generated_certs</span></code>.</p>
+</section>
+<section id="increased-security-for-dac-private-key">
+<h2>6. Increased security for DAC private key<a class="headerlink" href="#increased-security-for-dac-private-key" title="Permalink to this heading">#</a></h2>
+<section id="sss-based-platforms">
+<h3>6.1 SSS-based platforms<a class="headerlink" href="#sss-based-platforms" title="Permalink to this heading">#</a></h3>
+<p>Supported platforms:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">k32w1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mcxw71</span></code></p></li>
+</ul>
+<p>For platforms that have a secure subsystem (<code class="docutils literal notranslate"><span class="pre">SSS</span></code>), the DAC private key can be
+converted to an encrypted blob. This blob will overwrite the DAC private key in
+factory data and will be imported in the <code class="docutils literal notranslate"><span class="pre">SSS</span></code> at initialization, by the factory
+data provider instance.</p>
+<p>The application will check at initialization whether the DAC private key has
+been converted or not and convert it if needed. However, the conversion process
+should be done at manufacturing time for security reasons.</p>
+<p>Reference factory data generation command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>./scripts/tools/nxp/factory_data_generator/generate.py<span class="w"> </span>-i<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-s<span class="w"> </span>UXKLzwHdN3DZZLBaL2iVGhQi/OoQwIwJRQV4rpEalbA<span class="o">=</span><span class="w"> </span>-p<span class="w"> </span><span class="m">14014</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--vid<span class="w"> </span><span class="s2">&quot;0x1037&quot;</span><span class="w"> </span>--pid<span class="w"> </span><span class="s2">&quot;0xA221&quot;</span><span class="w"> </span>--vendor_name<span class="w"> </span><span class="s2">&quot;NXP Semiconductors&quot;</span><span class="w"> </span>--product_name<span class="w"> </span><span class="s2">&quot;Lighting app&quot;</span><span class="w"> </span>--serial_num<span class="w"> </span><span class="s2">&quot;12345678&quot;</span><span class="w"> </span>--date<span class="w"> </span><span class="s2">&quot;2023-01-01&quot;</span><span class="w"> </span>--hw_version<span class="w"> </span><span class="m">1</span><span class="w"> </span>--hw_version_str<span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>--cert_declaration<span class="w"> </span>./Chip-Test-CD-1037-A221.der<span class="w"> </span>--dac_cert<span class="w"> </span>./Chip-DAC-NXP-1037-A221-Cert.der<span class="w"> </span>--dac_key<span class="w"> </span>./Chip-DAC-NXP-1037-A221-Key.der<span class="w"> </span>--pai_cert<span class="w"> </span>./Chip-PAI-NXP-1037-A221-Cert.der<span class="w"> </span>--spake2p_path<span class="w"> </span>./out/spake2p<span class="w"> </span>--unique_id<span class="w"> </span><span class="s2">&quot;00112233445566778899aabbccddeeff&quot;</span><span class="w"> </span>--hw_params<span class="w"> </span>--out<span class="w"> </span>./factory_data.bin
+</pre></div>
+</div>
+<p>There is no need for an extra binary.</p>
+<ul class="simple">
+<li><p>Write factory data binary.</p></li>
+<li><p>Build the application with <code class="docutils literal notranslate"><span class="pre">chip_with_factory_data=1</span></code> set.</p></li>
+<li><p>Write the application to the board and use it as usual.</p></li>
+</ul>
+<p>Factory data should now contain a corresponding encrypted blob instead of the
+DAC private key.</p>
+<p>If an encrypted blob of the DAC private key is already available (e.g. obtained
+previously, using other methods), then the conversion process shall be skipped.
+Instead, option <code class="docutils literal notranslate"><span class="pre">--dac_key_use_sss_blob</span></code> can be used in the factory data
+generation command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>./scripts/tools/nxp/factory_data_generator/generate.py<span class="w"> </span>-i<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-s<span class="w"> </span>UXKLzwHdN3DZZLBaL2iVGhQi/OoQwIwJRQV4rpEalbA<span class="o">=</span><span class="w"> </span>-p<span class="w"> </span><span class="m">14014</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--vid<span class="w"> </span><span class="s2">&quot;0x1037&quot;</span><span class="w"> </span>--pid<span class="w"> </span><span class="s2">&quot;0xA221&quot;</span><span class="w"> </span>--vendor_name<span class="w"> </span><span class="s2">&quot;NXP Semiconductors&quot;</span><span class="w"> </span>--product_name<span class="w"> </span><span class="s2">&quot;Lighting app&quot;</span><span class="w"> </span>--serial_num<span class="w"> </span><span class="s2">&quot;12345678&quot;</span><span class="w"> </span>--date<span class="w"> </span><span class="s2">&quot;2023-01-01&quot;</span><span class="w"> </span>--hw_version<span class="w"> </span><span class="m">1</span><span class="w"> </span>--hw_version_str<span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"> </span>--cert_declaration<span class="w"> </span>./Chip-Test-CD-1037-A221.der<span class="w"> </span>--dac_cert<span class="w"> </span>./Chip-DAC-NXP-1037-A221-Cert.der<span class="w"> </span>--dac_key<span class="w"> </span>./Chip-DAC-NXP-1037-A221-Key-encrypted-blob.bin<span class="w"> </span>--pai_cert<span class="w"> </span>./Chip-PAI-NXP-1037-A221-Cert.der<span class="w"> </span>--spake2p_path<span class="w"> </span>./out/spake2p<span class="w"> </span>--unique_id<span class="w"> </span><span class="s2">&quot;00112233445566778899aabbccddeeff&quot;</span><span class="w"> </span>--dac_key_use_sss_blob<span class="w"> </span>--out<span class="w"> </span>./factory_data_with_blob.bin
+</pre></div>
+</div>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">--dac_key</span></code> now points to a binary file that contains the
+encrypted blob.</p>
+<p>The user can use the DAC private in plain text instead of using the <code class="docutils literal notranslate"><span class="pre">SSS</span></code> by
+adding the following gn argument <code class="docutils literal notranslate"><span class="pre">chip_use_plain_dac_key=true</span></code>.</p>
+</section>
+<section id="rw61x">
+<h3>6.2 RW61X<a class="headerlink" href="#rw61x" title="Permalink to this heading">#</a></h3>
+<p>Supported platforms:</p>
+<ul class="simple">
+<li><p>RW61X</p></li>
+</ul>
+<p>there are three implementations for factory data protection</p>
+<ul class="simple">
+<li><p>whole factory data protection with AES encryption ( chip_with_factory_data=1
+chip_enable_secure_whole_factory_data=true )
+<code class="docutils literal notranslate"><span class="pre">examples/platform/nxp/rt/rw61x/factory_data/source/AppFactoryDataExample.cpp</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">src/platform/nxp/rt/rw61x/FactoryDataProviderEncImpl.cpp</span></code></p></li>
+<li><p>only dac private key protection ( chip_with_factory_data=1
+chip_enable_secure_dac_private_key_storage=true )<br />
+<code class="docutils literal notranslate"><span class="pre">examples/platform/nxp/rt/rw61x/factory_data/source/AppFactoryDataExample.cpp</span></code>
+<br />
+<code class="docutils literal notranslate"><span class="pre">src/platform/nxp/rt/rw61x/FactoryDataProviderImpl.cpp</span></code></p></li>
+<li><p>whole factory data protection with hard-coded AES key (
+chip_with_factory_data=1 )
+<code class="docutils literal notranslate"><span class="pre">examples/platform/nxp/common/factory_data/source/AppFactoryDataDefaultImpl.cpp</span></code>
+<br />
+<code class="docutils literal notranslate"><span class="pre">src/platform/nxp/common/factory_data/FactoryDataProviderFwkImpl.cpp</span></code></p></li>
+</ul>
+<p>for the first one, the whole factory data is encrypted by an AES-256 key, the
+AES key can be passed through serial link when in factory production mode, and
+will be provisioned into Edge Lock, and the returned AES Key blob (wrapped key)
+can be stored in the end of factory data region in TLV format. for the
+decryption process, the blob is retrieved and provisioned into Edge Lock and the
+whole factory data can be decrypted using the returned key index in Edge Lock.
+Compared with only dac private key protection solution, this solution can avoid
+tampering with the original factory data.</p>
+<p>the factory data should be encrypted by an AES-256 key using “–aes256_key”
+option in “generate.py” script file.</p>
+<p>it will check whether there is AES key blob in factory data region when in each
+initialization, if not, the default AES key is converted and the result is
+stored into flash, it run only once.</p>
+<p>for the second one, it only protect the dac private key inside the factory data,
+the dac private key is retrieved and provisioned into Edge Lock, the returned
+key blob replace the previous dac private key, and also update the overall size
+and hash, and re-write the factory data. when device is doing matter
+commissioning, the blob is retrieved and provisioned into Edge Lock and the
+signing can be done using the returned key index in Edge Lock.</p>
+<p>the factory data should be plain text for the first programming. it will check
+whether there is dac private key blob (base on the size of blob, should be 48)
+in factory data when in each initialization, if not, the dac private key is
+converted and the result is stored into flash, it run only once.</p>
+<p>for the third one, it is a little similar to the first one, the whole factory
+data is encrypted by an AES key, but there are two differences:</p>
+<ul class="simple">
+<li><p>the AES key is hard-coded and not provisioned into Edge Lock</p></li>
+<li><p>the factory data should be encrypted by AES-128 key using “–aes128_key”
+option in “generate.py” script file.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nxp_k32w_android_commissioning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Commissioning NXP K32W using Android CHIPTool</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nxp_mcxw71_ota_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NXP <code class="docutils literal notranslate"><span class="pre">MCXW71/K32W1</span></code> OTA guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate">2. Generate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-certificates">a. Certificates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-provisioning-data">c. Provisioning data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-provisioning-data">3. Write provisioning data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-app-and-usage">4. Build app and usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-information-known-issues">5. Useful information/Known issues</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increased-security-for-dac-private-key">6. Increased security for DAC private key</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sss-based-platforms">6.1 SSS-based platforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rw61x">6.2 RW61X</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

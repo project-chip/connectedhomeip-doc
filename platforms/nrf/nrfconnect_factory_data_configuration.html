@@ -1,0 +1,2202 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Configuring factory data for the nRF Connect examples &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'platforms/nrf/nrfconnect_factory_data_configuration';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="nRF Connect platform overview" href="nrfconnect_platform_overview.html" />
+    <link rel="prev" title="Performing Device Firmware Upgrade in the nRF Connect examples" href="nrfconnect_examples_software_update.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../development_controllers/index.html">Development Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-repl/index.html">chip-repl</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-tool/index.html">chip-tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Platform Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../android/index.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../android/android_building.html">Building Android</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../asr/index.html">ASR</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../bouffalolab/index.html">Bouffalolab</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../esp32/index.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../infineon/index.html">Infineon</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mbedos/index.html">MbedOS</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">NRF</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nxp/index.html">NXP</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_k32w0_ota_guide.html">NXP K32W0x1 OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_mcxw71_ota_guide.html">NXP <code class="docutils literal notranslate"><span class="pre">MCXW71/K32W1</span></code> OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openiotsdk/index.html">OpenIoTSDK</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_examples.html">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openiotsdk/openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openthread/index.html">OpenThread</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../silabs/index.html">Silabs</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stm32/index.html">ESP32</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ti/index.html">TI</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_purifier.html">Air Purifier</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_quality.html">Air Quality</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters.html">All clusters</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1060/README.html">CHIP RT1060 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1170/README.html">CHIP RT1170 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/zephyr/README.html">CHIP NXP Zephyr All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters_minimal.html">All clusters minimal</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/bridge.html">Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chef.html">CHEF</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chip_tool.html">CHIP Tool example</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/contact_sensor.html">Contact Sensor</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/darwin.html">CHIP Tool Darwin</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/dishwasher.html">Dishwasher</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/energy_management.html">Energy Management</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/linux/README.html">Matter Linux Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/silabs/README.html">Matter EFR32 Energy Management Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_admin.html">Fabric Admin</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_bridge.html">Fabric Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_sync.html">Fabric Sync</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/java_matter_controller.html">Java matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/kotlin_matter_controller.html">Kotlin matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/laundry_washer.html">Laundry washer</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/light_switch.html">Light switch</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting.html">Lighting</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting_no_unique_id.html">Lighting without unique id</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-43"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lit_icd.html">Lit ICD</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-44"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lock.html">Lock</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-45"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/k32w1/README.html">Matter K32W1 Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/log_source.html">Log source</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-46"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/microwave.html">Microwave ovens</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-47"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/minimal_mdns.html">Minimal MDNS</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-48"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-49"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_provider.html">OTA Provider</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-50"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_requestor.html">OTA Requestor</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-51"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/persistent_storage.html">Persistent storage</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-52"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pigweed.html">Pigweed</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-53"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump.html">Pump</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-54"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump_controler.html">Pump controller</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-55"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/refrigerator.html">Refrigerator</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-56"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/rvc.html">RVC</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-57"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/shell.html">Shell</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-58"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/smoke_co.html">Smoke CO Alarm example</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-59"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tbr.html">Thread Border Router</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-60"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/temperature_measurement.html">Temperature measurement</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-61"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/thermostat.html">Thermostat</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-62"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/zephyr/README.html">CHIP NXP Zephyr Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv.html">TV</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-63"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv_casting.html">TV casting</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-64"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/virtual_device.html">Virtual Device App</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-65"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/window.html">Window</a><input class="toctree-checkbox" id="toctree-checkbox-66" name="toctree-checkbox-66" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-66"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../product_considerations/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-67" name="toctree-checkbox-67" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-67"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-68" name="toctree-checkbox-68" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-68"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-69" name="toctree-checkbox-69" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-69"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tools/index.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-70" name="toctree-checkbox-70" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-70"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zap_clusters.html">List of currently defined ZAP clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/platforms/nrf/nrfconnect_factory_data_configuration.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/platforms/nrf/nrfconnect_factory_data_configuration.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Configuring factory data for the nRF Connect examples</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factory-data-component-table">Factory data component table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factory-data-format">Factory data format</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#appearance-field-description">Appearance field description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-factory-data-support">Enabling factory data support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-factory-data">Generating factory data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-factory-data-json-and-hex-files-with-the-first-script">Creating the factory data JSON and HEX files with the first script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-user-data">How to set user data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-handle-user-data">How to handle user data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-using-the-json-schema-tool">Verifying using the JSON Schema tool</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-using-the-php-json-schema-tool">Option 1: Using the php-json-schema tool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-using-a-website-validator">Option 2: Using a website validator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-3-using-the-nrf-connect-python-script">Option 3: Using the nRF Connect Python script</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-onboarding-codes">Generating onboarding codes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-onboarding-codes-generation-within-the-build-system">Enabling onboarding codes generation within the build system</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-factory-data-partition-on-a-device">Preparing factory data partition on a device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-factory-data-partition-with-the-second-script">Creating a factory data partition with the second script</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-an-example-with-factory-data">Building an example with factory data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#providing-factory-data-parameters-as-a-build-argument-list">Providing factory data parameters as a build argument list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-factory-data-parameters-using-interactive-kconfig-interfaces">Setting factory data parameters using interactive Kconfig interfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-kconfig-values-and-developing-aspects">Default Kconfig values and developing aspects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-factory-data">Programming factory data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-own-factory-data-implementation">Using own factory data implementation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="configuring-factory-data-for-the-nrf-connect-examples">
+<h1>Configuring factory data for the nRF Connect examples<a class="headerlink" href="#configuring-factory-data-for-the-nrf-connect-examples" title="Permalink to this heading">#</a></h1>
+<p>Factory data is a set of device parameters written to the non-volatile memory
+during the manufacturing process. This guide describes the process of creating
+and programming factory data using Matter and the nRF Connect platform from
+Nordic Semiconductor.</p>
+<p>The factory data parameter set includes different types of information, for
+example about device certificates, cryptographic keys, device identifiers, and
+hardware. All those parameters are vendor-specific and must be inserted into a
+device’s persistent storage during the manufacturing process. The factory data
+parameters are read at the boot time of a device. Then, they can be used in the
+Matter stack and user application (for example during commissioning).</p>
+<p>All of the factory data parameters are protected against modifications by the
+software, and the firmware data parameter set must be kept unchanged during the
+lifetime of the device. When implementing your firmware, you must make sure that
+the factory data parameters are not re-written or overwritten during the Device
+Firmware Update (DFU) or factory resets, except in some vendor-defined cases.</p>
+<p>For the nRF Connect platform, the factory data is stored by default in a
+separate partition of the internal flash memory. This helps to keep the factory
+data secure by applying hardware write protection.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Due to hardware limitations, in the nRF Connect platform, protection
+against writing can be applied only to the internal memory partition. The
+<a class="reference external" href="https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/libraries/security/bootloader/fprotect.html">Fprotect</a>
+is the hardware flash protection driver, and we used it to ensure write
+protection of the factory data partition in internal flash memory.</p>
+</div></blockquote>
+<hr>
+<ul class="simple">
+<li><p><a class="reference internal" href="#configuring-factory-data-for-the-nrf-connect-examples">Configuring factory data for the nRF Connect examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview">Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#factory-data-component-table">Factory data component table</a></p></li>
+<li><p><a class="reference internal" href="#factory-data-format">Factory data format</a></p>
+<ul>
+<li><p><a class="reference internal" href="#appearance-field-description">Appearance field description</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#enabling-factory-data-support">Enabling factory data support</a></p></li>
+<li><p><a class="reference internal" href="#generating-factory-data">Generating factory data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-the-factory-data-json-and-hex-files-with-the-first-script">Creating the factory data JSON and HEX files with the first script</a></p></li>
+<li><p><a class="reference internal" href="#how-to-set-user-data">How to set user data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-to-handle-user-data">How to handle user data</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#verifying-using-the-json-schema-tool">Verifying using the JSON Schema tool</a></p>
+<ul>
+<li><p><a class="reference internal" href="#option-1-using-the-php-json-schema-tool">Option 1: Using the php-json-schema tool</a></p></li>
+<li><p><a class="reference internal" href="#option-2-using-a-website-validator">Option 2: Using a website validator</a></p></li>
+<li><p><a class="reference internal" href="#option-3-using-the-nrf-connect-python-script">Option 3: Using the nRF Connect Python script</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#generating-onboarding-codes">Generating onboarding codes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-onboarding-codes-generation-within-the-build-system">Enabling onboarding codes generation within the build system</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#preparing-factory-data-partition-on-a-device">Preparing factory data partition on a device</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-factory-data-partition-with-the-second-script">Creating a factory data partition with the second script</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#building-an-example-with-factory-data">Building an example with factory data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#providing-factory-data-parameters-as-a-build-argument-list">Providing factory data parameters as a build argument list</a></p></li>
+<li><p><a class="reference internal" href="#setting-factory-data-parameters-using-interactive-kconfig-interfaces">Setting factory data parameters using interactive Kconfig interfaces</a></p></li>
+<li><p><a class="reference internal" href="#default-kconfig-values-and-developing-aspects">Default Kconfig values and developing aspects</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#programming-factory-data">Programming factory data</a></p></li>
+<li><p><a class="reference internal" href="#using-own-factory-data-implementation">Using own factory data implementation</a></p></li>
+</ul>
+</li>
+</ul>
+<hr>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>You can implement the factory data set described in the
+<a class="reference internal" href="#factory-data-component-table">factory data component table</a> in various ways,
+as long as the final HEX file contains all mandatory components defined in the
+table. In this guide, the <a class="reference internal" href="#generating-factory-data">generating factory data</a>
+and the
+<a class="reference internal" href="#building-an-example-with-factory-data">building an example with factory data</a>
+sections describe one of the implementations of the factory data set created by
+the nRF Connect platform’s maintainers. At the end of the process, you get a HEX
+file that contains the factory data partition in the CBOR format.</p>
+<p>The factory data accessor is a component that reads and decodes factory data
+parameters from the device’s persistent storage and creates an interface to
+provide all of them to the Matter stack and to the user application.</p>
+<p>The default implementation of the factory data accessor assumes that the factory
+data stored in the device’s flash memory is provided in the CBOR format.
+However, it is possible to generate the factory data set without using the nRF
+Connect scripts and implement another parser and a factory data accessor. This
+is possible if the newly provided implementation is consistent with the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataProvider.h">Factory Data Provider</a>.
+For more information about preparing a factory data accessor, see the section
+about
+<a class="reference internal" href="#using-own-factory-data-implementation">using own factory data implementation</a>.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Encryption and security of the factory data partition is not
+provided yet for this feature.</p>
+</div></blockquote>
+<section id="factory-data-component-table">
+<h3>Factory data component table<a class="headerlink" href="#factory-data-component-table" title="Permalink to this heading">#</a></h3>
+<p>The following table lists the parameters of a factory data set:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Key name</p></th>
+<th class="text-center head"><p>Full name</p></th>
+<th class="text-center head"><p>Length</p></th>
+<th class="text-center head"><p>Format</p></th>
+<th class="text-center head"><p>Conformance</p></th>
+<th class="text-center head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td class="text-center"><p>factory data version</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A version of the current factory data set. It cannot be changed by a user and it must be coherent with current version of the Factory Data Provider on device side.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">sn</span></code></p></td>
+<td class="text-center"><p>serial number</p></td>
+<td class="text-center"><p>&lt;1, 32&gt; B</p></td>
+<td class="text-center"><p>ASCII string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A serial number parameter defines an unique number of manufactured device. The maximum length of the serial number is 32 characters.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">vendor_id</span></code></p></td>
+<td class="text-center"><p>vendor ID</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A CSA-assigned ID for the organization responsible for producing the device.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">product_id</span></code></p></td>
+<td class="text-center"><p>product ID</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A unique ID assigned by the device vendor to identify the product. It defaults to a CSA-assigned ID that designates a non-production or test product.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">vendor_name</span></code></p></td>
+<td class="text-center"><p>vendor name</p></td>
+<td class="text-center"><p>&lt;1, 32&gt; B</p></td>
+<td class="text-center"><p>ASCII string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A human-readable vendor name that provides a simple string containing identification of device’s vendor for the application and Matter stack purposes.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">product_name</span></code></p></td>
+<td class="text-center"><p>product name</p></td>
+<td class="text-center"><p>&lt;1, 32&gt; B</p></td>
+<td class="text-center"><p>ASCII string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A human-readable product name that provides a simple string containing identification of the product for the application and the Matter stack purposes.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td class="text-center"><p>manufacturing date</p></td>
+<td class="text-center"><p>10 B</p></td>
+<td class="text-center"><p>ISO 8601</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A manufacturing date specifies the date that the device was manufactured. The date format used is ISO 8601, for example <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">hw_ver</span></code></p></td>
+<td class="text-center"><p>hardware version</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A hardware version number that specifies the version number of the hardware of the device. The value meaning and the versioning scheme is defined by the vendor.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">hw_ver_str</span></code></p></td>
+<td class="text-center"><p>hardware version string</p></td>
+<td class="text-center"><p>&lt;1, 64&gt; B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A hardware version string parameter that specifies the version of the hardware of the device as a more user-friendly value than that presented by the hardware version integer value. The value meaning and the versioning scheme is defined by the vendor.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">rd_uid</span></code></p></td>
+<td class="text-center"><p>rotating device ID unique ID</p></td>
+<td class="text-center"><p>&lt;16, 32&gt; B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>The unique ID for rotating device ID, which consists of a randomly-generated 128-bit (or longer) octet string. This parameter should be protected against reading or writing over-the-air after initial introduction into the device, and stay fixed during the lifetime of the device. When building an application with the Factory Data support, the <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_ROTATING_DEVICE_UID_MAX_LEN</span></code> must be set with the length of the actual <code class="docutils literal notranslate"><span class="pre">rd_uid</span></code> stored in the Factory Data partition.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">dac_cert</span></code></p></td>
+<td class="text-center"><p>(DAC) Device Attestation Certificate</p></td>
+<td class="text-center"><p>&lt;1, 602&gt; B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>The Device Attestation Certificate (DAC) and the corresponding private key are unique to each Matter device. The DAC is used for the Device Attestation process and to perform commissioning into a fabric. The DAC is a DER-encoded X.509v3-compliant certificate, as defined in RFC 5280.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">dac_key</span></code></p></td>
+<td class="text-center"><p>DAC private key</p></td>
+<td class="text-center"><p>68 B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>The private key associated with the Device Attestation Certificate (DAC). This key should be encrypted and maximum security should be guaranteed while generating and providing it to factory data.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">pai_cert</span></code></p></td>
+<td class="text-center"><p>Product Attestation Intermediate</p></td>
+<td class="text-center"><p>&lt;1, 602&gt; B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>An intermediate certificate is an X.509 certificate, which has been signed by the root certificate. The last intermediate certificate in a chain is used to sign the leaf (the Matter device) certificate. The PAI is a DER-encoded X.509v3-compliant certificate as defined in RFC 5280.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">spake2_it</span></code></p></td>
+<td class="text-center"><p>SPAKE2+ iteration counter</p></td>
+<td class="text-center"><p>4 B</p></td>
+<td class="text-center"><p>uint32</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A SPAKE2+ iteration counter is the amount of PBKDF2 (a key derivation function) interactions in a cryptographic process used during SPAKE2+ Verifier generation.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">spake2_salt</span></code></p></td>
+<td class="text-center"><p>SPAKE2+ salt</p></td>
+<td class="text-center"><p>&lt;32, 64&gt; B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>The SPAKE2+ salt is a random piece of data, at least 32 byte long. It is used as an additional input to a one-way function that performs the cryptographic operations. A new salt should be randomly generated for each password.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">spake2_verifier</span></code></p></td>
+<td class="text-center"><p>SPAKE2+ verifier</p></td>
+<td class="text-center"><p>97 B</p></td>
+<td class="text-center"><p>byte string</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>The SPAKE2+ verifier generated using SPAKE2+ salt, iteration counter, and passcode.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">discriminator</span></code></p></td>
+<td class="text-center"><p>Discriminator</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>uint16</p></td>
+<td class="text-center"><p>mandatory</p></td>
+<td class="text-center"><p>A 12-bit value matching the field of the same name in the setup code. The discriminator is used during the discovery process.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">passcode</span></code></p></td>
+<td class="text-center"><p>SPAKE passcode</p></td>
+<td class="text-center"><p>4 B</p></td>
+<td class="text-center"><p>uint32</p></td>
+<td class="text-center"><p>optional</p></td>
+<td class="text-center"><p>A pairing passcode is a 27-bit unsigned integer which serves as a proof of possession during the commissioning. Its value must be restricted to the values from <code class="docutils literal notranslate"><span class="pre">0x0000001</span></code> to <code class="docutils literal notranslate"><span class="pre">0x5F5E0FE</span></code> (<code class="docutils literal notranslate"><span class="pre">00000001</span></code> to <code class="docutils literal notranslate"><span class="pre">99999998</span></code> in decimal), excluding the following invalid passcode values: <code class="docutils literal notranslate"><span class="pre">00000000</span></code>, <code class="docutils literal notranslate"><span class="pre">11111111</span></code>, <code class="docutils literal notranslate"><span class="pre">22222222</span></code>, <code class="docutils literal notranslate"><span class="pre">33333333</span></code>, <code class="docutils literal notranslate"><span class="pre">44444444</span></code>, <code class="docutils literal notranslate"><span class="pre">55555555</span></code>, <code class="docutils literal notranslate"><span class="pre">66666666</span></code>, <code class="docutils literal notranslate"><span class="pre">77777777</span></code>, <code class="docutils literal notranslate"><span class="pre">88888888</span></code>, <code class="docutils literal notranslate"><span class="pre">99999999</span></code>, <code class="docutils literal notranslate"><span class="pre">12345678</span></code>, <code class="docutils literal notranslate"><span class="pre">87654321</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">product_appearance</span></code></p></td>
+<td class="text-center"><p>Product visible appearance</p></td>
+<td class="text-center"><p>2 B</p></td>
+<td class="text-center"><p>CBOR map</p></td>
+<td class="text-center"><p>optional</p></td>
+<td class="text-center"><p>The appearance field is a structure that describes the visible appearance of the product. This field is provided in a CBOR map and consists of two attributes: <code class="docutils literal notranslate"><span class="pre">finish</span></code> (1 B), <code class="docutils literal notranslate"><span class="pre">primary_color</span></code> (1 B). See the <a class="reference internal" href="#appearance-field-description">Appearance field description</a> to learn how to set all attributes.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td class="text-center"><p>User data</p></td>
+<td class="text-center"><p>variable, max 1024 B</p></td>
+<td class="text-center"><p>CBOR map</p></td>
+<td class="text-center"><p>optional</p></td>
+<td class="text-center"><p>The user data is provided in the JSON format. This parameter is optional and depends on the device manufacturer’s purpose. It is provided as a CBOR map type from persistent storage and should be parsed in the user application. This data is not used by the Matter stack. To learn how to work with user data, see the <a class="reference internal" href="#how-to-set-user-data">How to set user data</a> section.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="factory-data-format">
+<h3>Factory data format<a class="headerlink" href="#factory-data-format" title="Permalink to this heading">#</a></h3>
+<p>The factory data set must be saved into a HEX file that can be written to the
+flash memory of the Matter device.</p>
+<p>In the nRF Connect example, the factory data set is represented in the CBOR
+format and is stored in a HEX file. The file is then programmed to a device. The
+JSON format is used as an intermediate, human-readable representation of the
+data. The format is regulated by the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/nrfconnect_factory_data.schema">JSON Schema</a>
+file.</p>
+<p>All parameters of the factory data set are either mandatory or optional:</p>
+<ul class="simple">
+<li><p>Mandatory parameters must always be provided, as they are required for
+example to perform commissioning to the Matter network.</p></li>
+<li><p>Optional parameters can be used for development and testing purposes. For
+example, the <code class="docutils literal notranslate"><span class="pre">user</span></code> data parameter consists of all data that is needed by a
+specific manufacturer and that is not included in the mandatory parameters.</p></li>
+</ul>
+<p>In the factory data set, the following formats are used:</p>
+<ul class="simple">
+<li><p>uint8, uint16, and uint32 – These are the numeric formats representing,
+respectively, one-byte length unsigned integer, two-bytes length unsigned
+integer, and four-bytes length unsigned integer. This value is stored in a
+HEX file in the big-endian order.</p></li>
+<li><p>Byte string - This parameter represents the sequence of integers between <code class="docutils literal notranslate"><span class="pre">0</span></code>
+and <code class="docutils literal notranslate"><span class="pre">255</span></code>(inclusive), without any encoding. Because the JSON format does not
+allow to use of byte strings, the <code class="docutils literal notranslate"><span class="pre">hex:</span></code> prefix is added to a parameter, and
+its representation is converted to a HEX string. For example, an ASCII
+string <em><code class="docutils literal notranslate"><span class="pre">abba</span></code></em> is represented as <em><code class="docutils literal notranslate"><span class="pre">hex:61626261</span></code></em> in the JSON file and then
+stored in the HEX file as <code class="docutils literal notranslate"><span class="pre">0x61626261</span></code>. The HEX string length in the JSON
+file is two times greater than the byte string plus the size of the prefix.</p></li>
+<li><p>ASCII string is a string representation in ASCII encoding without
+null-terminating.</p></li>
+<li><p>ISO 8601 format is a
+<a class="reference external" href="https://www.iso.org/iso-8601-date-and-time-format.html">date format</a> that
+represents a date provided in the <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> or <code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code> format.</p></li>
+<li><p>All certificates stored in factory data are provided in the
+<a class="reference external" href="https://www.itu.int/rec/T-REC-X.509-201910-I/en">X.509</a> format.</p></li>
+</ul>
+<section id="appearance-field-description">
+<h4>Appearance field description<a class="headerlink" href="#appearance-field-description" title="Permalink to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">appearance</span></code> field in the factory data set describes the device’s visible
+appearance.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">finish</span></code> - A string name that indicates the visible exterior finish of the
+product. It refers to the <code class="docutils literal notranslate"><span class="pre">ProductFinishEnum</span></code> enum, and currently, you can
+choose one of the following names:</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Name</p></th>
+<th class="text-center head"><p>Enum value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">matte</span></code></p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">satin</span></code></p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">polished</span></code></p></td>
+<td class="text-center"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">rugged</span></code></p></td>
+<td class="text-center"><p>3</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">fabric</span></code></p></td>
+<td class="text-center"><p>4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">other</span></code></p></td>
+<td class="text-center"><p>255</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">primary_color</span></code> - A string name that represents the RGB color space of the
+device’s case color, which is the most representative. It refers to the
+<code class="docutils literal notranslate"><span class="pre">ColorEnum</span></code> enum, and currently, you can choose one of the following names:</p></li>
+</ul>
+<p>(Enum value) color name (<code class="docutils literal notranslate"><span class="pre">RGB</span> <span class="pre">value</span></code>)</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>(0) $$\color{black} \color{black}{black}$$ (<code class="docutils literal notranslate"><span class="pre">#000000</span></code>)</p></th>
+<th class="head"><p>(1) $$\color{#000080}{navy}$$ (<code class="docutils literal notranslate"><span class="pre">#000080</span></code>)</p></th>
+<th class="head"><p>(2) $$\color{#008000}{green}$$ (<code class="docutils literal notranslate"><span class="pre">#008000</span></code>)</p></th>
+<th class="head"><p>(3) $$\color{#008080}{teal}$$ (<code class="docutils literal notranslate"><span class="pre">#008080</span></code>)</p></th>
+<th class="head"><p>(4) $$\color{#800080}{maroon}$$ (<code class="docutils literal notranslate"><span class="pre">#800080</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(5) $$\color{#800080}{purple}$$ (<code class="docutils literal notranslate"><span class="pre">#800080</span></code>)</p></td>
+<td><p>(6) $$\color{#808000}{olive}$$ (<code class="docutils literal notranslate"><span class="pre">#800080</span></code>)</p></td>
+<td><p>(7) $$\color{#808080}{gray}$$ (<code class="docutils literal notranslate"><span class="pre">#800080</span></code>)</p></td>
+<td><p>(8) $$\color{blue}{blue}$$ (<code class="docutils literal notranslate"><span class="pre">#0000FF</span></code>)</p></td>
+<td><p>(9) $$\color{lime}{lime}$$ (<code class="docutils literal notranslate"><span class="pre">#00FF00</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>(10) $$\color{aqua}{aqua}$$ (<code class="docutils literal notranslate"><span class="pre">#00FFFF</span></code>)</p></td>
+<td><p>(11) $$\color{red}{red}$$ (<code class="docutils literal notranslate"><span class="pre">#FF0000</span></code>)</p></td>
+<td><p>(12) $$\color{fuchsia}{fuchsia}$$ (<code class="docutils literal notranslate"><span class="pre">#FF00FF</span></code>)</p></td>
+<td><p>(13) $$\color{yellow}{yellow}$$ (<code class="docutils literal notranslate"><span class="pre">#FFFF00</span></code>)</p></td>
+<td><p>(14) $$\color{white} \color{white}{white}$$ (<code class="docutils literal notranslate"><span class="pre">#800080</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>(15) $$\color{#727472}{nickel}$$ (<code class="docutils literal notranslate"><span class="pre">#727472</span></code>)</p></td>
+<td><p>(16) $$\color{#a8a9ad}{chrome}$$ (<code class="docutils literal notranslate"><span class="pre">#a8a9ad</span></code>)</p></td>
+<td><p>(17) $$\color{#E1C16E}{brass}$$ (<code class="docutils literal notranslate"><span class="pre">#E1C16E</span></code>)</p></td>
+<td><p>(18) $$\color{#B87333}{copper}$$ (<code class="docutils literal notranslate"><span class="pre">#B87333</span></code>)</p></td>
+<td><p>(19) $$\color{#C0C0C0}{silver}$$ (<code class="docutils literal notranslate"><span class="pre">#C0C0C0</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>(20) $$\color{gold}{gold}$$ (<code class="docutils literal notranslate"><span class="pre">#FFD700</span></code>)</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+</section>
+<section id="enabling-factory-data-support">
+<h2>Enabling factory data support<a class="headerlink" href="#enabling-factory-data-support" title="Permalink to this heading">#</a></h2>
+<p>By default, the factory data support is disabled in all nRF Connect examples and
+the nRF Connect device uses predefined parameters from the Matter core, which
+you should not change. To start using factory data stored in the flash memory
+and the <strong>Factory Data Provider</strong> from the nRF Connect platform, build an
+example with the following option (replace <em>&lt;build_target&gt;</em> with your board
+name, for example, <code class="docutils literal notranslate"><span class="pre">nrf52840dk_nrf52840</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b &lt;build_target&gt; -- -DCONFIG_CHIP_FACTORY_DATA=y
+</pre></div>
+</div>
+</section>
+<section id="generating-factory-data">
+<h2>Generating factory data<a class="headerlink" href="#generating-factory-data" title="Permalink to this heading">#</a></h2>
+<p>This section describes generating factory data using the following nRF Connect
+Python scripts:</p>
+<ul class="simple">
+<li><p>The first script creates a JSON file that contains a user-friendly
+representation of the factory data.</p></li>
+<li><p>The second script uses the JSON file to create a factory data partition and
+save it to a HEX file.</p></li>
+</ul>
+<p>After these operations, you will program a HEX file containing factory data
+partition into the device’s flash memory.</p>
+<p>You can use the second script without invoking the first one by providing a JSON
+file written in another way. To make sure that the JSON file is correct and the
+device is able to read out parameters,
+<a class="reference internal" href="#verifying-using-the-json-schema-tool">verify the file using the JSON schema tool</a>.</p>
+<p>You can also use only the first script to generate both JSON and HEX files, by
+providing optional <code class="docutils literal notranslate"><span class="pre">offset</span></code> and <code class="docutils literal notranslate"><span class="pre">size</span></code> arguments, which results in invoking the
+script internally. Such option is the recommended one, but invoking two scripts
+one by one is also supported to provide backward compatibility.</p>
+<section id="creating-the-factory-data-json-and-hex-files-with-the-first-script">
+<h3>Creating the factory data JSON and HEX files with the first script<a class="headerlink" href="#creating-the-factory-data-json-and-hex-files-with-the-first-script" title="Permalink to this heading">#</a></h3>
+<p>A Matter device needs a proper factory data partition stored in the flash memory
+to read out all required parameters during startup. To simplify the factory data
+generation, you can use the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py">generate_nrfconnect_chip_factory_data.py</a>
+Python script to provide all required parameters and generate a human-readable
+JSON file and save it to a HEX file.</p>
+<p>To use this script, complete the following steps:</p>
+<ol class="arabic">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">connectedhomeip</span></code> root directory.</p></li>
+<li><p>Run the script with <code class="docutils literal notranslate"><span class="pre">-h</span></code> option to see all possible options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py -h
+</pre></div>
+</div>
+</li>
+<li><p>Prepare a list of arguments:</p>
+<p>a. Fill up all mandatory arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">sn</span> <span class="o">--</span><span class="n">vendor_id</span><span class="p">,</span> <span class="o">--</span><span class="n">product_id</span><span class="p">,</span> <span class="o">--</span><span class="n">vendor_name</span><span class="p">,</span> <span class="o">--</span><span class="n">product_name</span><span class="p">,</span> <span class="o">--</span><span class="n">date</span><span class="p">,</span> <span class="o">--</span><span class="n">hw_ver</span><span class="p">,</span> <span class="o">--</span><span class="n">hw_ver_str</span><span class="p">,</span> <span class="o">--</span><span class="n">spake2_it</span><span class="p">,</span> <span class="o">--</span><span class="n">spake2_salt</span><span class="p">,</span> <span class="o">--</span><span class="n">discriminator</span>
+</pre></div>
+</div>
+<p>b. Add output path to store .json file, e.g. my_dir/output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">o</span> <span class="o">&lt;</span><span class="n">path_to_output_file</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>c. Generate SPAKE2 verifier using one of the following methods:</p>
+<ul>
+<li><p>Automatic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">passcode</span> <span class="o">&lt;</span><span class="n">pass_code</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Manual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">spake2_verifier</span> <span class="o">&lt;</span><span class="n">verifier</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>d. Add paths to <code class="docutils literal notranslate"><span class="pre">.der</span></code> files that contain PAI and DAC certificates and the
+DAC private key (replace the respective variables with the file names) using
+one of the following methods:</p>
+<ul>
+<li><p>Automatic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">chip_cert_path</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">chip</span><span class="o">-</span><span class="n">cert</span> <span class="n">executable</span><span class="o">&gt;</span>
+<span class="o">--</span><span class="n">gen_certs</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> To generate new certificates, you need the <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code>
+executable. See the note at the end of this section to learn how to get
+it.</p>
+</div></blockquote>
+<ul>
+<li><p>Manual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">dac_cert</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">DAC</span> <span class="n">certificate</span><span class="o">&gt;.</span><span class="n">der</span> <span class="o">--</span><span class="n">dac_key</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">DAC</span> <span class="n">key</span><span class="o">&gt;.</span><span class="n">der</span> <span class="o">--</span><span class="n">pai_cert</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">PAI</span> <span class="n">certificate</span><span class="o">&gt;.</span><span class="n">der</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>e. (optional) Add the new unique ID for rotating device ID using one of the
+following options:</p>
+<ul>
+<li><p>Provide an existing ID:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">rd_uid</span> <span class="o">&lt;</span><span class="n">rotating</span> <span class="n">device</span> <span class="n">ID</span> <span class="n">unique</span> <span class="n">ID</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>(optional) Generate a new ID and provide it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">generate_rd_uid</span>
+<span class="o">--</span><span class="n">rd_uid</span> <span class="o">&lt;</span><span class="n">rotating</span> <span class="n">device</span> <span class="n">ID</span> <span class="n">unique</span> <span class="n">ID</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You can find a newly generated unique ID in the console output.</p>
+</li>
+</ul>
+<p>f. (optional) Add the JSON schema to verify the JSON file (replace the
+respective variable with the file path):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">schema</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">JSON</span> <span class="n">Schema</span> <span class="n">file</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>g. (optional) Add a request to include a pairing passcode in the JSON file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">include_passcode</span>
+</pre></div>
+</div>
+<p>h. (optional) Add the request to overwrite existing the JSON file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">overwrite</span>
+</pre></div>
+</div>
+<p>i. (optional) Add the appearance of the product:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">product_finish</span> <span class="o">&lt;</span><span class="n">finish</span><span class="o">&gt;</span>
+<span class="o">--</span><span class="n">product_color</span> <span class="o">&lt;</span><span class="n">color</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>j. (optional) Generate Certification Declaration for testing purposes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">chip_cert_path</span> <span class="o">&lt;</span><span class="n">path</span> <span class="n">to</span> <span class="n">chip</span><span class="o">-</span><span class="n">cert</span> <span class="n">executable</span><span class="o">&gt;</span>
+<span class="o">--</span><span class="n">gen_cd</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> To generate new Certification Declaration, you need the
+<code class="docutils literal notranslate"><span class="pre">chip-cert</span></code> executable. See the note at the end of this section to learn
+how to get it.</p>
+</div></blockquote>
+<p>k. (optional) Partition offset that is an address in device’s NVM memory,
+where factory data will be stored.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">offset</span> <span class="o">&lt;</span><span class="n">offset</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> To generate a HEX file with factory data, you need to provide
+both <code class="docutils literal notranslate"><span class="pre">offset</span></code> and <code class="docutils literal notranslate"><span class="pre">size</span></code> optional arguments. As a result,
+<code class="docutils literal notranslate"><span class="pre">factory_data.hex</span></code> and <code class="docutils literal notranslate"><span class="pre">factory_data.bin</span></code> files are created in the
+<code class="docutils literal notranslate"><span class="pre">output</span></code> directory. The first file contains the required memory offset.
+For this reason, it can be programmed directly to the device using a
+programmer (for example, <code class="docutils literal notranslate"><span class="pre">nrfjprog</span></code>).</p>
+</div></blockquote>
+<p>l. (optional) The maximum partition size in device’s NVM memory, where
+factory data will be stored.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">size</span> <span class="o">&lt;</span><span class="n">size</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> To generate a HEX file with factory data, you need to provide
+both <code class="docutils literal notranslate"><span class="pre">offset</span></code> and <code class="docutils literal notranslate"><span class="pre">size</span></code> optional arguments. As a result,
+<code class="docutils literal notranslate"><span class="pre">factory_data.hex</span></code> and <code class="docutils literal notranslate"><span class="pre">factory_data.bin</span></code> files are created in the
+<code class="docutils literal notranslate"><span class="pre">output</span></code> directory. The first file contains the required memory offset.
+For this reason, it can be programmed directly to the device using a
+programmer (for example, <code class="docutils literal notranslate"><span class="pre">nrfjprog</span></code>).</p>
+</div></blockquote>
+</li>
+<li><p>Run the script using the prepared list of arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python generate_nrfconnect_chip_factory_data.py &lt;arguments&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For example, a final invocation of the Python script can look similar to the
+following one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py \
+--sn &quot;11223344556677889900&quot; \
+--vendor_id 65521 \
+--product_id 32774 \
+--vendor_name &quot;Nordic Semiconductor ASA&quot; \
+--product_name &quot;not-specified&quot; \
+--date &quot;2022-02-02&quot; \
+--hw_ver 1 \
+--hw_ver_str &quot;prerelase&quot; \
+--dac_cert &quot;credentials/development/attestation/Matter-Development-DAC-FFF1-8006-Cert.der&quot; \
+--dac_key &quot;credentials/development/attestation/Matter-Development-DAC-FFF1-8006-Key.der&quot; \
+--pai_cert &quot;credentials/development/attestation/Matter-Development-PAI-FFF1-noPID-Cert.der&quot; \
+--spake2_it 1000 \
+--spake2_salt &quot;U1BBS0UyUCBLZXkgU2FsdA==&quot; \
+--discriminator 0xF00 \
+--generate_rd_uid \
+--passcode 20202021 \
+--product_finish &quot;matte&quot; \
+--product_color &quot;black&quot; \
+--out &quot;build&quot; \
+--schema &quot;scripts/tools/nrfconnect/nrfconnect_factory_data.schema&quot; \
+--offset 0xf7000 \
+--size 0x1000
+</pre></div>
+</div>
+<p>As the result of the above example, a unique ID for the rotating device ID is
+created, SPAKE2+ verifier is generated using the <code class="docutils literal notranslate"><span class="pre">spake2p</span></code> executable, and the
+JSON file is verified using the prepared JSON Schema.</p>
+<p>If the script finishes successfully, go to the location you provided with the
+<code class="docutils literal notranslate"><span class="pre">-o</span></code> argument. Use the JSON file you find there when
+<a class="reference internal" href="#generating-factory-data">generating factory data</a>.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Generating new certificates is optional if default vendor and
+product IDs are used and requires providing a path to the <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code>
+executable. To get it, complete the following steps:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">connectedhomeip</span></code> root directory.</p></li>
+<li><p>In a terminal, run the command:
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">src/tools/chip-cert</span> <span class="pre">&amp;&amp;</span> <span class="pre">gn</span> <span class="pre">gen</span> <span class="pre">out</span> <span class="pre">&amp;&amp;</span> <span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">out</span> <span class="pre">chip-cert</span></code> to build
+the executable.</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">connectedhomeip/src/tools/chip-cert/out/chip-cert</span></code> path as an
+argument of <code class="docutils literal notranslate"><span class="pre">--chip_cert_path</span></code> for the Python script.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Note:</strong> By default, overwriting the existing JSON file is disabled. This
+means that you cannot create a new JSON file with the same name in the exact
+location as an existing file. To allow overwriting, add the <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code>
+option to the argument list of the Python script.</p>
+</div></blockquote>
+</section>
+<section id="how-to-set-user-data">
+<h3>How to set user data<a class="headerlink" href="#how-to-set-user-data" title="Permalink to this heading">#</a></h3>
+<p>The user data is an optional field provided in the factory data JSON file and
+depends on the manufacturer’s purpose. The <code class="docutils literal notranslate"><span class="pre">user</span></code> field in a JSON factory data
+file is represented by a flat JSON map and it can consist of <code class="docutils literal notranslate"><span class="pre">string</span></code> or <code class="docutils literal notranslate"><span class="pre">int32</span></code>
+data types only. On the device side, the <code class="docutils literal notranslate"><span class="pre">user</span></code> data will be available as a CBOR
+map containing all defined <code class="docutils literal notranslate"><span class="pre">string</span></code> and <code class="docutils literal notranslate"><span class="pre">int32</span></code> fields.</p>
+<p>To add user data as an argument to the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py">generate_nrfconnect_chip_factory_data.py</a>
+script, add the following line to the argument list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">user</span><span class="o">-</span><span class="n">data</span> <span class="p">{</span><span class="n">user</span> <span class="n">data</span> <span class="n">JSON</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>As <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">data</span> <span class="pre">JSON</span></code>, provide a flat JSON map with a value file that consists of
+<code class="docutils literal notranslate"><span class="pre">string</span></code> or <code class="docutils literal notranslate"><span class="pre">int32</span></code> types. For example, you can use a JSON file that looks like
+follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;product_name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s2">&quot;revision&quot;</span><span class="p">:</span> <span class="s2">&quot;0x123&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When added to the argument line, the final result would look like follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">user</span><span class="o">-</span><span class="n">data</span> <span class="s1">&#39;{&quot;name&quot;: &quot;product_name&quot;, &quot;version&quot;: 123, &quot;revision&quot;: &quot;0x123&quot;}&#39;</span>
+</pre></div>
+</div>
+<section id="how-to-handle-user-data">
+<h4>How to handle user data<a class="headerlink" href="#how-to-handle-user-data" title="Permalink to this heading">#</a></h4>
+<p>The user data is not handled anywhere in the Matter stack, so you must handle it
+in your application. To do this, you can use the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataProvider.h">Factory Data Provider</a> and
+apply one of the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GetUserData</span></code> method to obtain raw data in the CBOR format as a
+<code class="docutils literal notranslate"><span class="pre">MutableByteSpan</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GetUserKey</span></code> method that lets you search along the user data list using a
+specific key, and if the key exists in the user data, the method returns its
+value.</p></li>
+</ul>
+<p>If you opt for <code class="docutils literal notranslate"><span class="pre">GetUserKey</span></code>, complete the following steps to set up the search:</p>
+<ol class="arabic simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">GetUserKey</span></code> method to your code.</p></li>
+<li><p>Given that all integer fields of the <code class="docutils literal notranslate"><span class="pre">user</span></code> Factory Data field are <code class="docutils literal notranslate"><span class="pre">int32</span></code>,
+provide a buffer that has a size of at least <code class="docutils literal notranslate"><span class="pre">4B</span></code> or an <code class="docutils literal notranslate"><span class="pre">int32_t</span></code> variable to
+<code class="docutils literal notranslate"><span class="pre">GetUserKey</span></code>. To read a string field from user data, the buffer should have a
+size of at least the length of the expected string.</p></li>
+<li><p>Set it up to read all user data fields.</p></li>
+</ol>
+<p>Only after this setup is complete, can you use all variables in your code and
+cast the result to your own purpose.</p>
+<p>The code example of how to read all fields from the JSON example one by one can
+look like follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span><span class="p">::</span><span class="n">DeviceLayer</span><span class="p">::</span><span class="n">FactoryDataProvider</span> <span class="n">factoryDataProvider</span><span class="p">;</span>
+
+<span class="n">factoryDataProvider</span><span class="o">.</span><span class="n">Init</span><span class="p">();</span>
+
+<span class="n">uint8_t</span> <span class="n">user_name</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+<span class="n">size_t</span> <span class="n">name_len</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">user_name</span><span class="p">);</span>
+<span class="n">factoryDataProvider</span><span class="o">.</span><span class="n">GetUserKey</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">name_len</span><span class="p">);</span>
+
+<span class="n">int32_t</span> <span class="n">version</span><span class="p">;</span>
+<span class="n">size_t</span> <span class="n">version_len</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">version</span><span class="p">);</span>
+<span class="n">factoryDataProvider</span><span class="o">.</span><span class="n">GetUserKey</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">version</span><span class="p">,</span> <span class="n">version_len</span><span class="p">);</span>
+
+<span class="n">uint8_t</span> <span class="n">revision</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">size_t</span> <span class="n">revision_len</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">revision</span><span class="p">);</span>
+<span class="n">factoryDataProvider</span><span class="o">.</span><span class="n">GetUserKey</span><span class="p">(</span><span class="s2">&quot;revision&quot;</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="n">revision_len</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="verifying-using-the-json-schema-tool">
+<h3>Verifying using the JSON Schema tool<a class="headerlink" href="#verifying-using-the-json-schema-tool" title="Permalink to this heading">#</a></h3>
+<p>The JSON file that contains factory data can be verified using the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/nrfconnect_factory_data.schema">JSON Schema file</a>.
+You can use one of three options to validate the structure and contents of the
+JSON data.</p>
+<section id="option-1-using-the-php-json-schema-tool">
+<h4>Option 1: Using the php-json-schema tool<a class="headerlink" href="#option-1-using-the-php-json-schema-tool" title="Permalink to this heading">#</a></h4>
+<p>To check the JSON file using a JSON Schema verification tool manually on a Linux
+machine, complete the following steps:</p>
+<ol class="arabic">
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">php-json-schema</span></code> package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install php-json-schema
+</pre></div>
+</div>
+</li>
+<li><p>Run the following command, with <em>&lt;path_to_JSON_file&gt;</em> and
+<em>&lt;path_to_schema_file&gt;</em> replaced with the paths to the JSON file and the
+Schema file, respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ validate-json &lt;path_to_JSON_file&gt; &lt;path_to_schema_file&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The tool returns empty output in case of success.</p>
+</section>
+<section id="option-2-using-a-website-validator">
+<h4>Option 2: Using a website validator<a class="headerlink" href="#option-2-using-a-website-validator" title="Permalink to this heading">#</a></h4>
+<p>You can also use external websites instead of the <code class="docutils literal notranslate"><span class="pre">php-json-schema</span></code> tool to
+verify a factory data JSON file. For example, go to the
+<a class="reference external" href="https://www.jsonschemavalidator.net/">JSON Schema Validator website</a>,
+copy-paste the content of the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/nrfconnect_factory_data.schema">JSON Schema file</a>
+to the first window and a JSON file to the second one. A message under the
+window indicates the validation status.</p>
+</section>
+<section id="option-3-using-the-nrf-connect-python-script">
+<h4>Option 3: Using the nRF Connect Python script<a class="headerlink" href="#option-3-using-the-nrf-connect-python-script" title="Permalink to this heading">#</a></h4>
+<p>You can have the JSON file checked automatically by the Python script during the
+file generation. For this to happen, you must install the <code class="docutils literal notranslate"><span class="pre">jsonschema</span></code> Python
+module in your Python environment and provide the path to the JSON schema file
+as an additional argument. To do this, complete the following steps:</p>
+<ol class="arabic">
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">jsonschema</span></code> Python module by invoking one of the following
+commands from the Matter root directory:</p>
+<ul>
+<li><p>Install only the <code class="docutils literal notranslate"><span class="pre">jsonschema</span></code> module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install jsonschema
+</pre></div>
+</div>
+</li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">jsonschema</span></code> module together with all dependencies for Matter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install -r ./scripts/setup/requirements.nrfconnect.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Run the following command (remember to replace the <em>&lt;path_to_schema&gt;</em>
+variable):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python generate_nrfconnect_chip_factory_data.py --schema &lt;path_to_schema&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Note:</strong> To learn more about the JSON schema, visit
+<a class="reference external" href="https://json-schema.org/understanding-json-schema/">this unofficial JSON Schema tool usage website</a>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="generating-onboarding-codes">
+<h3>Generating onboarding codes<a class="headerlink" href="#generating-onboarding-codes" title="Permalink to this heading">#</a></h3>
+<p>The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py">generate_nrfconnect_chip_factory_data.py</a>
+script lets you generating a manual code and a QR code from the given factory
+data parameters. You can use these codes to perform commissioning to the Matter
+network over Bluetooth LE since they include all the pairing data required by
+the Matter controller. You can place these codes on the device packaging or on
+the device itself during production.</p>
+<p>To generate a manual pairing code and a QR code, complete the following steps:</p>
+<ol class="arabic">
+<li><p>Install all required Python dependencies for Matter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install -r ./scripts/setup/requirements.nrfconnect.txt
+</pre></div>
+</div>
+</li>
+<li><p>Complete steps 1, 2, and 3 from the
+<a class="reference internal" href="#creating-the-factory-data-json-and-hex-files-with-the-first-script">Creating the factory data JSON and HEX files with the first script</a>
+section to prepare the final invocation of the Python script.</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">--generate_onboarding</span></code> argument to the Python script final
+invocation.</p></li>
+<li><p>Run the script.</p></li>
+<li><p>Navigate to the output directory provided as the <code class="docutils literal notranslate"><span class="pre">-o</span></code> argument.</p></li>
+</ol>
+<p>The output directory contains the following files you need:</p>
+<ul class="simple">
+<li><p>JSON file containing the latest factory data set.</p></li>
+<li><p>Test file containing the generated manual code and the text version of the
+QR Code.</p></li>
+<li><p>PNG file containing the generated QR Code as an image.</p></li>
+</ul>
+<section id="enabling-onboarding-codes-generation-within-the-build-system">
+<h4>Enabling onboarding codes generation within the build system<a class="headerlink" href="#enabling-onboarding-codes-generation-within-the-build-system" title="Permalink to this heading">#</a></h4>
+<p>You can generate onboarding codes using the nRF Connect platform build system
+described in
+<a class="reference internal" href="#building-an-example-with-factory-data">Building an example with factory data</a>,
+and build an example with the following additional option:
+<code class="docutils literal notranslate"><span class="pre">-DCONFIG_CHIP_FACTORY_DATA_GENERATE_ONBOARDING_CODES=y</span></code>.</p>
+<p>For example, the build command for the nRF52840 DK could look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b nrf52840dk_nrf52840 -- \
+-DCONFIG_CHIP_FACTORY_DATA=y \
+-DSB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y \
+-DCONFIG_CHIP_FACTORY_DATA_GENERATE_ONBOARDING_CODES=y
+</pre></div>
+</div>
+</section>
+</section>
+<section id="preparing-factory-data-partition-on-a-device">
+<h3>Preparing factory data partition on a device<a class="headerlink" href="#preparing-factory-data-partition-on-a-device" title="Permalink to this heading">#</a></h3>
+<p>The factory data partition is an area in the device’s persistent storage where a
+factory data set is stored. This area is configured using the
+<a class="reference external" href="https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/scripts/partition_manager/partition_manager.html">Partition Manager</a>,
+within which all partitions are declared in the <code class="docutils literal notranslate"><span class="pre">pm_static.yml</span></code> file.</p>
+<p>To prepare an example that supports factory data, add a partition called
+<code class="docutils literal notranslate"><span class="pre">factory_data</span></code> to the <code class="docutils literal notranslate"><span class="pre">pm_static.yml</span></code> file. The partition size should be a
+multiple of one flash page (for nRF52 and nRF53 SoCs, a single page size equals
+4 kB).</p>
+<p>See the following code snippet for an example of a factory data partition in the
+<code class="docutils literal notranslate"><span class="pre">pm_static.yml</span></code> file. The snippet is based on the <code class="docutils literal notranslate"><span class="pre">pm_static.yml</span></code> file from the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/examples/lock-app/nrfconnect/configuration/nrf52840dk_nrf52840/pm_static_dfu.yml">Lock application example</a>
+and uses the nRF52840 DK:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">mcuboot_primary_app</span><span class="p">:</span>
+    <span class="n">orig_span</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">id002</span>
+        <span class="o">-</span> <span class="n">app</span>
+    <span class="n">span</span><span class="p">:</span> <span class="o">*</span><span class="n">id002</span>
+    <span class="n">address</span><span class="p">:</span> <span class="mh">0x7200</span>
+    <span class="n">size</span><span class="p">:</span> <span class="mh">0xf3e00</span>
+
+<span class="n">factory_data</span><span class="p">:</span>
+    <span class="n">address</span><span class="p">:</span> <span class="mh">0xfb00</span>
+    <span class="n">size</span><span class="p">:</span> <span class="mh">0x1000</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">flash_primary</span>
+
+<span class="n">settings_storage</span><span class="p">:</span>
+    <span class="n">address</span><span class="p">:</span> <span class="mh">0xfc000</span>
+    <span class="n">size</span><span class="p">:</span> <span class="mh">0x4000</span>
+    <span class="n">region</span><span class="p">:</span> <span class="n">flash_primary</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>In this example, a <code class="docutils literal notranslate"><span class="pre">factory_data</span></code> partition has been placed between the
+application partition (<code class="docutils literal notranslate"><span class="pre">mcuboot_primary_app</span></code>) and the settings storage. Its size
+has been set to one flash page (4 kB).</p>
+<p>Use Partition Manager’s report tool to ensure you created a factory data
+partition correctly. To do that, navigate to the example directory and run the
+following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -t partition_manager_report
+</pre></div>
+</div>
+<p>The output will look similar to the following one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+  <span class="n">external_flash</span> <span class="p">(</span><span class="mh">0x800000</span> <span class="o">-</span> <span class="mi">8192</span><span class="n">kB</span><span class="p">):</span>
+<span class="o">+---------------------------------------------+</span>
+<span class="o">|</span> <span class="mh">0x0</span><span class="p">:</span> <span class="n">mcuboot_secondary</span> <span class="p">(</span><span class="mh">0xf4000</span> <span class="o">-</span> <span class="mi">976</span><span class="n">kB</span><span class="p">)</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mh">0xf4000</span><span class="p">:</span> <span class="n">external_flash</span> <span class="p">(</span><span class="mh">0x70c000</span> <span class="o">-</span> <span class="mi">7216</span><span class="n">kB</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+---------------------------------------------+</span>
+
+  <span class="n">flash_primary</span> <span class="p">(</span><span class="mh">0x100000</span> <span class="o">-</span> <span class="mi">1024</span><span class="n">kB</span><span class="p">):</span>
+<span class="o">+-------------------------------------------------+</span>
+<span class="o">|</span> <span class="mh">0x0</span><span class="p">:</span> <span class="n">mcuboot</span> <span class="p">(</span><span class="mh">0x7000</span> <span class="o">-</span> <span class="mi">28</span><span class="n">kB</span><span class="p">)</span>                    <span class="o">|</span>
+<span class="o">+---</span><span class="mh">0x7000</span><span class="p">:</span> <span class="n">mcuboot_primary</span> <span class="p">(</span><span class="mh">0xf4000</span> <span class="o">-</span> <span class="mi">976</span><span class="n">kB</span><span class="p">)</span><span class="o">-----+</span>
+<span class="o">|</span> <span class="mh">0x7000</span><span class="p">:</span> <span class="n">mcuboot_pad</span> <span class="p">(</span><span class="mh">0x200</span> <span class="o">-</span> <span class="mi">512</span><span class="n">B</span><span class="p">)</span>              <span class="o">|</span>
+<span class="o">+---</span><span class="mh">0x7200</span><span class="p">:</span> <span class="n">mcuboot_primary_app</span> <span class="p">(</span><span class="mh">0xf3e00</span> <span class="o">-</span> <span class="mi">975</span><span class="n">kB</span><span class="p">)</span><span class="o">-+</span>
+<span class="o">|</span> <span class="mh">0x7200</span><span class="p">:</span> <span class="n">app</span> <span class="p">(</span><span class="mh">0xf3e00</span> <span class="o">-</span> <span class="mi">975</span><span class="n">kB</span><span class="p">)</span>                   <span class="o">|</span>
+<span class="o">+-------------------------------------------------+</span>
+<span class="o">|</span> <span class="mh">0xfb000</span><span class="p">:</span> <span class="n">factory_data</span> <span class="p">(</span><span class="mh">0x1000</span> <span class="o">-</span> <span class="mi">4</span><span class="n">kB</span><span class="p">)</span>            <span class="o">|</span>
+<span class="o">|</span> <span class="mh">0xfc000</span><span class="p">:</span> <span class="n">settings_storage</span> <span class="p">(</span><span class="mh">0x4000</span> <span class="o">-</span> <span class="mi">16</span><span class="n">kB</span><span class="p">)</span>       <span class="o">|</span>
+<span class="o">+-------------------------------------------------+</span>
+
+  <span class="n">sram_primary</span> <span class="p">(</span><span class="mh">0x40000</span> <span class="o">-</span> <span class="mi">256</span><span class="n">kB</span><span class="p">):</span>
+<span class="o">+--------------------------------------------+</span>
+<span class="o">|</span> <span class="mh">0x20000000</span><span class="p">:</span> <span class="n">sram_primary</span> <span class="p">(</span><span class="mh">0x40000</span> <span class="o">-</span> <span class="mi">256</span><span class="n">kB</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+--------------------------------------------+</span>
+
+</pre></div>
+</div>
+</section>
+<section id="creating-a-factory-data-partition-with-the-second-script">
+<h3>Creating a factory data partition with the second script<a class="headerlink" href="#creating-a-factory-data-partition-with-the-second-script" title="Permalink to this heading">#</a></h3>
+<p>To store the factory data set in the device’s persistent storage, convert the
+data from the JSON file to its binary representation in the CBOR format. This is
+done by the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/generate_nrfconnect_chip_factory_data.py">generate_nrfconnect_chip_factory_data.py</a>,
+if you provide optional <code class="docutils literal notranslate"><span class="pre">offset</span></code> and <code class="docutils literal notranslate"><span class="pre">size</span></code> arguments. If you provided these
+arguments, skip the following steps of this section.</p>
+<p>You can skip these optional arguments and do this, using the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/tools/nrfconnect/nrfconnect_generate_partition.py">nrfconnect_generate_partition.py</a>
+script, but this is obsolete solution kept only for backward compatibility:</p>
+<ol class="arabic">
+<li><p>Navigate to the <em>connectedhomeip</em> root directory</p></li>
+<li><p>Run the following command pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/tools/nrfconnect/nrfconnect_generate_partition.py -i &lt;path_to_JSON_file&gt; -o &lt;path_to_output&gt; --offset &lt;partition_address_in_memory&gt; --size &lt;partition_size&gt;
+</pre></div>
+</div>
+<p>In this command:</p>
+<ul class="simple">
+<li><p><em>&lt;path_to_JSON_file&gt;</em> is a path to the JSON file containing appropriate
+factory data.</p></li>
+<li><p><em>&lt;path_to_output&gt;</em> is a path to an output file without any prefix. For
+example, providing <code class="docutils literal notranslate"><span class="pre">/build/output</span></code> as an argument will result in creating
+<code class="docutils literal notranslate"><span class="pre">/build/output.hex</span></code> and <code class="docutils literal notranslate"><span class="pre">/build/output.bin</span></code>.</p></li>
+<li><p><em>&lt;partition_address_in_memory&gt;</em> is an address in the device’s persistent
+storage area where a partition data set is to be stored.</p></li>
+<li><p><em>&lt;partition_size&gt;</em> is a size of partition in the device’s persistent
+storage area. New data is checked according to this value of the JSON data
+to see if it fits the size.</p></li>
+</ul>
+</li>
+</ol>
+<p>To see the optional arguments for the script, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/tools/nrfconnect/nrfconnect_generate_partition.py -h
+</pre></div>
+</div>
+<p><strong>Example of the command for the nRF52840 DK:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python scripts/tools/nrfconnect/nrfconnect_generate_partition.py -i build/light_bulb/zephyr/factory_data.json -o build/light_bulb/zephyr/factory_data --offset 0xfb000 --size 0x1000
+</pre></div>
+</div>
+<p>As a result, <code class="docutils literal notranslate"><span class="pre">factory_data.hex</span></code> and <code class="docutils literal notranslate"><span class="pre">factory_data.bin</span></code> files are created in the
+<code class="docutils literal notranslate"><span class="pre">/build/light_bulb/zephyr/</span></code> directory. The first file contains the memory
+offset. For this reason, it can be programmed directly to the device using a
+programmer (for example, <code class="docutils literal notranslate"><span class="pre">nrfjprog</span></code>).</p>
+<hr>
+</section>
+</section>
+<section id="building-an-example-with-factory-data">
+<h2>Building an example with factory data<a class="headerlink" href="#building-an-example-with-factory-data" title="Permalink to this heading">#</a></h2>
+<p>You can manually generate the factory data set using the instructions described
+in the <a class="reference internal" href="#generating-factory-data">Generating factory data</a> section. Another way
+is to use the nRF Connect platform build system that creates factory data
+content automatically using Kconfig options and includes the content in the
+final firmware binary.</p>
+<p>To enable generating the factory data set automatically, go to the example’s
+directory and build the example with the following option (replace
+<code class="docutils literal notranslate"><span class="pre">nrf52840dk_nrf52840</span></code> with your board name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b nrf52840dk_nrf52840 -- -DCONFIG_CHIP_FACTORY_DATA=y -DSB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y
+</pre></div>
+</div>
+<p>Alternatively, you can also add <code class="docutils literal notranslate"><span class="pre">SB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y</span></code>
+Kconfig setting to the example’s <code class="docutils literal notranslate"><span class="pre">sysbuild.conf</span></code> file.</p>
+<p>Each factory data parameter has a default value. These are described in the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/config/nrfconnect/chip-module/Kconfig">Kconfig file</a>. Setting a new value
+for the factory data parameter can be done either by providing it as a build
+argument list or by using interactive Kconfig interfaces.</p>
+<section id="providing-factory-data-parameters-as-a-build-argument-list">
+<h3>Providing factory data parameters as a build argument list<a class="headerlink" href="#providing-factory-data-parameters-as-a-build-argument-list" title="Permalink to this heading">#</a></h3>
+<p>This way for providing factory data can be used with third-party build script,
+as it uses only one command. All parameters can be edited manually by providing
+them as an additional option for the west command. For example (replace
+<code class="docutils literal notranslate"><span class="pre">nrf52840dk_nrf52840</span></code> with own board name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b nrf52840dk_nrf52840 -- -DCONFIG_CHIP_FACTORY_DATA=y --DSB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y --DCONFIG_CHIP_DEVICE_DISCRIMINATOR=0xF11
+</pre></div>
+</div>
+<p>Alternatively, you can add the relevant Kconfig option lines to the example’s
+<code class="docutils literal notranslate"><span class="pre">prj.conf</span></code> file.</p>
+</section>
+<section id="setting-factory-data-parameters-using-interactive-kconfig-interfaces">
+<h3>Setting factory data parameters using interactive Kconfig interfaces<a class="headerlink" href="#setting-factory-data-parameters-using-interactive-kconfig-interfaces" title="Permalink to this heading">#</a></h3>
+<p>You can edit all configuration options using the interactive Kconfig interface.</p>
+<p>See the
+<a class="reference internal" href="nrfconnect_examples_configuration.html"><span class="std std-doc">Configuring nRF Connect examples</span></a> page
+for information about how to configure Kconfig options.</p>
+<p>In the configuration window, expand the items
+<code class="docutils literal notranslate"><span class="pre">Modules</span> <span class="pre">-&gt;</span> <span class="pre">connectedhomeip</span> <span class="pre">(/home/arbl/matter/connectedhomeip/config/nrfconnect/chip-module)</span> <span class="pre">-&gt;</span> <span class="pre">Connected</span> <span class="pre">Home</span> <span class="pre">over</span> <span class="pre">IP</span> <span class="pre">protocol</span> <span class="pre">stack</span></code>.
+You will see all factory data configuration options, as in the following
+snippet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">65521</span><span class="p">)</span> <span class="n">Device</span> <span class="n">vendor</span> <span class="n">ID</span>
+<span class="p">(</span><span class="mi">32774</span><span class="p">)</span> <span class="n">Device</span> <span class="n">product</span> <span class="n">ID</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Enable</span> <span class="n">Factory</span> <span class="n">Data</span> <span class="n">build</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span>     <span class="n">Enable</span> <span class="n">merging</span> <span class="n">generated</span> <span class="n">factory</span> <span class="n">data</span> <span class="k">with</span> <span class="n">the</span> <span class="n">build</span> <span class="n">tar</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span>     <span class="n">Use</span> <span class="n">default</span> <span class="n">certificates</span> <span class="n">located</span> <span class="ow">in</span> <span class="n">Matter</span> <span class="n">repository</span>
+<span class="p">[</span> <span class="p">]</span>     <span class="n">Enable</span> <span class="n">SPAKE2</span> <span class="n">verifier</span> <span class="n">generation</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span>     <span class="n">Enable</span> <span class="n">generation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Rotating</span> <span class="n">device</span> <span class="nb">id</span> <span class="n">unique</span> <span class="nb">id</span>
+<span class="p">(</span><span class="mi">11223344556677889900</span><span class="p">)</span> <span class="n">Serial</span> <span class="n">number</span> <span class="n">of</span> <span class="n">device</span>
+<span class="p">(</span><span class="n">Nordic</span> <span class="n">Semiconductor</span> <span class="n">ASA</span><span class="p">)</span> <span class="n">Human</span><span class="o">-</span><span class="n">readable</span> <span class="n">vendor</span> <span class="n">name</span>
+<span class="p">(</span><span class="ow">not</span><span class="o">-</span><span class="n">specified</span><span class="p">)</span> <span class="n">Human</span><span class="o">-</span><span class="n">readable</span> <span class="n">product</span> <span class="n">name</span>
+<span class="p">(</span><span class="mi">2022</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">)</span> <span class="n">Manufacturing</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">ISO</span> <span class="mi">8601</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">Integer</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">hardware</span> <span class="n">version</span>
+<span class="p">(</span><span class="n">prerelease</span><span class="p">)</span> <span class="n">user</span><span class="o">-</span><span class="n">friendly</span> <span class="n">string</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">hardware</span> <span class="n">ver</span>
+<span class="p">(</span><span class="mh">0xF00</span><span class="p">)</span> <span class="n">Device</span> <span class="n">pairing</span> <span class="n">discriminator</span>
+<span class="p">(</span><span class="mi">20202021</span><span class="p">)</span> <span class="n">SPAKE2</span><span class="o">+</span> <span class="n">passcode</span>
+<span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="n">SPAKE2</span><span class="o">+</span> <span class="n">iteration</span> <span class="n">count</span>
+<span class="p">(</span><span class="n">U1BBS0UyUCBLZXkgU2FsdA</span><span class="o">==</span><span class="p">)</span> <span class="n">SPAKE2</span><span class="o">+</span> <span class="n">salt</span> <span class="ow">in</span> <span class="n">string</span> <span class="nb">format</span>
+<span class="p">(</span><span class="n">uWFwqugDNGiEck</span><span class="o">/</span><span class="n">po7KHwwMwwqZgN10XuyBajPGuyzUEV</span><span class="o">/</span><span class="n">iree4lOrao5GuwnlQ</span>
+<span class="p">(</span><span class="mi">91</span><span class="n">a9c12a7c80700a31ddcfa7fce63e44</span><span class="p">)</span> <span class="n">A</span> <span class="n">rotating</span> <span class="n">device</span> <span class="nb">id</span> <span class="n">unique</span> <span class="n">i</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Note:</strong> To get more information about how to use the interactive Kconfig
+interfaces, read the
+<a class="reference external" href="https://docs.nordicsemi.com/bundle/ncs-latest/page/zephyr/build/kconfig/menuconfig.html">Kconfig documentation</a>.</p>
+</div></blockquote>
+</section>
+<section id="default-kconfig-values-and-developing-aspects">
+<h3>Default Kconfig values and developing aspects<a class="headerlink" href="#default-kconfig-values-and-developing-aspects" title="Permalink to this heading">#</a></h3>
+<p>Each factory data parameter has its default value reflected in the Kconfig. The
+list below shows some Kconfig settings that are configured in the nRF Connect
+build system and have an impact on the application. You can modify them to
+achieve the desired behavior of your application.</p>
+<ul>
+<li><p>The device uses the test certificates located in the
+<code class="docutils literal notranslate"><span class="pre">credentials/development/attestation/</span></code> directory, which are generated using
+all default values. If you want to change the default <code class="docutils literal notranslate"><span class="pre">vendor_id</span></code>,
+<code class="docutils literal notranslate"><span class="pre">product_id</span></code>, <code class="docutils literal notranslate"><span class="pre">vendor_name</span></code>, or <code class="docutils literal notranslate"><span class="pre">device_name</span></code> and generate new test
+certificates, add the <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_CERT_SOURCE_GENERATED=y</span></code>
+Kconfig option. Remember to build the <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code> application and add it to
+the system PATH.</p>
+<p>For developing a production-ready product, you need to write the
+certificates obtained during the certification process. To do this, add the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_CERT_SOURCE_USER=y</span></code> Kconfig option and set the
+appropriate paths for the following Kconfig options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_USER_CERTS_DAC_CERT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_USER_CERTS_DAC_KEY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_USER_CERTS_PAI_CERT</span></code></p></li>
+</ul>
+</li>
+<li><p>By default, the SPAKE2+ verifier is generated during each example’s build.
+This means that this value will change automatically if you change any of
+the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_SPAKE2_PASSCODE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_SPAKE2_SALT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_SPAKE2_IT</span></code></p></li>
+</ul>
+<p>You can disable the generation of the SPAKE2+ verifier by setting the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_GENERATE_SPAKE2_VERIFIER=n</span></code> Kconfig option. Then,
+you will need to provide the externally-generated SPAKE2+ verifier using the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_SPAKE2_TEST_VERIFIER</span></code> Kconfig value.</p>
+</li>
+<li><p>Generating the rotating device ID unique ID is disabled by default, but you
+can enable it by setting the <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_ROTATING_DEVICE_ID=y</span></code> and
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_GENERATE_ROTATING_DEVICE_UID=y</span></code> Kconfig values.
+Moreover, if you set the <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_ROTATING_DEVICE_ID</span></code> Kconfig option to
+<code class="docutils literal notranslate"><span class="pre">y</span></code> and disable the <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_GENERATE_ROTATING_DEVICE_UID</span></code>
+Kconfig option, you will need to provide it manually using the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_DEVICE_ROTATING_DEVICE_UID</span></code> Kconfig value.</p></li>
+<li><p>You can generate the test Certification Declaration by using the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_FACTORY_DATA_GENERATE_CD=y</span></code> Kconfig option. Remember to build
+the <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code> application and add it to the system PATH.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="programming-factory-data">
+<h2>Programming factory data<a class="headerlink" href="#programming-factory-data" title="Permalink to this heading">#</a></h2>
+<p>The HEX file containing factory data can be programmed into the device’s flash
+memory using <code class="docutils literal notranslate"><span class="pre">nrfjprog</span></code> and the J-Link programmer. To do this, use the following
+command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nrfjprog --program factory_data.hex
+</pre></div>
+</div>
+<p>In this command, you can add the <code class="docutils literal notranslate"><span class="pre">--family</span></code> argument and provide the name of the
+DK: <code class="docutils literal notranslate"><span class="pre">NRF52</span></code> for the nRF52840 DK or <code class="docutils literal notranslate"><span class="pre">NRF53</span></code> for the nRF5340 DK. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nrfjprog --family NRF52 --program factory_data.hex
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: For more information about how to use the <code class="docutils literal notranslate"><span class="pre">nrfjprog</span></code> utility, visit
+<a class="reference external" href="https://docs.nordicsemi.com/bundle/ug_nrf_cltools/page/UG/cltools/nrf_nrfjprogexe.html">Programming SoCs with nrfjprog</a></p>
+</div></blockquote>
+<p>Another way to program the factory data to a device is to use the nRF Connect
+platform build system described in
+<a class="reference internal" href="#building-an-example-with-factory-data">Building an example with factory data</a>,
+and build an example with the additional option
+<code class="docutils literal notranslate"><span class="pre">-DSB_CONFIG_MATTER_FACTORY_DATA_MERGE_WITH_FIRMWARE=y</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b nrf52840dk_nrf52840 -- \
+-DCONFIG_CHIP_FACTORY_DATA=y \
+-DSB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y \
+-DSB_CONFIG_MATTER_FACTORY_DATA_MERGE_WITH_FIRMWARE=y
+</pre></div>
+</div>
+<p>You can also build an example with auto-generation of new CD, DAC and PAI
+certificates. The newly generated certificates will be added to factory data set
+automatically. To generate new certificates disable using default certificates
+by building an example with the additional option
+<code class="docutils literal notranslate"><span class="pre">-DCONFIG_CHIP_FACTORY_DATA_USE_DEFAULT_CERTS=n</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b nrf52840dk_nrf52840 -- \
+-DCONFIG_CHIP_FACTORY_DATA=y \
+-DSB_CONFIG_MATTER_FACTORY_DATA_GENERATE=y \
+-DSB_CONFIG_MATTER_FACTORY_DATA_MERGE_WITH_FIRMWARE=y \
+-DCONFIG_CHIP_FACTORY_DATA_USE_DEFAULT_CERTS=n
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: To generate new certificates using the nRF Connect platform build
+system, you need the <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code> executable in your system variable PATH. To
+learn how to get <code class="docutils literal notranslate"><span class="pre">chip-cert</span></code>, go to the note at the end of
+<a class="reference internal" href="#creating-a-factory-data-partition-with-the-second-script">creating the factory data partition with the second script</a>
+section, and then add the newly built executable to the system variable PATH.
+The Cmake build system will find this executable automatically.</p>
+</div></blockquote>
+<p>After that, use the following command from the example’s directory to write
+firmware and newly generated factory data at the same time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west flash
+</pre></div>
+</div>
+<hr>
+</section>
+<section id="using-own-factory-data-implementation">
+<h2>Using own factory data implementation<a class="headerlink" href="#using-own-factory-data-implementation" title="Permalink to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#generating-factory-data">factory data generation process</a> described above
+is only an example valid for the nRF Connect platform. You can well create a HEX
+file containing all <a class="reference internal" href="#factory-data-component-table">factory data components</a> in
+any format and then implement a parser to read out all parameters and pass them
+to a provider. Each manufacturer can implement a factory data set on its own by
+implementing a parser and a factory data accessor inside the Matter stack. Use
+the <a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataProvider.h">nRF Connect Provider</a>
+and <a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataParser.h">FactoryDataParser</a> as
+examples.</p>
+<p>You can read the factory data set from the device’s flash memory in different
+ways, depending on the purpose and the format. In the nRF Connect example, the
+factory data is stored in the CBOR format. The device uses the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataParser.h">Factory Data Parser</a> to read
+out raw data, decode it, and store it in the <code class="docutils literal notranslate"><span class="pre">FactoryData</span></code> structure. The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/platform/nrfconnect/FactoryDataProvider.cpp">Factor Data Provider</a>
+implementation uses this parser to get all needed factory data parameters and
+provide them to the Matter core.</p>
+<p>In the nRF Connect example, the <code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> is a template class that
+inherits from <code class="docutils literal notranslate"><span class="pre">DeviceAttestationCredentialsProvider</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CommissionableDataProvider</span></code>, and <code class="docutils literal notranslate"><span class="pre">DeviceInstanceInfoProvider</span></code> classes. Your
+custom implementation must also inherit from these classes and implement their
+functions to get all factory data parameters from the device’s flash memory.
+These classes are virtual and need to be overridden by the derived class. To
+override the inherited classes, complete the following steps:</p>
+<ol class="arabic">
+<li><p>Override the following methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="o">=====</span> <span class="n">Members</span> <span class="n">functions</span> <span class="n">that</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">DeviceAttestationCredentialsProvider</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetCertificationDeclaration</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">outBuffer</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetFirmwareInformation</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">out_firmware_info_buffer</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetDeviceAttestationCert</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">outBuffer</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetProductAttestationIntermediateCert</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">outBuffer</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">SignWithDeviceAttestationKey</span><span class="p">(</span><span class="n">const</span> <span class="n">ByteSpan</span> <span class="o">&amp;</span> <span class="n">messageToSign</span><span class="p">,</span> <span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">outSignBuffer</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="o">=====</span> <span class="n">Members</span> <span class="n">functions</span> <span class="n">that</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">CommissionableDataProvider</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSetupDiscriminator</span><span class="p">(</span><span class="n">uint16_t</span> <span class="o">&amp;</span> <span class="n">setupDiscriminator</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">SetSetupDiscriminator</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">setupDiscriminator</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSpake2pIterationCount</span><span class="p">(</span><span class="n">uint32_t</span> <span class="o">&amp;</span> <span class="n">iterationCount</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSpake2pSalt</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">saltBuf</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSpake2pVerifier</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">verifierBuf</span><span class="p">,</span> <span class="n">size_t</span> <span class="o">&amp;</span> <span class="n">verifierLen</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSetupPasscode</span><span class="p">(</span><span class="n">uint32_t</span> <span class="o">&amp;</span> <span class="n">setupPasscode</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">SetSetupPasscode</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">setupPasscode</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="o">=====</span> <span class="n">Members</span> <span class="n">functions</span> <span class="n">that</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">DeviceInstanceInfoProvider</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetVendorName</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bufSize</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetVendorId</span><span class="p">(</span><span class="n">uint16_t</span> <span class="o">&amp;</span> <span class="n">vendorId</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetProductName</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bufSize</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetProductId</span><span class="p">(</span><span class="n">uint16_t</span> <span class="o">&amp;</span> <span class="n">productId</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetSerialNumber</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bufSize</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetManufacturingDate</span><span class="p">(</span><span class="n">uint16_t</span> <span class="o">&amp;</span> <span class="n">year</span><span class="p">,</span> <span class="n">uint8_t</span> <span class="o">&amp;</span> <span class="n">month</span><span class="p">,</span> <span class="n">uint8_t</span> <span class="o">&amp;</span> <span class="n">day</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetHardwareVersion</span><span class="p">(</span><span class="n">uint16_t</span> <span class="o">&amp;</span> <span class="n">hardwareVersion</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetHardwareVersionString</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">bufSize</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+<span class="n">CHIP_ERROR</span> <span class="n">GetRotatingDeviceIdUniqueId</span><span class="p">(</span><span class="n">MutableByteSpan</span> <span class="o">&amp;</span> <span class="n">uniqueIdSpan</span><span class="p">)</span> <span class="n">override</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move the newly created parser and provider files to your project directory.</p></li>
+<li><p>Add the files to the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code> file.</p></li>
+<li><p>Disable building both the default and the nRF Connect implementations of
+factory data providers to start using your own implementation of factory data
+parser and provider. This can be done in one of the following ways:</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">CONFIG_FACTORY_DATA_CUSTOM_BACKEND=y</span></code> Kconfig setting to <code class="docutils literal notranslate"><span class="pre">prj.conf</span></code>
+file.</p></li>
+<li><p>Build an example with following option (replace <em>&lt;build_target&gt;</em> with your
+board name, for example <code class="docutils literal notranslate"><span class="pre">nrf52840dk_nrf52840</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ west build -b &lt;build_target&gt; -- -DCONFIG_FACTORY_DATA_CUSTOM_BACKEND=y
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nrfconnect_examples_software_update.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Performing Device Firmware Upgrade in the nRF Connect examples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nrfconnect_platform_overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">nRF Connect platform overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factory-data-component-table">Factory data component table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factory-data-format">Factory data format</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#appearance-field-description">Appearance field description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-factory-data-support">Enabling factory data support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-factory-data">Generating factory data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-factory-data-json-and-hex-files-with-the-first-script">Creating the factory data JSON and HEX files with the first script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-user-data">How to set user data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-handle-user-data">How to handle user data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-using-the-json-schema-tool">Verifying using the JSON Schema tool</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-using-the-php-json-schema-tool">Option 1: Using the php-json-schema tool</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-using-a-website-validator">Option 2: Using a website validator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-3-using-the-nrf-connect-python-script">Option 3: Using the nRF Connect Python script</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-onboarding-codes">Generating onboarding codes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-onboarding-codes-generation-within-the-build-system">Enabling onboarding codes generation within the build system</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-factory-data-partition-on-a-device">Preparing factory data partition on a device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-factory-data-partition-with-the-second-script">Creating a factory data partition with the second script</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-an-example-with-factory-data">Building an example with factory data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#providing-factory-data-parameters-as-a-build-argument-list">Providing factory data parameters as a build argument list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-factory-data-parameters-using-interactive-kconfig-interfaces">Setting factory data parameters using interactive Kconfig interfaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-kconfig-values-and-developing-aspects">Default Kconfig values and developing aspects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-factory-data">Programming factory data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-own-factory-data-implementation">Using own factory data implementation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

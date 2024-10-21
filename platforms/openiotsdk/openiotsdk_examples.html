@@ -1,0 +1,1779 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Matter Open IoT SDK Example Application &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'platforms/openiotsdk/openiotsdk_examples';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Matter Open IoT SDK Example Device Firmware Upgrade" href="openiotsdk_examples_software_update.html" />
+    <link rel="prev" title="Commissioning Open IoT SDK devices" href="openiotsdk_commissioning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../development_controllers/index.html">Development Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-repl/index.html">chip-repl</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-tool/index.html">chip-tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Platform Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../android/index.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../android/android_building.html">Building Android</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../asr/index.html">ASR</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../bouffalolab/index.html">Bouffalolab</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../esp32/index.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../infineon/index.html">Infineon</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mbedos/index.html">MbedOS</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mbedos/mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nrf/index.html">NRF</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nxp/index.html">NXP</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_k32w0_ota_guide.html">NXP K32W0x1 OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_mcxw71_ota_guide.html">NXP <code class="docutils literal notranslate"><span class="pre">MCXW71/K32W1</span></code> OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">OpenIoTSDK</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openthread/index.html">OpenThread</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../silabs/index.html">Silabs</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stm32/index.html">ESP32</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ti/index.html">TI</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_purifier.html">Air Purifier</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_quality.html">Air Quality</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters.html">All clusters</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1060/README.html">CHIP RT1060 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rt1170/README.html">CHIP RT1170 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/zephyr/README.html">CHIP NXP Zephyr All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters_minimal.html">All clusters minimal</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/bridge.html">Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chef.html">CHEF</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chip_tool.html">CHIP Tool example</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/contact_sensor.html">Contact Sensor</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/darwin.html">CHIP Tool Darwin</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/dishwasher.html">Dishwasher</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/energy_management.html">Energy Management</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/linux/README.html">Matter Linux Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-management-app/silabs/README.html">Matter EFR32 Energy Management Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_admin.html">Fabric Admin</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_bridge.html">Fabric Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_sync.html">Fabric Sync</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/java_matter_controller.html">Java matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/kotlin_matter_controller.html">Kotlin matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/laundry_washer.html">Laundry washer</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/light_switch.html">Light switch</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting.html">Lighting</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting_no_unique_id.html">Lighting without unique id</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-43"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lit_icd.html">Lit ICD</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-44"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lock.html">Lock</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-45"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/k32w1/README.html">Matter K32W1 Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/log_source.html">Log source</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-46"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/microwave.html">Microwave ovens</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-47"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/minimal_mdns.html">Minimal MDNS</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-48"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-49"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_provider.html">OTA Provider</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-50"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_requestor.html">OTA Requestor</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-51"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/persistent_storage.html">Persistent storage</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-52"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pigweed.html">Pigweed</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-53"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump.html">Pump</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-54"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump_controler.html">Pump controller</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-55"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/refrigerator.html">Refrigerator</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-56"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/rvc.html">RVC</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-57"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/shell.html">Shell</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-58"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/smoke_co.html">Smoke CO Alarm example</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-59"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tbr.html">Thread Border Router</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-60"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/temperature_measurement.html">Temperature measurement</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-61"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/thermostat.html">Thermostat</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-62"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/zephyr/README.html">CHIP NXP Zephyr Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv.html">TV</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-63"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv_casting.html">TV casting</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-64"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/virtual_device.html">Virtual Device App</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-65"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/window.html">Window</a><input class="toctree-checkbox" id="toctree-checkbox-66" name="toctree-checkbox-66" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-66"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../product_considerations/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-67" name="toctree-checkbox-67" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-67"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-68" name="toctree-checkbox-68" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-68"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-69" name="toctree-checkbox-69" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-69"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tools/index.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-70" name="toctree-checkbox-70" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-70"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zap_clusters.html">List of currently defined ZAP clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/platforms/openiotsdk/openiotsdk_examples.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/platforms/openiotsdk/openiotsdk_examples.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Matter Open IoT SDK Example Application</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#networking-setup">Networking setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-setup">Debugging setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-setup">Testing setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trusted-firmware-m">Trusted Firmware-M</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-persistent-memory-block-in-external-files">Storing persistent memory block in external files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crypto-backend">Crypto backend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#device-firmware-update">Device Firmware Update</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-using-the-vscode-task">Building using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-using-cli">Building using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-the-vscode-task">Running using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-cli">Running using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-using-the-vscode-task">Testing using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-using-cli">Testing using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-instructions">General instructions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-examples">Specific examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-psa-crypto-backend-support-and-run-it-in-the-network-namespace">Build lock-app example with PSA crypto backend support and run it in the network namespace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-and-execute-its-test-in-the-network-namespace">Build lock-app example with mbedtls crypto backend support and execute its test in the network namespace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-in-debug-mode-and-debug-it-in-the-network-namespace-using-the-vscode-task">Build lock-app example with mbedtls crypto backend support in debug mode and debug it in the network namespace using the VSCode task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-example">Add new example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#files-structure">Files structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-name">Target name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-tools">Example tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="matter-open-iot-sdk-example-application">
+<h1>Matter Open IoT SDK Example Application<a class="headerlink" href="#matter-open-iot-sdk-example-application" title="Permalink to this heading">#</a></h1>
+<p>These examples are built using
+<a class="reference external" href="https://gitlab.arm.com/iot/open-iot-sdk">Open IoT SDK</a> and runs inside an
+emulated target through the
+<a class="reference external" href="https://developer.arm.com/downloads/-/arm-ecosystem-fvps">Arm FVP model for the Corstone-300 MPS3</a>.</p>
+<p>The list of currently supported Matter examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shell</span>
+<span class="n">lock</span><span class="o">-</span><span class="n">app</span>
+<span class="n">tv</span><span class="o">-</span><span class="n">app</span>
+<span class="nb">all</span><span class="o">-</span><span class="n">clusters</span><span class="o">-</span><span class="n">app</span>
+<span class="n">ota</span><span class="o">-</span><span class="n">requestor</span><span class="o">-</span><span class="n">app</span>
+</pre></div>
+</div>
+<p>You can use these examples as a reference for creating your own applications.</p>
+<section id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading">#</a></h2>
+<p>The VSCode devcontainer has all the dependencies pre-installed. It is the
+recommended way to build, run and develop with the Open IoT SDK port of the
+Matter Project. Please read this
+<a class="reference internal" href="../../VSCODE_DEVELOPMENT.html"><span class="std std-doc">VSCode development guide</span></a> for more information.</p>
+<p>Before building the examples, check out the Matter repository and sync Open IoT
+SDK submodules using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">/</span><span class="n">checkout_submodules</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">shallow</span> <span class="o">--</span><span class="n">recursive</span> <span class="o">--</span><span class="n">platform</span> <span class="n">openiotsdk</span>
+</pre></div>
+</div>
+<p>Next, bootstrap the source tree to install Pigweed (CIPD and Python packages)
+components inside your environment (only once).</p>
+<p>To bootstrap:</p>
+<p><strong>using CLI</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash scripts/bootstrap.sh
+</pre></div>
+</div>
+<p><strong>using VSCode tasks</strong></p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code></p></li>
+</ul>
+<section id="networking-setup">
+<h3>Networking setup<a class="headerlink" href="#networking-setup" title="Permalink to this heading">#</a></h3>
+<p>Running ARM Fast Model with the TAP/TUN device networking mode requires the
+setting up of proper network interfaces. Special scripts were designed to make
+the setup easy. In the <code class="docutils literal notranslate"><span class="pre">scripts/setup/openiotsdk</span></code> directory you can find:</p>
+<ul>
+<li><p><strong>network_setup.sh</strong> - script to create the specific network namespace and
+Virtual Ethernet interface to connect with the host network. Both host and
+namespace sides have linked IP addresses. Inside the network namespace the
+TAP device interface is created and bridged with a Virtual Ethernet peer.
+There is also an option to enable an Internet connection in the namespace by
+forwarding traffic to the host default interface.</p>
+<p>To enable the Open IoT SDK networking environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/setup/openiotsdk/network_setup.sh up
+</pre></div>
+</div>
+<p>To disable the Open IoT SDK networking environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/setup/openiotsdk/network_setup.sh down
+</pre></div>
+</div>
+<p>To restart the Open IoT SDK networking environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/setup/openiotsdk/network_setup.sh restart
+</pre></div>
+</div>
+<p>The default scripts settings are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ARM</span></code> - network base name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">session</span> <span class="pre">user</span></code> - network namespace user</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fe00::1</span></code> - host side IPv6 address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fe00::2</span></code> - namespace side IPv6 address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.200.1.1</span></code> - host side IPv4 address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.200.1.2</span></code> - namespace side IPv4 address</p></li>
+<li><p>no Internet connection support to network namespace</p></li>
+</ul>
+<p>Example of the <code class="docutils literal notranslate"><span class="pre">OIS</span></code> network environment settings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ARMns</span> <span class="n">namespace</span> <span class="n">configuration</span>
+<span class="n">ARMbr</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
+        <span class="n">inet</span> <span class="mf">10.200.1.2</span>  <span class="n">netmask</span> <span class="mf">255.255.255.0</span>  <span class="n">broadcast</span> <span class="mf">0.0.0.0</span>
+        <span class="n">inet6</span> <span class="n">fe00</span><span class="p">::</span><span class="mi">2</span>  <span class="n">prefixlen</span> <span class="mi">64</span>  <span class="n">scopeid</span> <span class="mh">0x0</span><span class="o">&lt;</span><span class="k">global</span><span class="o">&gt;</span>
+        <span class="n">inet6</span> <span class="n">fe80</span><span class="p">::</span><span class="mi">1809</span><span class="p">:</span><span class="mi">17</span><span class="n">ff</span><span class="p">:</span><span class="n">fe6c</span><span class="p">:</span><span class="n">f566</span>  <span class="n">prefixlen</span> <span class="mi">64</span>  <span class="n">scopeid</span> <span class="mh">0x20</span><span class="o">&lt;</span><span class="n">link</span><span class="o">&gt;</span>
+        <span class="n">ether</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">6</span><span class="n">c</span><span class="p">:</span><span class="n">f5</span><span class="p">:</span><span class="mi">66</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">1</span>  <span class="nb">bytes</span> <span class="mi">72</span> <span class="p">(</span><span class="mf">72.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+
+<span class="n">ARMnveth</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
+        <span class="n">ether</span> <span class="mi">46</span><span class="p">:</span><span class="mi">66</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="n">a6</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="mi">4</span><span class="n">b</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">2</span>  <span class="nb">bytes</span> <span class="mi">216</span> <span class="p">(</span><span class="mf">216.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">3</span>  <span class="nb">bytes</span> <span class="mi">270</span> <span class="p">(</span><span class="mf">270.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+
+<span class="n">ARMtap</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4419</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">PROMISC</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
+        <span class="n">ether</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">6</span><span class="n">c</span><span class="p">:</span><span class="n">f5</span><span class="p">:</span><span class="mi">66</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+
+<span class="n">lo</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">73</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">RUNNING</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">65536</span>
+        <span class="n">inet</span> <span class="mf">127.0.0.1</span>  <span class="n">netmask</span> <span class="mf">255.0.0.0</span>
+        <span class="n">inet6</span> <span class="p">::</span><span class="mi">1</span>  <span class="n">prefixlen</span> <span class="mi">128</span>  <span class="n">scopeid</span> <span class="mh">0x10</span><span class="o">&lt;</span><span class="n">host</span><span class="o">&gt;</span>
+        <span class="n">loop</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Local</span> <span class="n">Loopback</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">0</span>  <span class="nb">bytes</span> <span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+
+<span class="n">Host</span> <span class="n">configuration</span>
+<span class="n">ARMhveth</span><span class="p">:</span> <span class="n">flags</span><span class="o">=</span><span class="mi">4163</span><span class="o">&lt;</span><span class="n">UP</span><span class="p">,</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">RUNNING</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span>  <span class="n">mtu</span> <span class="mi">1500</span>
+        <span class="n">inet</span> <span class="mf">10.200.1.1</span>  <span class="n">netmask</span> <span class="mf">255.255.255.0</span>  <span class="n">broadcast</span> <span class="mf">0.0.0.0</span>
+        <span class="n">inet6</span> <span class="n">fe80</span><span class="p">::</span><span class="mi">147</span><span class="n">c</span><span class="p">:</span><span class="n">c9ff</span><span class="p">:</span><span class="n">fe4a</span><span class="p">:</span><span class="n">c6d2</span>  <span class="n">prefixlen</span> <span class="mi">64</span>  <span class="n">scopeid</span> <span class="mh">0x20</span><span class="o">&lt;</span><span class="n">link</span><span class="o">&gt;</span>
+        <span class="n">inet6</span> <span class="n">fe00</span><span class="p">::</span><span class="mi">1</span>  <span class="n">prefixlen</span> <span class="mi">64</span>  <span class="n">scopeid</span> <span class="mh">0x0</span><span class="o">&lt;</span><span class="k">global</span><span class="o">&gt;</span>
+        <span class="n">ether</span> <span class="mi">16</span><span class="p">:</span><span class="mi">7</span><span class="n">c</span><span class="p">:</span><span class="n">c9</span><span class="p">:</span><span class="mi">4</span><span class="n">a</span><span class="p">:</span><span class="n">c6</span><span class="p">:</span><span class="n">d2</span>  <span class="n">txqueuelen</span> <span class="mi">1000</span>  <span class="p">(</span><span class="n">Ethernet</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">packets</span> <span class="mi">3</span>  <span class="nb">bytes</span> <span class="mi">270</span> <span class="p">(</span><span class="mf">270.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">RX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span>  <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">frame</span> <span class="mi">0</span>
+        <span class="n">TX</span> <span class="n">packets</span> <span class="mi">2</span>  <span class="nb">bytes</span> <span class="mi">216</span> <span class="p">(</span><span class="mf">216.0</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">TX</span> <span class="n">errors</span> <span class="mi">0</span>  <span class="n">dropped</span> <span class="mi">0</span> <span class="n">overruns</span> <span class="mi">0</span>  <span class="n">carrier</span> <span class="mi">0</span>  <span class="n">collisions</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--help</span></code> to get more information about the script options.</p>
+<p>Open IoT SDK network setup is also supported via <code class="docutils literal notranslate"><span class="pre">VScode</span> <span class="pre">tasks</span></code>:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">network</span></code></p></li>
+<li><p>Enter the network namespace name</p></li>
+<li><p>Choose command</p></li>
+</ul>
+<p>The VSCode task invokes <code class="docutils literal notranslate"><span class="pre">network_setup.sh</span></code> with the selected parameters.</p>
+</li>
+<li><p><strong>connect_if.sh</strong> - script that connects specified network interfaces with
+the default route interface. It creates a bridge and links all interfaces to
+it. The bridge becomes the default interface.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/setup/openiotsdk/connect_if.sh ARMhveth
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--help</span></code> to get more information about the script options.</p>
+</li>
+</ul>
+<p>Open IoT SDK network setup scripts contain commands that require root
+permissions. Use <code class="docutils literal notranslate"><span class="pre">sudo</span></code> to run the scripts in a user account with root
+privileges.</p>
+<p>After setting up the Open IoT SDK network environment the user will be able to
+run Matter examples on <code class="docutils literal notranslate"><span class="pre">FVP</span></code> in an isolated network namespace in TAP device
+mode.</p>
+<p>To execute a command in a specific network namespace use the helper script
+<code class="docutils literal notranslate"><span class="pre">scripts/run_in_ns.sh</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/run_in_ns.sh ARMns &lt;command to run&gt;
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--help</span></code> to get more information about the script options.</p>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>For Docker environment users it’s recommended to use the
+<a class="reference external" href="https://docs.docker.com/network/bridge/%3E#use-the-default-bridge-network">default bridge network</a>
+for a running container. This guarantees full isolation of the Open IoT SDK
+network from host settings.</p>
+</div></blockquote>
+</section>
+<section id="debugging-setup">
+<h3>Debugging setup<a class="headerlink" href="#debugging-setup" title="Permalink to this heading">#</a></h3>
+<p>Debugging the Matter application running on <code class="docutils literal notranslate"><span class="pre">FVP</span></code> model requires GDB Remote
+Connection Plugin for Fast Model. More details
+<a class="reference external" href="https://developer.arm.com/documentation/100964/1116/Plug-ins-for-Fast-Models/GDBRemoteConnection">GDBRemoteConnection</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">Models</span> <span class="pre">FVP</span></code> add-on package can be downloaded from the ARM developer
+website <a class="reference external" href="https://developer.arm.com/downloads/-/fast-models">Fast models</a>. After
+login in to the <code class="docutils literal notranslate"><span class="pre">ARM</span> <span class="pre">developer</span></code> platform search for <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">Models</span></code>, choose
+<code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">Models</span> <span class="pre">(FM000A)</span></code> on the list of results, then choose the revision
+<code class="docutils literal notranslate"><span class="pre">r11p16-16rel0</span></code> and download the
+<code class="docutils literal notranslate"><span class="pre">Third</span> <span class="pre">Party</span> <span class="pre">Add-ons</span> <span class="pre">for</span> <span class="pre">Fast</span> <span class="pre">Models</span> <span class="pre">11.16</span> <span class="pre">(Linux)</span></code> package. Then unpack the
+package in the selected location on the host machine.</p>
+<p>Now you should add the GDB Remote Connection Plugin to your development
+environment:</p>
+<ul>
+<li><p>Linux host environment:</p>
+<ul>
+<li><p>install Fast Model Extension package by executing the command
+<code class="docutils literal notranslate"><span class="pre">./setup.bin</span></code>, and follow the installation instructions. After
+installation, the GDB Remote Connection Plugin should be visible in
+<code class="docutils literal notranslate"><span class="pre">&lt;installation</span> <span class="pre">directory&gt;/FastModelsPortfolio_11.16/plugins/Linux64_GCC-9.3</span></code>
+directory.</p></li>
+<li><p>add GDB plugin path to environment variable as
+<code class="docutils literal notranslate"><span class="pre">FAST_MODEL_PLUGINS_PATH</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">FAST_MODEL_PLUGINS_PATH</span><span class="o">=&lt;</span><span class="n">installation</span> <span class="n">directory</span><span class="o">&gt;/</span><span class="n">FastModelsPortfolio_11</span><span class="mf">.16</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">Linux64_GCC</span><span class="o">-</span><span class="mf">9.3</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Docker container environment:</p>
+<ul>
+<li><p>pass the Fast Model Extension package to Docker container development
+environment by mounting it into the
+<code class="docutils literal notranslate"><span class="pre">/opt/FastModels_ThirdParty_IP_11-16_b16_Linux64</span></code> directory in the
+container. Add a volume bound to this directory
+<a class="reference external" href="https://code.visualstudio.com/remote/advancedcontainers/add-local-file-mount">Add local file mount</a>.</p>
+<p>You can edit the <code class="docutils literal notranslate"><span class="pre">.devcontainer/devcontainer.json</span></code> file, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="s2">&quot;mounts&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">...</span>
+<span class="s2">&quot;source=/opt/FastModels_ThirdParty_IP_11-16_b16_Linux64,target=/opt/FastModels_ThirdParty_IP_11-16_b16_Linux64,type=bind,consistency=cached&quot;</span>
+<span class="o">...</span> <span class="p">],</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Or if you launch the Docker container directly from CLI, use the above
+arguments with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">...</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">FastModels_ThirdParty_IP_11</span><span class="o">-</span><span class="mi">16</span><span class="n">_b16_Linux64</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">FastModels_ThirdParty_IP_11</span><span class="o">-</span><span class="mi">16</span><span class="n">_b16_Linux64</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p>install the Fast Model Extension package via setup script inside Docker
+container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/setup/openiotsdk/debugging_setup.sh
+</pre></div>
+</div>
+</li>
+<li><p>the GDB Remote Connection Plugin should be visible in
+<code class="docutils literal notranslate"><span class="pre">/opt/FastModelsPortfolio_11.16/plugins/Linux64_GCC-9.3</span></code> directory.</p>
+<ul>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">VScode</span> <span class="pre">devcontainer</span></code> use the environment variable
+<code class="docutils literal notranslate"><span class="pre">FAST_MODEL_PLUGINS_PATH</span></code> to point to the correct directory.</p></li>
+<li><p>If the Docker container is directly launched remember to add the GDB
+Remote Connection Plugin path to the environment variable
+<code class="docutils literal notranslate"><span class="pre">FAST_MODEL_PLUGINS_PATH</span></code> inside the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">FAST_MODEL_PLUGINS_PATH</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">FastModelsPortfolio_11</span><span class="mf">.16</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">Linux64_GCC</span><span class="o">-</span><span class="mf">9.3</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="testing-setup">
+<h3>Testing setup<a class="headerlink" href="#testing-setup" title="Permalink to this heading">#</a></h3>
+<p>The Matter Python packages are required for the integration test suite. They are
+not provided as part of the VSCode devcontainer. To install these run the
+following command from the CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/run_in_build_env.sh \
+    &#39;./scripts/build_python.sh --install_virtual_env out/venv&#39;
+
+source out/venv/bin/activate
+</pre></div>
+</div>
+<p>More information about the Python tools you can find
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/README.md">here</a>.</p>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
+<section id="trusted-firmware-m">
+<h3>Trusted Firmware-M<a class="headerlink" href="#trusted-firmware-m" title="Permalink to this heading">#</a></h3>
+<p>Matter examples support the [TF-M](https://tf-m-user-guide.trusted firmware.org)
+by default.</p>
+<p>This means the example is built as non-secure application in a Non-secure
+Processing Environment (<code class="docutils literal notranslate"><span class="pre">NSPE</span></code>). The bootloader and the secure part are also
+built from <code class="docutils literal notranslate"><span class="pre">TF-M</span></code> sources. All components are merged into a single executable
+file at the end of the building process.</p>
+<p>The project-specific configuration of <code class="docutils literal notranslate"><span class="pre">TF-M</span></code> can be provide by defining its own
+header file for <code class="docutils literal notranslate"><span class="pre">TF-M</span></code> config and passing the path to it via the
+<code class="docutils literal notranslate"><span class="pre">TFM_PROJECT_CONFIG_HEADER_FILE</span></code> variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">TFM_PROJECT_CONFIG_HEADER_FILE</span> <span class="s2">&quot;$</span><span class="si">{CMAKE_CURRENT_SOURCE_DIR}</span><span class="s2">/tf-m-config/TfmProjectConfig.h&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the project-specific configuration is not provided the base <code class="docutils literal notranslate"><span class="pre">TF-M</span></code> settings
+are used
+<a class="reference external" href="https://git.trustedfirmware.org/TF-M/trusted-firmware-m.git/tree/config/config_base.h">config_base.h</a>.
+It can be used as a pattern for the custom configuration header.</p>
+<p>You can also provide your own version of a Matter example by setting the
+<code class="docutils literal notranslate"><span class="pre">TFM_NS_APP_VERSION</span></code> variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">TFM_NS_APP_VERSION</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="storing-persistent-memory-block-in-external-files">
+<h3>Storing persistent memory block in external files<a class="headerlink" href="#storing-persistent-memory-block-in-external-files" title="Permalink to this heading">#</a></h3>
+<p>The persistent storage is required to store key-value data of the Matter
+examples.</p>
+<p>Two storage types are supported:</p>
+<ul class="simple">
+<li><p>Block device storage: The memory partition is located in <code class="docutils literal notranslate"><span class="pre">non-secure</span> <span class="pre">SRAM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TF-M</span></code> protected storage: The memory partition is located in
+<code class="docutils literal notranslate"><span class="pre">secure</span> <span class="pre">QSPI_RAM</span></code></p></li>
+</ul>
+<p>Fast models offers option to load and dump memory content. More details are
+available
+<a class="reference internal" href="openiotsdk_platform_overview.html#fast-model-persistent-memory-via-files"><span class="std std-ref">here</span></a>.
+Depending on the storage implementation, different flags are used in the <code class="docutils literal notranslate"><span class="pre">FVP</span></code>
+options.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">TF-M</span></code> protected storage use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">dump</span> <span class="n">mps3_board</span><span class="o">.</span><span class="n">qspi_sram</span><span class="o">=&lt;</span><span class="n">file</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;@</span><span class="mi">0</span><span class="p">:</span><span class="mh">0x660000</span><span class="p">,</span><span class="mh">0x12000</span>
+<span class="o">--</span><span class="n">data</span> <span class="n">mps3_board</span><span class="o">.</span><span class="n">qspi_sram</span><span class="o">=&lt;</span><span class="n">file</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;@</span><span class="mi">0</span><span class="p">:</span><span class="mh">0x660000</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">file-path</span></code> must exist to use the <code class="docutils literal notranslate"><span class="pre">--data</span></code> option.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/scripts/examples/openiotsdk_example.sh">Open IoT SDK build script</a>
+provides the <code class="docutils literal notranslate"><span class="pre">-K,--kvsfile</span></code> option to use the persistence options listed above.</p>
+</section>
+<section id="crypto-backend">
+<h3>Crypto backend<a class="headerlink" href="#crypto-backend" title="Permalink to this heading">#</a></h3>
+<p>Open IoT SDK port supports two crypto backend implementations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="openiotsdk_platform_overview.html#mbed-tls"><span class="std std-ref">Mbed TLS</span></a> - it’s the default
+option</p></li>
+<li><p><a class="reference external" href="https://tf-m-user-guide.trustedfirmware.org/integration_guide/services/tfm_crypto_integration_guide.html">PSA crypto service</a>
+from the
+<a class="reference internal" href="openiotsdk_platform_overview.html#trusted-firmware-m"><span class="std std-ref">TrustedFirmware-M (TF-M)</span></a>
+component</p></li>
+</ul>
+<p>The CMake variable <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_CRYPTO</span></code> controls how cryptographic operations
+are implemented in Matter. It accepts two values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mbedtls</span></code>: use Mbed TLS for crypto operations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">psa</span></code>: use
+<a class="reference external" href="https://armmbed.github.io/mbed-crypto/html/">PSA Cryptography API</a> for
+crypto operations.</p></li>
+</ul>
+<p>This variable can be set in the main application <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">CONFIG_CHIP_CRYPTO</span> <span class="o">&lt;</span><span class="n">mbedtls</span> <span class="o">|</span> <span class="n">psa</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variable can also be defined with CMake CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">-</span><span class="n">G</span> <span class="o">&lt;...&gt;</span> <span class="o">-</span><span class="n">DCONFIG_CHIP_CRYPTO</span><span class="o">=&lt;</span><span class="n">mbedtls</span> <span class="o">|</span> <span class="n">psa</span><span class="o">&gt;</span> <span class="o">&lt;...&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TF-M</span> <span class="pre">PSA</span> <span class="pre">crypto</span></code> option requires enabling <a class="reference internal" href="#trusted-firmware-m">TF-M</a>
+support.</p>
+</div></blockquote>
+</section>
+<section id="device-firmware-update">
+<h3>Device Firmware Update<a class="headerlink" href="#device-firmware-update" title="Permalink to this heading">#</a></h3>
+<p>Device Firmware Update (<code class="docutils literal notranslate"><span class="pre">DFU</span></code>) can be enabled in the application by setting the
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_OPEN_IOT_SDK_OTA_ENABLE</span></code> variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">CONFIG_CHIP_OPEN_IOT_SDK_OTA_ENABLE</span> <span class="n">YES</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This provides the proper service for Matter’s <code class="docutils literal notranslate"><span class="pre">OTA</span> <span class="pre">Requestor</span></code> cluster. The
+<a class="reference external" href="https://arm-software.github.io/psa-api/fwu/1.0/">TF-M Firmware Update Service</a>
+is the backend for all firmware update operations. The <code class="docutils literal notranslate"><span class="pre">DFU</span> <span class="pre">Manager</span></code> module is
+attached to the application and allows full usage of the <code class="docutils literal notranslate"><span class="pre">OTA</span> <span class="pre">Requestor</span></code>
+cluster.</p>
+<p>You can also provide your own version of the Matter example to the Matter stack
+by setting <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_OPEN_IOT_SDK_SOFTWARE_VERSION</span></code> and
+<code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_OPEN_IOT_SDK_SOFTWARE_VERSION_STRING</span></code> variables.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">CONFIG_CHIP_OPEN_IOT_SDK_SOFTWARE_VERSION</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="n">CONFIG_CHIP_OPEN_IOT_SDK_SOFTWARE_VERSION_STRING</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The default value for <code class="docutils literal notranslate"><span class="pre">CONFIG_CHIP_OPEN_IOT_SDK_SOFTWARE_VERSION_STRING</span></code> is set
+to <code class="docutils literal notranslate"><span class="pre">TFM_NS_APP_VERSION</span></code>.</p>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DFU</span></code> option requires enabling <a class="reference internal" href="#trusted-firmware-m">TF-M</a> support.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this heading">#</a></h2>
+<p>You can build examples using the dedicated VSCode task or by calling directly
+the build script from the command line.</p>
+<section id="building-using-the-vscode-task">
+<h3>Building using the VSCode task<a class="headerlink" href="#building-using-the-vscode-task" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Decide on debug mode support</p></li>
+<li><p>Decide on LwIP debug logs support</p></li>
+<li><p>Choose crypto algorithm</p></li>
+<li><p>Choose example name</p></li>
+</ul>
+<p>This will call the script with the selected parameters.</p>
+</section>
+<section id="building-using-cli">
+<h3>Building using CLI<a class="headerlink" href="#building-using-cli" title="Permalink to this heading">#</a></h3>
+<p>You can call the script directly yourself.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh &lt;example name&gt;
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--help</span></code> to get more information about the script options.</p>
+</section>
+</section>
+<section id="running">
+<h2>Running<a class="headerlink" href="#running" title="Permalink to this heading">#</a></h2>
+<p>The application runs in the background and opens a telnet session. The telnet
+client connects to the port used by the <code class="docutils literal notranslate"><span class="pre">FVP</span></code>. When the telnet process is
+terminated it also terminates the <code class="docutils literal notranslate"><span class="pre">FVP</span></code> instance.</p>
+<p>To exit the telnet session, type <kbd>CTRL + ]</kbd>. This changes the command
+prompt to show as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telnet</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Back in the terminal, type in the word ‘close’ to terminate the session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telnet</span><span class="o">&gt;</span> <span class="n">close</span>
+</pre></div>
+</div>
+<p>You can run an example by using a VSCode task or by calling the run script
+directly from the command line.</p>
+<section id="running-using-the-vscode-task">
+<h3>Running using the VSCode task<a class="headerlink" href="#running-using-the-vscode-task" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Enter network namespace</p></li>
+<li><p>Enter network interface</p></li>
+<li><p>Choose example name</p></li>
+</ul>
+<p>This will call the script with the selected example name.</p>
+</section>
+<section id="running-using-cli">
+<h3>Running using CLI<a class="headerlink" href="#running-using-cli" title="Permalink to this heading">#</a></h3>
+<p>You can call the script directly yourself.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C run &lt;example name&gt;
+</pre></div>
+</div>
+<p>Run example in specific network namespace with TAP device mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/run_in_ns.sh ARMns ${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C run -n ARMtap &lt;example name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<p>Run the Pytest integration test for the specific application.</p>
+<p>The test result can be found in the
+<code class="docutils literal notranslate"><span class="pre">src/test_driver/openiotsdk/integration-tests/&lt;example</span> <span class="pre">name&gt;/test_report.json</span></code>
+file.</p>
+<p>You can test an example by using a VSCode task or by calling the test script
+directly from the command line.</p>
+<section id="testing-using-the-vscode-task">
+<h3>Testing using the VSCode task<a class="headerlink" href="#testing-using-the-vscode-task" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Enter network namespace</p></li>
+<li><p>Enter network interface</p></li>
+<li><p>Choose example name</p></li>
+</ul>
+<p>This will call the scripts with the selected example name.</p>
+</section>
+<section id="testing-using-cli">
+<h3>Testing using CLI<a class="headerlink" href="#testing-using-cli" title="Permalink to this heading">#</a></h3>
+<p>You can call the script directly yourself.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C test &lt;example name&gt;
+</pre></div>
+</div>
+<p>Testing an example in a specific network namespace with TAP device mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/run_in_ns.sh ARMns ${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C test -n ARMtap &lt;example name&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">#</a></h2>
+<p>Before debugging ensure the following:</p>
+<ol class="arabic">
+<li><p>The debug environment is correctly setup:
+<a class="reference internal" href="#debugging-setup">debugging setup</a>.</p></li>
+<li><p>The example is compiled with debug symbols enabled:</p>
+<p>For CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -d true &lt;example name&gt;
+</pre></div>
+</div>
+<p>For the VSCode task:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=&gt;</span> <span class="n">Use</span> <span class="n">debug</span> <span class="n">mode</span> <span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>The test network is correctly setup (if required): see
+<a class="reference internal" href="#networking-setup">networking setup</a>.</p></li>
+</ol>
+<section id="general-instructions">
+<h3>General instructions<a class="headerlink" href="#general-instructions" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> from the primary side menu or press
+<kbd>Ctrl+Shift+D</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Debug</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span> <span class="pre">application</span></code> from the drop down list</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Debugging</span></code>(green triangle) or press <kbd>F5</kbd></p></li>
+<li><p>Choose example name</p></li>
+<li><p>Enter GDB target address</p></li>
+<li><p>Enter network namespace</p></li>
+<li><p>Enter network interface</p></li>
+<li><p>Choose example name</p></li>
+</ul>
+<p>As soon as a debugging session starts, the <code class="docutils literal notranslate"><span class="pre">DEBUG</span> <span class="pre">CONSOLE</span></code> panel is displayed
+and shows the debugging output. Use debug controls to debug the current
+application.</p>
+<p>For debugging remote targets (i.e. run in other network namespaces) you need to
+pass the hostname/IP address of the external GDB target that you want to connect
+to (<em>GDB target address</em>).</p>
+<p>In the case of using the <a class="reference internal" href="#networking-setup">Open IoT SDK network environment</a>
+the GDB server runs inside a namespace and has the same IP address as the bridge
+interface.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/run_in_ns.sh &lt;namespace_name&gt; ifconfig &lt;bridge_name&gt;
+</pre></div>
+</div>
+<p>The network namespace name and TAP interface name are also required then.</p>
+<p>The application with GDB Remote Connection Plugin runs in the background and
+opens a telnet session in terminal. The telnet client connects to the port used
+by the <code class="docutils literal notranslate"><span class="pre">FVP</span></code>. When the telnet process is terminated it will also terminate the
+<code class="docutils literal notranslate"><span class="pre">FVP</span></code> instance.</p>
+<p>To exit the telnet session, type <kbd>CTRL + ]</kbd>. This changes the command
+prompt to show as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telnet</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Back in the terminal, type in the word ‘close’ to terminate the session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telnet</span><span class="o">&gt;</span> <span class="n">close</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>As you can see above, you will need to select the name of the example twice.
+This is because the debug task needs to launch the run task and currently VS
+code has no way of passing parameters between tasks.</p>
+<p>There are issues with debugging examples when the Docker container use the
+<a class="reference external" href="https://docs.docker.com/network/host/">network host</a> and VPN connection is
+established. Changing routing negatively affects debugging process. It is
+recommended not to use VPN connections while debugging.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="specific-examples">
+<h2>Specific examples<a class="headerlink" href="#specific-examples" title="Permalink to this heading">#</a></h2>
+<section id="build-lock-app-example-with-psa-crypto-backend-support-and-run-it-in-the-network-namespace">
+<h3>Build lock-app example with PSA crypto backend support and run it in the network namespace<a class="headerlink" href="#build-lock-app-example-with-psa-crypto-backend-support-and-run-it-in-the-network-namespace" title="Permalink to this heading">#</a></h3>
+<p><strong>Using CLI</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -b psa lock-app
+
+export TEST_NETWORK_NAME=OIStest
+
+sudo ${MATTER_ROOT}/scripts/setup/openiotsdk/network_setup.sh -n $TEST_NETWORK_NAME restart
+
+${MATTER_ROOT}/scripts/examples/scripts/run_in_ns.sh ${TEST_NETWORK_NAME}ns
+${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C run -n ${TEST_NETWORK_NAME}tap
+lock-app
+</pre></div>
+</div>
+<p><strong>Using the VSCode task</strong></p>
+<p>Build example:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Deny debug mode support <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Deny LwIP debug logs support <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Choose crypto algorithm <code class="docutils literal notranslate"><span class="pre">psa</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+<p>Setup network environment:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">network</span></code></p></li>
+<li><p>Enter the network namespace name <code class="docutils literal notranslate"><span class="pre">OIStest</span></code></p></li>
+<li><p>Choose command <code class="docutils literal notranslate"><span class="pre">restart</span></code></p></li>
+</ul>
+<p>Run example:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Enter network namespace <code class="docutils literal notranslate"><span class="pre">OIStestns</span></code></p></li>
+<li><p>Enter network interface <code class="docutils literal notranslate"><span class="pre">OIStesttap</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+<p>The example output should be seen in the terminal window.</p>
+</section>
+<section id="build-lock-app-example-with-mbedtls-crypto-backend-support-and-execute-its-test-in-the-network-namespace">
+<h3>Build lock-app example with mbedtls crypto backend support and execute its test in the network namespace<a class="headerlink" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-and-execute-its-test-in-the-network-namespace" title="Permalink to this heading">#</a></h3>
+<p><strong>Using CLI</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -b mbedtls lock-app
+
+export TEST_NETWORK_NAME=OIStest
+
+sudo ${MATTER_ROOT}/scripts/setup/openiotsdk/network_setup.sh -n $TEST_NETWORK_NAME restart
+
+${MATTER_ROOT}/scripts/examples/scripts/run_in_ns.sh ${TEST_NETWORK_NAME}ns
+${MATTER_ROOT}/scripts/examples/openiotsdk_example.sh -C test -n ${TEST_NETWORK_NAME}tap
+lock-app
+</pre></div>
+</div>
+<p><strong>Using the VSCode task</strong></p>
+<p>Build example:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Deny debug mode support <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Deny LwIP debug logs support <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Choose crypto algorithm <code class="docutils literal notranslate"><span class="pre">mbedtls</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+<p>Setup network environment:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">network</span></code></p></li>
+<li><p>Enter the network namespace name <code class="docutils literal notranslate"><span class="pre">OIStest</span></code></p></li>
+<li><p>Choose command <code class="docutils literal notranslate"><span class="pre">restart</span></code></p></li>
+</ul>
+<p>Test example:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Enter network namespace <code class="docutils literal notranslate"><span class="pre">OIStestns</span></code></p></li>
+<li><p>Enter network interface <code class="docutils literal notranslate"><span class="pre">OIStesttap</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+</section>
+<section id="build-lock-app-example-with-mbedtls-crypto-backend-support-in-debug-mode-and-debug-it-in-the-network-namespace-using-the-vscode-task">
+<h3>Build lock-app example with mbedtls crypto backend support in debug mode and debug it in the network namespace using the VSCode task<a class="headerlink" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-in-debug-mode-and-debug-it-in-the-network-namespace-using-the-vscode-task" title="Permalink to this heading">#</a></h3>
+<p>Build example:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span></code></p></li>
+<li><p>Confirm debug mode support <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>Deny LwIP debug logs support <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>Choose crypto algorithm <code class="docutils literal notranslate"><span class="pre">mbedtls</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+<p>Setup network environment:</p>
+<ul class="simple">
+<li><p>Open the Command Palette: <kbd>F1</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Tasks:</span> <span class="pre">Run</span> <span class="pre">Task</span></code></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Setup</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">network</span></code></p></li>
+<li><p>Enter the network namespace name <code class="docutils literal notranslate"><span class="pre">OIStest</span></code></p></li>
+<li><p>Choose command <code class="docutils literal notranslate"><span class="pre">restart</span></code></p></li>
+</ul>
+<p>Debug example:</p>
+<ul class="simple">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> from the primary side menu or press
+<kbd>Ctrl+Shift+D</kbd></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Debug</span> <span class="pre">Open</span> <span class="pre">IoT</span> <span class="pre">SDK</span> <span class="pre">example</span> <span class="pre">application</span></code> from the drop down list</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Debugging</span></code>(green triangle) or press <kbd>F5</kbd></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+<li><p>Enter GDB target address <code class="docutils literal notranslate"><span class="pre">10.200.1.2</span></code></p></li>
+<li><p>Enter network namespace <code class="docutils literal notranslate"><span class="pre">OIStestns</span></code></p></li>
+<li><p>Enter network interface <code class="docutils literal notranslate"><span class="pre">OIStesttap</span></code></p></li>
+<li><p>Choose example name <code class="docutils literal notranslate"><span class="pre">lock-app</span></code></p></li>
+</ul>
+<p>Use debug controls to debug the application.</p>
+</section>
+</section>
+<section id="add-new-example">
+<h2>Add new example<a class="headerlink" href="#add-new-example" title="Permalink to this heading">#</a></h2>
+<p>This chapter describes how to add a new Matter example based on Open IoT SDK
+platform.</p>
+<p>In the description below we use the placeholder <code class="docutils literal notranslate"><span class="pre">example_name</span></code> as the name of
+the example to create. Replace it with the name of your example.</p>
+<blockquote>
+<div><p>💡 <strong>Notes</strong>:</p>
+<p>Remember to update the list of currently supported Matter examples at the top
+of this document.</p>
+</div></blockquote>
+<section id="files-structure">
+<h3>Files structure<a class="headerlink" href="#files-structure" title="Permalink to this heading">#</a></h3>
+<p>A new example should be put into <code class="docutils literal notranslate"><span class="pre">examples/&lt;example_name&gt;/openiotsdk</span></code> directory.
+It should contain:</p>
+<ul class="simple">
+<li><p>application source files and headers in the <code class="docutils literal notranslate"><span class="pre">main</span></code> sub-directory</p></li>
+<li><p>application <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file with with all sources to skip</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code> file with example description</p></li>
+<li><p>additional directories with required configuration for used components. Use
+<code class="docutils literal notranslate"><span class="pre">component_name-config</span></code> pattern, e.g <code class="docutils literal notranslate"><span class="pre">freertos-config</span></code></p></li>
+</ul>
+</section>
+<section id="target-name">
+<h3>Target name<a class="headerlink" href="#target-name" title="Permalink to this heading">#</a></h3>
+<p>A new application target name should be created with
+<code class="docutils literal notranslate"><span class="pre">chip-openiotsdk-&lt;example_name&gt;-example(_ns)</span></code> pattern. The <code class="docutils literal notranslate"><span class="pre">_ns</span></code> suffix is
+required for <a class="reference internal" href="#trusted-firmware-m">TF-M applications</a>.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">APP_TARGET</span> <span class="n">chip</span><span class="o">-</span><span class="n">openiotsdk</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">example</span><span class="o">-</span><span class="n">example_ns</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-tools">
+<h3>Example tools<a class="headerlink" href="#example-tools" title="Permalink to this heading">#</a></h3>
+<p>Add a new example name to the list in the
+<code class="docutils literal notranslate"><span class="pre">examples/platform/openiotsdk/supported_examples.txt</span></code> file. After that the new
+example is available in all necessary tools such as helper script
+<code class="docutils literal notranslate"><span class="pre">scripts/examples/openiotsdk_example.sh</span></code> or VSCode tasks.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">example_name</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="ci">
+<h3>CI<a class="headerlink" href="#ci" title="Permalink to this heading">#</a></h3>
+<p>To add a new example to the Matter CI edit the
+<code class="docutils literal notranslate"><span class="pre">.github/workflows/examples-openiotsdk.yaml</span></code> file and add the next step for
+<code class="docutils literal notranslate"><span class="pre">openiotsdk</span></code> job step that build this example.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>...
+- name: Build new-example example
+    id: build_new_example
+    run: |
+        scripts/examples/openiotsdk_example.sh -b ${{ matrix.cryptoBackend }} new-example
+        .environment/pigweed-venv/bin/python3 scripts/tools/memory/gh_sizes.py \
+        openiotsdk release new-example \
+        examples/new-example/openiotsdk/build/chip-openiotsdk-new-example-example.elf \
+        /tmp/bloat_reports/
+...
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="openiotsdk_commissioning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Commissioning Open IoT SDK devices</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="openiotsdk_examples_software_update.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Matter Open IoT SDK Example Device Firmware Upgrade</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#networking-setup">Networking setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-setup">Debugging setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-setup">Testing setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trusted-firmware-m">Trusted Firmware-M</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-persistent-memory-block-in-external-files">Storing persistent memory block in external files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crypto-backend">Crypto backend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#device-firmware-update">Device Firmware Update</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-using-the-vscode-task">Building using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-using-cli">Building using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-the-vscode-task">Running using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-using-cli">Running using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-using-the-vscode-task">Testing using the VSCode task</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-using-cli">Testing using CLI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-instructions">General instructions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-examples">Specific examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-psa-crypto-backend-support-and-run-it-in-the-network-namespace">Build lock-app example with PSA crypto backend support and run it in the network namespace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-and-execute-its-test-in-the-network-namespace">Build lock-app example with mbedtls crypto backend support and execute its test in the network namespace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-lock-app-example-with-mbedtls-crypto-backend-support-in-debug-mode-and-debug-it-in-the-network-namespace-using-the-vscode-task">Build lock-app example with mbedtls crypto backend support in debug mode and debug it in the network namespace using the VSCode task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-example">Add new example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#files-structure">Files structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-name">Target name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-tools">Example tools</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ci">CI</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

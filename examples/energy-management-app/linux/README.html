@@ -1,0 +1,1545 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Matter Linux Energy Management Example &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/energy-management-app/linux/README';</script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Matter EFR32 Energy Management Example" href="../silabs/README.html" />
+    <link rel="prev" title="Matter ESP32 Energy Management Example" href="../esp32/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Matter  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ci-cd/index.html">CI/CD Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../development_controllers/index.html">Development Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../development_controllers/chip-repl/index.html">chip-repl</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_controllers/chip-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_controllers/chip-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_controllers/chip-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../development_controllers/chip-tool/index.html">chip-tool</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/zap.html">ZAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../platforms/index.html">Platform Guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/android/index.html">Android</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/android/android_building.html">Building Android</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/asr/index.html">ASR</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/bouffalolab/index.html">Bouffalolab</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/esp32/index.html">Espressif (ESP32) Getting Started Guide</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/infineon/index.html">Infineon</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/mbedos/index.html">MbedOS</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/mbedos/mbedos_add_new_target.html">Mbed-OS add new hardware target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/mbedos/mbedos_commissioning.html">Matter Arm Mbed OS provisioning guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/mbedos/mbedos_platform_overview.html">Mbed-OS platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/nrf/index.html">NRF</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/nxp/index.html">NXP</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_k32w0_ota_guide.html">NXP K32W0x1 OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_k32w_android_commissioning.html">Commissioning NXP K32W using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_mcxw71_ota_guide.html">NXP <code class="docutils literal notranslate"><span class="pre">MCXW71/K32W1</span></code> OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/openiotsdk/index.html">OpenIoTSDK</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openiotsdk/openiotsdk_commissioning.html">Commissioning Open IoT SDK devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openiotsdk/openiotsdk_examples.html">Matter Open IoT SDK Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openiotsdk/openiotsdk_examples_software_update.html">Matter Open IoT SDK Example Device Firmware Upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openiotsdk/openiotsdk_platform_overview.html">Open IoT SDK platform port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openiotsdk/openiotsdk_unit_tests.html">Matter Open IoT SDK unit tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/openthread/index.html">OpenThread</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/silabs/index.html">Silabs</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/stm32/index.html">ESP32</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../platforms/ti/index.html">TI</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-migration-guide/matter_cc2674_migration.html">Running Matter Examples on the TI SimpleLink CC2674P10 and CC2674R10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../style/index.html">Style Guides</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../air_purifier.html">Air Purifier</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../air_quality.html">Air Quality</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../all_clusters.html">All clusters</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nxp/mw320/README.html">Matter MW320 All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nxp/rt/rt1060/README.html">CHIP RT1060 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nxp/rt/rt1170/README.html">CHIP RT1170 All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nxp/rt/rw61x/README.html">CHIP RW61x All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/nxp/zephyr/README.html">CHIP NXP Zephyr All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/openiotsdk/README.html">Matter Open IoT SDK All-Clusters-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../all_clusters_minimal.html">All clusters minimal</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-27"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/mbed/README.html">Matter Arm Mbed OS All Clusters Example Application</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../bridge.html">Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-28"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../chef.html">CHEF</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-29"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../chip_tool.html">CHIP Tool example</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-30"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../contact_sensor.html">Contact Sensor</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-31"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/nxp/k32w0/README.html">CHIP K32W061 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/nxp/k32w1/README.html">Matter K32W1 Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../darwin.html">CHIP Tool Darwin</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-32"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../dishwasher.html">Dishwasher</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-33"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../energy_management.html">Energy Management</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-34"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../esp32/README.html">Matter ESP32 Energy Management Example</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Matter Linux Energy Management Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/README.html">Matter EFR32 Energy Management Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../fabric_admin.html">Fabric Admin</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-35"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../fabric_bridge.html">Fabric Bridge</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-36"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../fabric_sync.html">Fabric Sync</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-37"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../java_matter_controller.html">Java matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-38"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kotlin_matter_controller.html">Kotlin matter controller</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-39"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../laundry_washer.html">Laundry washer</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-40"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../laundry-washer-app/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../laundry-washer-app/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../laundry-washer-app/nxp/rt/rw61x/README.html">CHIP RW61x Laundry washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../light_switch.html">Light switch</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-41"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../light-switch-app/qpg/APPLICATION.html">Matter QPG6105 Light Switch Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../lighting.html">Lighting</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-42"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/mbed/README.html">Matter Arm Mbed OS Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/nxp/k32w0/README.html">CHIP K32W061 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/nxp/k32w1/README.html">Matter K32W1 Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/stm32/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/telink/README.html">Matter Telink Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app/qpg/APPLICATION.html">Matter QPG6105 Lighting Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../lighting_no_unique_id.html">Lighting without unique id</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-43"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../lit_icd.html">Lit ICD</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-44"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../lock.html">Lock</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-45"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/nxp/k32w1/README.html">Matter K32W1 Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/nxp/mcxw71/README.html">Matter <code class="docutils literal notranslate"><span class="pre">MCXW71</span></code> Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/openiotsdk/README.html">Matter Open IoT SDK Lock-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lock-app/qpg/APPLICATION.html">Matter QPG6105 Lock Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../log_source.html">Log source</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-46"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../microwave.html">Microwave ovens</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-47"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../minimal_mdns.html">Minimal MDNS</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-48"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../network_infrastructure_manager.html">Network Infrastructure Manager</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-49"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ota_provider.html">OTA Provider</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-50"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ota_requestor.html">OTA Requestor</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-51"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/mbed/README.html">Matter Arm Mbed OS Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/openiotsdk/README.html">Matter Open IoT SDK OTA-Requestor-App Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../persistent_storage.html">Persistent storage</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-52"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistent-storage/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistent-storage/qpg/APPLICATION.html">CHIP QPG6105 Persistent Storage Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../pigweed.html">Pigweed</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-53"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pigweed-app/ameba/README.html">CHIP Ameba Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pigweed-app/esp32/README.html">CHIP ESP32 Pigweed Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pigweed-app/mbed/README.html">Matter Arm Mbed OS Pigweed Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../pump.html">Pump</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-54"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-app/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../pump_controler.html">Pump controller</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-55"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-controller-app/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../refrigerator.html">Refrigerator</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-56"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../rvc.html">RVC</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-57"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rvc-app/README.html">RVC example app</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../shell.html">Shell</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-58"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/mbed/README.html">Matter Arm Mbed OS Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/openiotsdk/README.html">Matter Open IoT SDK Shell Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../smoke_co.html">Smoke CO Alarm example</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-59"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tbr.html">Thread Border Router</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-60"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../temperature_measurement.html">Temperature measurement</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-61"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../thermostat.html">Thermostat</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-62"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/nxp/rt/rt1060/README.html">CHIP RT1060 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/nxp/rt/rt1170/README.html">CHIP RT1170 Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/nxp/rt/rw61x/README.html">CHIP RW61x Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/nxp/zephyr/README.html">CHIP NXP Zephyr Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/qpg/README.html">Matter QPG6105 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../thermostat/qpg/APPLICATION.html">Matter QPG6105 Thermostat Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tv.html">TV</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-63"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-app/linux/README.html">Matter TV Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-app/openiotsdk/README.html">Matter Open IoT SDK TV-App Example Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tv_casting.html">TV casting</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-64"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../virtual_device.html">Virtual Device App</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-65"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../window.html">Window</a><input class="toctree-checkbox" id="toctree-checkbox-66" name="toctree-checkbox-66" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-66"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../product_considerations/index.html">Discussion</a><input class="toctree-checkbox" id="toctree-checkbox-67" name="toctree-checkbox-67" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-67"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../testing/index.html">Testing Guides</a><input class="toctree-checkbox" id="toctree-checkbox-68" name="toctree-checkbox-68" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-68"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/ChipDeviceCtrlAPI.html">Table of Contents</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/python.html">Python framework tests</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-69" name="toctree-checkbox-69" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-69"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tools/index.html">Tools</a><input class="toctree-checkbox" id="toctree-checkbox-70" name="toctree-checkbox-70" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-70"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../src/tools/chip-cert/README.html">CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_generation.html">Code generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../zap_clusters.html">List of currently defined ZAP clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/examples/energy-management-app/linux/README.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/examples/energy-management-app/linux/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Matter Linux Energy Management Example</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commandline-arguments">Commandline arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-complete-example-on-raspberry-pi-4">Running the Complete Example on Raspberry Pi 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#device-tracing">Device Tracing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-test-cases">Python Test Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-test-cases">Running the test cases:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chip-repl-interaction">CHIP-REPL Interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-chip-repl">Building chip-repl:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activating-python-virtual-env">Activating python virtual env</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interacting-with-chip-repl-and-the-example-app">Interacting with CHIP-REPL and the example app</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-chip-repl-to-fake-a-charging-session">Using chip-repl to Fake a charging session</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="matter-linux-energy-management-example">
+<h1>Matter Linux Energy Management Example<a class="headerlink" href="#matter-linux-energy-management-example" title="Permalink to this heading">#</a></h1>
+<p>An example showing the use of CHIP on the Linux. The document will describe how
+to build and run CHIP Linux Energy Management Example on Raspberry Pi. This doc
+is tested on <strong>Ubuntu for Raspberry Pi Server 20.04 LTS (aarch64)</strong> and <strong>Ubuntu
+for Raspberry Pi Desktop 20.10 (aarch64)</strong></p>
+<p>To cross-compile this example on x64 host and run on <strong>NXP i.MX 8M Mini</strong>
+<strong>EVK</strong>, see the associated
+<a class="reference internal" href="../../../platforms/nxp/nxp_imx8m_linux_examples.html"><span class="std std-doc">README document</span></a> for
+details.</p>
+<hr>
+<ul class="simple">
+<li><p><a class="reference internal" href="#matter-linux-energy-management-example">Matter Linux Energy Management Example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building">Building</a></p></li>
+<li><p><a class="reference internal" href="#commandline-arguments">Commandline arguments</a></p></li>
+<li><p><a class="reference internal" href="#running-the-complete-example-on-raspberry-pi-4">Running the Complete Example on Raspberry Pi 4</a></p></li>
+<li><p><a class="reference internal" href="#device-tracing">Device Tracing</a></p></li>
+<li><p><a class="reference internal" href="#python-test-cases">Python Test Cases</a></p>
+<ul>
+<li><p><a class="reference internal" href="#running-the-test-cases">Running the test cases:</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#chip-repl-interaction">CHIP-REPL Interaction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building-chip-repl">Building chip-repl:</a></p></li>
+<li><p><a class="reference internal" href="#activating-python-virtual-env">Activating python virtual env</a></p></li>
+<li><p><a class="reference internal" href="#interacting-with-chip-repl-and-the-example-app">Interacting with CHIP-REPL and the example app</a></p></li>
+<li><p><a class="reference internal" href="#using-chip-repl-to-fake-a-charging-session">Using chip-repl to Fake a charging session</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Install tool chain</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ sudo apt-get install git gcc g++ python pkg-config libssl-dev libdbus-1-dev libglib2.0-dev ninja-build python3-venv python3-dev unzip
+</pre></div>
+</div>
+</li>
+<li><p>Build the example application:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ cd ~/connectedhomeip/examples/energy-management-app/linux
+  $ git submodule update --init
+  $ source third_party/connectedhomeip/scripts/activate.sh
+  $ gn gen out/debug
+  $ ninja -C out/debug
+</pre></div>
+</div>
+</li>
+<li><p>To delete generated executable, libraries and object files use:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ cd ~/connectedhomeip/examples/energy-management-app/linux
+  $ rm -rf out/
+</pre></div>
+</div>
+</li>
+<li><p>Build the example with pigweed RPC</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ cd ~/connectedhomeip/examples/energy-management-app/linux
+  $ git submodule update --init
+  $ source third_party/connectedhomeip/scripts/activate.sh
+  $ gn gen out/debug --args=&#39;import(&quot;//with_pw_rpc.gni&quot;)&#39;
+  $ ninja -C out/debug
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="commandline-arguments">
+<h2>Commandline arguments<a class="headerlink" href="#commandline-arguments" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--wifi</span></code></p>
+<p>Enables WiFi management feature. Required for WiFi commissioning.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--thread</span></code></p>
+<p>Enables Thread management feature, requires ot-br-posix dbus daemon running.
+Required for Thread commissioning.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ble-device</span> <span class="pre">&lt;interface</span> <span class="pre">id&gt;</span></code></p>
+<p>Use specific bluetooth interface for BLE advertisement and connections.</p>
+<p><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">id</span></code>: the number after <code class="docutils literal notranslate"><span class="pre">hci</span></code> when listing BLE interfaces by
+<code class="docutils literal notranslate"><span class="pre">hciconfig</span></code> command, for example, <code class="docutils literal notranslate"><span class="pre">--ble-device</span> <span class="pre">1</span></code> means using <code class="docutils literal notranslate"><span class="pre">hci1</span></code>
+interface. Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--application</span> <span class="pre">&lt;evse</span> <span class="pre">|</span> <span class="pre">water-heater&gt;</span></code></p>
+<p>Emulate either an EVSE or Water Heater example.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--featureSet</span> <span class="pre">&lt;feature</span> <span class="pre">map</span> <span class="pre">for</span> <span class="pre">Device</span> <span class="pre">Energy</span> <span class="pre">Management</span> <span class="pre">e.g.</span> <span class="pre">0x7a&gt;</span></code></p>
+<p>Sets the run-time FeatureMap value for the Device Energy Management cluster.
+This allows the DEM cluster to support <code class="docutils literal notranslate"><span class="pre">PFR</span></code> or <code class="docutils literal notranslate"><span class="pre">SFR</span></code> so that the full range
+of TC_DEM_2.x test cases can be exercised with this application.</p>
+<p>See the test-runner headers in the respective test script in
+src/python_testing/TC_DEM_2.x.py which have recommended values to use.</p>
+</li>
+</ul>
+</section>
+<section id="running-the-complete-example-on-raspberry-pi-4">
+<h2>Running the Complete Example on Raspberry Pi 4<a class="headerlink" href="#running-the-complete-example-on-raspberry-pi-4" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>If you want to test Echo protocol, please enable Echo handler</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gn gen out/debug --args=&#39;chip_app_use_echo=true&#39;
+ninja -C out/debug
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>Prerequisites</p>
+<ol class="arabic simple">
+<li><p>A Raspberry Pi 4 board</p></li>
+<li><p>A USB Bluetooth Dongle, Ubuntu desktop will send Bluetooth advertisement,
+which will block CHIP from connecting via BLE. On Ubuntu server, you need
+to install <code class="docutils literal notranslate"><span class="pre">pi-bluetooth</span></code> via APT.</p></li>
+<li><p>Ubuntu 20.04 or newer image for ARM64 platform.</p></li>
+</ol>
+</li>
+<li><p>Building</p>
+<p>Follow <a class="reference internal" href="#building">Building</a> section of this document.</p>
+</li>
+<li><p>Running</p>
+<ul>
+<li><p>[Optional] Plug USB Bluetooth dongle</p>
+<ul>
+<li><p>Plug USB Bluetooth dongle and find its bluetooth device number. The
+number after <code class="docutils literal notranslate"><span class="pre">hci</span></code> is the bluetooth device number, <code class="docutils literal notranslate"><span class="pre">1</span></code> in this
+example.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ hciconfig
+  hci1:	Type: Primary  Bus: USB
+      BD Address: 00:1A:7D:AA:BB:CC  ACL MTU: 310:10  SCO MTU: 64:8
+      UP RUNNING PSCAN ISCAN
+      RX bytes:20942 acl:1023 sco:0 events:1140 errors:0
+      TX bytes:16559 acl:1011 sco:0 commands:121 errors:0
+
+  hci0:	Type: Primary  Bus: UART
+      BD Address: B8:27:EB:AA:BB:CC  ACL MTU: 1021:8  SCO MTU: 64:1
+      UP RUNNING PSCAN ISCAN
+      RX bytes:8609495 acl:14 sco:0 events:217484 errors:0
+      TX bytes:92185 acl:20 sco:0 commands:5259 errors:0
+</pre></div>
+</div>
+</li>
+<li><p>Run Linux Energy Management Example App</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $ cd ~/connectedhomeip/examples/energy-management-app/linux
+  $ sudo out/debug/chip-energy-management-app --ble-device [bluetooth device number]
+  # In this example, the device we want to use is hci1
+  $ sudo out/debug/chip-energy-management-app --ble-device 1
+</pre></div>
+</div>
+</li>
+<li><p>Test the device using ChipDeviceController on your laptop /
+workstation etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="device-tracing">
+<h2>Device Tracing<a class="headerlink" href="#device-tracing" title="Permalink to this heading">#</a></h2>
+<p>Device tracing is available to analyze the device performance. To turn on
+tracing, build with RPC enabled. See <a class="reference internal" href="#building">Building with RPC enabled</a>.</p>
+<p>Obtain tracing json file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ ./{PIGWEED_REPO}/pw_trace_tokenized/py/pw_trace_tokenized/get_trace.py -s localhost:33000 \
+     -o {OUTPUT_FILE} -t {ELF_FILE} {PIGWEED_REPO}/pw_trace_tokenized/pw_trace_protos/trace_rpc.proto
+</pre></div>
+</div>
+</section>
+<section id="python-test-cases">
+<h2>Python Test Cases<a class="headerlink" href="#python-test-cases" title="Permalink to this heading">#</a></h2>
+<p>When you want to test this cluster you can use chip-repl or chip-tool by hand.
+CHIP-REPL is slightly easier to interact with when dealing with some of the
+complex structures.</p>
+<p>There are several test scripts provided for EVSE (in
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/examples/energy-management-app/linux/src/python_testing">src/python_testing</a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_2</span></code>: This validates the primary functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_3</span></code>: This validates Get/Set/Clear target commands</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_4</span></code>: This validates Faults</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_5</span></code>: This validates EVSE diagnostic command (optional)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_6</span></code>: This validates EVSE Forecast Adjustment with State Forecast
+Reporting feature functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_7</span></code>: This validates EVSE Constraints-based Adjustment with Power
+Forecast Reporting feature functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_8</span></code>: This validates EVSE Constraints-based Adjustment with State
+Forecast Reporting feature functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TC_EEVSE_2_9</span></code>: This validates EVSE Power or State Forecast Reporting
+feature functionality</p></li>
+</ul>
+<p>These scripts require the use of Test Event Triggers via the GeneralDiagnostics
+cluster on Endpoint 0. This requires an <code class="docutils literal notranslate"><span class="pre">enableKey</span></code> (16 bytes) and a set of
+reserved int64_t test event trigger codes.</p>
+<p>By default the test event support is not enabled, and when compiling the example
+app you need to add <code class="docutils literal notranslate"><span class="pre">chip_enable_energy_evse_trigger=true</span></code> to the gn args.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>      $ gn gen out/debug --args=&#39;chip_enable_energy_evse_trigger=true&#39;
+      $ ninja -C out/debug
+</pre></div>
+</div>
+<p>Once the application is built you also need to tell it at runtime what the
+chosen enable key is using the <code class="docutils literal notranslate"><span class="pre">--enable-key</span></code> command line option.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>      $ ./chip-energy-management-app --enable-key 000102030405060708090a0b0c0d0e0f --application evse
+</pre></div>
+</div>
+<section id="running-the-test-cases">
+<h3>Running the test cases:<a class="headerlink" href="#running-the-test-cases" title="Permalink to this heading">#</a></h3>
+<p>From the top-level of the connectedhomeip repo type:</p>
+<p>Start the chip-energy-management-app:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-f<span class="w"> </span>evse.bin<span class="p">;</span><span class="w"> </span>out/debug/chip-energy-management-app<span class="w"> </span>--enable-key<span class="w"> </span>000102030405060708090a0b0c0d0e0f<span class="w"> </span>--KVS<span class="w"> </span>evse.bin<span class="w"> </span>--featureSet<span class="w"> </span><span class="nv">$featureSet</span><span class="w"> </span>--application<span class="w"> </span>evse
+</pre></div>
+</div>
+<p>where the $featureSet depends on the test being run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TC_DEM_2_2</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x01</span>  <span class="o">//</span> <span class="n">PA</span>
+<span class="n">TC_DEM_2_3</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3b</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="p">(</span><span class="n">PFR</span> <span class="o">|</span> <span class="n">SFR</span><span class="p">)</span>
+<span class="n">TC_DEM_2_4</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3b</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="p">(</span><span class="n">PFR</span> <span class="o">|</span> <span class="n">SFR</span><span class="p">)</span>
+<span class="n">TC_DEM_2_5</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3b</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="n">PFR</span>
+<span class="n">TC_DEM_2_6</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3d</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="n">SFR</span>
+<span class="n">TC_DEM_2_7</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3b</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="n">PFR</span>
+<span class="n">TC_DEM_2_8</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3d</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="n">SFR</span>
+<span class="n">TC_DEM_2_9</span><span class="o">.</span><span class="n">py</span><span class="p">:</span> <span class="mh">0x3f</span>  <span class="o">//</span> <span class="n">STA</span><span class="p">,</span> <span class="n">PAU</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">CON</span> <span class="o">+</span> <span class="n">PFR</span> <span class="o">+</span> <span class="n">SFR</span>
+</pre></div>
+</div>
+<p>where</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PA</span>  <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F00</span><span class="p">(</span><span class="n">PowerAdjustment</span><span class="p">)</span>
+<span class="n">PFR</span> <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F01</span><span class="p">(</span><span class="n">PowerForecastReporting</span><span class="p">)</span>
+<span class="n">SFR</span> <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F02</span><span class="p">(</span><span class="n">StateForecastReporting</span><span class="p">)</span>
+<span class="n">STA</span> <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F03</span><span class="p">(</span><span class="n">StartTimeAdjustment</span><span class="p">)</span>
+<span class="n">PAU</span> <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F04</span><span class="p">(</span><span class="n">Pausable</span><span class="p">)</span>
+<span class="n">FA</span>  <span class="o">-</span> <span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F05</span><span class="p">(</span><span class="n">ForecastAdjustment</span><span class="p">)</span>
+<span class="n">CON</span>  <span class="o">-</span><span class="n">DEM</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">F06</span><span class="p">(</span><span class="n">ConstraintBasedAdjustment</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then run the test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">     </span>$<span class="w"> </span>python<span class="w"> </span>src/python_testing/TC_EEVSE_2_2.py<span class="w"> </span>--endpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>on-network<span class="w"> </span>-n<span class="w"> </span><span class="m">1234</span><span class="w"> </span>-p<span class="w"> </span><span class="m">20202021</span><span class="w"> </span>-d<span class="w"> </span><span class="m">3840</span><span class="w"> </span>--hex-arg<span class="w"> </span>enableKey:000102030405060708090a0b0c0d0e0f
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Note that the <code class="docutils literal notranslate"><span class="pre">--endpoint</span> <span class="pre">1</span></code> must be used with the example, since the EVSE
+cluster is on endpoint 1. The <code class="docutils literal notranslate"><span class="pre">--hex-arg</span> <span class="pre">enableKey:&lt;key&gt;</span></code> value must match
+the <code class="docutils literal notranslate"><span class="pre">--enable-key</span> <span class="pre">&lt;key&gt;</span></code> used on chip-energy-management-app args.</p></li>
+</ul>
+<p>The chip-energy-management-app will need to be stopped before running each test
+script as each test commissions the chip-energy-management-app in the first
+step. That is also why the evse.bin is deleted before running
+chip-energy-management-app as this is where the app stores the matter persistent
+data (e.g. fabric info).</p>
+</section>
+</section>
+<section id="chip-repl-interaction">
+<h2>CHIP-REPL Interaction<a class="headerlink" href="#chip-repl-interaction" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>See chip-repl documentation in
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/guides/repl/Matter_REPL_Intro.ipynb">Matter_REPL_Intro</a></p></li>
+</ul>
+<section id="building-chip-repl">
+<h3>Building chip-repl:<a class="headerlink" href="#building-chip-repl" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span>./build_python.sh<span class="w"> </span>-i<span class="w"> </span>&lt;path_to_out_folder&gt;
+</pre></div>
+</div>
+</section>
+<section id="activating-python-virtual-env">
+<h3>Activating python virtual env<a class="headerlink" href="#activating-python-virtual-env" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You need to repeat this step each time you start a new shell.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>&lt;path_to_out_folder&gt;/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="interacting-with-chip-repl-and-the-example-app">
+<h3>Interacting with CHIP-REPL and the example app<a class="headerlink" href="#interacting-with-chip-repl-and-the-example-app" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Step 1: Launch the example app</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span>./chip-energy-management-app<span class="w"> </span>--enable-key<span class="w"> </span>000102030405060708090a0b0c0d0e0f<span class="w"> </span>--application<span class="w"> </span>evse
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 2: Launch CHIP-REPL</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>$<span class="w"> </span>chip-repl
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 3: (In chip-repl) Commissioning OnNetwork</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">devCtrl</span><span class="o">.</span><span class="n">CommissionOnNetwork</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span><span class="mi">20202021</span><span class="p">)</span>   <span class="c1"># Commission with NodeID 1234</span>
+<span class="n">Established</span> <span class="n">secure</span> <span class="n">session</span> <span class="k">with</span> <span class="n">Device</span>
+<span class="n">Commissioning</span> <span class="n">complete</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">chip</span><span class="o">.</span><span class="n">native</span><span class="o">.</span><span class="n">PyChipError</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f2432b16140</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 4: (In chip-repl) Read EVSE attributes</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Read from NodeID 1234, Endpoint 1, all attributes on EnergyEvse cluster</span>
+    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadAttribute</span><span class="p">(</span><span class="mi">1234</span><span class="p">,[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">EnergyEvse</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
+│   1: {
+│   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse&#39;&gt;: {
+│   │   │   &lt;class &#39;chip.clusters.Attribute.DataVersion&#39;&gt;: 3790455237,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.ChargingEnabledUntil&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.FaultState&#39;&gt;: &lt;FaultStateEnum.kNoError: 0&gt;,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NextChargeStartTime&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.StateOfCharge&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.MaximumChargeCurrent&#39;&gt;: 0,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.ApproximateEVEfficiency&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.BatteryCapacity&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.AcceptedCommandList&#39;&gt;: [
+... │   │   ],
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.MinimumChargeCurrent&#39;&gt;: 6000,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NextChargeTargetSoC&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SessionDuration&#39;&gt;: 758415333,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NumberOfWeeklyTargets&#39;&gt;: 0,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.FeatureMap&#39;&gt;: 1,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.GeneratedCommandList&#39;&gt;: [
+...
+│   │   │   ],
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.State&#39;&gt;: &lt;StateEnum.kNotPluggedIn: 0&gt;,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SessionID&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SessionEnergyCharged&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.VehicleID&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NextChargeRequiredEnergy&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SessionEnergyDischarged&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.AttributeList&#39;&gt;: [
+... │   │   ],
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NextChargeTargetTime&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.CircuitCapacity&#39;&gt;: 0,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.DischargingEnabledUntil&#39;&gt;: Null,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SupplyState&#39;&gt;: &lt;SupplyStateEnum.kDisabled: 0&gt;,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.RandomizationDelayWindow&#39;&gt;: 600,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.MaximumDischargeCurrent&#39;&gt;: 0,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.NumberOfDailyTargets&#39;&gt;: 1,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.UserMaximumChargeCurrent&#39;&gt;: 80000,
+│   │   │   &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.ClusterRevision&#39;&gt;: 2
+│   │   }
+│   }
+}
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 5: Setting up a subscription so that attributes updates are sent
+automatically</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="n">reportingTimingParams</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span> <span class="c1"># MinInterval = 3s, MaxInterval = 60s</span>
+   <span class="n">subscription</span> <span class="o">=</span> <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadAttribute</span><span class="p">(</span><span class="mi">1234</span><span class="p">,[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">EnergyEvse</span><span class="p">)],</span> <span class="n">reportInterval</span><span class="o">=</span><span class="n">reportingTimingParams</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Step 6: Send an <code class="docutils literal notranslate"><span class="pre">EnableCharging</span></code> command which lasts for 60 seconds The
+<code class="docutils literal notranslate"><span class="pre">EnableCharging</span></code> takes an optional <code class="docutils literal notranslate"><span class="pre">chargingEnabledUntil</span></code> parameter which
+allows the charger to automatically disable itself at some preset time in
+the future. Note that it uses Epoch_s (which is from Jan 1 2000) which is a
+uint32_t in seconds.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span><span class="p">,</span> <span class="n">timedelta</span>
+   <span class="n">epoch_end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span>
+
+   <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">EnergyEvse</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">EnableCharging</span><span class="p">(</span><span class="n">chargingEnabledUntil</span><span class="o">=</span><span class="n">epoch_end</span><span class="p">,</span><span class="n">minimumChargeCurrent</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">maximumChargeCurrent</span><span class="o">=</span><span class="mi">25000</span><span class="p">),</span><span class="n">timedRequestTimeoutMs</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output should look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SupplyState&#39;&gt;,
+│   &#39;Value&#39;: &lt;SupplyStateEnum.kChargingEnabled: 1&gt;
+}
+Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.MinimumChargeCurrent&#39;&gt;,
+│   &#39;Value&#39;: 2000
+}
+Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.ChargingEnabledUntil&#39;&gt;,
+│   &#39;Value&#39;: 758416066
+}
+</pre></div>
+</div>
+<p>After 60 seconds the charging should automatically become disabled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.SupplyState&#39;&gt;,
+│   &#39;Value&#39;: &lt;SupplyStateEnum.kDisabled: 0&gt;
+}
+Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.DischargingEnabledUntil&#39;&gt;,
+│   &#39;Value&#39;: 0
+}
+Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.MinimumChargeCurrent&#39;&gt;,
+│   &#39;Value&#39;: 0
+}
+Attribute Changed:
+{
+│   &#39;Endpoint&#39;: 1,
+│   &#39;Attribute&#39;: &lt;class &#39;chip.clusters.Objects.EnergyEvse.Attributes.ChargingEnabledUntil&#39;&gt;,
+│   &#39;Value&#39;: 0
+}
+</pre></div>
+</div>
+<p>Note that you can omit the <code class="docutils literal notranslate"><span class="pre">chargingEnabledUntil</span></code> argument and it will charge
+indefinitely.</p>
+</section>
+<section id="using-chip-repl-to-fake-a-charging-session">
+<h3>Using chip-repl to Fake a charging session<a class="headerlink" href="#using-chip-repl-to-fake-a-charging-session" title="Permalink to this heading">#</a></h3>
+<p>If you haven’t implemented a real EVSE but want to simulate plugging in an EV
+then you can use a few of the test event triggers to simulate these scenarios.</p>
+<p>The test event triggers values can be found in:
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/clusters/energy-evse-server/EnergyEvseTestEventTriggerHandler.h">EnergyEvseTestEventTriggerHandler.h</a></p>
+<ul class="simple">
+<li><p>0x0099000000000000 - Simulates the EVSE being installed on a 32A supply</p></li>
+<li><p>0x0099000000000002 - Simulates the EVSE being plugged in (this should
+generate an <code class="docutils literal notranslate"><span class="pre">EVConnected</span></code> event)</p></li>
+<li><p>0x0099000000000004 - Simulates the EVSE requesting power</p></li>
+</ul>
+<p>To send a test event trigger to the app, use the following commands (in
+chip-repl):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># send 1st event trigger to &#39;install&#39; the EVSE on a 32A supply</span>
+    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">GeneralDiagnostics</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">TestEventTrigger</span><span class="p">(</span><span class="n">enableKey</span><span class="o">=</span><span class="nb">bytes</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]),</span> <span class="n">eventTrigger</span><span class="o">=</span><span class="mh">0x0099000000000000</span><span class="p">))</span>
+
+    <span class="c1"># send 2nd event trigger to plug the EV in</span>
+    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">GeneralDiagnostics</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">TestEventTrigger</span><span class="p">(</span><span class="n">enableKey</span><span class="o">=</span><span class="nb">bytes</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]),</span> <span class="n">eventTrigger</span><span class="o">=</span><span class="mh">0x0099000000000002</span><span class="p">))</span>
+
+</pre></div>
+</div>
+<p>Now send the enable charging command (omit the <code class="docutils literal notranslate"><span class="pre">chargingEnabledUntil</span></code> arg this
+time):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">EnergyEvse</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">EnableCharging</span><span class="p">(</span><span class="n">minimumChargeCurrent</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">maximumChargeCurrent</span><span class="o">=</span><span class="mi">25000</span><span class="p">),</span><span class="n">timedRequestTimeoutMs</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now send the test event trigger to simulate the EV asking for demand:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># send 2nd event trigger to plug the EV in</span>
+    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">GeneralDiagnostics</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">TestEventTrigger</span><span class="p">(</span><span class="n">enableKey</span><span class="o">=</span><span class="nb">bytes</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]),</span> <span class="n">eventTrigger</span><span class="o">=</span><span class="mh">0x0099000000000004</span><span class="p">))</span>
+
+    <span class="c1"># Read the events</span>
+    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">ReadEvent</span><span class="p">(</span><span class="mi">1234</span><span class="p">,[(</span><span class="mi">1</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">EnergyEvse</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[
+│   EventReadResult(
+│   │   Header=EventHeader(
+│   │   │   EndpointId=1,
+│   │   │   ClusterId=153,
+│   │   │   EventId=0,
+│   │   │   EventNumber=65538,
+│   │   │   Priority=&lt;EventPriority.INFO: 1&gt;,
+│   │   │   Timestamp=1705102500069,
+│   │   │   TimestampType=&lt;EventTimestampType.EPOCH: 1&gt;
+│   │   ),
+│   │   Status=&lt;Status.Success: 0&gt;,
+│   │   Data=EVConnected(
+│   │   │   sessionID=0
+│   │   )
+│   ),
+│   EventReadResult(
+│   │   Header=EventHeader(
+│   │   │   EndpointId=1,
+│   │   │   ClusterId=153,
+│   │   │   EventId=2,
+│   │   │   EventNumber=65539,
+│   │   │   Priority=&lt;EventPriority.INFO: 1&gt;,
+│   │   │   Timestamp=1705102801764,
+│   │   │   TimestampType=&lt;EventTimestampType.EPOCH: 1&gt;
+│   │   ),
+│   │   Status=&lt;Status.Success: 0&gt;,
+│   │   Data=EnergyTransferStarted(
+│   │   │   sessionID=0,
+│   │   │   state=&lt;StateEnum.kPluggedInCharging: 3&gt;,
+│   │   │   maximumCurrent=25000
+│   │   )
+│   )
+]
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We can see that the <code class="docutils literal notranslate"><span class="pre">EventNumber</span> <span class="pre">65538</span></code> was sent when the vehicle was
+plugged in, and a new <code class="docutils literal notranslate"><span class="pre">sessionID=0</span></code> was created.</p></li>
+<li><p>We can also see that the <code class="docutils literal notranslate"><span class="pre">EnergyTransferStarted</span></code> was sent in
+<code class="docutils literal notranslate"><span class="pre">EventNumber</span> <span class="pre">65539</span></code></p></li>
+</ul>
+<p>What happens when we unplug the vehicle?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">await</span> <span class="n">devCtrl</span><span class="o">.</span><span class="n">SendCommand</span><span class="p">(</span><span class="mi">1234</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">chip</span><span class="o">.</span><span class="n">clusters</span><span class="o">.</span><span class="n">GeneralDiagnostics</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">TestEventTrigger</span><span class="p">(</span><span class="n">enableKey</span><span class="o">=</span><span class="nb">bytes</span><span class="p">([</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">)]),</span> <span class="n">eventTrigger</span><span class="o">=</span><span class="mh">0x0099000000000001</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>When we re-read the events:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[
+│   EventReadResult(
+│   │   Header=EventHeader(
+│   │   │   EndpointId=1,
+│   │   │   ClusterId=153,
+│   │   │   EventId=3,
+│   │   │   EventNumber=65540,
+│   │   │   Priority=&lt;EventPriority.INFO: 1&gt;,
+│   │   │   Timestamp=1705102996749,
+│   │   │   TimestampType=&lt;EventTimestampType.EPOCH: 1&gt;
+│   │   ),
+│   │   Status=&lt;Status.Success: 0&gt;,
+│   │   Data=EnergyTransferStopped(
+│   │   │   sessionID=0,
+│   │   │   state=&lt;StateEnum.kPluggedInCharging: 3&gt;,
+│   │   │   reason=&lt;EnergyTransferStoppedReasonEnum.kOther: 2&gt;,
+│   │   │   energyTransferred=0
+│   │   )
+│   ),
+│   EventReadResult(
+│   │   Header=EventHeader(
+│   │   │   EndpointId=1,
+│   │   │   ClusterId=153,
+│   │   │   EventId=1,
+│   │   │   EventNumber=65541,
+│   │   │   Priority=&lt;EventPriority.INFO: 1&gt;,
+│   │   │   Timestamp=1705102996749,
+│   │   │   TimestampType=&lt;EventTimestampType.EPOCH: 1&gt;
+│   │   ),
+│   │   Status=&lt;Status.Success: 0&gt;,
+│   │   Data=EVNotDetected(
+│   │   │   sessionID=0,
+│   │   │   state=&lt;StateEnum.kPluggedInCharging: 3&gt;,
+│   │   │   sessionDuration=0,
+│   │   │   sessionEnergyCharged=0,
+│   │   │   sessionEnergyDischarged=0
+│   │   )
+│   )
+]
+
+</pre></div>
+</div>
+<ul>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">EventNumber</span> <span class="pre">65540</span></code> we had an <code class="docutils literal notranslate"><span class="pre">EnergyTransferStopped</span></code> event with reason
+<code class="docutils literal notranslate"><span class="pre">kOther</span></code>.</p>
+<p>This was a rather abrupt end to a charging session (normally we would see
+the EVSE or EV decide to stop charging), but this demonstrates the cable
+being pulled out without a graceful charging shutdown.</p>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">EventNumber</span> <span class="pre">65541</span></code> we had an <code class="docutils literal notranslate"><span class="pre">EvNotDetected</span></code> event showing that the
+state was <code class="docutils literal notranslate"><span class="pre">kPluggedInCharging</span></code> prior to the EV being not detected (normally
+in a graceful shutdown this would be <code class="docutils literal notranslate"><span class="pre">kPluggedInNoDemand</span></code> or
+<code class="docutils literal notranslate"><span class="pre">kPluggedInDemand</span></code>).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../esp32/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Matter ESP32 Energy Management Example</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../silabs/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Matter EFR32 Energy Management Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commandline-arguments">Commandline arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-complete-example-on-raspberry-pi-4">Running the Complete Example on Raspberry Pi 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#device-tracing">Device Tracing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-test-cases">Python Test Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-test-cases">Running the test cases:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chip-repl-interaction">CHIP-REPL Interaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-chip-repl">Building chip-repl:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activating-python-virtual-env">Activating python virtual env</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interacting-with-chip-repl-and-the-example-app">Interacting with CHIP-REPL and the example app</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-chip-repl-to-fake-a-charging-session">Using chip-repl to Fake a charging session</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
