@@ -1,0 +1,1173 @@
+﻿# Python framework tests
+
+The python test framework is built on top of the ChipDeviceCtrl.py python
+controller API and the Mobly test framework. Python tests are interaction tests,
+and can be used for certification testing, and / or integration testing in the
+CI.
+
+Python tests located in src/python_testing
+
+## Resources for getting started
+
+-   [src/python_testing/hello_test.py](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/hello_test.py) -
+    sample test showing test setup and test harness integration
+-   [https://github.com/google/mobly/blob/master/docs/tutorial.md](https://github.com/google/mobly/blob/master/docs/tutorial.md)
+-   [ChipDeviceCtrl.py](https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/matter/ChipDeviceCtrl.py) -
+    Controller implementation - [API documentation](../../../testing/ChipDeviceCtrlAPI.md)
+-   [scripts/tests/run_python_test.py](https://github.com/project-chip/connectedhomeip/blob/master/scripts/tests/run_python_test.py)
+    to easily set up app and script for testing - used in CI
+
+## Writing Python tests
+
+-   Defining arguments in the test script
+    -   In order to streamline the configuration and execution of tests, it is
+        essential to define arguments at the top of the test script. This
+        section should include various parameters and their respective values,
+        which will guide the test runner on how to execute the tests.
+-   All test classes inherit from `MatterBaseTest` in
+    [matter_testing.py](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/matter_testing_infrastructure/matter/testing/matter_testing.py)
+    -   Support for commissioning using the python controller
+    -   Default controller (`self.default_controller`) of type `ChipDeviceCtrl`
+    -   `MatterBaseTest` inherits from the Mobly BaseTestClass
+-   Test method(s) (start with test\_) and are all run automatically
+    -   To run in the test harness, the test method name must be
+        `test_TC_PICSCODE_#_#`
+        -   More information about integration with the test harness can be
+            found in [Test Harness helpers](#test-harness-helpers) section
+    -   Any tests that use async method (read / write / commands) should be
+        decorated with the @async_test_body decorator
+-   Use `ChipDeviceCtrl` to interact with the DUT
+    -   Controller API is in `ChipDeviceCtrl.py` (see API doc in file)
+    -   Some support methods in `matter_testing.py`
+-   Use Mobly assertions for failing tests
+-   `self.step()` along with a `steps_*` method to mark test plan steps for cert
+    tests
+
+### A simple test
+
+```python
+# See https://github.com/project-chip/connectedhomeip/blob/master/docs/testing/python.md#defining-the-ci-test-arguments
+# for details about the block below.
+#
+# === BEGIN CI TEST ARGUMENTS ===
+# test-runner-runs:
+#   run1:
+#     app: ${ALL_CLUSTERS_APP}
+#     app-args: --discriminator 1234 --KVS kvs1 --trace-to json:${TRACE_APP}.json
+#     script-args: >
+#       --storage-path admin_storage.json
+#       --commissioning-method on-network
+#       --discriminator 1234
+#       --passcode 20202021
+#       --trace-to json:${TRACE_TEST_JSON}.json
+#       --trace-to perfetto:${TRACE_TEST_PERFETTO}.perfetto
+#     factory-reset: true
+#     quiet: true
+# === END CI TEST ARGUMENTS ===
+
+class TC_MYTEST_1_1(MatterBaseTest):
+
+    @async_test_body
+    async def test_TC_MYTEST_1_1(self):
+
+        vendor_name = await self.read_single_attribute_check_success(
+            dev_ctrl=self.default_controller,  # defaults to self.default_controller
+            node_id = self.dut_node_id,  # defaults to self.dut_node_id
+            cluster=Clusters.BasicInformation,
+            attribute=Clusters.BasicInformation.Attributes.VendorName,
+            endpoint = 0,  # defaults to 0
+        )
+        asserts.assert_equal(vendor_name, "Test vendor name", "Unexpected vendor name")
+
+if __name__ == "__main__":
+    default_matter_test_main()
+```
+
+---
+
+In this test, `asserts.assert_equal` is used to fail the test on equality
+assertion failure (throws an exception).
+
+Because the test requires the use of the async method
+`read_single_attribute_check_success`, the test is decorated with the
+`@async_test_body` decorator
+
+The `default_matter_test_main()` function is used to run the test on the command
+line. These two lines should appear verbatim at the bottom of every python test
+file.
+
+The structured comments above the class definition are used to set up the CI for
+the tests. Please see [Running tests in CI](#running-tests-in-ci).
+
+### Declaring a test's device requirement
+
+`MatterBaseTest` is device-requirement neutral: on its own it does not say
+whether a test needs a commissioned device, an uncommissioned one, performs
+commissioning itself, or needs no device at all. Instead of deriving from
+`MatterBaseTest` directly, a test should derive from the marker base class that
+matches what it requires. These markers are currently **declarative only** —
+they add no runtime behavior and do not change method resolution order, setup,
+teardown, or test discovery. They give tooling (the Test Harness, CI selection,
+the structural check below) a single static signal for what each test needs.
+
+| Base class                       | The test...                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------- |
+| `MatterTestCommissionedDevice`   | requires a DUT already commissioned before it runs (the common case).         |
+| `MatterTestUncommissionedDevice` | requires an uncommissioned / commissionable DUT (not yet on a fabric).        |
+| `MatterTestCommissioner`         | commissions the DUT itself, or exercises commissioner-role flows (e.g. PASE). |
+| `CertificationUnitTestNoDevice`  | is a parser / validation / framework unit test that never talks to a DUT.     |
+| `BasicCompositionTests`          | intentionally supports either a commissioned **or** an uncommissioned device. |
+
+A test that commissions a _second_ fabric or a helper device while its own DUT
+is already commissioned is still `MatterTestCommissionedDevice`: classification
+follows the DUT's required starting state, not incidental commissioning actions.
+
+> **Wildcard subscription is a separate concern.** Whether the background
+> wildcard subscription runs is controlled by `requires_dut` /
+> `disable_wildcard_subscription` / `--no-wildcard-subscription` (see
+> [Wildcard subscription read verification](#wildcard-subscription-read-verification)).
+> For the three device-STATE markers (`MatterTestCommissionedDevice`,
+> `MatterTestUncommissionedDevice`, `MatterTestCommissioner`) this is
+> independent of classification — e.g. a `MatterTestCommissionedDevice` test may
+> still set `requires_dut = False` to skip the subscription. The one exception
+> is `CertificationUnitTestNoDevice`, which sets `requires_dut = False` on the
+> base: a test that never talks to a DUT can never use the subscription, so
+> no-device tests inherit that automatically and should not set it themselves.
+
+`TestDeviceRequirementMarkers.py` (under `test_testing/`) enforces the hierarchy
+invariants (the device-state markers are empty and subscription-independent,
+`CertificationUnitTestNoDevice` disables the subscription, markers are mutually
+exclusive) and checks that the reclassified tests declare the expected marker.
+
+## Cluster Codegen
+
+-   [Objects.py](https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/matter/clusters/Objects.py)
+    for codegen,
+-   [ClusterObjects.py](https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/matter/clusters/ClusterObjects.py)
+    for classes
+
+Common import used in test files: `import matter.clusters as Clusters`
+
+Each cluster is defined in the `Clusters.<ClusterName>` namespace and contains
+always:
+
+-   id
+-   descriptor
+
+Each `Clusters.<ClusterName>` will include the appropriate sub-classes (if
+defined for the cluster):
+
+-   `Enums`
+-   `Bitmaps`
+-   `Structs`
+-   `Attributes`
+-   `Commands`
+-   `Events`
+
+### Attributes
+
+Attributes derive from ClusterAttributeDescriptor
+
+Each `Clusters.<ClusterName>.Attributes.<AttributeName>` class has:
+
+-   cluster_id
+-   attribute_id
+-   attribute_type
+-   value
+
+Example:
+
+-   class - `Clusters.OnOff.Attributes.OnTime`
+    -   Used for Read commands
+-   instance - `Clusters.OnOff.Attributes.OnTime(5)`
+    -   Sets the value to `5`
+    -   Pass the instance to Write method to write the value
+
+### Commands
+
+Commands derive from `ClusterCommand`.
+
+Each `Clusters.<ClusterName>.Commands.<CommandName>` class has:
+
+-   `cluster_id`
+-   `command_id`
+-   `is_client`
+-   `response_type` (None for status response)
+-   `descriptor`
+-   data members (if required)
+
+Example:
+
+-   `Clusters.OnOff.Commands.OnWithTimedOff(onOffControl=0, onTime=5, offWaitTime=8)`
+-   `Clusters.OnOff.Commands.OnWithTimedOff()`
+    -   Command with no fields
+
+### Events
+
+Events derive from `ClusterEvent`.
+
+Each `Clusters.<ClusterName>.Events.<EventName>` class has:
+
+-   `cluster_id`
+-   `event_id`
+-   `descriptor`
+-   Other data members if required
+
+Example:
+
+-   Clusters.AccessControl.Events.AccessControlEntryChanged.adminNodeID
+
+### Enums
+
+Enums derive from `MatterIntEnum`.
+
+Each `Clusters.<ClusterName>.Enum.<EnumName>` has
+
+-   `k<value>` constants
+-   `kUnknownEnumValue` (used for testing, do not transmit)
+
+Example:
+
+-   `Clusters.AccessControl.Enums.AccessControlEntryPrivilegeEnum.kAdminister`
+
+### Bitmaps
+
+Bitmaps derive from IntFlag
+
+Each `Clusters.<ClusterName>.Bitmaps.<BitmapName>` has: - k<value>
+
+Special class:
+
+-   class `Feature(IntFlag)` - contains the feature map bitmaps
+
+Example:
+
+-   `Clusters.LaundryWasherControls.Bitmaps.Feature.kSpin`
+
+### Structs
+
+Structs derive from `ClusterObject`.
+
+Each `Clusters.<ClusterName>.Structs.<StructName>` has:
+
+-   A "descriptor"
+-   Data members
+
+Example:
+
+```python
+Clusters.BasicInformation.Structs.ProductAppearanceStruct(
+   finish=Clusters.BasicInformation.Enums.ProductFinishEnum.kFabric,
+   primaryColor=Clusters.BasicInformation.Enums.ColorEnum.kBlack)
+```
+
+## Accessing Clusters and Cluster Elements by ID
+
+[ClusterObjects.py](https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/matter/clusters/ClusterObjects.py)
+has a set of objects that map ID to the code generated object.
+
+`matter.clusters.ClusterObjects.ALL_CLUSTERS`
+
+-   `dict[int, Cluster]` - maps cluster ID to Cluster class
+    -   `cluster = matter.clusters.ClusterObjects.ALL_CLUSTERS[cluster_id]`
+
+`matter.clusters.ClusterObjects.ALL_ATTRIBUTES`
+
+-   `dict[int, dict[int, ClusterAttributeDescriptor]]` - maps cluster ID to a
+    dict of attribute ID to attribute class
+    -   `attr = matter.clusters.ClusterObjects.ALL_ATTRIBUTES[cluster_id][attribute_id]`
+
+`matter.clusters.ClusterObjects.ALL_ACCEPTED_COMMANDS/ALL_GENERATED_COMMANDS`
+
+-   dict[int, dict[int, ClusterCommand]]
+-   cmd =
+    matter.clusters.ClusterObjects.ALL_ACCEPTED_COMMANDS[cluster_id][cmd_id]
+
+## ChipDeviceCtrl API
+
+The `ChipDeviceCtrl` API is implemented in
+[ChipDeviceCtrl.py](https://github.com/project-chip/connectedhomeip/blob/master/src/controller/python/matter/ChipDeviceCtrl.py).
+
+The `ChipDeviceCtrl` implements a python-based controller that can be used to
+commission and control devices. The API is documented here in the
+[ChipDeviceCtrl API documentation](../../../testing/ChipDeviceCtrlAPI.md)
+
+The API doc gives full descriptions of the APIs being used. The most commonly
+used methods are linked below.
+
+### [Read](../../../testing/ChipDeviceCtrlAPI.md#read)
+
+-   Read both attributes and events
+-   Can handle wildcard or concrete path
+
+### [ReadAttribute](../../../testing/ChipDeviceCtrlAPI.md#readattribute)
+
+-   Convenience wrapper for Read for attributes
+
+Examples: Wildcard read (all clusters, all endpoints):
+
+`await dev_ctrl.ReadAttribute(node_id, [()])`
+
+Wildcard read (single endpoint 0)
+
+`await dev_ctrl.ReadAttribute(node_id, [(0)])`
+
+Wildcard read (single cluster from single endpoint 0)
+
+`await dev_ctrl.ReadAttribute(node_id, [(1, Clusters.OnOff)])`
+
+Single attribute
+
+`await dev_ctrl.ReadAttribute(node_id, [(1, Clusters.OnOff.Attributes.OnTime)])`
+
+Multi-path
+
+`await dev_ctrl.ReadAttribute(node_id, [(1, Clusters.OnOff.Attributes.OnTime),(1, Clusters.OnOff.Attributes.OnOff)])`
+
+### [ReadEvent](../../../testing/ChipDeviceCtrlAPI.md#readevent)
+
+-   Convenience wrapper for `Read`
+-   Similar to `ReadAttribute`, but the tuple includes urgency as the last
+    argument
+
+Example:
+
+```python
+urgent = 1
+
+await dev_ctrl ReadEvent(node_id, [(1,
+Clusters.TimeSynchronization.Events.MissingTrustedTimeSource, urgent)])
+```
+
+### Subscriptions
+
+Subscriptions are handled in the `Read` / `ReadAttribute` / `ReadEvent` APIs. To
+initiate a subscription, set the `reportInterval` tuple argument to set the
+floor and ceiling. The `keepSubscriptions` and `autoResubscribe` arguments also
+apply to subscriptions.
+
+Subscription return `ClusterAttribute.SubscriptionTransaction`. This can be used
+to set callbacks. The object is returned after the priming data read is
+complete, and the values there are used to populate the cache. The attribute
+callbacks are called on update.
+
+-   `SetAttributeUpdateCallback`
+    -   Callable[[TypedAttributePath, SubscriptionTransaction], None]
+-   `SetEventUpdateCallback`
+    -   Callable[[EventReadResult, SubscriptionTransaction], None]
+-   await changes in the main loop using a trigger mechanism from the callback.
+
+Example for setting callbacks:
+
+```python
+cb = EventSubscriptionHandler(cluster, cluster_id, event_id)
+
+urgent = 1
+subscription = await dev_ctrl.ReadEvent(nodeId=1, events=[(1, event, urgent)], reportInterval=[1, 3])
+subscription.SetEventUpdateCallback(callback=cb)
+
+try:
+    cb.get_event_from_queue(block=True, timeout=timeout)
+except queue.Empty:
+    asserts.assert_fail("Timeout on event")
+```
+
+### [WriteAttribute](../../../testing/ChipDeviceCtrlAPI.md#writeattribute)
+
+Handles concrete paths only (per spec), can handle lists. Returns list of
+PyChipError
+
+-   Instantiate the `ClusterAttributeDescriptor` class with the value you want
+    to send, tuple is (endpoint, attribute)
+    -   use timedRequestTimeoutMs for timed request actions
+
+Example:
+
+```python
+res = await devCtrl.WriteAttribute(nodeId=0, attributes=[(0,Clusters.BasicInformation.Attributes.NodeLabel("Test"))])
+asserts.assert_equal(ret[0].status, Status.Success, "write failed")
+```
+
+### [SendCommand](../../../testing/ChipDeviceCtrlAPI.md#sendcommand)
+
+-   Instantiate the command object with the values you need to populate
+-   If there is a non-status return, it’s returned from the command
+-   If there is a pure status return it will return nothing
+-   Raises InteractionModelError on failure
+
+Example:
+
+```python
+pai = await dev_ctrl.SendCommand(nodeid, 0, Clusters.OperationalCredentials.Commands.CertificateChainRequest(2))
+```
+
+## MatterBaseTest helpers
+
+-   Because we tend to do a lot of single read / single commands in tests, we
+    added a couple of helpers in MatterBaseTest that use some of the default
+    values
+    -   `read_single_attribute_check_success()`
+    -   `read_single_attribute_expect_error()`
+    -   `send_single_cmd()`
+-   `step()` method to mark step progress for the test harness
+-   `skip()` / `skip_step()` / `skip_remaining_steps()` methods for test harness
+    integration
+-   `check_pics()` / `pics_guard()` to handle pics
+
+## Mobly helpers
+
+The test system is based on Mobly, and the
+[matter_testing.py](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/matter_testing_infrastructure/matter/testing/matter_testing.py)
+class provides some helpers for Mobly integration.
+
+-   `default_matter_test_main`
+    -   Sets up commissioning and finds all tests, parses command-line arguments
+
+use as:
+
+```python
+if __name__ == "__main__":
+    default_matter_test_main()
+```
+
+-   Mobly will run all methods starting with `test_` prefix by default
+    -   use `--tests` command line argument to specify exact name,s
+-   Setup and teardown methods
+    -   `setup_class` / `teardown_class`
+    -   `setup_test` / `teardown_test`
+    -   Don’t forget to call the `super()` if you override these
+
+## Test harness helpers
+
+The python testing system also includes several methods for integrations with
+the test harness. To integrate with the test harness, you can define the
+following methods on your class to allow the test harness UI to properly work
+through your tests.
+
+All of these methods are demonstrated in the
+[hello_example.py](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/hello_test.py)
+reference.
+
+-   Steps enumeration:
+    -   Define a method called `steps_<YourTestMethodName>` to allow the test
+        harness to display the steps
+    -   Use the `self.step(<stepnum>)` method to walk through the steps
+-   Test description:
+    -   Define a method called `desc_<YourTestMethodName>` to send back a string
+        with the test description
+-   Top-level PICS:
+    -   To guard your test on a top level PICS, define a method called
+        `pics_<YourTestMethodName>` to send back a list of PICS. If this method
+        is omitted, the test will be run for every endpoint on every device.
+-   Overriding the default timeout:
+    -   If the test is exceptionally long running, define a property getter
+        method `default_timeout` to adjust the timeout. The default is 90
+        seconds.
+
+Deferred failures: For some tests, it makes sense to perform the entire test
+before failing and collect all the errors so the developers can address all the
+failures without needing to re-run the test multiple times. For example, tests
+that look at every attribute on the cluster and perform independent operations
+on them etc.
+
+For such tests, use the ProblemNotice format and the convenience methods:
+
+-   `self.record_error`
+-   `self.record_warning`
+
+These methods keep track of the problems, and will print them at the end of the
+test. The test will not be failed until an assert is called.
+
+A good example of this type of test can be found in the device basic composition
+tests, where all the test steps are independent and performed on a single read.
+See
+[Device Basic Composition tests](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/TC_DeviceBasicComposition.py)
+
+## Command line arguments
+
+-   Use `--help` to get a full list
+-   `--storage-path`
+    -   Used to set a local storage file path for persisted data to avoid
+        clashing files. It is suggested to always provide this argument. Default
+        value is `admin_storage.json` in current directory.
+-   `--commissioning-method`
+    -   Need to re-commission to python controller as chip-tool and python
+        commissioner do not share a credentials
+-   `--discriminator`, `--passcode`, `--qr-code`, `--manual-code`
+-   `--tests` to select tests
+-   `--PICS`
+-   `--int-arg`, `--bool-arg`, `--float-arg`, `--string-arg`, `--json-arg`,
+    `--hex-arg`
+    -   Specify as key:value ex --bool-arg pixit_name:False
+    -   Used for custom arguments to scripts (PIXITs)
+
+## PICS and PIXITS
+
+-   PICS
+    -   use --PICS on the command line to specify the PICS file
+    -   use check_pics to gate steps in a file
+-   have_whatever = check_pics(“PICS.S.WHATEVER”)
+-   PIXITs
+    -   use --int-arg, --bool-arg etc on the command line to specify PIXITs
+    -   Warn users if they don’t set required values, add instructions in the
+        comments
+    -   for a declarative alternative, declare required/optional PIXITs and
+        harness parameters up front with the `@pixit` / `@harness_params`
+        decorators — see
+        [Declarative PIXITs and harness parameters](./pics_and_pixit.md#declarative-pixits-and-harness-parameters)
+-   pixit_value = self.user_params.get("pixit_name", default)
+
+## Support functionality
+
+To create a controller on a new fabric:
+
+```python
+new_CA = self.certificate_authority_manager.NewCertificateAuthority()
+
+new_fabric_admin = new_certificate_authority.NewFabricAdmin(vendorId=0xFFF1,
+    fabricId=self.matter_test_config.fabric_id + 1)
+
+TH2 = new_fabric_admin.NewController(nodeId=112233)
+```
+
+Open a commissioning window (ECW):
+
+```python
+params = self.OpenCommissioningWindow(dev_ctrl=self.default_controller, node_id=self.dut_node_id)
+```
+
+To create a new controller on the SAME fabric, allocate a new controller from
+the fabric admin.
+
+Fabric admin for default controller:
+
+```python
+  fa = self.certificate_authority_manager.activeCaList[0].adminList[0]
+  second_ctrl = fa.new_fabric_admin.NewController(nodeId=node_id)
+```
+
+Reboot the DUT during testing:
+
+```python
+# Simple reboot - device state persists
+await self.request_device_reboot()
+
+# Factory reset - clears device state (removes KVS)
+await self.request_device_factory_reset()
+```
+
+```shell
+# Example Command w/ run_python_test.py test runner:
+scripts/tests/run_python_test.py --factory-reset --app out/linux-x64-all-clusters/chip-all-clusters-app --app-args "--discriminator 1234 --KVS kvs1" --script-args "--storage-path admin_storage.json --commissioning-method on-network --discriminator 1234 --passcode 20202021 --PICS src/app/tests/suites/certification/ci-pics-values --endpoint 1" --script src/python_testing/TC_ACL_2_10.py --app-ready-pattern "APP STATUS: Starting event loop"
+```
+
+The `request_device_reboot()` and `request_device_factory_reset()` methods work
+differently depending on the environment. When the test is started with
+`run_python_test.py` as it is in the CI, need to make sure to import
+MatterBaseTest and have your test module inherit from it to make this
+functionality accessible during your test, the device is automatically rebooted
+and possibly factory reset during the test depending on test implementation
+using the restart_flag_file. When the test is started by some other means (e.g.,
+during certification testing), you'll be prompted to manually reboot or factory
+reset the device using the device-specific mechanism.
+
+If reboot utilized automatically expires existing controller sessions to device
+to force reconnection once device is back up and stable or if factory reset
+utilized the device will automatically re-enter commissioning mode to allow new
+commissioning once the device is back up and stable.
+
+See
+[TC-ACL-2.10](https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/TC_ACL_2_10.py)
+for an example testing ACL persistence across reboots.
+
+## Automating manual steps
+
+Some test plans have manual steps that require the tester to manually change the
+state of the DUT. To run these tests in a CI environment, specific example apps
+can be built such that these manual steps can be achieved by Matter or
+named-pipe commands.
+
+In the case that all the manual steps in a test script can be achieved just
+using Matter commands, you can check if the `PICS_SDK_CI_ONLY` PICS is set to
+decide if the test script should send the required Matter commands to perform
+the manual step.
+
+```python
+self.is_ci = self.check_pics("PICS_SDK_CI_ONLY")
+```
+
+In the case that a test script requires the use of named-pipe commands to
+achieve the manual steps, you can use the method
+`write_to_app_pipe(command,app_pipe)` to send these commands. This method
+requires value for `app_pipe`, if is not provided in the method it will use
+argument from the CMD or CI argument `--app-pipe` which must contain the string
+value with path of the pipe. This value depends on how the --app-pipe in the app
+is set up.
+
+Note: The name of the pipe can be anything while is a valid file path.
+
+Example of usage:
+
+```shell
+# First run the app with the desired app-pipe path:
+./out/darwin-arm64-all-clusters/chip-all-clusters-app --app-pipe  /tmp/ref_alm_2_2
+
+# Then execute the test with the app-pipe argument with the value defined while running the app.
+python3 src/python_testing/TC_REFALM_2_2.py --commissioning-method on-network --qr-code MT:-24J0AFN00KA0648G00  --PICS src/app/tests/suites/certification/ci-pics-values --app-pipe /tmp/ref_alm_2_2  --int-arg PIXIT.REFALM.AlarmThreshold:1
+```
+
+### Running on a separate machines
+
+If the DUT and test script are running on different machines, the
+`write_to_app_pipe` method can send named-pipe commands to the DUT via ssh. This
+requires two additional environment variables:
+
+-   `LINUX_DUT_IP` sets the DUT's IP address
+-   `LINUX_DUT_UNAME` sets the DUT's ssh username. If not set, this is assumed
+    to be `root`.
+
+The `write_to_app_pipe` also requires that ssh-keys are set up to access the DUT
+from the machine running the test script without a password. You can follow
+these steps to set this up:
+
+1. If you do not have a key, create one using `ssh-keygen`.
+2. Authorize this key on the remote host: run `ssh-copy-id user@ip` once, using
+   your password.
+3. From now on `ssh user@ip` will no longer ask for your password.
+
+## Other support utilities
+
+-   `basic_composition`
+    -   wildcard read, whole device analysis
+-   `CommissioningFlowBlocks`
+    -   various commissioning support for core tests
+-   `spec_parsing`
+    -   parsing data model XML into python readable format
+
+# Running tests locally
+
+## Setup
+
+The scripts require the python wheel to be compiled and installed before
+running. To compile and install the wheel, do the following:
+
+First activate the matter environment using either
+
+```shell
+. ./scripts/bootstrap.sh
+```
+
+or
+
+```shell
+. ./scripts/activate.sh
+```
+
+bootstrap.sh should be used for for the first setup, activate.sh may be used for
+subsequent setups as it is faster.
+
+Next build the python wheels and create / activate a venv
+
+```shell
+./scripts/build_python.sh -i out/python_env
+source out/python_env/bin/activate
+```
+
+## Running tests
+
+-   Note that devices must be commissioned by the python test harness to run
+    tests. chip-tool and the python test harness DO NOT share a fabric.
+
+Once the wheel is installed, you can run the python script as a normal python
+file for local testing against an already-running DUT. This can be an example
+app on the host computer (running in a different terminal), or a separate device
+that will be commissioned either over BLE or WiFi.
+
+For example, to run the TC-ACE-1.2 tests against an un-commissioned DUT:
+
+```shell
+python3 src/python_testing/TC_ACE_1_2.py --commissioning-method on-network --qr-code MT:-24J0AFN00KA0648G00
+```
+
+Some tests require additional arguments (ex. PIXITs or configuration variables
+for the CI). These arguments can be passed as sets of key/value pairs using the
+`--<type>-arg:<value>` command line arguments. For example:
+
+```shell
+--int-arg PIXIT.ACE.APPENDPOINT:1 --int-arg PIXIT.ACE.APPDEVTYPEID:0x0100 --string-arg PIXIT.ACE.APPCLUSTER:OnOff --string-arg PIXIT.ACE.APPATTRIBUTE:OnOff
+```
+
+## IDM Conformance tests
+
+The conformance tests are whole-node tests that ensure the device under test
+meets some of the basic interaction model, data model, and system model
+requirements in the specification. These tests are some of the most commonly
+failed tests as they often turn up real bugs on devices. The recommendation from
+the certification testing team is to run these tests before any other
+application-specific tests as failures on these tests normally result in device
+configuration changes that would necessitate re-test in other areas.
+
+The tests in
+[https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/TC_DeviceBasicComposition.py](https://github.com/project-chip/connectedhomeip/blob/master/TC_DeviceBasicComposition.py)
+cover the following checks:
+
+-   Root node checks for commissionable devices
+-   Base device checks for all endpoints
+-   Base cluster checks for all clusters (checking global attribute conformance)
+-   Basic utf-8 string format verification for string type attributes
+-   Tag list conformance for sibling endpoints
+-   Endpoint list verification for power source clusters
+-   Various Descriptor cluster checks
+-   "test" to create device description files in MatterTlvJson and text
+
+The tests in
+[https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/TC_DeviceConformance.py](https://github.com/project-chip/connectedhomeip/blob/master/TC_DeviceConformance.py)
+cover the following checks:
+
+-   Cluster conformance for every cluster is correct with respect to implemented
+    features, attributes and commands
+-   Cluster revisions are correct for the stated specification revision
+-   Device types implement all the required cluster and element overrides
+-   Device type revisions are correct for the stated specification revision
+-   Devices types respect superset rules
+
+The tests in
+[https://github.com/project-chip/connectedhomeip/blob/master/src/python_testing/TC_DefaultWarnings.py](https://github.com/project-chip/connectedhomeip/blob/master/TC_DefaultWarnings.py)
+cover the following checks:
+
+-   Checks for common unintentional default values in clusters that may have
+    been missed when implementing devices from the SDK
+
+### Running Conformance Tests
+
+There are a number of options for running conformance tests. Conformance tests
+can be run on devices that have been commissioned into the test framework
+fabric, similar to other certification tests. Because conformance tests operate
+entirely on a single wildcard read of the device attributes, they can be run
+over PASE on an uncommissioned device, or run against a device that has been
+commissioned into the test fabric. They can also be run against a MatterTlvJson
+file with a representation of this information. These files can be generated
+from the TC_DeviceBasicComposition.py tests, as described below.
+
+To run any of the python certification tests, you will first need to set up your
+environment as described in [Setup](#setup).
+
+#### Running conformance tests against an uncommissioned device over PASE
+
+First ensure the device is in commissioning mode. Then run the test against the
+device by supplying either the QR code, the manual pairing code or the
+discriminator / password pair.
+
+```shell
+python3 TC_DeviceConformance.py --qr-code MT:-24J0AFN00KA0648G00
+```
+
+```shell
+python3 TC_DeviceConformance.py --manual-code 34970112332
+```
+
+```shell
+python3 TC_DeviceConformance.py --discriminator 3840 --passcode 20202021
+```
+
+#### Running conformance tests against a commissioned device over CASE
+
+If the device has already been commissioned into the python testing fabric, you
+can run the test directly
+
+```shell
+python3 TC_DeviceConformance.py
+```
+
+This uses the default fabric storage and node ID. These can also be specified
+when running the tests.
+
+You can commission the device into the test fabric before running the test by
+using the `--commissioning-method` flag and the `--qr-code`, `--manual-code` or
+`--discriminator` and `--passcode` flags.
+
+For example:
+
+```shell
+python3 TC_DeviceConformance.py --discriminator 3840 --passcode 20202021 --commissioning-method on-network
+```
+
+You may also need to provide parameters for the commissioning method.
+
+If the commissioning-method is `ble-thread`, you will also need to provide the
+thread operational dataset via the `--thread-dataset-hex` parameter.
+
+If the commissioning method is `ble-wifi`, you will also need to provide the
+wifi SSID and password via the `--wifi-ssid` and `--wifi-passphrase` parameters.
+
+By default, the test stores fabric information in `admin_storage.json` in the
+current directory and uses a node ID of `0x12344321` for the device being
+tested. You can supply these directly by using the `--storage-path` and
+`--dut-node-id` flags.
+
+#### Running conformance tests against MatterTlvJson files
+
+Because the conformance tests are run against the attribute wildcard read from
+the device, they can also be run against a MatterTlvJson machine readable file
+without requiring the device to be physically present. To run against a
+previously generated MatterTlvJson device dump file:
+
+```shell
+python3 TC_DeviceConformance.py --string-arg test_from_file:device_dump_0xFFF1_0x8001_1.json
+```
+
+You can generate a MatterTlvJson file for a device by leveraging the
+certification test that generates these (TC-IDM-12.1, implemented in
+TC_DeviceBasicComposition.py).
+
+```shell
+python3 TC_DeviceBasicComposition.py --qr-code MT:-24J0AFN00KA0648G00 --tests test_TC_IDM_12_1
+```
+
+## Local host app testing
+
+`./scripts/tests/run_python_test.py` is a convenient script that starts an
+example DUT on the host and includes factory reset support
+
+```shell
+./scripts/tests/run_python_test.py --factory-reset --app <your_app> --app-args "whatever" --script <your_script> --script-args "whatever"
+```
+
+For example, to run TC-ACE-1.2 tests against the linux `chip-lighting-app`:
+
+```shell
+./scripts/tests/run_python_test.py --factory-reset --app ./out/linux-x64-light-no-ble/chip-lighting-app --app-args "--trace-to json:log" --script src/python_testing/TC_ACE_1_2.py --script-args "--commissioning-method on-network --qr-code MT:-24J0AFN00KA0648G00"
+```
+
+# Running tests in CI
+
+-   Add test to the `repl_tests_linux` section of `.github/workflows/tests.yaml`
+-   Don’t forget to set the PICS file to the ci-pics-values
+-   If there are steps in your test that will fail on CI (e.g. test vendor
+    checks), gate them on the PICS_SDK_CI_ONLY
+    -   ```python
+        if not self.is_pics_sdk_ci_only:
+            ...  # Step that will fail on CI
+        ```
+
+The CI test runner uses a structured environment setup that can be declared
+using structured comments at the top of the test file. To use this structured
+format, use the `--load-from-env` flag with the `run_python_tests.py` runner.
+
+Ex:
+`scripts/run_in_python_env.sh out/venv './scripts/tests/run_python_test.py --load-from-env /tmp/test_env.yaml --script src/python_testing/TC_ICDM_2_1.py'`
+
+## Running ALL or a subset of tests when changing application code
+
+`scripts/tests/local.py` is a wrapper that is able to build and run tests in a
+single command.
+
+Example to compile all prerequisites and then running all python tests:
+
+```shell
+./scripts/tests/local.py build         # will compile python in out/pyenv and ALL application prerequisites
+./scripts/tests/local.py python-tests  # Runs all python tests that are runnable in CI
+```
+
+## Defining the CI test arguments
+
+Arguments required to run a test can be defined in the comment block at the top
+of the test script. The section with the arguments should be placed between the
+`# === BEGIN CI TEST ARGUMENTS ===` and `# === END CI TEST ARGUMENTS ===`
+markers. Arguments should be structured as a valid YAML dictionary with a root
+key `test-runner-runs`, followed by the run identifier, and then the parameters
+for that run, e.g.:
+
+```python
+# See https://github.com/project-chip/connectedhomeip/blob/master/docs/testing/python.md#defining-the-ci-test-arguments
+# for details about the block below.
+#
+# === BEGIN CI TEST ARGUMENTS ===
+# test-runner-runs:
+#   run1:
+#     app: ${TYPE_OF_APP}
+#     app-args: <app_arguments>
+#     script-args: <script_arguments>
+#     factory-reset: <true|false>
+#     timeout: <float>   [optional]
+#     quiet: <true|false>
+# === END CI TEST ARGUMENTS ===
+```
+
+### Description of Parameters
+
+-   `app`: Indicates the application to be used in the test. Different app types
+    as needed could be referenced from section [name: Generate an argument
+    environment file ] of the file
+    [.github/workflows/tests.yaml](https://github.com/project-chip/connectedhomeip/blob/master/.github/workflows/tests.yaml)
+
+    -   Example: `${TYPE_OF_APP}`
+
+-   `factory-reset`: Determines whether a factory reset should be performed
+    before the test.
+
+    -   Example: `true`
+
+-   `timeout`: Sets the timeout of the test script. When this timeout expires
+    the test run is considered failed. The value is in seconds.
+
+    -   Example: `700.6`
+    -   Default: Value of test script `--timeout` argument plus slack time,
+        otherwise `matter.testing.defaults.TestingDefaults.DEFAULT_TIMEOUT_S`
+
+-   `quiet`: Sets the verbosity level of the test run. When set to True, the
+    test run will be quieter.
+
+    -   Example: `true`
+
+-   `app-args`: Specifies the arguments to be passed to the application during
+    the test.
+
+    -   Example:
+        `--discriminator 1234 --KVS kvs1 --trace-to json:${TRACE_APP}.json`
+
+-   `app-ready-pattern`: Regular expression pattern to match against the output
+    of the application to determine when the application is ready. If this
+    parameter is specified, the test runner will not run the test script until
+    the pattern is found.
+
+    -   Example: `"Manual pairing code: \\[\\d+\\]"`
+
+-   `app-stdin-pipe`: Specifies the path to the named pipe that the test runner
+    might use to send input to the application.
+
+    -   Example: `/tmp/app-fifo`
+
+-   `script-args`: Specifies the arguments to be passed to the test script.
+
+    -   Example:
+        `--storage-path admin_storage.json --commissioning-method on-network --discriminator 1234 --passcode 20202021 --trace-to json:${TRACE_TEST_JSON}.json --trace-to perfetto:${TRACE_TEST_PERFETTO}.perfetto`
+
+This structured format ensures that all necessary configurations are clearly
+defined and easily understood, allowing for consistent and reliable test
+execution.
+
+# Test Module Guards
+
+Guards let you run test steps only when certain conditions are met (e.g., a
+cluster has a feature, attribute, or command).
+
+See below sections for usage examples please.
+
+## Cluster Guards
+
+The following are inherited from the `matter_testing` module, so they do not
+need to be imported. For more examples on these guards, see
+`src/python_testing/support_modules/binfo_attributes_verification.py`.
+
+Use these to skip a test step when the endpoint or cluster does not support the
+feature, attribute, or command under test.
+
+### Attribute Guard
+
+Runs the test step only if the endpoint and cluster contain the given attribute:
+
+Example:
+
+```python
+self.step(<STEP_NUMBER>)
+if await self.attribute_guard(endpoint=self.endpoint, attribute=attributes.OperationalState):
+    # If attribute exists then test step continues, else test step is skipped.
+```
+
+### Feature Guard
+
+Runs the test step only if the cluster on the endpoint supports the given
+feature:
+
+Example:
+
+```python
+self.step(<STEP_NUMBER>)
+if await self.feature_guard(endpoint=self.endpoint, cluster=Clusters.BooleanStateConfiguration, feature_int=Clusters.BooleanStateConfiguration.Bitmaps.Feature.kAudible):
+    # IF feature available then do test step, else test step is skipped.
+```
+
+### Command Guard
+
+Runs the test step only if the endpoint has the cluster that supports the given
+command:
+
+Example:
+
+```python
+self.step(<STEP_NUMBER>)
+if await self.command_guard(endpoint=self.endpoint, command=commands.Resume):
+    # If command available, then do test step here, else test step is skipped
+```
+
+## Additional Test Guards
+
+This section covers the PICS guard and the `run_if_endpoint_matches` decorator,
+with an example for each.
+
+### PICS Guard
+
+Inherited from `matter_testing` (no import needed). Runs the test step only if
+the given PICS key is enabled in the PICS file:
+
+Example:
+
+```python
+if self.pics_guard(self.check_pics(<PICS here>)):
+    self.step(<STEP_NUMBER>)
+    # Do test step logic here
+else:
+    self.skip_step(<STEP_NUMBER>)
+    #skip test step
+```
+
+### run_if_endpoint_matches decorator
+
+Import the decorator and the check functions from `matter.testing.decorators`:
+
+```python
+from matter.testing.decorators import has_feature, has_command, has_attribute, has_cluster, run_if_endpoint_matches
+```
+
+Skips the whole test if the specified endpoint does not have the required
+cluster, feature, attribute, or command. Apply the decorator above the test
+function.
+
+Examples:
+
+```python
+#Feature:
+@run_if_endpoint_matches(
+        has_feature(Clusters.CameraAvStreamManagement, Clusters.CameraAvStreamManagement.Bitmaps.Feature.kSnapshot)
+    )
+async def test_TC_AVSM_2_2(self):
+    # Do test step logic if feature exists, else this test is skipped
+
+#Cluster
+@run_if_endpoint_matches(has_cluster(Clusters.AdministratorCommissioning))
+async def test_TC_CADMIN_1_3(self):
+    # Do test step logic if cluster exists, else this test is skipped
+
+#Attribute:
+@run_if_endpoint_matches(has_attribute(Clusters.AccessControl.Attributes.Extension))
+async def test_TC_ACL_2_3(self):
+    # Do test step logic if attribute exists, else this test is skipped
+
+#Command
+@run_if_endpoint_matches(has_command(Clusters.OperationalCredentials.Commands.SetVIDVerificationStatement))
+async def test_TC_OPCREDS_3_8(self):
+    # Do test step logic if command is available, else this test is skipped
+
+```
+
+## Wildcard subscription read verification
+
+This verification is enabled by default for tests that do not explicitly disable
+it.
+
+### Overview
+
+Certification tests can use a background **wildcard attribute subscription**
+(all endpoints, all clusters, all attributes) to cross-check routine attribute
+reads against values observed through the subscription path.
+
+The framework maintains a subscription-backed attribute cache and, when enabled,
+read helpers compare direct read responses against cached subscription values to
+help detect missing reports, stale values, or reporting inconsistencies.
+
+The comparison path is implemented in `matter_testing.py`
+(`verify_attribute_subscription_value`, `read_single_attribute_check_success`,
+and related helpers), while subscription client handling lives in
+`event_attribute_reporting.py`.
+
+### Architecture
+
+#### Secondary controller
+
+The wildcard subscription runs on a dedicated `ChipDeviceController` rather than
+`default_controller`.
+
+This avoids interference from test code that issues `ReadAttribute` calls with
+`keepSubscriptions=False` on the primary controller, which could otherwise tear
+down the background subscription.
+
+#### Subscription flags
+
+The wildcard subscribe uses:
+
+-   `keepSubscriptions=False`
+-   `autoResubscribe=False`
+
+`keepSubscriptions=False` avoids leaving stale server-side subscriptions behind
+if setup is retried.
+
+`autoResubscribe=False` avoids repeated client resubscribe attempts when tests
+temporarily overwrite ACLs in ways that remove the subscription controller's
+administer privilege, which can otherwise add noise and unnecessary DUT load.
+
+#### ACL handling
+
+Before the subscription starts, the framework snapshots the DUT ACL and appends
+an administer entry for the subscription controller.
+
+`teardown_test` restores the original ACL snapshot so each test starts from a
+known ACL state.
+
+Tests that replace the entire ACL during a step should include the subscription
+controller entry (see `get_subscription_acl_entry()` on `MatterBaseTest`) if
+subscription coverage needs to remain active through that step.
+
+### C/Q excluded attributes
+
+Attributes marked in the data model XML with:
+
+-   **Changes Omitted (C)**
+-   **Quieter Reporting (Q)**
+
+are excluded from wildcard subscription verification, since these attributes are
+not expected to behave like ordinary report-driven attributes.
+
+A small transitional allowlist (`_CQ_EXPECTED_BUT_NOT_YET_MARKED` in
+`matter_testing.py`) can treat additional attributes as C until XML/spec
+metadata catches up.
+
+Each temporary entry should cite a tracking issue and be removed once the data
+model is corrected and regenerated.
+
+### Disabling the wildcard subscription or verification
+
+**Disable the background subscription entirely** (no cache, no ACL append for
+the subscription controller):
+
+-   Per test class: `disable_wildcard_subscription = True`
+-   Per run / harness: `--no-wildcard-subscription`
+    (`matter_test_config.no_wildcard_subscription`)
+
+**Keep the subscription but skip comparing reads to the cache:**
+
+-   Per test class: `default_verify_wildcard_subscription = False`
+-   Single read: pass `verify_wildcard_subscription=False` to the read helper,
+    otherwise this defaults to True.
+
+### Known limitations
+
+This framework has exposed cases where some attributes are effectively polled on
+read in the SDK rather than updated through a reporting path.
+
+Such attributes may appear in the subscription priming read but later disagree
+with a direct read, producing mismatches that are not DUT subscription failures.
+
+The canonical example is Software Diagnostics heap counters.
+
+These issues are tracked separately as SDK/spec/XML alignment gaps rather than
+framework defects.
+
+Per-fabric attributes may also require special handling when comparing values
+across controllers operating on different fabrics (for example, fabric-scoped
+attributes such as CurrentFabricIndex can legitimately differ across fabrics and
+should not be treated as subscription failures).
+
+Direct reads may also occasionally overtake in-flight subscription reports
+during attribute transitions, which can create transient mismatches that are
+framework timing artifacts rather than missing DUT reports.

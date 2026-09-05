@@ -1,0 +1,1716 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MATTER NXP RT1060 Applications Guide &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'platforms/nxp/nxp_rt1060_guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MATTER NXP RT1170 Applications Guide" href="nxp_rt1170_guide.html" />
+    <link rel="prev" title="Thread Border Router usage" href="nxp_otbr_guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Matter  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../GLOSSARY.html">Matter Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributing to matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/pr_reviews.html">How Pull Request Reviews Work in the Matter SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/pull_request_guidelines.html">Guidelines for writing pull requests</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ci-cd/index.html">CI/CD Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../development_controllers/index.html">Development Controllers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/chip-tool/index.html">chip-tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../development_controllers/matter-repl/index.html">matter-repl</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/matter-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/matter-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development_controllers/matter-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ids_and_codes/index.html">IDs and Codes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ids_and_codes/ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ids_and_codes/spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ids_and_codes/spec_device_types.html">List of currently defined spec device types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ids_and_codes/zap_clusters.html">List of currently defined ZAP clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/cluster_tester.html">ClusterTester Helper Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/index.html">Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/batch-commands.html">Accepting Batch Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/data_model_errata.html">Data Model Errata Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/device-attestation-revocation-guide.html">Device Attestation Revocation Testing Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/joint_fabric_guide.html">Joint Fabric Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/migrating_ember_cluster_to_code_driven.html">Migrating Ember Clusters to Code-Driven Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/updating-matter-device-guide.html">Guide: Updating a Matter Device Using the OTA Provider Sample App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/writing_clusters.html">Writing and Updating Clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Platform Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../android/index.html">Android</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../android/android_building.html">Building Android</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../asr/index.html">ASR</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../bouffalolab/index.html">Bouffalolab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/getting_started.html">Checking out the Matter code</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/ota_upgrade.html">Build OTA image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/platform_overview.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> SoCs</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../bouffalolab/rpc_console.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> with RPC console</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../esp32/index.html">Espressif (ESP32) Getting Started Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/diagnostics.html">Using ESP32 Diagnostic Logs Provider</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../esp32/esp_hosted.html">ESP-Hosted Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../infineon/index.html">Infineon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../linux/index.html">Linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/debugging_tips.html">Debugging tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nrf/index.html">NRF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">NXP</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_application_architecture.html">NXP Matter Application Architecture for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_examples_freertos_platforms.html">Matter NXP Examples Guide for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_mcxw72_guide.html">Matter NXP MCXW72 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_mcxw_ota_guide.html">NXP MCXW OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">MATTER NXP RT1060 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_rt1170_guide.html">MATTER NXP RT1170 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_rw61x_guide.html">Matter NXP RW61x Applications Guide targeting FreeRTOS OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_se05x_guide.html">NXP SE05x Secure Element Integration in Matter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_zephyr_guide.html">Matter NXP Zephyr Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openthread/index.html">OpenThread</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../silabs/index.html">Silabs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../stm32/index.html">STM32</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ti/index.html">TI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../style/CODING_STYLE_GUIDE.html">Coding Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/README.html">Matter Example Applications</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_purifier.html">Air Purifier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/air_quality.html">Air Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters.html">All clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/nxp/README.html">CHIP NXP All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/realtek/common/README.html">Matter All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_clusters_minimal.html">All clusters minimal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/all_devices.html">All devices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/README.html">Matter All-Devices Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/all-devices-common/device/capabilities/README.html">Shared Device Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/all-devices-common/device/types/README.html">Matter Simulated Device Types Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/all-devices-common/oob-accessors/README.html">Out-of-Band (OOB) Control and Simulation Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/all-devices-common/providers/README.html">All-Devices Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/esp32/README.html">All Devices App for ESP32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/silabs/README.html">Matter All-Devices Application — Silabs (EFR32)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/telink/README.html">All Devices App for Telink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/adding_new_device.html">How to Add a New Simulated Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/architecture.html">Architecture &amp; Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/custom_product_baseline.html">Custom Product Baseline Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/starting_up.html">Application Initialization &amp; Command Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/supported_clusters.html">Matter Clusters Implementation Status (159 total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/supported_device_types.html">Matter Device Types Implementation Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/testing.html">Testing &amp; Simulation Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/all-devices-app/docs/design/out_of_band_control.html">Out-of-Band Control Architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/bridge.html">Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/camera.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/camera-app/linux/README.html">CHIP Linux Camera Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/camera-app/linux/doc/camera-app-architecture.html">Camera App Architecture and Design</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/camera_controller.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/camera-controller/README.html">Matter Camera Controller Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chef.html">CHEF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/chip_tool.html">CHIP Tool example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/closure.html">Closure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/closure-app/linux/README.html">CHIP Linux Closure Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/closure-app/silabs/README.html">Matter SiWx917 Closure Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/contact_sensor.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/darwin.html">CHIP Tool Darwin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/dishwasher.html">Dishwasher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/electrical_protection.html">Electrical Protection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/electrical-protection-app/linux/README.html">CHIP Linux Electrical Protection Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/energy_gateway.html">Energy Gateway</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-gateway-app/esp32/README.html">Matter ESP32 Energy Gateway Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/energy-gateway-app/linux/README.html">Matter Linux Energy Gateway Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/evse.html">EVSE</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/evse-app/esp32/README.html">Matter ESP32 EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/evse-app/linux/README.html">Matter Linux EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/evse-app/silabs/README.html">Matter EFR32 EVSE Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_admin.html">Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_bridge.html">Fabric Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/fabric_sync.html">Fabric Sync</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/java_matter_controller.html">Java matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/joint_fabric_admin.html">Joint Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/jf-admin-app/linux/README.html">Matter Joint Fabric Admin Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/joint_fabric_control.html">Joint Fabric Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/jf-control-app/README.html">Matter Joint Fabric Control Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/kotlin_matter_controller.html">Kotlin matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/laundry_washer.html">Laundry washer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/README.html">CHIP NXP Laundry Washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/light_switch.html">Light switch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/realtek/common/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/ti/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6200 Light Switch Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting.html">Lighting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/realtek/common/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/realtek/zephyr/README.html">Matter Realtek Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/silabs/zephyr/README.html">Matter Silicon Labs Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/stm32/STM32WB5MM-DK/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/stm32/STM32WBA65I-DK1/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/lighting-app/telink/MULTI_ENDPOINT_IDENTIFY.html">Matter Lighting App Multi-Endpoint Configuration Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/ti/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6200 Lighting Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lighting_no_unique_id.html">Lighting without unique id</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lit_icd.html">Lit ICD</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/lock.html">Lock</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/realtek/common/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/ti/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/lock-app/qpg/APPLICATION.html">Matter QPG6200 Lock Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/log_source.html">Log source</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/microwave.html">Microwave ovens</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/minimal_mdns.html">Minimal MDNS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_provider.html">OTA Provider</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/ota_requestor.html">OTA Requestor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/realtek/common/README.html">Matter OTA Requestor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/persistent_storage.html">Persistent storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6200 Persistent Storage Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump.html">Pump</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-app/ti/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/pump_controler.html">Pump controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/pump-controller-app/ti/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/refrigerator.html">Refrigerator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/rvc.html">RVC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/shell.html">Shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/smoke_co.html">Smoke CO Alarm example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tbr.html">Thread Border Router</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/temperature_measurement.html">Temperature measurement</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/thermostat.html">Thermostat</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/linux/README.html">Matter Linux Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/nxp/README.html">CHIP NXP Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/realtek/common/README.html">Matter Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermostat/qpg/APPLICATION.html">Matter QPG6200 Thermostat Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv.html">TV</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/tv_casting.html">TV casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/darwin/README.html">Matter TV Casting Darwin (iOS/macOS) App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/virtual_device.html">Virtual Device App</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/water_heater.html">Water Heater</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/water-heater-app/esp32/README.html">Matter ESP32 Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/water-heater-app/linux/README.html">Matter Linux Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/water-heater-app/silabs/README.html">Matter EFR32 Water Heater Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/water_leak_detector.html">Water Leak Detector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/water-leak-detector-app/linux/README.html">Matter Linux Water Leak Detector Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/window.html">Window</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/realtek/common/README.html">Matter Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../product_considerations/index.html">Discussion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../testing/index.html">Testing Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ChipDeviceCtrlAPI.html">ChipDeviceCtrl.py API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/python.html">Python framework tests</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/ci-ccache.html">ccache in CI: troubleshooting and controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/chip-cert/README.html">Matter/CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/ELF_SIZE_TOOLING.html">ELF binary size information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../zap_and_codegen/index.html">ZAP and Codegen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../zap_and_codegen/code_generation.html">Code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../zap_and_codegen/zap_intro.html">ZAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/platforms/nxp/nxp_rt1060_guide.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/platforms/nxp/nxp_rt1060_guide.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MATTER NXP RT1060 Applications Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-configurations">Supported configurations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-transceiver">Hardware requirements RT1060 + transceiver</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-iw416">Hardware requirements RT1060+IW416</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-88w8801">Hardware requirements RT1060+88W8801</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-k32w0">Hardware requirements RT1060 + K32W0</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-evk-c-iw612-iw610">Hardware requirements RT1060-EVK-C + IW612 / IW610</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-88w8801-k32w0x1dk6">Hardware requirements RT1060 + 88W8801 + K32W0x1DK6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-build-system">CMake Build System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manufacturing-data">Manufacturing data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashing-and-debugging">Flashing and debugging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-example">Testing the example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uart-details">UART details</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ota-software-update">OTA Software Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-border-router-overview">Thread Border Router overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-se05x-secure-element-with-mimxrt1060-evk-b">Enabling SE05x Secure Element with MIMXRT1060-EVK-B</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-connections">Hardware connections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-options">Build options</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="matter-nxp-rt1060-applications-guide">
+<h1>MATTER NXP RT1060 Applications Guide<a class="headerlink" href="#matter-nxp-rt1060-applications-guide" title="Link to this heading">#</a></h1>
+<hr>
+<ul class="simple">
+<li><p><a class="reference internal" href="#matter-nxp-rt1060-applications-guide">MATTER NXP RT1060 Applications Guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction">Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#supported-configurations">Supported configurations</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-transceiver">Hardware requirements RT1060 + transceiver</a></p>
+<ul>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-iw416">Hardware requirements RT1060+IW416</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-88w8801">Hardware requirements RT1060+88W8801</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-k32w0">Hardware requirements RT1060 + K32W0</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-evk-c-iw612-iw610">Hardware requirements RT1060-EVK-C + IW612 / IW610</a></p></li>
+<li><p><a class="reference internal" href="#hardware-requirements-rt1060-88w8801-k32w0x1dk6">Hardware requirements RT1060 + 88W8801 + K32W0x1DK6</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#building">Building</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cmake-build-system">CMake Build System</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#manufacturing-data">Manufacturing data</a></p></li>
+<li><p><a class="reference internal" href="#flashing-and-debugging">Flashing and debugging</a></p></li>
+<li><p><a class="reference internal" href="#testing-the-example">Testing the example</a></p>
+<ul>
+<li><p><a class="reference internal" href="#uart-details">UART details</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ota-software-update">OTA Software Update</a></p></li>
+<li><p><a class="reference internal" href="#thread-border-router-overview">Thread Border Router overview</a></p></li>
+</ul>
+</li>
+</ul>
+<p><a name="intro"></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><img alt="RT1060 EVK-B" src="../../_images/MIMXRT1060-EVKB-TOP.png" /></p>
+<p>The RT1060 application provides a working demonstration of the RT1060 board
+integration, built using the Project MATTER codebase and the NXP MCUX SDK.</p>
+<p>The example targets the
+<a class="reference external" href="https://www.nxp.com/design/development-boards/i-mx-evaluation-and-development-boards/mimxrt1060-evk-i-mx-rt1060-evaluation-kit:MIMXRT1060-EVK">NXP MIMXRT1060-EVK-B</a>
+board by default. It is also possible to use the older MIMXRT1060-EVK board,
+build and board setup instructions differ in some steps.</p>
+<section id="supported-configurations">
+<h3>Supported configurations<a class="headerlink" href="#supported-configurations" title="Link to this heading">#</a></h3>
+<p>Here are listed configurations supported on RT1060.</p>
+<p>Matter over Wi-Fi :</p>
+<ul class="simple">
+<li><p>RT1060 + IW416 (Wi-Fi + BLE)</p></li>
+<li><p>RT1060 + 88W8801 (Wi-Fi)</p></li>
+<li><p>RT1060-EVK-C + IW612 (Wi-Fi + 15.4 + BLE)</p></li>
+<li><p>RT1060-EVK-C + IW610 (Wi-Fi + 15.4 + BLE)</p></li>
+</ul>
+<p>Matter over Thread :</p>
+<ul class="simple">
+<li><p>RT1060 + K32W0 (15.4 + BLE)</p></li>
+<li><p>RT1060-EVK-C + IW612 (Wi-Fi + 15.4 + BLE)</p></li>
+<li><p>RT1060-EVK-C + IW610 (Wi-Fi + 15.4 + BLE)</p></li>
+</ul>
+<p>Matter over Wi-Fi with Openthread Border Router support :</p>
+<ul class="simple">
+<li><p>RT1060 + 88W8801 + K32W0x1DK6</p></li>
+<li><p>RT1060-EVK-C + IW612 (Wi-Fi + 15.4 + BLE)</p></li>
+<li><p>RT1060-EVK-C + IW610 (Wi-Fi + 15.4 + BLE)</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> For CMake builds, Matter over Wi-Fi with <code class="docutils literal notranslate"><span class="pre">RT1060-EVK-C</span> <span class="pre">+</span> <span class="pre">IW612</span></code> is
+the default configuration when no <code class="docutils literal notranslate"><span class="pre">prj_&lt;flavour&gt;.conf</span></code> file and no transceiver
+option is specified in the <a class="reference internal" href="#cmake-build-system">build</a>.</p>
+</div></blockquote>
+</section>
+<section id="hardware-requirements-rt1060-transceiver">
+<h3>Hardware requirements RT1060 + transceiver<a class="headerlink" href="#hardware-requirements-rt1060-transceiver" title="Link to this heading">#</a></h3>
+<section id="hardware-requirements-rt1060-iw416">
+<h4>Hardware requirements RT1060+IW416<a class="headerlink" href="#hardware-requirements-rt1060-iw416" title="Link to this heading">#</a></h4>
+<p>Host part:</p>
+<ul class="simple">
+<li><p>1 MIMXRT1060-EVK-B or MIMXRT1060-EVK board</p></li>
+<li><p>external 5V supply</p></li>
+</ul>
+<p>Transceiver part:</p>
+<ul class="simple">
+<li><p>1 AzureWave AW-AM510-uSD evaluation board</p></li>
+</ul>
+<p>Jumper settings for MIMXRT1060-EVK-B (enables external 5V supply):</p>
+<ul class="simple">
+<li><p>remove J40 5-6</p></li>
+<li><p>connect J40 1-2</p></li>
+<li><p>connect J45 with external power (controlled by SW6 - position 3)</p></li>
+</ul>
+<p>Jumper settings for MIMXRT1060-EVK (enables external 5V supply):</p>
+<ul class="simple">
+<li><p>remove J1 5-6</p></li>
+<li><p>connect J1 1-2</p></li>
+<li><p>connect J2 with external power (enabled by SW1 - position 3)</p></li>
+</ul>
+<p>The hardware should be reworked according to the chapter <em>Hardware Rework Guide
+for MIMXRT1060-EVK-B and AW-AM510-uSD</em> or the chapter <em>Hardware Rework Guide for
+MIMXRT1060-EVK and AW-AM510-uSD</em> in the document
+<em><code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">Rework</span> <span class="pre">Guide</span> <span class="pre">for</span> <span class="pre">EdgeFast</span> <span class="pre">BT</span> <span class="pre">PAL</span></code></em> which can be found in the NXP
+RT1060 SDK (<em>docs/wireless/bluetooth/<code class="docutils literal notranslate"><span class="pre">edgefast_bluetooth</span></code>/Hardware Rework Guide
+for EdgeFast BT PAL.pdf</em>):</p>
+<ul class="simple">
+<li><p>Make sure resistors R368/R376/R347/R349/R365/R363/R193/R186 are removed.</p></li>
+</ul>
+<p>Only the SDK package downloaded from https://mcuxpresso.nxp.com contains the PDF
+document mentioned above, it is not present in the SDK downloaded from GitHub
+using the west tool.</p>
+<p>Jumper settings for AzureWave AW-AM510-uSD Module:</p>
+<ul class="simple">
+<li><p>J4 1-2: <code class="docutils literal notranslate"><span class="pre">VIO</span></code> 1.8V (Voltage level of SD-IO pins is 1.8V)</p></li>
+<li><p>J2 1-2: 3.3V <code class="docutils literal notranslate"><span class="pre">VIO_uSD</span></code> (Power Supply from uSD connector)</p></li>
+<li><p>The pin 1 of J4 is not marked on the board. Please note that pin numbering
+of J4 is opposite to J2.</p></li>
+</ul>
+<p>Plug AW-AM510-uSD into uSD connector J22 on MIMXRT1060-EVK-B or J39 on
+MIMXRT1060-EVK.</p>
+<p>Connect the following pins between RT1060 and AW-AM510-uSD to enable Bluetooth
+HCI UART:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>PIN NAME</p></th>
+<th class="head text-center"><p>AW-AM510-uSD</p></th>
+<th class="head text-center"><p>MIMXRT1060-EVK-B</p></th>
+<th class="head text-center"><p>MIMXRT1060-EVK</p></th>
+<th class="head text-center"><p>PIN NAME OF RT1060</p></th>
+<th class="head text-center"><p>GPIO NAME OF RT1060</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_TXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J10</span> <span class="pre">(pin</span> <span class="pre">4)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J16</span> <span class="pre">(pin</span> <span class="pre">1)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J22</span> <span class="pre">(pin</span> <span class="pre">1)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_RXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_07</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_RXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J10</span> <span class="pre">(pin</span> <span class="pre">2)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J16</span> <span class="pre">(pin</span> <span class="pre">2)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J22</span> <span class="pre">(pin</span> <span class="pre">2)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_TXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_06</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_RTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J10</span> <span class="pre">(pin</span> <span class="pre">6)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33</span> <span class="pre">(pin</span> <span class="pre">3)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23</span> <span class="pre">(pin</span> <span class="pre">3)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_CTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_04</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_CTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J10</span> <span class="pre">(pin</span> <span class="pre">8)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33</span> <span class="pre">(pin</span> <span class="pre">4)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23</span> <span class="pre">(pin</span> <span class="pre">4)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_RTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_05</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GND</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J6</span> <span class="pre">(pin</span> <span class="pre">7)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J32</span> <span class="pre">(pin</span> <span class="pre">7)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J25</span> <span class="pre">(pin</span> <span class="pre">7)</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GND</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GND</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Attach external antenna into connector on AW-AM510-uSD.</p>
+<p>Additional information about the AW-AM510-uSD can be found in the user manual
+<em>UM11441 - Getting Started with NXP-based Wireless Modules and i.MX RT Platform
+Running RTOS</em>, which can be found in the NXP RT1060 SDK
+(docs/wireless/UM11441-Getting-Started-with-NXP-based-Wireless-Modules-and-i.MX-RT-Platform-Running-on-RTOS.pdf).
+Only the SDK package downloaded from https://mcuxpresso.nxp.com contains the PDF
+document, it is not present in the SDK downloaded from GitHub using the west
+tool.</p>
+</section>
+<section id="hardware-requirements-rt1060-88w8801">
+<h4>Hardware requirements RT1060+88W8801<a class="headerlink" href="#hardware-requirements-rt1060-88w8801" title="Link to this heading">#</a></h4>
+<p>Host part:</p>
+<ul class="simple">
+<li><p>1 MIMXRT1060-EVK-B</p></li>
+</ul>
+<p>Transceiver part :</p>
+<ul class="simple">
+<li><p>1 88W8801 2DS M.2 Module (rev A)</p></li>
+<li><p>1 Murata uSD-M.2 Adapter (rev B1)</p></li>
+</ul>
+<p>The 88W8801 2DS M.2 Module should be inserted into the Murata uSD-M.2 Adapter
+and inserted in the uSD slot J22 of MIMXRT1060-EVK-B. The Murata uSD-M.2 Adapter
+can be powered up using uSD pins. For that, set the J1 jumper of Murata uSD-M.2
+to position 2-3 (Position 2-3: <code class="docutils literal notranslate"><span class="pre">VBAT</span> <span class="pre">supply</span></code>, typical 3.1 ~ 3.3V, from microSD
+connector).</p>
+<p>Note: as the 88W8801 module supports only the 2.4 GHz Wi-Fi band, it is
+mandatory to connect it to a Wi-Fi access point on the 2.4 GHz band.</p>
+</section>
+<section id="hardware-requirements-rt1060-k32w0">
+<h4>Hardware requirements RT1060 + K32W0<a class="headerlink" href="#hardware-requirements-rt1060-k32w0" title="Link to this heading">#</a></h4>
+<p>Host part:</p>
+<ul class="simple">
+<li><p>1 MIMXRT1060-EVK-B or MIMXRT1060-EVK board</p></li>
+</ul>
+<p>Transceiver part:</p>
+<ul class="simple">
+<li><p>1 OM15076-3 Carrier Board (DK6 board)</p></li>
+<li><p>1 K32W0 Module to be plugged on the Carrier Board</p></li>
+</ul>
+<p><strong>Board settings</strong></p>
+<p>The below table explains pin settings (UART settings) to connect the
+MIMXRT1060-EVK-B (host) to a k32w061 transceiver (rcp).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>PIN NAME</p></th>
+<th class="head text-center"><p>DK6 (K32W061)</p></th>
+<th class="head text-center"><p>MIMXRT1060-EVK-B</p></th>
+<th class="head text-center"><p>MIMXRT1060-EVK</p></th>
+<th class="head text-center"><p>PIN NAME OF RT1060</p></th>
+<th class="head text-center"><p>GPIO NAME OF RT1060</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_TXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">PIO,</span> <span class="pre">pin</span> <span class="pre">8</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J16,</span> <span class="pre">pin</span> <span class="pre">1</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J22,</span> <span class="pre">pin</span> <span class="pre">1</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_RXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_07</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_RXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">PIO,</span> <span class="pre">pin</span> <span class="pre">9</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J16,</span> <span class="pre">pin</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J22,</span> <span class="pre">pin</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_TXD</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_06</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_RTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">PIO,</span> <span class="pre">pin</span> <span class="pre">6</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33,</span> <span class="pre">pin</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23,</span> <span class="pre">pin</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_CTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_04</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">UART_CTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">PIO,</span> <span class="pre">pin</span> <span class="pre">7</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33,</span> <span class="pre">pin</span> <span class="pre">4</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23,</span> <span class="pre">pin</span> <span class="pre">4</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">LPUART3_RTS</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_05</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GND</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J3,</span> <span class="pre">pin</span> <span class="pre">1</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J32,</span> <span class="pre">pin</span> <span class="pre">7</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J25,</span> <span class="pre">pin</span> <span class="pre">7</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">XX</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">XX</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">RESET</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">RSTN</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33,</span> <span class="pre">pin</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23,</span> <span class="pre">pin</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_11</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_11</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">DIO5/ISP</span> <span class="pre">Entry</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">PIO,</span> <span class="pre">pin</span> <span class="pre">5</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J33,</span> <span class="pre">pin</span> <span class="pre">1</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">J23,</span> <span class="pre">pin</span> <span class="pre">1</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_10</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">GPIO_AD_B1_10</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The below picture shows pins connections for the MIMXRT1060-EVK.</p>
+<p><img alt="rt1060_k32w061_pin_settings" src="../../_images/rt1060_k32w061_pin_settings.jpg" /></p>
+</section>
+<section id="hardware-requirements-rt1060-evk-c-iw612-iw610">
+<h4>Hardware requirements RT1060-EVK-C + IW612 / IW610<a class="headerlink" href="#hardware-requirements-rt1060-evk-c-iw612-iw610" title="Link to this heading">#</a></h4>
+<p>Host part:</p>
+<ul>
+<li><p>1 MIMXRT1060-EVK-C</p>
+<p>Hardware should be reworked as below:</p>
+<ul class="simple">
+<li><p>populate R93, R96, R2155, R2156, R2157, R2158, R2159 with 0Ohm resistors</p></li>
+<li><p>J76 and J107 jumpers in 2-3 position.</p></li>
+<li><p>J109 and J110 jumpers in 1-2 position.</p></li>
+<li><p>most of MIMXRT1060-EVK-C board would already have the re-work, but if
+not already done, the following modification is required: disconnect
+pin15 of component U9</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="rt1060_evkc_IW612_hw_rework" src="../../_images/rt1060_evkc_IW612_hw_rework.jpg" /></p>
+<p><img alt="rt1060_evkc_IW612_hw_rework_detail" src="../../_images/rt1060_evkc_IW612_hw_rework_detail.jpg" /></p>
+<p>Transceiver part :</p>
+<ul class="simple">
+<li><p>1
+<a class="reference external" href="https://www.nxp.com/products/wireless/wi-fi-plus-bluetooth-plus-802-15-4/2-4-5-ghz-dual-band-1x1-wi-fi-6-802-11ax-plus-bluetooth-5-2-plus-802-15-4-tri-radio-solution:IW612">2EL M2 A1 IW612 Secure Module</a></p></li>
+</ul>
+<p><img alt="" src="../../_images/iwx612_2EL.jpg" /></p>
+<ul class="simple">
+<li><p>2
+<a class="reference external" href="https://www.nxp.com/products/wireless-connectivity/wi-fi-plus-bluetooth-plus-802-15-4/2-4-5ghz-dual-band-1x1-wi-fi-6-plus-bluetooth-low-energy-5-4-plus-802-15-4-tri-radio-solution:IW610">2LL M2 IW610 Secure Module</a>
+Need to populate R9 with a 10kOhm resistor:</p></li>
+</ul>
+<p><img alt="" src="../../_images/iw610_2LL.jpg" />
+<img alt="" src="../../_images/iw610_hw_rework.jpg" /></p>
+</section>
+<section id="hardware-requirements-rt1060-88w8801-k32w0x1dk6">
+<h4>Hardware requirements RT1060 + 88W8801 + K32W0x1DK6<a class="headerlink" href="#hardware-requirements-rt1060-88w8801-k32w0x1dk6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>i.MX RT1060 EVK-A or EVK-B board</p></li>
+<li><p>88W8801 module (for Wi-Fi connection), for example 88W8801 2DS M.2 Module
+(rev A) and Murata uSD-M.2 Adapter (rev B1)</p></li>
+<li><p>K32W0x1 mezzanine module (for Thread connection)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IOT_ZTB-DK006</span></code> carrier board for the K32W0x1 module (referenced as DK6
+carrier board)</p></li>
+</ul>
+<p><a name="building"></a></p>
+</section>
+</section>
+</section>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Link to this heading">#</a></h2>
+<p>Make sure to follow shared build instructions from
+<a class="reference internal" href="nxp_examples_freertos_platforms.html#set-up-the-build-environment"><span class="std std-ref">MATTER NXP Examples Guide for FreeRTOS platforms</span></a>
+to set-up your environment.</p>
+<blockquote>
+<div><p>In the following steps, the “all-clusters-app” is used as an example.</p>
+</div></blockquote>
+<section id="cmake-build-system">
+<h3>CMake Build System<a class="headerlink" href="#cmake-build-system" title="Link to this heading">#</a></h3>
+<p>The example supports configuration and build with CMake build system. You can
+find more information in
+<a class="reference internal" href="nxp_examples_freertos_platforms.html#cmake-build-system"><span class="std std-ref">CMake Build System</span></a>
+section which explains how to further configure your application build.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> command, the <code class="docutils literal notranslate"><span class="pre">board</span></code> option can be replaced with
+<code class="docutils literal notranslate"><span class="pre">evkbmimxrt1060</span></code> for <code class="docutils literal notranslate"><span class="pre">MIMXRT1060-EVK-B</span></code>, or <code class="docutils literal notranslate"><span class="pre">evkcmimxrt1060</span></code> for
+<code class="docutils literal notranslate"><span class="pre">MIMXRT1060-EVK-C</span></code> board.</p>
+<p>RT1060 platform supports various transceivers based on the configuration being
+used. For this purpose, the dedicated transceiver Kconfig must be set correctly
+in the build command.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Build configuration</p></th>
+<th class="head"><p>Board</p></th>
+<th class="head"><p>Transceiver Kconfig</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Matter-over-WiFi with BLE</p></td>
+<td><p>MIMXRT1060-EVK-B + IW416</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW416</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Matter-over-WiFi without BLE</p></td>
+<td><p>MIMXRT1060-EVK-B + 8801</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.88W8801</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Matter-over-WiFi with BLE</p></td>
+<td><p>MIMXRT1060-EVK-C + IW612</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Matter-over-WiFi with BLE</p></td>
+<td><p>MIMXRT1060-EVK-C + IW610</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code> and <code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.board_murata_2ll_m2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Matter-over-Thread</p></td>
+<td><p>MIMXRT1060-EVK-B + K32W0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.K32W061_transceiver</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Matter-over-Thread</p></td>
+<td><p>MIMXRT1060-EVK-C + IW612</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Matter-over-Thread</p></td>
+<td><p>MIMXRT1060-EVK-C + IW610</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code> and <code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.board_murata_2ll_m2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Matter-over-WiFi with OT Border Router</p></td>
+<td><p>MIMXRT1060-EVK-B + 8801 + K32W0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.88W8801</span></code> and <code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.K32W061_transceiver</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Matter-over-WiFi with OT Border Router</p></td>
+<td><p>MIMXRT1060-EVK-C + IW612</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Matter-over-WiFi with OT Border Router</p></td>
+<td><p>MIMXRT1060-EVK-C + IW610</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X</span></code> and <code class="docutils literal notranslate"><span class="pre">CONFIG_MCUX_COMPONENT_component.wifi_bt_module.board_murata_2ll_m2</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Example of build command to build the All-Clusters app with Matter-over-WiFi
+configuration on RT1060-EVK-C + IW612 platform :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user@ubuntu:~/Desktop/git/connectedhomeip$ west build -d build_matter -b evkcmimxrt1060 examples/all-clusters-app/nxp -DCONF_FILE_NAME=prj_wifi.conf -DCONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW61X=y
+</pre></div>
+</div>
+<p>Note that the RT1060 example supports various configurations that can be
+provided to the <code class="docutils literal notranslate"><span class="pre">CONF_FILE_NAME</span></code> variable, you can refer to the
+<a class="reference internal" href="nxp_examples_freertos_platforms.html#available-project-configuration-files-and-platform-compatibility"><span class="std std-ref">table of available project configuration files and platform compatibility</span></a>
+to check all the supported configurations.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">RT1060</span> <span class="pre">+</span> <span class="pre">K32W061</span></code> configuration, the transceiver binary build is generated
+automatically by the host build in
+<code class="docutils literal notranslate"><span class="pre">third_party/nxp/nxp_matter_support/cmake/build_helpers.cmake</span></code>.</p>
+<blockquote>
+<div><p>Note : BLE and Matter-CLI are enabled by default in Matter applications built
+with CMake. To disable them, you can refer to the
+<a class="reference internal" href="nxp_examples_freertos_platforms.html#how-to-customize-the-cmake-build"><span class="std std-ref">How to customize the CMake build</span></a>
+section.</p>
+</div></blockquote>
+<p><a name="manufacturing"></a></p>
+</section>
+</section>
+<section id="manufacturing-data">
+<h2>Manufacturing data<a class="headerlink" href="#manufacturing-data" title="Link to this heading">#</a></h2>
+<p>See
+<a class="reference internal" href="nxp_manufacturing_flow.html"><span class="std std-doc">Guide for writing manufacturing data on NXP devices</span></a></p>
+<p>Other comments:</p>
+<p>The RT1060 all cluster app demonstrates the usage of encrypted Matter
+manufacturing data storage. Matter manufacturing data should be encrypted before
+flashing them to the RT1060 flash.</p>
+<p>For development purpose the RT1060 all cluster app code could use the hardcoded
+AES 128 software key. This software key should be used only during development
+stage.</p>
+<p>For production usage, it is recommended to use the <code class="docutils literal notranslate"><span class="pre">OTP</span> <span class="pre">key</span></code> which needs to be
+fused in the RT1060 SW_GP2. The application note AN12800 should be followed to
+get more information. In this case the all cluster app should be updated to
+indicate to the <code class="docutils literal notranslate"><span class="pre">DCP</span></code> module to use the <code class="docutils literal notranslate"><span class="pre">OTP</span> <span class="pre">key</span></code> instead of the software key.
+For that the call to <code class="docutils literal notranslate"><span class="pre">FactoryDataPrvdImpl().SetAes128Key()</span></code> should be changed to
+<code class="docutils literal notranslate"><span class="pre">FactoryDataPrvdImpl().SetKeySelected(KeySelect::)</span></code> with the arg value
+specifying where the <code class="docutils literal notranslate"><span class="pre">OTP</span> <span class="pre">key</span></code> is stored (<code class="docutils literal notranslate"><span class="pre">kDCP_OCOTPKeyLow</span></code> for [127:0] of
+SW_GP2 or <code class="docutils literal notranslate"><span class="pre">kDCP_OCOTPKeyHigh</span></code> for [255:128] of SW_GP2). For more information the
+RT1060 <code class="docutils literal notranslate"><span class="pre">FactoryDataProviderImpl</span></code> class description should be checked.</p>
+<p><a name="flashdebug"></a></p>
+</section>
+<section id="flashing-and-debugging">
+<h2>Flashing and debugging<a class="headerlink" href="#flashing-and-debugging" title="Link to this heading">#</a></h2>
+<p>We recommend using <code class="docutils literal notranslate"><span class="pre">JLink</span></code> from Segger to flash the example application. It can
+be downloaded and installed from
+https://www.segger.com/products/debug-probes/j-link. Once installed, JLink can
+be run to flash the application using the following steps :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ JLink
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>J-Link &gt; connect
+Device&gt; ? # you will be presented with a dialog -&gt; select `MIMXRT1062XXX6B`
+Please specify target interface:
+J) JTAG (Default)
+S) SWD
+T) cJTAG
+TIF&gt; S
+Specify target interface speed [kHz]. &lt;Default&gt;: 4000 kHz
+Speed&gt; # &lt;enter&gt;
+
+J-Link &gt; exec EnableEraseAllFlashBanks
+J-Link &gt; erase 0x60000000, 0x61000000
+</pre></div>
+</div>
+<p>Program the application executable :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">J</span><span class="o">-</span><span class="n">Link</span> <span class="o">&gt;</span> <span class="n">loadfile</span> <span class="o">&lt;</span><span class="n">application_binary</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>To program an application in binary format you can use the following command
+instead :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">J</span><span class="o">-</span><span class="n">Link</span> <span class="o">&gt;</span> <span class="n">loadbin</span> <span class="o">&lt;</span><span class="n">application_binary</span><span class="o">&gt;.</span><span class="n">bin</span> <span class="mh">0x60000000</span>
+</pre></div>
+</div>
+<p><a name="testing-the-example"></a></p>
+</section>
+<section id="testing-the-example">
+<h2>Testing the example<a class="headerlink" href="#testing-the-example" title="Link to this heading">#</a></h2>
+<p>To test the example, please make sure to check the <code class="docutils literal notranslate"><span class="pre">Testing</span> <span class="pre">the</span> <span class="pre">example</span></code> section
+from the common readme
+<a class="reference internal" href="nxp_examples_freertos_platforms.html#testing-the-example"><span class="std std-ref">MATTER NXP Examples Guide for FreeRTOS platforms</span></a>.</p>
+<section id="uart-details">
+<h3>UART details<a class="headerlink" href="#uart-details" title="Link to this heading">#</a></h3>
+<p>Testing the example with the CLI enabled will require connecting to UART1 and an
+additional UART, here are more details to follow for RT1060 platforms :</p>
+<ul class="simple">
+<li><p>UART1 : To view output on this UART, a USB cable could be plugged in.</p></li>
+<li><p>2nd UART : To view output on this UART, the following pin should be plugged
+to an <code class="docutils literal notranslate"><span class="pre">USB</span> <span class="pre">to</span> <span class="pre">UART</span> <span class="pre">adapter</span></code> :</p>
+<ul>
+<li><p>UART8 for <code class="docutils literal notranslate"><span class="pre">MIMXRT1060-EVK-C</span></code> board, use <code class="docutils literal notranslate"><span class="pre">connector</span> <span class="pre">J33</span> <span class="pre">pin</span> <span class="pre">1</span></code>.</p></li>
+<li><p>UART2 for <code class="docutils literal notranslate"><span class="pre">MIMXRT1060-EVK-B</span></code> board, use <code class="docutils literal notranslate"><span class="pre">connector</span> <span class="pre">J16</span> <span class="pre">pin</span> <span class="pre">7</span></code>.</p></li>
+<li><p>UART2 for <code class="docutils literal notranslate"><span class="pre">MIMXRT1060-EVK</span></code> board, use <code class="docutils literal notranslate"><span class="pre">connector</span> <span class="pre">J22</span> <span class="pre">pin</span> <span class="pre">7</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="ota-software-update">
+<h2>OTA Software Update<a class="headerlink" href="#ota-software-update" title="Link to this heading">#</a></h2>
+<p>Over-The-Air software updates are supported with the <code class="docutils literal notranslate"><span class="pre">RT1060-EVKC</span></code> examples. The
+process to follow in order to perform a software update is described in the
+dedicated guide
+<a class="reference internal" href="nxp_RTs_ota_software_update.html"><span class="std std-doc">‘Matter Over-The-Air Software Update with NXP RT example applications’</span></a>.</p>
+<p><a name="thread-border-router-overview"></a></p>
+</section>
+<section id="thread-border-router-overview">
+<h2>Thread Border Router overview<a class="headerlink" href="#thread-border-router-overview" title="Link to this heading">#</a></h2>
+<p>To enable Thread Border Router support see the <a class="reference internal" href="#building">build</a> section.</p>
+<p>The complete Border Router guide is located <a class="reference internal" href="nxp_otbr_guide.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="enabling-se05x-secure-element-with-mimxrt1060-evk-b">
+<h2>Enabling SE05x Secure Element with MIMXRT1060-EVK-B<a class="headerlink" href="#enabling-se05x-secure-element-with-mimxrt1060-evk-b" title="Link to this heading">#</a></h2>
+<section id="hardware-connections">
+<h3>Hardware connections<a class="headerlink" href="#hardware-connections" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Connections using OM-SE051ARD board :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>EVKBMIMXRT1060 Pin</p></th>
+<th class="head"><p>OM-SE051ARD Pin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>I2C SDA</p></td>
+<td><p>J17_9</p></td>
+<td><p>J2_9</p></td>
+</tr>
+<tr class="row-odd"><td><p>I2C SCL</p></td>
+<td><p>J17_10</p></td>
+<td><p>J2_10</p></td>
+</tr>
+<tr class="row-even"><td><p>3V3</p></td>
+<td><p>J32_4</p></td>
+<td><p>J8_4</p></td>
+</tr>
+<tr class="row-odd"><td><p>GND</p></td>
+<td><p>J17_7</p></td>
+<td><p>J8_7</p></td>
+</tr>
+<tr class="row-even"><td><p>ENA (optional)</p></td>
+<td><p>J17_1</p></td>
+<td><p>J1_6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</section>
+<section id="build-options">
+<h3>Build options<a class="headerlink" href="#build-options" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Build the example with below options to offload crypto operations to SE05x
+using CMAKE configuration :</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DCONFIG_CHIP_SE05X</span><span class="o">=</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>Example :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ubuntu@ubuntu-Latitude-5420:~/matter/connectedhomeip$ west build -d &lt;out_dir&gt; -b evkbmimxrt1060 examples/thermostat/nxp/ -DCONF_FILE_NAME=prj_wifi.conf -DCONFIG_MCUX_COMPONENT_component.wifi_bt_module.IW416=y -DCONFIG_CHIP_SE05X=y
+</pre></div>
+</div>
+<p><strong>NOTE</strong> To control secure element using enable pin, ensure to connect jumper
+J14 on OM-SE051ARD board to 3-4 pins. Also build the example with
+-DCONFIG_SE05X_HOST_GPIO=y option to allow rt1060 gpio to control the enable pin
+as required.</p>
+<p>Refer <a class="reference internal" href="nxp_se05x_guide.html"><span class="std std-doc">SE05x</span></a> for more details on configurations of SE05x.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nxp_otbr_guide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Thread Border Router usage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nxp_rt1170_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MATTER NXP RT1170 Applications Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-configurations">Supported configurations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-transceiver">Hardware requirements RT1060 + transceiver</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-iw416">Hardware requirements RT1060+IW416</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-88w8801">Hardware requirements RT1060+88W8801</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-k32w0">Hardware requirements RT1060 + K32W0</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-evk-c-iw612-iw610">Hardware requirements RT1060-EVK-C + IW612 / IW610</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-requirements-rt1060-88w8801-k32w0x1dk6">Hardware requirements RT1060 + 88W8801 + K32W0x1DK6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building">Building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-build-system">CMake Build System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manufacturing-data">Manufacturing data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashing-and-debugging">Flashing and debugging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-example">Testing the example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uart-details">UART details</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ota-software-update">OTA Software Update</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-border-router-overview">Thread Border Router overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-se05x-secure-element-with-mimxrt1060-evk-b">Enabling SE05x Secure Element with MIMXRT1060-EVK-B</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-connections">Hardware connections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-options">Build options</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

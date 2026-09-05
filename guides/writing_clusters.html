@@ -1,0 +1,1745 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Writing and Updating Clusters &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guides/writing_clusters';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Platform Guides" href="../platforms/index.html" />
+    <link rel="prev" title="Guide: Updating a Matter Device Using the OTA Provider Sample App" href="updating-matter-device-guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Matter  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../GLOSSARY.html">Matter Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contributing/index.html">Contributing to matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pr_reviews.html">How Pull Request Reviews Work in the Matter SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pull_request_guidelines.html">Guidelines for writing pull requests</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ci-cd/index.html">CI/CD Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../development_controllers/index.html">Development Controllers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../development_controllers/chip-tool/index.html">chip-tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../development_controllers/matter-repl/index.html">matter-repl</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ids_and_codes/index.html">IDs and Codes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/spec_device_types.html">List of currently defined spec device types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/zap_clusters.html">List of currently defined ZAP clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/cluster_tester.html">ClusterTester Helper Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch-commands.html">Accepting Batch Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model_errata.html">Data Model Errata Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device-attestation-revocation-guide.html">Device Attestation Revocation Testing Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="joint_fabric_guide.html">Joint Fabric Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migrating_ember_cluster_to_code_driven.html">Migrating Ember Clusters to Code-Driven Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="updating-matter-device-guide.html">Guide: Updating a Matter Device Using the OTA Provider Sample App</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Writing and Updating Clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../platforms/index.html">Platform Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/android/index.html">Android</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/android/android_building.html">Building Android</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/asr/index.html">ASR</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/bouffalolab/index.html">Bouffalolab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/getting_started.html">Checking out the Matter code</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/ota_upgrade.html">Build OTA image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/platform_overview.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> SoCs</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/rpc_console.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> with RPC console</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/esp32/index.html">Espressif (ESP32) Getting Started Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/diagnostics.html">Using ESP32 Diagnostic Logs Provider</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/esp_hosted.html">ESP-Hosted Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/infineon/index.html">Infineon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/linux/index.html">Linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/linux/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/linux/debugging_tips.html">Debugging tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/nrf/index.html">NRF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/nxp/index.html">NXP</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_application_architecture.html">NXP Matter Application Architecture for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_examples_freertos_platforms.html">Matter NXP Examples Guide for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_mcxw72_guide.html">Matter NXP MCXW72 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_mcxw_ota_guide.html">NXP MCXW OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rt1060_guide.html">MATTER NXP RT1060 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rt1170_guide.html">MATTER NXP RT1170 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rw61x_guide.html">Matter NXP RW61x Applications Guide targeting FreeRTOS OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_se05x_guide.html">NXP SE05x Secure Element Integration in Matter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_zephyr_guide.html">Matter NXP Zephyr Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/openthread/index.html">OpenThread</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/silabs/index.html">Silabs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/stm32/index.html">STM32</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/ti/index.html">TI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../style/CODING_STYLE_GUIDE.html">Coding Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/README.html">Matter Example Applications</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/air_purifier.html">Air Purifier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/air_quality.html">Air Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_clusters.html">All clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/nxp/README.html">CHIP NXP All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/realtek/common/README.html">Matter All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_clusters_minimal.html">All clusters minimal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_devices.html">All devices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/README.html">Matter All-Devices Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/device/capabilities/README.html">Shared Device Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/device/types/README.html">Matter Simulated Device Types Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/oob-accessors/README.html">Out-of-Band (OOB) Control and Simulation Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/providers/README.html">All-Devices Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/esp32/README.html">All Devices App for ESP32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/silabs/README.html">Matter All-Devices Application — Silabs (EFR32)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/telink/README.html">All Devices App for Telink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/adding_new_device.html">How to Add a New Simulated Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/architecture.html">Architecture &amp; Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/custom_product_baseline.html">Custom Product Baseline Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/starting_up.html">Application Initialization &amp; Command Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/supported_clusters.html">Matter Clusters Implementation Status (159 total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/supported_device_types.html">Matter Device Types Implementation Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/testing.html">Testing &amp; Simulation Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/design/out_of_band_control.html">Out-of-Band Control Architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/bridge.html">Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/camera.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-app/linux/README.html">CHIP Linux Camera Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-app/linux/doc/camera-app-architecture.html">Camera App Architecture and Design</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/camera_controller.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-controller/README.html">Matter Camera Controller Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/chef.html">CHEF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/chip_tool.html">CHIP Tool example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/closure.html">Closure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/closure-app/linux/README.html">CHIP Linux Closure Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/closure-app/silabs/README.html">Matter SiWx917 Closure Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/contact_sensor.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/darwin.html">CHIP Tool Darwin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/dishwasher.html">Dishwasher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/electrical_protection.html">Electrical Protection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/electrical-protection-app/linux/README.html">CHIP Linux Electrical Protection Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/energy_gateway.html">Energy Gateway</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/energy-gateway-app/esp32/README.html">Matter ESP32 Energy Gateway Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/energy-gateway-app/linux/README.html">Matter Linux Energy Gateway Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/evse.html">EVSE</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/esp32/README.html">Matter ESP32 EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/linux/README.html">Matter Linux EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/silabs/README.html">Matter EFR32 EVSE Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_admin.html">Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_bridge.html">Fabric Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_sync.html">Fabric Sync</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/java_matter_controller.html">Java matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/joint_fabric_admin.html">Joint Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/jf-admin-app/linux/README.html">Matter Joint Fabric Admin Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/joint_fabric_control.html">Joint Fabric Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/jf-control-app/README.html">Matter Joint Fabric Control Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/kotlin_matter_controller.html">Kotlin matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/laundry_washer.html">Laundry washer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/laundry-washer-app/nxp/README.html">CHIP NXP Laundry Washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/light_switch.html">Light switch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/realtek/common/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/ti/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6200 Light Switch Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lighting.html">Lighting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/realtek/common/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/realtek/zephyr/README.html">Matter Realtek Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/silabs/zephyr/README.html">Matter Silicon Labs Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/stm32/STM32WB5MM-DK/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/stm32/STM32WBA65I-DK1/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/lighting-app/telink/MULTI_ENDPOINT_IDENTIFY.html">Matter Lighting App Multi-Endpoint Configuration Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/ti/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6200 Lighting Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lighting_no_unique_id.html">Lighting without unique id</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lit_icd.html">Lit ICD</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lock.html">Lock</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/realtek/common/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/ti/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/qpg/APPLICATION.html">Matter QPG6200 Lock Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/log_source.html">Log source</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/microwave.html">Microwave ovens</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/minimal_mdns.html">Minimal MDNS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/ota_provider.html">OTA Provider</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/ota_requestor.html">OTA Requestor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/realtek/common/README.html">Matter OTA Requestor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/persistent_storage.html">Persistent storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6200 Persistent Storage Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/pump.html">Pump</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/ti/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/pump_controler.html">Pump controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/ti/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/refrigerator.html">Refrigerator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/rvc.html">RVC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/shell.html">Shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/smoke_co.html">Smoke CO Alarm example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tbr.html">Thread Border Router</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/temperature_measurement.html">Temperature measurement</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/thermostat.html">Thermostat</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/linux/README.html">Matter Linux Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/nxp/README.html">CHIP NXP Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/realtek/common/README.html">Matter Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/qpg/APPLICATION.html">Matter QPG6200 Thermostat Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tv.html">TV</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tv_casting.html">TV casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/darwin/README.html">Matter TV Casting Darwin (iOS/macOS) App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/virtual_device.html">Virtual Device App</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/water_heater.html">Water Heater</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/esp32/README.html">Matter ESP32 Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/linux/README.html">Matter Linux Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/silabs/README.html">Matter EFR32 Water Heater Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/water_leak_detector.html">Water Leak Detector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-leak-detector-app/linux/README.html">Matter Linux Water Leak Detector Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/window.html">Window</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/realtek/common/README.html">Matter Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../product_considerations/index.html">Discussion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../testing/index.html">Testing Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../testing/ChipDeviceCtrlAPI.html">ChipDeviceCtrl.py API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/python.html">Python framework tests</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/ci-ccache.html">ccache in CI: troubleshooting and controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/chip-cert/README.html">Matter/CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/ELF_SIZE_TOOLING.html">ELF binary size information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../zap_and_codegen/index.html">ZAP and Codegen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../zap_and_codegen/code_generation.html">Code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zap_and_codegen/zap_intro.html">ZAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/guides/writing_clusters.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/guides/writing_clusters.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Writing and Updating Clusters</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-process">Overview of the Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-cluster-definition-xml">Part 1: Cluster Definition (XML)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-c-implementation">Part 2: C++ Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-structure">File Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-conventions">Naming conventions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-implementation-pattern">Recommended Implementation Pattern</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-initialization-and-configuration-builder-pattern">Cluster Initialization and Configuration (Builder Pattern)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-principles">Design Principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prioritize-easy-application-development">Prioritize Easy Application Development</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delegate-driver-pattern-for-validation">Delegate/Driver Pattern for Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-file-layout">BUILD file layout</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#build-gn"><code class="docutils literal notranslate"><span class="pre">BUILD.gn</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#app-config-dependent-sources"><code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-and-feature-handling">Attribute and Feature Handling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-accessors">Attribute Accessors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-change-notifications">Attribute Change Notifications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-storage">Persistent Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizing-for-flash-ram">Optimizing for Flash/RAM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-serverclusterinterface-details">Advanced <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code> Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-attribute-writes-listattributewritenotification">List Attribute Writes (<code class="docutils literal notranslate"><span class="pre">ListAttributeWriteNotification</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-permissions-eventinfo">Event Permissions (<code class="docutils literal notranslate"><span class="pre">EventInfo</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accepted-vs-generated-commands">Accepted vs. Generated Commands</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-build-and-application-integration">Part 3: Build and Application Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-system-integration">Build System Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-integration-codegenintegration-cpp">Application Integration (<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-example-application-and-integration-testing">Part 4: Example Application and Integration Testing</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="writing-and-updating-clusters">
+<h1>Writing and Updating Clusters<a class="headerlink" href="#writing-and-updating-clusters" title="Link to this heading">#</a></h1>
+<p>This guide provides a comprehensive walkthrough for creating a new Matter
+cluster implementation, referred to as a “code-driven” cluster.</p>
+<section id="overview-of-the-process">
+<h2>Overview of the Process<a class="headerlink" href="#overview-of-the-process" title="Link to this heading">#</a></h2>
+<p>Writing a new cluster involves the following key stages:</p>
+<ol class="arabic simple">
+<li><p><strong>Define the Cluster:</strong> Generate or update the cluster definition XML based
+on the Matter specification.</p></li>
+<li><p><strong>Implement the Cluster:</strong> Write the C++ implementation for the cluster’s
+logic and data management.</p></li>
+<li><p><strong>Integrate with Build System:</strong> Add the necessary files to integrate the new
+cluster into the build process.</p></li>
+<li><p><strong>Integrate with Application:</strong> Connect the cluster to an application’s code
+generation configuration.</p></li>
+<li><p><strong>Test:</strong> Add unit and integration tests to verify the cluster’s
+functionality.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="part-1-cluster-definition-xml">
+<h2>Part 1: Cluster Definition (XML)<a class="headerlink" href="#part-1-cluster-definition-xml" title="Link to this heading">#</a></h2>
+<p>Clusters are defined based on the Matter specification. The C++ code for them is
+generated from XML definitions located in
+<code class="docutils literal notranslate"><span class="pre">src/app/zap-templates/zcl/data-model/chip</span></code>.</p>
+<ul>
+<li><p><strong>Generate XML:</strong> To create or update a cluster XML, use
+<a class="reference external" href="https://github.com/project-chip/alchemy">Alchemy</a> to parse the
+specification’s <code class="docutils literal notranslate"><span class="pre">asciidoc</span></code>. Manual editing of XML is discouraged, as it is
+error-prone.</p></li>
+<li><p><strong>Run Code Generation:</strong> Once the XML is ready, run the code generation
+script. It’s often sufficient to run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_in_build_env.sh<span class="w"> </span><span class="s1">'scripts/tools/zap_regen_all.py'</span>
+</pre></div>
+</div>
+<p>For more details, see the
+<a class="reference internal" href="../zap_and_codegen/code_generation.html"><span class="std std-doc">code generation guide</span></a>.</p>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="part-2-c-implementation">
+<h2>Part 2: C++ Implementation<a class="headerlink" href="#part-2-c-implementation" title="Link to this heading">#</a></h2>
+<section id="file-structure">
+<h3>File Structure<a class="headerlink" href="#file-structure" title="Link to this heading">#</a></h3>
+<p>Create a new directory for your cluster at
+<code class="docutils literal notranslate"><span class="pre">src/app/clusters/&lt;cluster-directory&gt;/</span></code>. This directory will house the cluster
+implementation and its unit tests.</p>
+<p>For zap-based support, the directory mapping is defined in
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/zap_cluster_list.json">src/app/zap_cluster_list.json</a>
+under the <code class="docutils literal notranslate"><span class="pre">ServerDirectories</span></code> key. This maps the <code class="docutils literal notranslate"><span class="pre">UPPER_SNAKE_CASE</span></code> define of
+the cluster to the directory name under <code class="docutils literal notranslate"><span class="pre">src/app/clusters</span></code>.</p>
+<section id="naming-conventions">
+<h4>Naming conventions<a class="headerlink" href="#naming-conventions" title="Link to this heading">#</a></h4>
+<p>Names vary, however to be consistent with most of the existing code use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster-name-server</span></code> for the cluster directory name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClusterNameSnakeCluster.h/cpp</span></code> for the <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code>
+implementation</p></li>
+</ul>
+</section>
+</section>
+<section id="recommended-implementation-pattern">
+<h3>Recommended Implementation Pattern<a class="headerlink" href="#recommended-implementation-pattern" title="Link to this heading">#</a></h3>
+<p>For optimal flash and RAM usage on resource-constrained devices, we strongly
+recommend a <strong>combined implementation</strong> pattern. You should avoid splitting the
+implementation into separate logic and translation layers, as this introduces
+unnecessary overhead.</p>
+<ul class="simple">
+<li><p><strong>Combined Implementation (Recommended):</strong></p>
+<ul>
+<li><p>The cluster’s logic, data storage, and <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code>
+implementation are all contained within a single class (often by
+deriving from <code class="docutils literal notranslate"><span class="pre">DefaultServerCluster</span></code>).</p></li>
+<li><p>This minimizes boilerplate and virtual function translation layers,
+resulting in a significantly smaller flash footprint.</p></li>
+<li><p><strong>Example:</strong> The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/tree/master/src/app/clusters/basic-information">Basic Information</a>
+cluster is a good example of a combined implementation.</p></li>
+</ul>
+</li>
+<li><p><strong>Modular Implementation / <code class="docutils literal notranslate"><span class="pre">ClusterLogic</span></code> (Not Recommended):</strong></p>
+<ul>
+<li><p>Historically, some clusters separated core business logic into a
+type-safe <code class="docutils literal notranslate"><span class="pre">ClusterLogic</span></code> class, with a <code class="docutils literal notranslate"><span class="pre">ClusterImplementation</span></code> class
+acting as a translation layer.</p></li>
+<li><p>While this isolated the logic for testing, it adds noticeable flash and
+RAM overhead and is <strong>discouraged</strong> for new clusters.</p></li>
+<li><p><strong>Example:</strong> The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/tree/master/src/app/clusters/administrator-commissioning-server">Administrator Commissioning</a>
+cluster demonstrates this legacy modular implementation.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ClusterDriver</span></code> (or <code class="docutils literal notranslate"><span class="pre">Delegate</span></code>):</strong></p>
+<ul>
+<li><p>An optional interface providing callbacks to the application for cluster
+interactions. We recommend the term <code class="docutils literal notranslate"><span class="pre">Driver</span></code> to avoid confusion with the
+overloaded term <code class="docutils literal notranslate"><span class="pre">Delegate</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<section id="cluster-initialization-and-configuration-builder-pattern">
+<h4>Cluster Initialization and Configuration (Builder Pattern)<a class="headerlink" href="#cluster-initialization-and-configuration-builder-pattern" title="Link to this heading">#</a></h4>
+<p>To ensure that a cluster is initialized correctly and that feature flags remain
+in sync with their mandatory attributes or parameters, all new code-driven
+clusters should use a <strong>builder-style Config</strong> pattern. This pattern prevents
+common errors where a feature is enabled but its mandatory parameters are
+missing.</p>
+<p><strong>Reference Example:</strong> The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/clusters/level-control/LevelControlCluster.h">Level Control Cluster</a>
+is the primary reference for this implementation pattern.</p>
+<p><strong>Pattern Principles:</strong></p>
+<ul class="simple">
+<li><p><strong>Nested Config Struct/Class:</strong> Define a <code class="docutils literal notranslate"><span class="pre">Config</span></code> struct or class within the
+main cluster class to hold all startup state. Use a <code class="docutils literal notranslate"><span class="pre">class</span></code> with private
+members for non-trivial configurations to prevent direct manipulation of
+members and enforce the use of builder methods. A <code class="docutils literal notranslate"><span class="pre">struct</span></code> with public
+members is acceptable for very simple configurations without complex rules.</p></li>
+<li><p><strong>Fluent Builder API:</strong> Provide <code class="docutils literal notranslate"><span class="pre">With&lt;Feature&gt;(...)</span></code> methods that return a
+reference to the <code class="docutils literal notranslate"><span class="pre">Config</span></code> object to allow for chained configuration calls.</p></li>
+<li><p><strong>Atomic Configuration:</strong> Methods must handle both the <code class="docutils literal notranslate"><span class="pre">FeatureMap</span></code> bit
+setting and the initialization of any associated attributes to prevent
+invalid states.</p></li>
+<li><p><strong>Encapsulated Logic:</strong> This approach encapsulates the cluster’s complex
+conformance logic directly into the configuration API, making it much harder
+for application developers to create an invalid configuration.</p></li>
+<li><p><strong>External Endpoint ID:</strong> The <code class="docutils literal notranslate"><span class="pre">EndpointId</span></code> should be passed to the cluster
+constructor directly, not stored in the <code class="docutils literal notranslate"><span class="pre">Config</span></code> object. This allows the
+same <code class="docutils literal notranslate"><span class="pre">Config</span></code> instance to be reused across multiple cluster instances on
+different endpoints.</p></li>
+<li><p><strong>Separate Member Variables:</strong> Extract configuration values from the
+<code class="docutils literal notranslate"><span class="pre">Config</span></code> object into separate member variables within the cluster class,
+rather than storing the <code class="docutils literal notranslate"><span class="pre">Config</span></code> object itself. This allows making immutable
+configuration values <code class="docutils literal notranslate"><span class="pre">const</span></code> (enhancing safety) and reduces coupling.</p></li>
+</ul>
+<p><strong>Example Implementation (from LevelControlCluster):</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LevelControlCluster</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">DefaultServerCluster</span><span class="w"> </span><span class="p">...</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">Config</span><span class="p">(</span><span class="n">TimerDelegate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timerDelegate</span><span class="p">,</span><span class="w"> </span><span class="n">LevelControlDelegate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">delegate</span><span class="p">)</span><span class="w"> </span><span class="o">:</span>
+<span class="w">            </span><span class="n">mDelegate</span><span class="p">(</span><span class="n">delegate</span><span class="p">),</span><span class="w"> </span><span class="n">mTimerDelegate</span><span class="p">(</span><span class="n">timerDelegate</span><span class="p">),</span><span class="w"> </span><span class="n">mFeatureMap</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">        </span><span class="c1">// Automatically sets the Lighting feature and sets required attribute values</span>
+<span class="w">        </span><span class="n">Config</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">WithLighting</span><span class="p">(</span><span class="n">DataModel</span><span class="o">::</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">startUpCurrentLevel</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">mFeatureMap</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">LevelControl</span><span class="o">::</span><span class="n">Feature</span><span class="o">::</span><span class="n">kLighting</span><span class="p">);</span>
+<span class="w">            </span><span class="n">WithMinLevel</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// Spec mandates MinLevel=1 for Lighting feature</span>
+<span class="w">            </span><span class="n">WithMaxLevel</span><span class="p">(</span><span class="mi">254</span><span class="p">);</span><span class="w"> </span><span class="c1">// Spec mandates MaxLevel=254 for Lighting feature</span>
+<span class="w">            </span><span class="n">mStartUpCurrentLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startUpCurrentLevel</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Config</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">WithMinLevel</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">minLevel</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ... implementation</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">Config</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">WithMaxLevel</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">maxLevel</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ... implementation</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="w">        </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">LevelControlCluster</span><span class="p">;</span>
+<span class="w">        </span><span class="n">LevelControlDelegate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mDelegate</span><span class="p">;</span>
+<span class="w">        </span><span class="n">TimerDelegate</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mTimerDelegate</span><span class="p">;</span>
+<span class="w">        </span><span class="n">BitMask</span><span class="o">&lt;</span><span class="n">LevelControl</span><span class="o">::</span><span class="n">Feature</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mFeatureMap</span><span class="p">;</span>
+<span class="w">        </span><span class="n">DataModel</span><span class="o">::</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mStartUpCurrentLevel</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// ... other members</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">LevelControlCluster</span><span class="p">(</span><span class="n">EndpointId</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="design-principles">
+<h3>Design Principles<a class="headerlink" href="#design-principles" title="Link to this heading">#</a></h3>
+<p>When designing and implementing a cluster, adhere to the following principles to
+ensure a high-quality and developer-friendly experience:</p>
+<section id="prioritize-easy-application-development">
+<h4>Prioritize Easy Application Development<a class="headerlink" href="#prioritize-easy-application-development" title="Link to this heading">#</a></h4>
+<p>Clusters should aim to do as much work as possible autonomously, reducing the
+burden on the application developer.</p>
+<ul class="simple">
+<li><p><strong>Handle Common Logic Internally:</strong> Implement persistence (NVM), timers, and
+complex state machines within the cluster itself. The application should
+only be notified of significant events or changes it needs to act upon. <em>For
+example, a state machine managing a multi-step process like a firmware
+update, door lock/unlock sequence with retries, or a calibration procedure
+should typically reside within the cluster, rather than requiring the
+application to manage the intermediate steps and timeouts.</em></p></li>
+<li><p><strong>Provide Helper Abstractions:</strong> If a cluster requires the application to
+implement complex logic, consider providing helper classes or default
+implementations that simplify the task.</p></li>
+<li><p><strong>Encapsulate Complexity:</strong> Avoid deferring low-level details (like raw
+storage keys or individual timer management) to the application.</p></li>
+</ul>
+</section>
+<section id="delegate-driver-pattern-for-validation">
+<h4>Delegate/Driver Pattern for Validation<a class="headerlink" href="#delegate-driver-pattern-for-validation" title="Link to this heading">#</a></h4>
+<p>When an application needs to be involved in a cluster operation (especially
+writes or commands), use a delegate (or driver) interface that acts as a
+“pre-check.”</p>
+<ul class="simple">
+<li><p><strong>Pre-Write Validation:</strong> For writable attributes, provide a callback that
+allows the application to accept or reject the new value <em>before</em> it is
+applied to the cluster’s internal state or persisted.</p></li>
+<li><p><strong>Delegate Veto:</strong> Callbacks must return a
+<code class="docutils literal notranslate"><span class="pre">Protocols::InteractionModel::Status</span></code>. Returning any status other than
+Success allows the application to reject the proposed change. The cluster
+MUST honor this by failing the operation and propagating the delegate’s
+status code to the initiator.</p></li>
+<li><p><strong>Perform Cluster-Level Checks First:</strong> The cluster remains responsible for
+all spec-defined validations (e.g., range checks, constraint validations, or
+state-based restrictions) before involving the application delegate.</p></li>
+<li><p><strong>Avoid Redundant Notifications:</strong> Ensure that no-op operations (e.g.,
+writing the same value that is already present) are handled early and do not
+trigger delegate callbacks or change notifications.</p></li>
+</ul>
+</section>
+</section>
+<section id="build-file-layout">
+<h3>BUILD file layout<a class="headerlink" href="#build-file-layout" title="Link to this heading">#</a></h3>
+<p>The description below will describe build files under
+<code class="docutils literal notranslate"><span class="pre">src/app/clusters/&lt;cluster-directory&gt;/</span></code>. You are expected to have the following
+items:</p>
+<section id="build-gn">
+<h4><code class="docutils literal notranslate"><span class="pre">BUILD.gn</span></code><a class="headerlink" href="#build-gn" title="Link to this heading">#</a></h4>
+<p>This file will contain a target that is named <code class="docutils literal notranslate"><span class="pre">&lt;cluster-directory&gt;</span></code>, usually a
+<code class="docutils literal notranslate"><span class="pre">source_set</span></code>. This file gets referenced from
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/chip_data_model.gni">src/app/chip_data_model.gni</a>
+by adding a dependency as <code class="docutils literal notranslate"><span class="pre">deps</span> <span class="pre">+=</span> <span class="pre">[</span> <span class="pre">&quot;${_app_root}/clusters/${cluster}&quot;</span> <span class="pre">]</span></code>, so
+the default target name is important.</p>
+</section>
+<section id="app-config-dependent-sources">
+<h4><code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources</span></code><a class="headerlink" href="#app-config-dependent-sources" title="Link to this heading">#</a></h4>
+<p>There are two code generation integration support files: one for <code class="docutils literal notranslate"><span class="pre">GN</span></code> and one
+for <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. The way these work is that
+<code class="docutils literal notranslate"><span class="pre">chip_data_model.gni</span></code>/<code class="docutils literal notranslate"><span class="pre">chip_data_model.cmake</span></code> will include these files and
+bundle <em>ALL</em> referenced sources into <em>ONE SINGLE SOURCE SET</em>, together with
+ember code-generated settings (e.g. <code class="docutils literal notranslate"><span class="pre">endpoint_config.h</span></code> and similar files that
+are application-specific)</p>
+<p>As a result, there will be a difference between <code class="docutils literal notranslate"><span class="pre">.gni</span></code> and <code class="docutils literal notranslate"><span class="pre">.cmake</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources.gni</span></code> will typically just contain
+<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code> and any other helper/compatibility layers (e.g.
+<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.h</span></code> if applicable)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources.cmake</span></code> will contain all the files that the
+<code class="docutils literal notranslate"><span class="pre">.gni</span></code> file contains PLUS any dependencies that the <code class="docutils literal notranslate"><span class="pre">BUILD.gn</span></code> would pull in
+but cmake would not (i.e. dependencies not in the <code class="docutils literal notranslate"><span class="pre">libCHIP</span></code> builds). These
+extra files are often the <code class="docutils literal notranslate"><span class="pre">*.h/*.cpp</span></code> files that were in the <code class="docutils literal notranslate"><span class="pre">BUILD.gn</span></code>
+source set.</p></li>
+</ul>
+<p><strong>EXAMPLE</strong> taken from
+(<a class="reference external" href="https://github.com/project-chip/connectedhomeip/tree/master/src/app/clusters/basic-information">src/app/clusters/basic-information</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># BUILD.gn</span>
+<span class="n">import</span><span class="p">(</span><span class="s2">"//build_overrides/build.gni"</span><span class="p">)</span>
+<span class="n">import</span><span class="p">(</span><span class="s2">"//build_overrides/chip.gni"</span><span class="p">)</span>
+
+<span class="n">source_set</span><span class="p">(</span><span class="s2">"basic-information"</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span> <span class="o">...</span> <span class="p">]</span>
+   <span class="n">public_deps</span> <span class="o">=</span> <span class="p">[</span> <span class="o">...</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># app_config_dependent_sources.gni</span>
+<span class="n">app_config_dependent_sources</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"CodegenIntegration.cpp"</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># app_config_dependent_sources.cmake
+# This block adds the codegen integration sources, similar to app_config_dependent_sources.gni
+TARGET_SOURCES(
+  ${APP_TARGET}
+  PRIVATE
+    "${CLUSTER_DIR}/CodegenIntegration.cpp"
+)
+
+# These are the things that BUILD.gn dependencies would pull
+TARGET_SOURCES(
+  ${APP_TARGET}
+  PRIVATE
+    "${CLUSTER_DIR}/BasicInformationCluster.cpp"
+    "${CLUSTER_DIR}/BasicInformationCluster.h"
+)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="implementation-details">
+<h3>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h3>
+<section id="attribute-and-feature-handling">
+<h4>Attribute and Feature Handling<a class="headerlink" href="#attribute-and-feature-handling" title="Link to this heading">#</a></h4>
+<p>Your implementation must correctly report which attributes and commands are
+available based on the enabled features and optional items.</p>
+<ul class="simple">
+<li><p>Use a feature map to control elements dependent on features.</p></li>
+<li><p>Use boolean flags or <code class="docutils literal notranslate"><span class="pre">BitFlags</span></code> for purely optional elements.</p></li>
+<li><p>Ensure your unit tests cover different combinations of enabled features and
+optional attributes/commands.</p></li>
+</ul>
+</section>
+<section id="attribute-accessors">
+<h4>Attribute Accessors<a class="headerlink" href="#attribute-accessors" title="Link to this heading">#</a></h4>
+<p>Your cluster implementation must provide public getter and setter APIs for each
+attribute to allow applications to interact with cluster state.</p>
+<ul class="simple">
+<li><p><strong>Getter Methods:</strong> Provide a getter method for every attribute (e.g.,
+<code class="docutils literal notranslate"><span class="pre">GetCurrentSensitivityLevel()</span></code>, <code class="docutils literal notranslate"><span class="pre">GetAlarmsActive()</span></code>). Applications need
+these to read the current cluster state.</p>
+<ul>
+<li><p><strong>Return by value (preferred):</strong> Getters should return copies of data
+whenever practical. This avoids lifetime and ownership concerns.</p></li>
+<li><p><strong>Avoid returning pointers or references:</strong> Returning pointers or
+references to internal cluster data create lifetime risks—if the
+underlying memory is deallocated while the caller still holds the
+pointer, use-after-free bugs can occur. If you must return a pointer or
+reference, clearly document that the returned value is only valid for
+immediate use and must not be stored.</p></li>
+</ul>
+</li>
+<li><p><strong>Setter Methods:</strong> Provide methods to modify all non-fixed (mutable)
+attributes in spec-compliant ways. For simple attributes, this may be a
+straightforward setter (e.g., <code class="docutils literal notranslate"><span class="pre">SetCurrentSensitivityLevel()</span></code>). However, spec
+compliance may require updating multiple attributes together atomically—in
+such cases, provide a higher-level API that encapsulates the required
+behavior rather than individual setters. When the application’s driver state
+changes, these methods can be used to update the cluster’s state
+accordingly. Setters are also responsible for triggering attribute change
+notifications (see
+<a class="reference internal" href="#attribute-change-notifications">Attribute Change Notifications</a>).</p></li>
+<li><p><strong>Example:</strong> The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/clusters/boolean-state-configuration-server/BooleanStateConfigurationCluster.h">Boolean State Configuration</a>
+cluster demonstrates this pattern.</p></li>
+</ul>
+</section>
+<section id="attribute-change-notifications">
+<h4>Attribute Change Notifications<a class="headerlink" href="#attribute-change-notifications" title="Link to this heading">#</a></h4>
+<p>For subscriptions to work correctly, you must notify the system whenever an
+attribute’s value changes.</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Startup</span></code> method of your cluster receives a <code class="docutils literal notranslate"><span class="pre">ServerClusterContext</span></code>.</p></li>
+<li><p>Use the context to call
+<code class="docutils literal notranslate"><span class="pre">interactionContext-&gt;dataModelChangeListener-&gt;MarkDirty(path)</span></code>. A
+<code class="docutils literal notranslate"><span class="pre">NotifyAttributeChanged</span></code> helper exists for paths managed by this cluster.</p>
+<ul>
+<li><p>For write implementations, you can use <code class="docutils literal notranslate"><span class="pre">NotifyAttributeChangedIfSuccess</span></code>
+together with a separate <code class="docutils literal notranslate"><span class="pre">WriteImpl</span></code> such that any successful attribute
+write will notify.</p>
+<p>Canonical example code would look like:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DataModel</span><span class="o">::</span><span class="n">ActionReturnStatus</span><span class="w"> </span><span class="nf">SomeCluster::WriteAttribute</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DataModel</span><span class="o">::</span><span class="n">WriteAttributeRequest</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="w">                                                                  </span><span class="n">AttributeValueDecoder</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">decoder</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="c1">// Delegate everything to WriteImpl. If write succeeds, notify that the attribute changed.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NotifyAttributeChangedIfSuccess</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">mAttributeId</span><span class="p">,</span><span class="w"> </span><span class="n">WriteImpl</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">decoder</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">NotifyAttributeChangedIfSuccess</span></code> ensure that WriteImpl is
+returning
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/data-model-provider/ActionReturnStatus.h">ActionReturnStatus::FixedStatus::kWriteSuccessNoOp</a>
+when no notification should be sent.</p>
+<p><strong>Crucial:</strong> No-op writes (where the value remains unchanged) MUST NOT
+trigger:</p>
+<ul class="simple">
+<li><p>Network attribute change notifications.</p></li>
+<li><p>Application-level delegate/driver callbacks.</p></li>
+</ul>
+<p>Canonical example is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">VerifyOrReturnValue</span><span class="p">(</span><span class="n">mValue</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">newValue</span><span class="p">,</span><span class="w"> </span><span class="n">ActionReturnStatus</span><span class="o">::</span><span class="n">FixedStatus</span><span class="o">::</span><span class="n">kWriteSuccessNoOp</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Per-Attribute Change Callbacks:</strong> As a concrete realization of the
+<a class="reference internal" href="#delegate-driver-pattern-for-validation"><span class="xref myst">Delegate/Driver Pattern for Validation</span></a>,
+each mutable attribute should have a corresponding
+<code class="docutils literal notranslate"><span class="pre">On&lt;AttributeName&gt;Changed</span></code> callback in the delegate interface. These are
+<em>pre-write</em> hooks invoked after spec-level validation and the no-op guard,
+but <em>before</em> the value is committed. The callback must always receive the
+<strong>proposed new value</strong>, not the current (stale) value. Returning <code class="docutils literal notranslate"><span class="pre">true</span></code>
+accepts the change; returning <code class="docutils literal notranslate"><span class="pre">false</span></code> vetoes it. The cluster must then fail
+the operation with <code class="docutils literal notranslate"><span class="pre">Protocols::InteractionModel::Status::Failure</span></code> (for APIs
+returning <code class="docutils literal notranslate"><span class="pre">Status</span></code>) or <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR_INCORRECT_STATE</span></code> (for APIs returning
+<code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code>). Default implementations should return <code class="docutils literal notranslate"><span class="pre">true</span></code> so applications
+only override the callbacks they need.</p>
+<p><strong>Example:</strong> The
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/clusters/boolean-state-configuration-server/boolean-state-configuration-delegate.h">Boolean State Configuration delegate</a>
+declares:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">OnCurrentSensitivityLevelChanged</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">OnAlarmsActiveChanged</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">BitMask</span><span class="o">&lt;</span><span class="n">AlarmModeBitmap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">OnAlarmsSuppressedChanged</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">BitMask</span><span class="o">&lt;</span><span class="n">AlarmModeBitmap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">OnAlarmsEnabledChanged</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">BitMask</span><span class="o">&lt;</span><span class="n">AlarmModeBitmap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">OnSensorFaultChanged</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">BitMask</span><span class="o">&lt;</span><span class="n">SensorFaultBitmap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And the cluster invokes them in the standard order—validate, guard no-op,
+call delegate, then commit and notify:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">VerifyOrReturnError</span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">mSupportedSensitivityLevels</span><span class="p">,</span><span class="w"> </span><span class="n">CHIP_IM_GLOBAL_STATUS</span><span class="p">(</span><span class="n">ConstraintError</span><span class="p">));</span>
+<span class="n">VerifyOrReturnError</span><span class="p">(</span><span class="n">mCurrentSensitivityLevel</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">CHIP_NO_ERROR</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mDelegate</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">VerifyOrReturnError</span><span class="p">(</span><span class="n">mDelegate</span><span class="o">-&gt;</span><span class="n">OnCurrentSensitivityLevelChanged</span><span class="p">(</span><span class="n">level</span><span class="p">),</span><span class="w"> </span><span class="n">CHIP_ERROR_INCORRECT_STATE</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">mCurrentSensitivityLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">level</span><span class="p">;</span>
+<span class="n">NotifyAttributeChanged</span><span class="p">(</span><span class="n">CurrentSensitivityLevel</span><span class="o">::</span><span class="n">Id</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="persistent-storage">
+<h4>Persistent Storage<a class="headerlink" href="#persistent-storage" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Attributes:</strong> For scalar attribute values, use <code class="docutils literal notranslate"><span class="pre">AttributePersistence</span></code> from
+<code class="docutils literal notranslate"><span class="pre">src/app/persistence/AttributePersistence.h</span></code>. The <code class="docutils literal notranslate"><span class="pre">ServerClusterContext</span></code>
+provides an <code class="docutils literal notranslate"><span class="pre">AttributePersistenceProvider</span></code>.</p></li>
+<li><p><strong>General Storage:</strong> For non-attribute data, the context provides a
+<code class="docutils literal notranslate"><span class="pre">PersistentStorageDelegate</span></code>.</p></li>
+</ul>
+</section>
+<section id="optimizing-for-flash-ram">
+<h4>Optimizing for Flash/RAM<a class="headerlink" href="#optimizing-for-flash-ram" title="Link to this heading">#</a></h4>
+<p>For common or large clusters, you may need to optimize for resource usage.
+Consider using <code class="docutils literal notranslate"><span class="pre">C++</span></code> templates to compile-time select features and attributes,
+which can significantly reduce flash and RAM footprint.</p>
+</section>
+</section>
+<section id="advanced-serverclusterinterface-details">
+<h3>Advanced <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code> Details<a class="headerlink" href="#advanced-serverclusterinterface-details" title="Link to this heading">#</a></h3>
+<p>While <code class="docutils literal notranslate"><span class="pre">ReadAttribute</span></code>, <code class="docutils literal notranslate"><span class="pre">WriteAttribute</span></code>, and <code class="docutils literal notranslate"><span class="pre">InvokeCommand</span></code> are the most
+commonly implemented methods, the <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code> has other methods for
+more advanced use cases.</p>
+<section id="list-attribute-writes-listattributewritenotification">
+<h4>List Attribute Writes (<code class="docutils literal notranslate"><span class="pre">ListAttributeWriteNotification</span></code>)<a class="headerlink" href="#list-attribute-writes-listattributewritenotification" title="Link to this heading">#</a></h4>
+<p>This method is an advanced callback for handling large list attributes that may
+require special handling, such as persisting them to storage in chunks. A
+typical example of a cluster that might use this is the <strong>Binding cluster</strong>. For
+most clusters, the default implementation is sufficient.</p>
+</section>
+<section id="event-permissions-eventinfo">
+<h4>Event Permissions (<code class="docutils literal notranslate"><span class="pre">EventInfo</span></code>)<a class="headerlink" href="#event-permissions-eventinfo" title="Link to this heading">#</a></h4>
+<p>You must implement the <code class="docutils literal notranslate"><span class="pre">EventInfo</span></code> method if your cluster emits any events that
+require non-default permissions to be read. For example, an event might require
+<code class="docutils literal notranslate"><span class="pre">Administrator</span></code> privileges. While not common, this should be verified for every
+new cluster implementation and checked during code reviews to ensure event
+access is correctly restricted.</p>
+</section>
+<section id="accepted-vs-generated-commands">
+<h4>Accepted vs. Generated Commands<a class="headerlink" href="#accepted-vs-generated-commands" title="Link to this heading">#</a></h4>
+<p>The distinction between <code class="docutils literal notranslate"><span class="pre">AcceptedCommands</span></code> and <code class="docutils literal notranslate"><span class="pre">GeneratedCommands</span></code> can be
+understood using a REST API analogy:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">AcceptedCommands</span></code></strong>: These are the “requests” that the server cluster can
+process. In the Matter specification, these are commands sent from the
+client to the server (<code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">=&gt;</span> <span class="pre">server</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">GeneratedCommands</span></code></strong>: These are the “responses” that the server cluster
+can generate after processing an accepted command. In the spec, these are
+commands sent from the server back to the client (<code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=&gt;</span> <span class="pre">client</span></code>).</p></li>
+</ul>
+<p>These lists are built based on the cluster’s definition in the Matter
+specification.</p>
+</section>
+</section>
+<section id="unit-testing">
+<h3>Unit Testing<a class="headerlink" href="#unit-testing" title="Link to this heading">#</a></h3>
+<p>Unit tests should reside in <code class="docutils literal notranslate"><span class="pre">src/app/clusters/&lt;cluster-name&gt;/tests/</span></code>.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">chip::Testing::ClusterTester</span></code> utility to write your unit tests. This
+modern API removes the need to manually mock encoders, handlers, or raw TLV
+buffers. More on
+<a class="reference internal" href="../cluster_and_device_type_dev/cluster_tester.html"><span class="std std-doc">ClusterTester Helper Class Guide</span></a>.</p>
+<ul class="simple">
+<li><p><strong>Test Setup:</strong> Create a mock delegate to inject fake data into your cluster
+instance.</p></li>
+<li><p><strong>Menu Verification:</strong> Ensure <code class="docutils literal notranslate"><span class="pre">Attributes()</span></code> and <code class="docutils literal notranslate"><span class="pre">AcceptedCommands()</span></code> return
+the correct metadata, or <code class="docutils literal notranslate"><span class="pre">ClusterTester</span></code> will reject your reads/invocations.</p></li>
+<li><p><strong>Reads:</strong> Test <code class="docutils literal notranslate"><span class="pre">ReadAttribute</span></code> via <code class="docutils literal notranslate"><span class="pre">tester.ReadAttribute()</span></code> and verify data
+matches your mock.</p></li>
+<li><p><strong>Commands:</strong> Test commands via <code class="docutils literal notranslate"><span class="pre">tester.Invoke()</span></code> and ensure specific
+<code class="docutils literal notranslate"><span class="pre">Protocols::InteractionModel::Status</span></code> codes are returned accurately based on
+delegate responses.</p></li>
+<li><p><strong>Reporting:</strong> Verify reporting logic by reading <code class="docutils literal notranslate"><span class="pre">tester.GetDirtyList()</span></code> to
+ensure state changes properly mark attributes as dirty, while No-Op writes
+do not.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-3-build-and-application-integration">
+<h2>Part 3: Build and Application Integration<a class="headerlink" href="#part-3-build-and-application-integration" title="Link to this heading">#</a></h2>
+<section id="build-system-integration">
+<h3>Build System Integration<a class="headerlink" href="#build-system-integration" title="Link to this heading">#</a></h3>
+<p>The build system maps cluster names to their source directories. Add your new
+cluster to this mapping:</p>
+<ul class="simple">
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">src/app/zap_cluster_list.json</span></code> and add an entry for your cluster,
+pointing to the directory you created.</p></li>
+</ul>
+</section>
+<section id="application-integration-codegenintegration-cpp">
+<h3>Application Integration (<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code>)<a class="headerlink" href="#application-integration-codegenintegration-cpp" title="Link to this heading">#</a></h3>
+<p>To integrate your cluster with an application’s <code class="docutils literal notranslate"><span class="pre">.zap</span></code> file configuration, you
+need to bridge the gap between the statically generated code and your C++
+implementation.</p>
+<ol class="arabic">
+<li><p><strong>Create <code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code>:</strong> This file will contain the integration
+logic.</p></li>
+<li><p><strong>Create Build Files:</strong> Add <code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources.gni</span></code> and
+<code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources.cmake</span></code> to your cluster directory. These files
+should list <code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code> and its dependencies. See existing
+clusters for examples.</p></li>
+<li><p><strong>Use Generated Configuration:</strong> The code generator creates a header file at
+<code class="docutils literal notranslate"><span class="pre">&lt;app/static-cluster-config/&lt;cluster-name&gt;.h</span></code> that provides static,
+application-specific configuration. Use this to initialize your cluster
+correctly for each endpoint.</p></li>
+<li><p><strong>Implement Callbacks:</strong> Implement
+<code class="docutils literal notranslate"><span class="pre">Matter&lt;Cluster&gt;ClusterInitCallback(EndpointId)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Matter&lt;Cluster&gt;ClusterShutdownCallback(EndpointId)</span></code> in your
+<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code>.</p></li>
+<li><p><strong>Update <code class="docutils literal notranslate"><span class="pre">config-data.yaml</span></code>:</strong> To enable these callbacks, add your cluster to
+the <code class="docutils literal notranslate"><span class="pre">CodeDrivenClusters</span></code> array in
+<code class="docutils literal notranslate"><span class="pre">src/app/common/templates/config-data.yaml</span></code>.</p></li>
+<li><p><strong>Update ZAP Configuration:</strong> To prevent the Ember framework from allocating
+memory for your cluster’s attributes, you must:</p>
+<ul class="simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">src/app/zap-templates/zcl/zcl.json</span></code> and
+<code class="docutils literal notranslate"><span class="pre">zcl-with-test-extensions.json</span></code>, add all non-list attributes of your
+cluster to <code class="docutils literal notranslate"><span class="pre">attributeAccessInterfaceAttributes</span></code>. This marks them as
+externally handled.</p></li>
+</ul>
+</li>
+<li><p><strong>Regenerate ZAP:</strong> Once <code class="docutils literal notranslate"><span class="pre">config-data.yaml</span></code> and
+<code class="docutils literal notranslate"><span class="pre">zcl.json/zcl-with-test-extensions.json</span></code> are updated, run the ZAP
+regeneration command, like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_in_build_env.sh<span class="w"> </span><span class="s1">'scripts/tools/zap_regen_all.py'</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-4-example-application-and-integration-testing">
+<h2>Part 4: Example Application and Integration Testing<a class="headerlink" href="#part-4-example-application-and-integration-testing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Write unit tests to ensure cluster test coverage</p></li>
+<li><p><strong>Integrate into an Example:</strong> Add your cluster to an example application,
+such as the <code class="docutils literal notranslate"><span class="pre">all-clusters-app</span></code>, to test it in a real-world scenario.</p>
+<ul>
+<li><p>use tools such as <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> or <code class="docutils literal notranslate"><span class="pre">matter-repl</span></code> to manually validate the
+cluster</p></li>
+</ul>
+</li>
+<li><p><strong>Add Integration Tests:</strong> Write integration tests to validate the
+end-to-end functionality of your cluster against the example application.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="updating-matter-device-guide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Guide: Updating a Matter Device Using the OTA Provider Sample App</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../platforms/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Platform Guides</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-process">Overview of the Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-cluster-definition-xml">Part 1: Cluster Definition (XML)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-c-implementation">Part 2: C++ Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-structure">File Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-conventions">Naming conventions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-implementation-pattern">Recommended Implementation Pattern</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-initialization-and-configuration-builder-pattern">Cluster Initialization and Configuration (Builder Pattern)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#design-principles">Design Principles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prioritize-easy-application-development">Prioritize Easy Application Development</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delegate-driver-pattern-for-validation">Delegate/Driver Pattern for Validation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-file-layout">BUILD file layout</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#build-gn"><code class="docutils literal notranslate"><span class="pre">BUILD.gn</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#app-config-dependent-sources"><code class="docutils literal notranslate"><span class="pre">app_config_dependent_sources</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-and-feature-handling">Attribute and Feature Handling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-accessors">Attribute Accessors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#attribute-change-notifications">Attribute Change Notifications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-storage">Persistent Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizing-for-flash-ram">Optimizing for Flash/RAM</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-serverclusterinterface-details">Advanced <code class="docutils literal notranslate"><span class="pre">ServerClusterInterface</span></code> Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-attribute-writes-listattributewritenotification">List Attribute Writes (<code class="docutils literal notranslate"><span class="pre">ListAttributeWriteNotification</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#event-permissions-eventinfo">Event Permissions (<code class="docutils literal notranslate"><span class="pre">EventInfo</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accepted-vs-generated-commands">Accepted vs. Generated Commands</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-build-and-application-integration">Part 3: Build and Application Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-system-integration">Build System Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#application-integration-codegenintegration-cpp">Application Integration (<code class="docutils literal notranslate"><span class="pre">CodegenIntegration.cpp</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-example-application-and-integration-testing">Part 4: Example Application and Integration Testing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

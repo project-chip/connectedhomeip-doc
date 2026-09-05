@@ -1,0 +1,1569 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fuzz testing &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'testing/fuzz_testing';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration Test utilities" href="integration_test_utilities.html" />
+    <link rel="prev" title="CI testing" href="ci_testing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Matter  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../GLOSSARY.html">Matter Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contributing/index.html">Contributing to matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pr_reviews.html">How Pull Request Reviews Work in the Matter SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/pull_request_guidelines.html">Guidelines for writing pull requests</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ci-cd/index.html">CI/CD Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../development_controllers/index.html">Development Controllers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../development_controllers/chip-tool/index.html">chip-tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../development_controllers/matter-repl/index.html">matter-repl</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development_controllers/matter-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ids_and_codes/index.html">IDs and Codes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/spec_device_types.html">List of currently defined spec device types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ids_and_codes/zap_clusters.html">List of currently defined ZAP clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/cluster_tester.html">ClusterTester Helper Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/batch-commands.html">Accepting Batch Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/data_model_errata.html">Data Model Errata Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/device-attestation-revocation-guide.html">Device Attestation Revocation Testing Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/joint_fabric_guide.html">Joint Fabric Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/migrating_ember_cluster_to_code_driven.html">Migrating Ember Clusters to Code-Driven Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/updating-matter-device-guide.html">Guide: Updating a Matter Device Using the OTA Provider Sample App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/writing_clusters.html">Writing and Updating Clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../platforms/index.html">Platform Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/android/index.html">Android</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/android/android_building.html">Building Android</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/asr/index.html">ASR</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/bouffalolab/index.html">Bouffalolab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/getting_started.html">Checking out the Matter code</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/ota_upgrade.html">Build OTA image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/platform_overview.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> SoCs</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/bouffalolab/rpc_console.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> with RPC console</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/esp32/index.html">Espressif (ESP32) Getting Started Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/diagnostics.html">Using ESP32 Diagnostic Logs Provider</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/esp_hosted.html">ESP-Hosted Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/infineon/index.html">Infineon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/linux/index.html">Linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/linux/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/linux/debugging_tips.html">Debugging tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/nrf/index.html">NRF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/nxp/index.html">NXP</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_application_architecture.html">NXP Matter Application Architecture for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_examples_freertos_platforms.html">Matter NXP Examples Guide for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_mcxw72_guide.html">Matter NXP MCXW72 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_mcxw_ota_guide.html">NXP MCXW OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rt1060_guide.html">MATTER NXP RT1060 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rt1170_guide.html">MATTER NXP RT1170 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_rw61x_guide.html">Matter NXP RW61x Applications Guide targeting FreeRTOS OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_se05x_guide.html">NXP SE05x Secure Element Integration in Matter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_zephyr_guide.html">Matter NXP Zephyr Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/openthread/index.html">OpenThread</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/silabs/index.html">Silabs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/stm32/index.html">STM32</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../platforms/ti/index.html">TI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../style/CODING_STYLE_GUIDE.html">Coding Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/README.html">Matter Example Applications</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/air_purifier.html">Air Purifier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/air_quality.html">Air Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_clusters.html">All clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/nxp/README.html">CHIP NXP All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/realtek/common/README.html">Matter All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_clusters_minimal.html">All clusters minimal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/all_devices.html">All devices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/README.html">Matter All-Devices Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/device/capabilities/README.html">Shared Device Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/device/types/README.html">Matter Simulated Device Types Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/oob-accessors/README.html">Out-of-Band (OOB) Control and Simulation Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/all-devices-common/providers/README.html">All-Devices Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/esp32/README.html">All Devices App for ESP32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/silabs/README.html">Matter All-Devices Application — Silabs (EFR32)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/telink/README.html">All Devices App for Telink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/adding_new_device.html">How to Add a New Simulated Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/architecture.html">Architecture &amp; Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/custom_product_baseline.html">Custom Product Baseline Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/starting_up.html">Application Initialization &amp; Command Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/supported_clusters.html">Matter Clusters Implementation Status (159 total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/supported_device_types.html">Matter Device Types Implementation Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/testing.html">Testing &amp; Simulation Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/all-devices-app/docs/design/out_of_band_control.html">Out-of-Band Control Architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/bridge.html">Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/camera.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-app/linux/README.html">CHIP Linux Camera Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-app/linux/doc/camera-app-architecture.html">Camera App Architecture and Design</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/camera_controller.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/camera-controller/README.html">Matter Camera Controller Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/chef.html">CHEF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/chip_tool.html">CHIP Tool example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/closure.html">Closure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/closure-app/linux/README.html">CHIP Linux Closure Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/closure-app/silabs/README.html">Matter SiWx917 Closure Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/contact_sensor.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/darwin.html">CHIP Tool Darwin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/dishwasher.html">Dishwasher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/electrical_protection.html">Electrical Protection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/electrical-protection-app/linux/README.html">CHIP Linux Electrical Protection Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/energy_gateway.html">Energy Gateway</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/energy-gateway-app/esp32/README.html">Matter ESP32 Energy Gateway Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/energy-gateway-app/linux/README.html">Matter Linux Energy Gateway Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/evse.html">EVSE</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/esp32/README.html">Matter ESP32 EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/linux/README.html">Matter Linux EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/evse-app/silabs/README.html">Matter EFR32 EVSE Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_admin.html">Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_bridge.html">Fabric Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/fabric_sync.html">Fabric Sync</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/java_matter_controller.html">Java matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/joint_fabric_admin.html">Joint Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/jf-admin-app/linux/README.html">Matter Joint Fabric Admin Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/joint_fabric_control.html">Joint Fabric Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/jf-control-app/README.html">Matter Joint Fabric Control Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/kotlin_matter_controller.html">Kotlin matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/laundry_washer.html">Laundry washer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/laundry-washer-app/nxp/README.html">CHIP NXP Laundry Washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/light_switch.html">Light switch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/realtek/common/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/ti/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/light-switch-app/qpg/APPLICATION.html">Matter QPG6200 Light Switch Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lighting.html">Lighting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/realtek/common/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/realtek/zephyr/README.html">Matter Realtek Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/silabs/zephyr/README.html">Matter Silicon Labs Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/stm32/STM32WB5MM-DK/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/stm32/STM32WBA65I-DK1/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/lighting-app/telink/README.html">Matter Telink Lighting Example Application</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/lighting-app/telink/MULTI_ENDPOINT_IDENTIFY.html">Matter Lighting App Multi-Endpoint Configuration Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/ti/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app/qpg/APPLICATION.html">Matter QPG6200 Lighting Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lighting_no_unique_id.html">Lighting without unique id</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lit_icd.html">Lit ICD</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/lock.html">Lock</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/realtek/common/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/ti/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/lock-app/qpg/APPLICATION.html">Matter QPG6200 Lock Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/log_source.html">Log source</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/microwave.html">Microwave ovens</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/minimal_mdns.html">Minimal MDNS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/network_infrastructure_manager.html">Network Infrastructure Manager</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/ota_provider.html">OTA Provider</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/ota_requestor.html">OTA Requestor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/realtek/common/README.html">Matter OTA Requestor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/persistent_storage.html">Persistent storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/persistent-storage/qpg/APPLICATION.html">CHIP QPG6200 Persistent Storage Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/pump.html">Pump</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-app/ti/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/pump_controler.html">Pump controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/pump-controller-app/ti/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/refrigerator.html">Refrigerator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/rvc.html">RVC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/rvc-app/README.html">RVC example app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/shell.html">Shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/smoke_co.html">Smoke CO Alarm example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tbr.html">Thread Border Router</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/temperature_measurement.html">Temperature measurement</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/thermostat.html">Thermostat</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/linux/README.html">Matter Linux Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/nxp/README.html">CHIP NXP Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/realtek/common/README.html">Matter Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/thermostat/qpg/APPLICATION.html">Matter QPG6200 Thermostat Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tv.html">TV</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-app/linux/README.html">Matter TV Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/tv_casting.html">TV casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/darwin/README.html">Matter TV Casting Darwin (iOS/macOS) App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/virtual_device.html">Virtual Device App</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/water_heater.html">Water Heater</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/esp32/README.html">Matter ESP32 Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/linux/README.html">Matter Linux Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-heater-app/silabs/README.html">Matter EFR32 Water Heater Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/water_leak_detector.html">Water Leak Detector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/water-leak-detector-app/linux/README.html">Matter Linux Water Leak Detector Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/window.html">Window</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/realtek/common/README.html">Matter Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../product_considerations/index.html">Discussion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Testing Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ChipDeviceCtrlAPI.html">ChipDeviceCtrl.py API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="ci_testing.html">CI testing</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python framework tests</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml_schema.html">YAML Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/ci-ccache.html">ccache in CI: troubleshooting and controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/chip-cert/README.html">Matter/CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/ELF_SIZE_TOOLING.html">ELF binary size information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../zap_and_codegen/index.html">ZAP and Codegen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../zap_and_codegen/code_generation.html">Code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../zap_and_codegen/zap_intro.html">ZAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/testing/fuzz_testing.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/testing/fuzz_testing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fuzz testing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzz-testing-with-libfuzzer">Fuzz testing with libFuzzer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-and-running">Compiling and running</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-s-fuzztest"><code class="docutils literal notranslate"><span class="pre">Google's</span> <span class="pre">FuzzTest</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-fuzztests">Writing FuzzTests</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-property-function">The Property Function</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-domains">Input Domains</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-combinators">Domain Combinators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seeds-and-corpus">Seeds and Corpus</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-fuzztests">Running FuzzTests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-report-generation">Coverage Report Generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-reports-and-fuzz-blockers">Coverage Reports and Fuzz Blockers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-fuzz-blocker-analysis">Example of Fuzz Blocker Analysis:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faq">FAQ</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-revision-should-the-fuzztest-and-abseil-submodules-be-for-running-pw-fuzzer-with-fuzztest">What revision should the FuzzTest and Abseil submodules be for running <code class="docutils literal notranslate"><span class="pre">pw_fuzzer</span></code> with FuzzTest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add">TO ADD:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fuzz-testing">
+<h1>Fuzz testing<a class="headerlink" href="#fuzz-testing" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Fuzz Testing involves providing random and unexpected data as input to
+functions and methods to uncover bugs, security vulnerabilities, or to
+determine if the software crashes.</p></li>
+<li><p>it is often continuous; the function under test is called in iteration with
+thousands of different inputs.</p></li>
+<li><p>Fuzz testing is often done with sanitizers enabled; to catch memory errors
+and undefined behavior.</p></li>
+<li><p>The most commonly used fuzz testing frameworks for C/C++ are libFuzzer and
+AFL.</p></li>
+<li><p><a class="reference external" href="https://github.com/google/fuzztest">Google’s FuzzTest</a> is a newer framework
+that simplifies writing fuzz tests with user-friendly APIs and offers more
+control over input generation. It also integrates seamlessly with Google
+Test (GTest).</p></li>
+</ul>
+<section id="fuzz-testing-with-libfuzzer">
+<h2>Fuzz testing with libFuzzer<a class="headerlink" href="#fuzz-testing-with-libfuzzer" title="Link to this heading">#</a></h2>
+<p>The following example demonstrates how to use libFuzzer to write a simple fuzz
+test. Each fuzzer function is defined using
+<code class="docutils literal notranslate"><span class="pre">LLVMFuzzerTestOneInput(const</span> <span class="pre">uint8_t</span> <span class="pre">*</span> <span class="pre">data,</span> <span class="pre">size_t</span> <span class="pre">len)</span></code>.</p>
+<p>The Fuzzer must be located in a Test Folder : <code class="docutils literal notranslate"><span class="pre">src/some_directory/tests/</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstddef&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *    @file</span>
+<span class="cm"> *      This file describes a Fuzzer for ...</span>
+<span class="cm"> */</span>
+
+<span class="k">extern</span><span class="w"> </span><span class="s">"C"</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LLVMFuzzerTestOneInput</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Instantiate values as needed</span>
+<span class="w">    </span><span class="c1">// Call target function for the fuzzer with the fuzzing input (data and len)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>See
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/setup_payload/tests/FuzzBase38Decode.cpp">FuzzBase38Decode.cpp</a>
+for an example of a simple fuzz test.</p>
+<section id="compiling-and-running">
+<h3>Compiling and running<a class="headerlink" href="#compiling-and-running" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Add to <code class="docutils literal notranslate"><span class="pre">src/some_directory/tests/BUILD.gn</span></code></p>
+<ul>
+<li><p>Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">import</span><span class="p">(</span><span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/build/chip/fuzz_test.gni"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">enable_fuzz_test_targets</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">chip_fuzz_target</span><span class="p">(</span><span class="s2">"FuzzTargetName1"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"Fuzzer1.cpp"</span> <span class="p">]</span>
+        <span class="n">public_deps</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="o">//</span> <span class="n">Dependencies</span> <span class="n">go</span> <span class="n">here</span><span class="o">.</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">chip_fuzz_target</span><span class="p">(</span><span class="s2">"FuzzTargetName2"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"Fuzzer2.cpp"</span> <span class="p">]</span>
+        <span class="n">public_deps</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="o">//</span> <span class="n">Dependencies</span> <span class="n">go</span> <span class="n">here</span><span class="o">.</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>CHIP_FUZZ_TARGET : the name of the fuzz target</p></li>
+<li><p>SOURCES : file in the test folder containing the fuzzer
+implementation</p></li>
+<li><p>PUBLIC_DEPS : Code Dependencies needed to build fuzzer</p></li>
+</ul>
+</li>
+<li><p>Another example:
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/b367512f519e5e109346e81a0d84fd85cd9192f7/src/setup_payload/tests/BUILD.gn#L43">src/setup_payload/tests/BUILD.gn</a></p></li>
+</ul>
+</li>
+<li><p>Add to <code class="docutils literal notranslate"><span class="pre">${chip_root}/BUILD.gn</span></code></p>
+<ul>
+<li><p>Add the Fuzzing Target in this part of the code :
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/b367512f519e5e109346e81a0d84fd85cd9192f7/BUILD.gn#L52">${chip_root}/BUILD.gn</a></p></li>
+<li><p>Add Fuzzing Target like that</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">enable_fuzz_test_targets</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">group</span><span class="p">(</span><span class="s2">"fuzz_tests"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/credentials/tests:fuzz-chip-cert"</span><span class="p">,</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/lib/core/tests:fuzz-tlv-reader"</span><span class="p">,</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/lib/dnssd/minimal_mdns/tests:fuzz-minmdns-packet-parsing"</span><span class="p">,</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/lib/format/tests:fuzz-payload-decoder"</span><span class="p">,</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/setup_payload/tests:fuzz-setup-payload-base38"</span><span class="p">,</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/src/setup_payload/tests:fuzz-setup-payload-base38-decode"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">ADD</span> <span class="n">HERE</span> <span class="n">YOUR</span> <span class="n">FUZZING</span> <span class="n">TARGET</span>
+        <span class="s2">"$</span><span class="si">{chip_root}</span><span class="s2">/some_directory/tests:FuzzTargetName"</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Build all fuzzers</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/build/build_examples.py<span class="w"> </span>--target<span class="w"> </span>&lt;host&gt;-&lt;compiler&gt;-tests-asan-libfuzzer-clang<span class="w"> </span>build
+</pre></div>
+</div>
+<p>e.g.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/build/build_examples.py<span class="w"> </span>--target<span class="w"> </span>darwin-arm64-tests-asan-libfuzzer-clang<span class="w"> </span>build
+</pre></div>
+</div>
+<p>** Make sure to put the right host and compiler</p>
+</li>
+<li><p>Fuzzers binaries are compiled into:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">out/&lt;host&gt;-&lt;compiler&gt;-tests-asan-libfuzzer-clang/tests</span></code></p></li>
+<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">darwin-arm64-tests-asan-libfuzzer-clang</span></code></p></li>
+</ul>
+</li>
+<li><p>Running the fuzzer with a corpus</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">path_to_fuzzer_in_test_folder</span> <span class="pre">path_to_corpus</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="google-s-fuzztest">
+<h2><code class="docutils literal notranslate"><span class="pre">Google's</span> <span class="pre">FuzzTest</span></code><a class="headerlink" href="#google-s-fuzztest" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Google FuzzTest is integrated through Pigweed
+<a class="reference external" href="https://pigweed.dev/pw_fuzzer/concepts.html">pw_fuzzer</a>.</p></li>
+</ul>
+<section id="use-cases">
+<h3>Use cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Finding Undefined Behavior with Sanitizers:</p>
+<ul class="simple">
+<li><p>Running fuzz tests while checking if a crash or other sanitizer-detected
+error occurs, allowing detection of subtle memory issues like buffer
+overflows and use-after-free errors.</p></li>
+</ul>
+</li>
+<li><p>Find Correctness Bugs using Assertions:</p>
+<ul class="simple">
+<li><p>For example, in Round trip Fuzzing, fuzzed input is encoded, decoded, and
+then verified to match the original input. An example of this can be found
+in src/setup_payload/tests/FuzzBase38PW.cpp.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>More information can be found in the
+<a class="reference external" href="https://github.com/google/fuzztest/blob/main/doc/use-cases.md">FuzzTest Use Cases</a>
+documentation.</p></li>
+</ul>
+</section>
+<section id="writing-fuzztests">
+<h3>Writing FuzzTests<a class="headerlink" href="#writing-fuzztests" title="Link to this heading">#</a></h3>
+<p>Keywords: Property Function, Input Domain</p>
+<ul class="simple">
+<li><p>FuzzTests are instantiated through the macro call of <code class="docutils literal notranslate"><span class="pre">FUZZ_TEST</span></code>:</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">TLVReader</span><span class="p">,</span><span class="w"> </span><span class="n">FuzzTlvReader</span><span class="p">).</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">fuzztest</span><span class="o">::</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The Macro invocation calls the <strong>Property Function</strong>, which is
+<code class="docutils literal notranslate"><span class="pre">FuzzTlvReader</span></code> above.</p></li>
+<li><p>The <strong>input domains</strong> define the range and type of inputs that the
+<strong>property function</strong> will receive during fuzzing, specified using the
+<code class="docutils literal notranslate"><span class="pre">.WithDomains()</span></code> clause.</p></li>
+<li><p>In the macro above, FuzzTest will generate a wide range of possible byte
+vectors to thoroughly test the <code class="docutils literal notranslate"><span class="pre">FuzzTlvReader</span></code> function.</p></li>
+</ul>
+<section id="the-property-function">
+<h4>The Property Function<a class="headerlink" href="#the-property-function" title="Link to this heading">#</a></h4>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// The Property Function</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FuzzTlvRead</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bytes</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">TLVReader</span><span class="w"> </span><span class="n">reader</span><span class="p">;</span>
+<span class="w">    </span><span class="n">reader</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="n">bytes</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">bytes</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="w">    </span><span class="n">chip</span><span class="o">::</span><span class="n">TLV</span><span class="o">::</span><span class="n">Utilities</span><span class="o">::</span><span class="n">Iterate</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span><span class="w"> </span><span class="n">FuzzIterator</span><span class="p">,</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The Property Functions must return a <code class="docutils literal notranslate"><span class="pre">void</span></code></p></li>
+<li><p>The function will be run with many different inputs in the same process,
+trying to trigger a crash.</p></li>
+<li><p>It is possible to include Assertions such as during Round-Trip Fuzzing</p></li>
+<li><p>More Information:
+https://github.com/google/fuzztest/blob/main/doc/fuzz-test-macro.md#the-property-function</p></li>
+</ul>
+</section>
+<section id="input-domains">
+<h4>Input Domains<a class="headerlink" href="#input-domains" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>FuzzTest Offers many Input Domains, all of which are part of the
+<code class="docutils literal notranslate"><span class="pre">fuzztest::</span></code> namespace.</p></li>
+<li><p>All native C++ types can be used through <code class="docutils literal notranslate"><span class="pre">Arbitrary&lt;T&gt;()</span></code>:</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">Base38Decoder</span><span class="p">,</span><span class="w"> </span><span class="n">FuzzQRCodeSetupPayloadParser</span><span class="p">).</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>using vector domains is one of the most common. It is possible to limit the
+size of the input vectors (or any container domain) using <code class="docutils literal notranslate"><span class="pre">.WithMaxSize()</span></code>
+or <code class="docutils literal notranslate"><span class="pre">.WithMinSize()</span></code>, as shown below:</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">MinimalmDNS</span><span class="p">,</span><span class="w"> </span><span class="n">TxtResponderFuzz</span><span class="p">).</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="p">().</span><span class="n">WithMaxSize</span><span class="p">(</span><span class="mi">254</span><span class="p">));</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ElementOf</span></code> is particularly useful as it allows us to define a domain by
+explicitly enumerating the set of values in it and passing it to FuzzTest
+invocation. Example:</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">AnyProtocolID</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ElementOf</span><span class="p">({</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">Protocols</span><span class="o">::</span><span class="n">SecureChannel</span><span class="o">::</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">Protocols</span><span class="o">::</span><span class="n">InteractionModel</span><span class="o">::</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">Protocols</span><span class="o">::</span><span class="n">BDX</span><span class="o">::</span><span class="n">Id</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">chip</span><span class="o">::</span><span class="n">Protocols</span><span class="o">::</span><span class="n">UserDirectedCommissioning</span><span class="o">::</span><span class="n">Id</span><span class="w"> </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">PayloadDecoder</span><span class="p">,</span><span class="w"> </span><span class="n">RunDecodeFuzz</span><span class="p">).</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="p">(),</span><span class="w"> </span><span class="n">AnyProtocolID</span><span class="p">(),</span><span class="w"> </span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A detailed reference for input domains can be found here:
+<a class="reference external" href="https://github.com/google/fuzztest/blob/main/doc/domains-reference.md#elementof-domains-element-of">FuzzTest Domain Reference</a>.</p></li>
+</ul>
+</section>
+<section id="domain-combinators">
+<h4>Domain Combinators<a class="headerlink" href="#domain-combinators" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Domain Combinators: Useful when we have input domains that we want use to
+create another domain; e.g. construct an object and pass it to the property
+function.</p></li>
+<li><p>An example is <code class="docutils literal notranslate"><span class="pre">Map</span></code> documented in FuzzTest’s official documentation
+<a class="reference external" href="https://github.com/google/fuzztest/blob/main/doc/domains-reference.md#map">Aggregate Combinators#Map</a></p></li>
+<li><p>Using a Map, we can take several input domains, pass them into the mapping
+function, and get a single Domain as output.</p></li>
+<li><p>An example from the Stack is <code class="docutils literal notranslate"><span class="pre">AnyValidationContext()</span></code> used in
+<code class="docutils literal notranslate"><span class="pre">FUZZ_TEST(FuzzCASE,</span> <span class="pre">HandleSigma3b)</span></code></p></li>
+</ul>
+</section>
+<section id="seeds-and-corpus">
+<h4>Seeds and Corpus<a class="headerlink" href="#seeds-and-corpus" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Using initial seeds is very useful when fuzzing functions that take complex
+inputs, such as large byte arrays</p></li>
+<li><p>The fuzzing engine starts by mutating these initial seeds instead of
+generating completely random inputs</p></li>
+<li><p>This helps the fuzzing engine explore more realistic and meaningful code
+paths faster, making it more likely to uncover issues</p></li>
+<li><p>Adding <code class="docutils literal notranslate"><span class="pre">.WithSeeds()</span></code> to the <em>Input Domains</em> within a FUZZ_TEST Macro
+invocation allow us to use initial seeds.</p></li>
+<li><p>Two Ways to use <code class="docutils literal notranslate"><span class="pre">.WithSeeds()</span></code>:</p>
+<ol class="arabic simple">
+<li><p><strong>Using variables as inputs</strong>: Examples of this usage are in
+<code class="docutils literal notranslate"><span class="pre">FuzzCASE.cpp</span></code> in the lambda <code class="docutils literal notranslate"><span class="pre">SeededEncodedSigma1()</span></code> used in the Fuzz
+Test Case <code class="docutils literal notranslate"><span class="pre">FUZZ_TEST(FuzzCASE,</span> <span class="pre">ParseSigma1_RawPayload)</span></code></p></li>
+<li><p><strong>Using files as inputs</strong> with <code class="docutils literal notranslate"><span class="pre">fuzztest::ReadFilesFromDirectory()</span></code>:</p>
+<ul class="simple">
+<li><p>Returns a vector of single-element tuples, each containing file
+content as a string</p></li>
+<li><p>Use a lambda like <code class="docutils literal notranslate"><span class="pre">seedProvider</span></code> in <code class="docutils literal notranslate"><span class="pre">FuzzChipCertPW.cpp</span></code> to unpack the
+tuples and extract contents</p></li>
+<li><p>The lambda should return <code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::string&gt;</span></code> to be used with
+<code class="docutils literal notranslate"><span class="pre">std::string</span></code> domain as shown below:</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">FuzzChipCert</span><span class="p">,</span><span class="w"> </span><span class="n">ConvertX509CertToChipCertFuzz</span><span class="p">).</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">().</span><span class="n">WithSeeds</span><span class="p">(</span><span class="n">seedProvider</span><span class="p">(</span><span class="n">isDerFile</span><span class="p">)));</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Caution</strong>: attach <code class="docutils literal notranslate"><span class="pre">.WithSeeds()</span></code> to an input domain <em>inside</em>
+<code class="docutils literal notranslate"><span class="pre">.WithDomains(...)</span></code>. FuzzTest also allows chaining <code class="docutils literal notranslate"><span class="pre">.WithSeeds()</span></code> on the
+FUZZ_TEST registration itself (after <code class="docutils literal notranslate"><span class="pre">.WithDomains(...)</span></code>), but seeds
+provided that way are silently dropped in libFuzzer compatibility mode,
+which is how OSS-Fuzz runs these tests; only domain-attached seeds are
+delivered there.</p></li>
+<li><p>To give a multi-parameter property function <em>whole-input</em> seeds (tuples that
+pin all parameters together, e.g. so a message sequence stays paired with
+the setup that makes it meaningful), wrap all the parameter domains in a
+single <code class="docutils literal notranslate"><span class="pre">TupleOf(...)</span></code> and attach <code class="docutils literal notranslate"><span class="pre">.WithSeeds()</span></code> to it: <code class="docutils literal notranslate"><span class="pre">.WithDomains()</span></code>
+accepts one tuple domain in place of the individual parameter domains. An
+example from the Stack is
+<code class="docutils literal notranslate"><span class="pre">FUZZ_TEST(FuzzBdxTransferSessionPW,</span> <span class="pre">BdxSessionSequenceDoesNotCrash)</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FUZZ_TEST</span><span class="p">(</span><span class="n">MySuite</span><span class="p">,</span><span class="w"> </span><span class="n">MyFuzzTest</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">WithDomains</span><span class="p">(</span><span class="n">TupleOf</span><span class="p">(</span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(),</span><span class="w"> </span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="kt">uint16_t</span><span class="o">&gt;</span><span class="p">(),</span>
+<span class="w">                         </span><span class="n">Arbitrary</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="p">())</span>
+<span class="w">                     </span><span class="p">.</span><span class="n">WithSeeds</span><span class="p">(</span><span class="n">WholeInputSeeds</span><span class="p">()));</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="running-fuzztests">
+<h3>Running FuzzTests<a class="headerlink" href="#running-fuzztests" title="Link to this heading">#</a></h3>
+<p>There are several ways to run the tests:</p>
+<ol class="arabic simple">
+<li><p>Unit-test mode (where the inputs are only fuzzed for a second):</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./fuzz-chip-cert-pw
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Continuous fuzzing mode; we need to first list the tests, then specify the
+FuzzTestCase to run:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./fuzz-chip-cert-pw<span class="w"> </span>--list_fuzz_tests
+<span class="go">[.] Sanitizer coverage enabled. Counter map size: 11134, Cmp map size: 262144</span>
+<span class="go">[*] Fuzz test: ChipCert.ChipCertFuzzer</span>
+<span class="go">[*] Fuzz test: ChipCert.DecodeChipCertFuzzer</span>
+
+<span class="gp">$ </span>./fuzz-chip-cert-pw<span class="w"> </span>--fuzz<span class="o">=</span>ChipCert.DecodeChipCertFuzzer
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Running all Tests in a TestSuite for a specific time, e.g for 10 minutes</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># both Fuzz Tests will be run for 10 minutes each</span>
+./fuzz-chip-cert-pw<span class="w"> </span>--fuzz_for<span class="o">=</span>10m
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>For Help</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># FuzzTest related help</span>
+./fuzz-chip-cert-pw<span class="w"> </span>--helpfull
+
+<span class="c1"># gtest related help</span>
+./fuzz-chip-cert-pw<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="coverage-report-generation">
+<h3>Coverage Report Generation<a class="headerlink" href="#coverage-report-generation" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>[!TIP]</p>
+<p>Use Coverage Reports to get more insights while writing FuzzTests.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Build FuzzTests with coverage instrumentation
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/docs/guides/BUILDING.md#pw_fuzzer-fuzztests">Building pw_fuzzer FuzzTests</a>.</p></li>
+<li><p>Run These FuzzTests using <code class="docutils literal notranslate"><span class="pre">scripts/tests/run_fuzztest_coverage.py</span></code></p>
+<ul class="simple">
+<li><p>run them in <code class="docutils literal notranslate"><span class="pre">Continuous</span> <span class="pre">Fuzzing</span> <span class="pre">Mode</span></code> for as long as possible to get max
+coverage</p></li>
+</ul>
+</li>
+<li><p>The path for the HTML Coverage Report will be output after generation</p></li>
+</ol>
+</section>
+<section id="coverage-reports-and-fuzz-blockers">
+<h3>Coverage Reports and Fuzz Blockers<a class="headerlink" href="#coverage-reports-and-fuzz-blockers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Coverage Reports can give (FuzzTest Developers) insights and help identify
+<code class="docutils literal notranslate"><span class="pre">Fuzz</span> <span class="pre">Blockers</span></code>.</p></li>
+<li><p><strong>Fuzz Blocker</strong>: something that prevents a fuzz test from exploring a
+certain part of the code.</p></li>
+</ul>
+<section id="example-of-fuzz-blocker-analysis">
+<h4>Example of Fuzz Blocker Analysis:<a class="headerlink" href="#example-of-fuzz-blocker-analysis" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Screenshot below shows how we can use a Coverage Report to identify a Fuzz
+Blocker</p></li>
+<li><p>We can see the number of executions of each line in the report.</p></li>
+<li><p>Line (#2159) was not reached, in at least 129,452 executions.</p></li>
+<li><p>The line (#2156) just above it is possibly a Fuzz Blocker.</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data.fabricId</span></code> check is always failing and it is blocking the
+execution of the function that follows it.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="FuzzBlocker_before" src="../_images/fuzzblocker_before.png" /></p>
+<ul class="simple">
+<li><p>Thus, we can adapt our FuzzTest in a way to be able to pass that check.</p></li>
+<li><p><strong>Solution</strong>: One approach will be to:</p>
+<ol class="arabic simple">
+<li><p>Seed the Fuzzed <code class="docutils literal notranslate"><span class="pre">NOC</span></code> with a valid NOC Certificate</p></li>
+<li><p>Fuzz the <code class="docutils literal notranslate"><span class="pre">FabricId</span></code></p></li>
+<li><p>Seed the <code class="docutils literal notranslate"><span class="pre">FabricId</span></code> using the same <strong>valid</strong> <code class="docutils literal notranslate"><span class="pre">FabricId</span></code> included in the
+valid NOC Cert.</p></li>
+</ol>
+</li>
+<li><p>After doing this, Screenshot below shows Line #2159 is now reached; We have
+increased our coverage and we are sure that our FuzzTest is more effective:</p></li>
+<li><p>This approach was used FuzzTest Case <code class="docutils literal notranslate"><span class="pre">FUZZ_TEST(FuzzCASE,</span> <span class="pre">HandleSigma3b)</span></code></p></li>
+</ul>
+<p><img alt="FuzzBlocker_after" src="../_images/fuzzblocker_after.png" /></p>
+</section>
+</section>
+<section id="faq">
+<h3>FAQ<a class="headerlink" href="#faq" title="Link to this heading">#</a></h3>
+<section id="what-revision-should-the-fuzztest-and-abseil-submodules-be-for-running-pw-fuzzer-with-fuzztest">
+<h4>What revision should the FuzzTest and Abseil submodules be for running <code class="docutils literal notranslate"><span class="pre">pw_fuzzer</span></code> with FuzzTest?<a class="headerlink" href="#what-revision-should-the-fuzztest-and-abseil-submodules-be-for-running-pw-fuzzer-with-fuzztest" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Google FuzzTest is integrated into Matter using <code class="docutils literal notranslate"><span class="pre">pw_fuzzer</span></code>, which has
+several dependencies. These dependencies are listed here:
+<a class="reference external" href="https://pigweed.dev/pw_fuzzer/guides/fuzztest.html#step-0-set-up-fuzztest-for-your-project">Step 0: Set up FuzzTest for your project</a>.</p></li>
+<li><p>Matter integrates these dependencies as submodules, including Google
+FuzzTest and Abseil.</p></li>
+<li><p>Since FuzzTest and Abseil only support the <code class="docutils literal notranslate"><span class="pre">bazel</span></code> and <code class="docutils literal notranslate"><span class="pre">CMake</span></code> build systems
+and do not support GN, Pigweed maintainers use a script to generate GN files
+for these dependencies.</p></li>
+<li><p>the revision of FuzzTest and Abseil submodules in Matter should match or at
+least be as new as the specific version (SHA1) used when generating these GN
+files.</p></li>
+<li><p>You can find the version used for the generated GN files here:
+<a class="reference external" href="https://pigweed.dev/third_party/fuzztest/#version">FuzzTest Version</a> and
+<a class="reference external" href="https://pigweed.dev/third_party/abseil-cpp/#version">Abseil Version</a>.</p></li>
+</ul>
+</section>
+<section id="to-add">
+<h4>TO ADD:<a class="headerlink" href="#to-add" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>More Information on Test Fixtures (After issues are resolved)</p></li>
+<li><p>How to add FuzzTests to the Build System</p></li>
+<li><p>More Information on OSS-FUZZ</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ci_testing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CI testing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="integration_test_utilities.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Integration Test utilities</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzz-testing-with-libfuzzer">Fuzz testing with libFuzzer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling-and-running">Compiling and running</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-s-fuzztest"><code class="docutils literal notranslate"><span class="pre">Google's</span> <span class="pre">FuzzTest</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-fuzztests">Writing FuzzTests</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-property-function">The Property Function</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-domains">Input Domains</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-combinators">Domain Combinators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seeds-and-corpus">Seeds and Corpus</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-fuzztests">Running FuzzTests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-report-generation">Coverage Report Generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-reports-and-fuzz-blockers">Coverage Reports and Fuzz Blockers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-fuzz-blocker-analysis">Example of Fuzz Blocker Analysis:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faq">FAQ</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-revision-should-the-fuzztest-and-abseil-submodules-be-for-running-pw-fuzzer-with-fuzztest">What revision should the FuzzTest and Abseil submodules be for running <code class="docutils literal notranslate"><span class="pre">pw_fuzzer</span></code> with FuzzTest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#to-add">TO ADD:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
