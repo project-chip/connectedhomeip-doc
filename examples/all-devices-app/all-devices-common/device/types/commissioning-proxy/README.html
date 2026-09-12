@@ -1,0 +1,1673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started: Wi-Fi PAF for the Commissioning Proxy &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/all-devices-app/all-devices-common/device/types/commissioning-proxy/README';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Out-of-Band (OOB) Control and Simulation Accessors" href="../../../oob-accessors/README.html" />
+    <link rel="prev" title="Matter Simulated Device Types Catalog" href="../README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../../_static/language_data.js"></script>
+    <script src="../../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <img src="../../../../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Matter  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../GLOSSARY.html">Matter Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../contributing/index.html">Contributing to matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../contributing/BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../contributing/pr_reviews.html">How Pull Request Reviews Work in the Matter SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../contributing/pull_request_guidelines.html">Guidelines for writing pull requests</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../ci-cd/index.html">CI/CD Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../development_controllers/index.html">Development Controllers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../development_controllers/chip-tool/index.html">chip-tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../development_controllers/matter-repl/index.html">matter-repl</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../development_controllers/matter-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../development_controllers/matter-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../development_controllers/matter-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../ids_and_codes/index.html">IDs and Codes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../ids_and_codes/ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../ids_and_codes/spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../ids_and_codes/spec_device_types.html">List of currently defined spec device types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../ids_and_codes/zap_clusters.html">List of currently defined ZAP clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../cluster_and_device_type_dev/cluster_tester.html">ClusterTester Helper Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../guides/index.html">Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/batch-commands.html">Accepting Batch Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/data_model_errata.html">Data Model Errata Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/device-attestation-revocation-guide.html">Device Attestation Revocation Testing Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/joint_fabric_guide.html">Joint Fabric Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/migrating_ember_cluster_to_code_driven.html">Migrating Ember Clusters to Code-Driven Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/updating-matter-device-guide.html">Guide: Updating a Matter Device Using the OTA Provider Sample App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../guides/writing_clusters.html">Writing and Updating Clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../platforms/index.html">Platform Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/android/index.html">Android</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/android/android_building.html">Building Android</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/asr/index.html">ASR</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/bouffalolab/index.html">Bouffalolab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/bouffalolab/getting_started.html">Checking out the Matter code</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/bouffalolab/ota_upgrade.html">Build OTA image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/bouffalolab/platform_overview.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> SoCs</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/bouffalolab/rpc_console.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> with RPC console</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/esp32/index.html">Espressif (ESP32) Getting Started Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/diagnostics.html">Using ESP32 Diagnostic Logs Provider</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/esp_hosted.html">ESP-Hosted Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/infineon/index.html">Infineon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/linux/index.html">Linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/linux/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/linux/debugging_tips.html">Debugging tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/nrf/index.html">NRF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/nxp/index.html">NXP</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_application_architecture.html">NXP Matter Application Architecture for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_examples_freertos_platforms.html">Matter NXP Examples Guide for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_mcxw72_guide.html">Matter NXP MCXW72 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_mcxw_ota_guide.html">NXP MCXW OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_rt1060_guide.html">MATTER NXP RT1060 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_rt1170_guide.html">MATTER NXP RT1170 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_rw61x_guide.html">Matter NXP RW61x Applications Guide targeting FreeRTOS OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_se05x_guide.html">NXP SE05x Secure Element Integration in Matter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_zephyr_guide.html">Matter NXP Zephyr Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/openthread/index.html">OpenThread</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/silabs/index.html">Silabs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/stm32/index.html">STM32</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../../platforms/ti/index.html">TI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../style/CODING_STYLE_GUIDE.html">Coding Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../../../index.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../README.html">Matter Example Applications</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../air_purifier.html">Air Purifier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../air_quality.html">Air Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../all_clusters.html">All clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/nxp/README.html">CHIP NXP All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/realtek/common/README.html">Matter All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../all_clusters_minimal.html">All clusters minimal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../../../../all_devices.html">All devices</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../../README.html">Matter All-Devices Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../capabilities/README.html">Shared Device Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Matter Simulated Device Types Catalog</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Getting Started: Wi-Fi PAF for the Commissioning Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../oob-accessors/README.html">Out-of-Band (OOB) Control and Simulation Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../providers/README.html">All-Devices Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../esp32/README.html">All Devices App for ESP32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../silabs/README.html">Matter All-Devices Application — Silabs (EFR32)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../telink/README.html">All Devices App for Telink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/adding_new_device.html">How to Add a New Simulated Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/architecture.html">Architecture &amp; Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/custom_product_baseline.html">Custom Product Baseline Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/starting_up.html">Application Initialization &amp; Command Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/supported_clusters.html">Matter Clusters Implementation Status (159 total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/supported_device_types.html">Matter Device Types Implementation Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/testing.html">Testing &amp; Simulation Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../docs/design/out_of_band_control.html">Out-of-Band Control Architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../bridge.html">Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../camera.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../camera-app/linux/README.html">CHIP Linux Camera Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../camera-app/linux/doc/camera-app-architecture.html">Camera App Architecture and Design</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../camera_controller.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../camera-controller/README.html">Matter Camera Controller Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../chef.html">CHEF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../chip_tool.html">CHIP Tool example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../closure.html">Closure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../closure-app/linux/README.html">CHIP Linux Closure Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../closure-app/silabs/README.html">Matter SiWx917 Closure Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../contact_sensor.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../contact-sensor-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../darwin.html">CHIP Tool Darwin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../dishwasher.html">Dishwasher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../electrical_protection.html">Electrical Protection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../electrical-protection-app/linux/README.html">CHIP Linux Electrical Protection Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../energy_gateway.html">Energy Gateway</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../energy-gateway-app/esp32/README.html">Matter ESP32 Energy Gateway Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../energy-gateway-app/linux/README.html">Matter Linux Energy Gateway Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../evse.html">EVSE</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../evse-app/esp32/README.html">Matter ESP32 EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../evse-app/linux/README.html">Matter Linux EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../evse-app/silabs/README.html">Matter EFR32 EVSE Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../fabric_admin.html">Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../fabric_bridge.html">Fabric Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../fabric_sync.html">Fabric Sync</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../java_matter_controller.html">Java matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../joint_fabric_admin.html">Joint Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../jf-admin-app/linux/README.html">Matter Joint Fabric Admin Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../joint_fabric_control.html">Joint Fabric Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../jf-control-app/README.html">Matter Joint Fabric Control Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../kotlin_matter_controller.html">Kotlin matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../laundry_washer.html">Laundry washer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../laundry-washer-app/nxp/README.html">CHIP NXP Laundry Washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../light_switch.html">Light switch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/realtek/common/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/ti/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../light-switch-app/qpg/APPLICATION.html">Matter QPG6200 Light Switch Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../lighting.html">Lighting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/realtek/common/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/realtek/zephyr/README.html">Matter Realtek Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/silabs/zephyr/README.html">Matter Silicon Labs Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/stm32/STM32WB5MM-DK/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/stm32/STM32WBA65I-DK1/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../../lighting-app/telink/README.html">Matter Telink Lighting Example Application</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../lighting-app/telink/MULTI_ENDPOINT_IDENTIFY.html">Matter Lighting App Multi-Endpoint Configuration Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/ti/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app/qpg/APPLICATION.html">Matter QPG6200 Lighting Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../lighting_no_unique_id.html">Lighting without unique id</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../lit_icd.html">Lit ICD</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../lock.html">Lock</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/realtek/common/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/ti/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../lock-app/qpg/APPLICATION.html">Matter QPG6200 Lock Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../log_source.html">Log source</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../microwave.html">Microwave ovens</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../minimal_mdns.html">Minimal MDNS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../network_infrastructure_manager.html">Network Infrastructure Manager</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../ota_provider.html">OTA Provider</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../ota_requestor.html">OTA Requestor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/realtek/common/README.html">Matter OTA Requestor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../persistent_storage.html">Persistent storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../persistent-storage/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../persistent-storage/qpg/APPLICATION.html">CHIP QPG6200 Persistent Storage Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../pump.html">Pump</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-app/ti/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../pump_controler.html">Pump controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../pump-controller-app/ti/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../refrigerator.html">Refrigerator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../rvc.html">RVC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../rvc-app/README.html">RVC example app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../shell.html">Shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../smoke_co.html">Smoke CO Alarm example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../tbr.html">Thread Border Router</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../temperature_measurement.html">Temperature measurement</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../thermostat.html">Thermostat</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/linux/README.html">Matter Linux Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/nxp/README.html">CHIP NXP Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/realtek/common/README.html">Matter Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../thermostat/qpg/APPLICATION.html">Matter QPG6200 Thermostat Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../tv.html">TV</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-app/README.html">Matter TV Example (Media Player)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-app/linux/README.html">Matter TV Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../tv_casting.html">TV casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-casting-app/darwin/README.html">Matter TV Casting Darwin (iOS/macOS) App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../virtual_device.html">Virtual Device App</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../water_heater.html">Water Heater</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../water-heater-app/esp32/README.html">Matter ESP32 Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../water-heater-app/linux/README.html">Matter Linux Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../water-heater-app/silabs/README.html">Matter EFR32 Water Heater Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../water_leak_detector.html">Water Leak Detector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../water-leak-detector-app/linux/README.html">Matter Linux Water Leak Detector Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../window.html">Window</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../window-app/realtek/common/README.html">Matter Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../product_considerations/index.html">Discussion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../testing/index.html">Testing Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/ChipDeviceCtrlAPI.html">ChipDeviceCtrl.py API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/python.html">Python framework tests</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../tips_and_troubleshooting/ci-ccache.html">ccache in CI: troubleshooting and controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../src/tools/chip-cert/README.html">Matter/CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/ELF_SIZE_TOOLING.html">ELF binary size information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../zap_and_codegen/index.html">ZAP and Codegen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../zap_and_codegen/code_generation.html">Code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../zap_and_codegen/zap_intro.html">ZAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/examples/all-devices-app/all-devices-common/device/types/commissioning-proxy/README.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../../_sources/examples/all-devices-app/all-devices-common/device/types/commissioning-proxy/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting Started: Wi-Fi PAF for the Commissioning Proxy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-prerequisites">1. Hardware prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wpa-supplicant-with-the-matter-nan-patch-proxy-device">2. wpa_supplicant with the Matter NAN patch (proxy device)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-stock-package-is-not-enough">2.1 Why the stock package is not enough</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-patch">2.2 The patch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-install">2.3 Build and install</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-all-devices-app-with-wi-fi-paf">3. Build all-devices-app with Wi-Fi PAF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-commissioning-proxy">4. Run the Commissioning Proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commission-the-proxy-onto-the-fabric">5. Commission the proxy onto the fabric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-end-device-commissionee">6. Run the End Device (commissionee)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-optional">7. Scanning (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commission-the-end-device-through-the-proxy">8. Commission the End Device through the proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-wi-fi-paf-is-wired-into-the-cp-device">9. How Wi-Fi PAF is wired into the CP device</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-app-has-to-supply">What this app has to supply</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">10. Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy-fails-to-start-with-a-nan-error">Proxy fails to start with a NAN error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy-connect-times-out-commissioner-gets-status-timeout">Proxy connect times out (Commissioner gets <code class="docutils literal notranslate"><span class="pre">Status::Timeout</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paf-session-closes-mid-commissioning">PAF session closes mid-commissioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectnetwork-is-slow"><code class="docutils literal notranslate"><span class="pre">ConnectNetwork</span></code> is slow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chip-tool-pairing-proxy-command-not-found"><code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">pairing</span> <span class="pre">proxy</span></code> command not found</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="getting-started-wi-fi-paf-for-the-commissioning-proxy">
+<h1>Getting Started: Wi-Fi PAF for the Commissioning Proxy<a class="headerlink" href="#getting-started-wi-fi-paf-for-the-commissioning-proxy" title="Link to this heading">#</a></h1>
+<p>This guide is a self-contained walkthrough for getting the <strong>Commissioning Proxy
+(CP)</strong> device in <code class="docutils literal notranslate"><span class="pre">all-devices-app</span></code> working over <strong>Wi-Fi PAF</strong> (Wi-Fi Aware / NAN
+— Neighbor Awareness Networking).</p>
+<p>The Commissioning Proxy tunnels commissioning traffic between a Commissioner
+(chip-tool) and a Commissionee that the Commissioner cannot reach directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>chip-tool  ──Matter (TCP/IP)──►  all-devices-app (CP)  ──Wi-Fi PAF (NAN)──►  Commissionee
+</pre></div>
+</div>
+<p>Wi-Fi PAF is one of the transports the CP device can be built with (BLE is
+another). Both are compiled in by default on Linux; the transport used to reach
+a commissionee is chosen <strong>per command</strong> by the <code class="docutils literal notranslate"><span class="pre">Transport</span></code> field of the
+request, not by a command-line flag. This guide covers Wi-Fi PAF end to end —
+everything you need to do to make PAF work, from hardware to a completed
+commission-through-proxy.</p>
+<hr>
+<ul class="simple">
+<li><p><a class="reference internal" href="#hardware-prerequisites">1. Hardware prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#wpa-supplicant-with-the-matter-nan-patch-proxy-device">2. wpa_supplicant with the Matter NAN patch (proxy device)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-the-stock-package-is-not-enough">2.1 Why the stock package is not enough</a></p></li>
+<li><p><a class="reference internal" href="#the-patch">2.2 The patch</a></p></li>
+<li><p><a class="reference internal" href="#build-and-install">2.3 Build and install</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#build-all-devices-app-with-wi-fi-paf">3. Build all-devices-app with Wi-Fi PAF</a></p></li>
+<li><p><a class="reference internal" href="#run-the-commissioning-proxy">4. Run the Commissioning Proxy</a></p></li>
+<li><p><a class="reference internal" href="#commission-the-proxy-onto-the-fabric">5. Commission the proxy onto the fabric</a></p></li>
+<li><p><a class="reference internal" href="#run-the-end-device-commissionee">6. Run the End Device (commissionee)</a></p></li>
+<li><p><a class="reference internal" href="#scanning-optional">7. Scanning (optional)</a></p></li>
+<li><p><a class="reference internal" href="#commission-the-end-device-through-the-proxy">8. Commission the End Device through the proxy</a></p></li>
+<li><p><a class="reference internal" href="#how-wi-fi-paf-is-wired-into-the-cp-device">9. How Wi-Fi PAF is wired into the CP device</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting">10. Troubleshooting</a></p></li>
+</ul>
+<hr>
+<section id="hardware-prerequisites">
+<h2>1. Hardware prerequisites<a class="headerlink" href="#hardware-prerequisites" title="Link to this heading">#</a></h2>
+<p>Wi-Fi PAF needs a radio and driver that support <strong>NAN USD</strong> (Wi-Fi Aware
+Unsynchronized Service Discovery). Both the proxy and the commissionee need it.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Role</p></th>
+<th class="head"><p>Requirement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Commissioning Proxy (DUT)</p></td>
+<td><p>Linux host (e.g. Raspberry Pi 4/5) with a <strong>USB Wi-Fi dongle that supports NAN USD.</strong> See https://groups.csa-iot.org/wg/members-all/document/44361</p></td>
+</tr>
+<tr class="row-odd"><td><p>End Device (commissionee)</p></td>
+<td><p>Same NAN-USD-capable USB Wi-Fi dongle requirement</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>The <strong>on-board Raspberry Pi Wi-Fi does not support NAN USD</strong> and cannot be
+used for Wi-Fi PAF. The USB dongle must be the interface wpa_supplicant
+manages.</p>
+</div></blockquote>
+<p>On each device with a PAF dongle, install the wireless utilities. Without them
+the proxy fails at startup with
+<code class="docutils literal notranslate"><span class="pre">[PAF]</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">start</span> <span class="pre">Wi-Fi</span> <span class="pre">PAF</span> <span class="pre">publish:</span> <span class="pre">...</span> <span class="pre">CHIP</span> <span class="pre">Error</span> <span class="pre">0x00000003:</span> <span class="pre">Incorrect</span> <span class="pre">state</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools<span class="w"> </span>wireless-tools
+</pre></div>
+</div>
+<hr>
+</section>
+<section id="wpa-supplicant-with-the-matter-nan-patch-proxy-device">
+<h2>2. wpa_supplicant with the Matter NAN patch (proxy device)<a class="headerlink" href="#wpa-supplicant-with-the-matter-nan-patch-proxy-device" title="Link to this heading">#</a></h2>
+<p>The Commissioning Proxy requires a custom build of wpa_supplicant. The stock
+Ubuntu package does not compile in NAN USD support, and its default NAN scan
+behavior interferes with the proxy’s background scan.</p>
+<section id="why-the-stock-package-is-not-enough">
+<h3>2.1 Why the stock package is not enough<a class="headerlink" href="#why-the-stock-package-is-not-enough" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The stock <code class="docutils literal notranslate"><span class="pre">wpa_supplicant</span></code> is built with <code class="docutils literal notranslate"><span class="pre">CONFIG_NAN_USD</span></code> disabled, so it
+has no Wi-Fi Aware support at all.</p></li>
+<li><p>When the proxy performs a NAN scan it subscribes to the Matter NAN service
+as a passive listener. By default wpa_supplicant automatically sends a NAN
+Follow-up frame back to every matching publisher, which triggers spurious
+session setup. The patch adds a <code class="docutils literal notranslate"><span class="pre">discovery_only</span></code> flag that suppresses those
+automatic replies for discovery-only scans.</p></li>
+</ul>
+</section>
+<section id="the-patch">
+<h3>2.2 The patch<a class="headerlink" href="#the-patch" title="Link to this heading">#</a></h3>
+<p>The patch touches four files:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Change</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">wpa_supplicant/defconfig</span></code></p></td>
+<td><p>Enables <code class="docutils literal notranslate"><span class="pre">CONFIG_NAN_USD=y</span></code> so NAN USD support is compiled in</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">src/common/nan_de.h</span></code></p></td>
+<td><p>Adds a <code class="docutils literal notranslate"><span class="pre">discovery_only</span></code> boolean to <code class="docutils literal notranslate"><span class="pre">nan_subscribe_params</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">src/common/nan_de.c</span></code></p></td>
+<td><p>Skips the automatic Follow-up reply to the publisher when <code class="docutils literal notranslate"><span class="pre">discovery_only</span></code> is set</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">wpa_supplicant/dbus/dbus_new_handlers.c</span></code></p></td>
+<td><p>Exposes <code class="docutils literal notranslate"><span class="pre">discovery_only</span></code> as a D-Bus parameter so the Matter stack can pass it from the background-scan call path</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Save the following as <code class="docutils literal notranslate"><span class="pre">wpa-supplicant-matter.patch</span></code>:</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">diff --git a/src/common/nan_de.c b/src/common/nan_de.c</span>
+<span class="gh">index 2af1afd73..1196ec617 100644</span>
+<span class="gd">--- a/src/common/nan_de.c</span>
+<span class="gi">+++ b/src/common/nan_de.c</span>
+<span class="gu">@@ -910,7 +910,8 @@ static void nan_de_rx_publish(struct nan_de *de, struct nan_de_service *srv,</span>
+<span class="w"> </span>		nan_de_tx_multicast(de, srv, instance_id);
+<span class="w"> </span>	}
+
+<span class="gd">-	if (!de-&gt;offload &amp;&amp; !srv-&gt;subscribe.active &amp;&amp; req_instance_id == 0) {</span>
+<span class="gi">+	if (!de-&gt;offload &amp;&amp; !srv-&gt;subscribe.active &amp;&amp; req_instance_id == 0 &amp;&amp;</span>
+<span class="gi">+	    !srv-&gt;subscribe.discovery_only) {</span>
+<span class="w"> </span>		/* Passive subscriber replies with a Follow-up message without
+<span class="w"> </span>		 * Service Specific Info field if it received a matching
+<span class="w"> </span>		 * unsolicited Publish message. */
+<span class="gh">diff --git a/src/common/nan_de.h b/src/common/nan_de.h</span>
+<span class="gh">index b2688a83c..6b9e2ad1f 100644</span>
+<span class="gd">--- a/src/common/nan_de.h</span>
+<span class="gi">+++ b/src/common/nan_de.h</span>
+<span class="gu">@@ -154,6 +154,11 @@ struct nan_subscribe_params {</span>
+
+<span class="w"> </span>	/* Proximity ranging flag */
+<span class="w"> </span>	bool proximity_ranging;
+<span class="gi">+</span>
+<span class="gi">+	/* If true, suppress the automatic Follow-up sent to the publisher when</span>
+<span class="gi">+	 * a passive subscriber matches an unsolicited Publish frame.  Use for</span>
+<span class="gi">+	 * discovery-only scans where no session is to be established. */</span>
+<span class="gi">+	bool discovery_only;</span>
+<span class="w"> </span>};
+
+<span class="w"> </span>/* Returns -1 on failure or &gt;0 subscribe_id */
+<span class="gh">diff --git a/wpa_supplicant/dbus/dbus_new_handlers.c b/wpa_supplicant/dbus/dbus_new_handlers.c</span>
+<span class="gh">index 76a9297eb..8a9cec6a3 100644</span>
+<span class="gd">--- a/wpa_supplicant/dbus/dbus_new_handlers.c</span>
+<span class="gi">+++ b/wpa_supplicant/dbus/dbus_new_handlers.c</span>
+<span class="gu">@@ -6855,6 +6855,10 @@ DBusMessage * wpas_dbus_handler_nan_subscribe(DBusMessage *message,</span>
+<span class="w"> </span>			for (i = 0; i &lt; entry.array_len; i++)
+<span class="w"> </span>				int_array_add_unique(
+<span class="w"> </span>					&amp;freq_list, entry.uint16array_value[i]);
+<span class="gi">+		} else if (os_strcmp(entry.key, "discovery_only") == 0 &amp;&amp;</span>
+<span class="gi">+			   entry.type == DBUS_TYPE_BOOLEAN) {</span>
+<span class="gi">+			params.discovery_only = entry.bool_value;</span>
+<span class="gi">+			wpa_dbus_dict_entry_clear(&amp;entry);</span>
+<span class="w"> </span>		} else {
+<span class="w"> </span>			wpa_printf(MSG_DEBUG,
+<span class="w"> </span>				   "dbus: NANSubscribe - unsupported dict entry '%s'",
+<span class="gh">diff --git a/wpa_supplicant/defconfig b/wpa_supplicant/defconfig</span>
+<span class="gh">index 84ac8ba12..2a8f3e9f3 100644</span>
+<span class="gd">--- a/wpa_supplicant/defconfig</span>
+<span class="gi">+++ b/wpa_supplicant/defconfig</span>
+<span class="gu">@@ -681,4 +681,4 @@ CONFIG_DPP2=y</span>
+<span class="w"> </span>#CONFIG_NO_WMM_AC=y
+
+<span class="w"> </span># Wi-Fi Aware unsynchronized service discovery (NAN USD)
+<span class="gd">-#CONFIG_NAN_USD=y</span>
+<span class="gi">+CONFIG_NAN_USD=y</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-install">
+<h3>2.3 Build and install<a class="headerlink" href="#build-and-install" title="Link to this heading">#</a></h3>
+<p>Building natively on the proxy device is simplest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Clone upstream hostap and check out the pinned commit</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://w1.fi/hostap.git
+<span class="nb">cd</span><span class="w"> </span>hostap
+git<span class="w"> </span>checkout<span class="w"> </span>e17107912
+
+<span class="c1"># 2. Apply the Matter NAN patch (adjust the path to where you saved it)</span>
+git<span class="w"> </span>apply<span class="w"> </span>/path/to/wpa-supplicant-matter.patch
+
+<span class="c1"># 3. Use the patched defconfig as the active build config</span>
+<span class="nb">cd</span><span class="w"> </span>wpa_supplicant
+cp<span class="w"> </span>defconfig<span class="w"> </span>.config
+
+<span class="c1"># 4. Install build dependencies</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libnl-3-dev<span class="w"> </span>libnl-genl-3-dev<span class="w"> </span>libnl-route-3-dev
+
+<span class="c1"># 5. Build</span>
+make<span class="w"> </span>all
+</pre></div>
+</div>
+<p>Verify NAN USD was compiled in, then install and restart the service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>strings<span class="w"> </span>wpa_supplicant<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-c<span class="w"> </span>nan_usd<span class="w">   </span><span class="c1"># should be &gt; 0</span>
+
+sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>wpa_supplicant
+sudo<span class="w"> </span>cp<span class="w"> </span>wpa_supplicant<span class="w"> </span>/usr/sbin/wpa_supplicant
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>wpa_supplicant
+systemctl<span class="w"> </span>status<span class="w"> </span>wpa_supplicant<span class="w">            </span><span class="c1"># expect active (running)</span>
+</pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="build-all-devices-app-with-wi-fi-paf">
+<h2>3. Build all-devices-app with Wi-Fi PAF<a class="headerlink" href="#build-all-devices-app-with-wi-fi-paf" title="Link to this heading">#</a></h2>
+<p>Wi-Fi PAF is gated by the GN arg <code class="docutils literal notranslate"><span class="pre">chip_device_config_enable_wifipaf</span></code>, which
+defaults to <strong>true</strong> on Linux builds with Wi-Fi enabled (see
+<code class="docutils literal notranslate"><span class="pre">src/platform/device.gni</span></code>). The Commissioning Proxy cluster itself is enabled by
+<code class="docutils literal notranslate"><span class="pre">CHIP_DEVICE_CONFIG_ENABLE_COMMISSIONING_PROXY</span></code>, which is forced on for this app
+in <code class="docutils literal notranslate"><span class="pre">posix/include/CHIPProjectAppConfig.h</span></code>. So a normal Linux build already
+includes Wi-Fi PAF — no extra args are required.</p>
+<p>The PAF transport driver (<code class="docutils literal notranslate"><span class="pre">CommissioningProxyPafTransport.cpp</span></code>) is compiled only
+when <code class="docutils literal notranslate"><span class="pre">chip_device_config_enable_wifipaf</span></code> is set; a build with it off drops the
+<code class="docutils literal notranslate"><span class="pre">WiFiNetworkInterface</span></code> cluster feature and the <code class="docutils literal notranslate"><span class="pre">WiFiBand</span></code> attribute.</p>
+<p><strong>Upstream build (Linux x86-64 / ARM), both transports:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># x86-64</span>
+./scripts/run_in_build_env.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"./scripts/build/build_examples.py --target linux-x64-all-devices-boringssl build"</span>
+
+<span class="c1"># ARM (arm64)</span>
+./scripts/run_in_build_env.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"./scripts/build/build_examples.py --target linux-arm64-all-devices-boringssl build"</span>
+</pre></div>
+</div>
+<p>The binary is at <code class="docutils literal notranslate"><span class="pre">out/linux-x64-all-devices-boringssl/all-devices-app</span></code> (or the
+<code class="docutils literal notranslate"><span class="pre">arm64</span></code> equivalent).</p>
+<p><strong>Select the transports at build time:</strong></p>
+<p>The targets above compile every transport the platform supports. To build a
+single-transport binary, configure the application’s own gn root and pass the
+flag that disables the other transport:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"cd examples/all-devices-app/posix &amp;&amp; \</span>
+<span class="s2">  gn gen out/paf-only --args='chip_config_network_layer_ble=false' &amp;&amp; \</span>
+<span class="s2">  ninja -C out/paf-only all-devices-app"</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>gn argument</p></th>
+<th class="head"><p>Transports compiled in</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>(none of the below)</em></p></td>
+<td><p>BLE and Wi-Fi PAF</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chip_config_network_layer_ble=false</span></code></p></td>
+<td><p>Wi-Fi PAF only</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chip_device_config_enable_wifipaf=false</span></code></p></td>
+<td><p>BLE only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The binary lands at <code class="docutils literal notranslate"><span class="pre">out/&lt;name&gt;/all-devices-app</span></code> under
+<code class="docutils literal notranslate"><span class="pre">examples/all-devices-app/posix</span></code>. Cross-compiling for a Raspberry Pi adds the
+usual aarch64 arguments to the same <code class="docutils literal notranslate"><span class="pre">gn</span> <span class="pre">gen</span></code> line — <code class="docutils literal notranslate"><span class="pre">target_os=&quot;linux&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">target_cpu=&quot;arm64&quot;</span></code>, and a <code class="docutils literal notranslate"><span class="pre">sysroot=</span></code> and <code class="docutils literal notranslate"><span class="pre">system_libdir=</span></code> pointing at your
+aarch64 sysroot.</p>
+<hr>
+</section>
+<section id="run-the-commissioning-proxy">
+<h2>4. Run the Commissioning Proxy<a class="headerlink" href="#run-the-commissioning-proxy" title="Link to this heading">#</a></h2>
+<p>Start the proxy on the device with the NAN-capable dongle. Select the CP device
+and its endpoint with <code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">commissioning-proxy:5</span></code>, and enable Wi-Fi
+management. <code class="docutils literal notranslate"><span class="pre">freq_list=2437</span></code> selects channel 6 (2.4 GHz) — the default Matter
+PAF channel, permitted in all regulatory regions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./all-devices-app<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--device<span class="w"> </span>commissioning-proxy:5<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wifi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wifipaf<span class="w"> </span><span class="s2">"freq_list=2437"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--discriminator<span class="w"> </span><span class="m">3947</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">commissioning-proxy:5</span></code></p></td>
+<td><p>Instantiate the CP device on endpoint 5</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--wifi</span></code></p></td>
+<td><p>Enable Wi-Fi management via wpa_supplicant (required for PAF)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--wifipaf</span> <span class="pre">&quot;freq_list=&lt;MHz&gt;&quot;</span></code></p></td>
+<td><p>NAN frequencies in MHz. <code class="docutils literal notranslate"><span class="pre">2437</span></code> = channel 6 (2.4 GHz); add e.g. <code class="docutils literal notranslate"><span class="pre">5745</span></code> for 5 GHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--discriminator</span> <span class="pre">&lt;value&gt;</span></code></p></td>
+<td><p>12-bit value identifying the proxy during its own commissioning</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">freq_list</span></code> is parsed once at startup and drives three things. The <code class="docutils literal notranslate"><span class="pre">WiFiBand</span></code>
+attribute advertised by the cluster follows the bands it covers: 2412–2484 MHz →
+2.4 GHz, 5035–5980 MHz → 5 GHz, defaulting to 2.4 GHz if no valid frequency is
+parsed. Scans and <code class="docutils literal notranslate"><span class="pre">ProxyConnectRequest</span></code> create a subscribe instance on a single
+channel: 2437 when it is listed, otherwise the first frequency given. The
+proxy’s own NAN publisher advertises on the whole list, so the proxy can be
+commissioned over Wi-Fi PAF itself.</p>
+<p>That publisher stops once the proxy joins a fabric, as the NAN radio is needed
+to subscribe on a Commissionee behalf.</p>
+<p>Once the proxy is commissioned (next step), it disconnects the NAN receive
+handler, so the PAF subscribe calls it makes on behalf of commissioners register
+exactly one handler.</p>
+<hr>
+</section>
+<section id="commission-the-proxy-onto-the-fabric">
+<h2>5. Commission the proxy onto the fabric<a class="headerlink" href="#commission-the-proxy-onto-the-fabric" title="Link to this heading">#</a></h2>
+<p>The proxy must itself join the Matter fabric before it can tunnel for others.
+From the Commissioner run a one-time on-network pairing (the proxy is reachable
+over IP):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chip-tool<span class="w"> </span>pairing<span class="w"> </span>onnetwork<span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">20202021</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">1998</span></code> is the node ID assigned to the proxy (any non-zero value); <code class="docutils literal notranslate"><span class="pre">20202021</span></code> is
+the default PASE passcode. Success prints:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CHIP</span><span class="p">:</span><span class="n">TOO</span><span class="p">:</span> <span class="n">Device</span> <span class="n">commissioning</span> <span class="n">completed</span> <span class="k">with</span> <span class="n">success</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Tip:</strong> the proxy re-reads its stored fabric credential on restart. You do
+not need to re-pair unless you clear its key-value store (<code class="docutils literal notranslate"><span class="pre">/tmp/chip_*</span></code>).</p>
+</div></blockquote>
+<hr>
+</section>
+<section id="run-the-end-device-commissionee">
+<h2>6. Run the End Device (commissionee)<a class="headerlink" href="#run-the-end-device-commissionee" title="Link to this heading">#</a></h2>
+<p>Start the commissionee (for example a lighting-app) with a <code class="docutils literal notranslate"><span class="pre">freq_list</span></code> that
+matches — or overlaps — the proxy’s. The End Device must <strong>not</strong> already be on a
+network, as it is about to be commissioned:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chip-lighting-app<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wifi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wifipaf<span class="w"> </span><span class="s2">"freq_list=2437"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--discriminator<span class="w"> </span><span class="m">3840</span>
+</pre></div>
+</div>
+<p>The End Device advertises itself as a NAN publisher. Confirm in its log:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WiFi</span><span class="o">-</span><span class="n">PAF</span><span class="p">:</span> <span class="n">Starting</span> <span class="n">NAN</span> <span class="n">publish</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The End Device discriminator (<code class="docutils literal notranslate"><span class="pre">3840</span></code> here) must match the value you pass to
+<code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">pairing</span> <span class="pre">proxy</span></code> in step 8.</p>
+</div></blockquote>
+<hr>
+</section>
+<section id="scanning-optional">
+<h2>7. Scanning (optional)<a class="headerlink" href="#scanning-optional" title="Link to this heading">#</a></h2>
+<p>Before connecting, a Commissioner can ask the proxy to scan for nearby
+commissionable devices. In these commands <code class="docutils literal notranslate"><span class="pre">8</span></code> is the Wi-Fi PAF transport bit,
+<code class="docutils literal notranslate"><span class="pre">1998</span></code> is the proxy node ID (use whatever you paired in step 5), and <code class="docutils literal notranslate"><span class="pre">5</span></code> is the
+endpoint where the cluster lives. The <code class="docutils literal notranslate"><span class="pre">--WiFiBands</span></code> bitmap is <code class="docutils literal notranslate"><span class="pre">1</span></code> = 2.4 GHz, <code class="docutils literal notranslate"><span class="pre">4</span></code>
+= 5 GHz, <code class="docutils literal notranslate"><span class="pre">5</span></code> = both.</p>
+<p><strong>Foreground (one-shot) scan</strong> — results are returned inline. This command
+carries a large payload, so TCP must be forced:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chip-tool<span class="w"> </span>commissioningproxy<span class="w"> </span>proxy-scan-request<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-large-payload<span class="w"> </span><span class="nb">true</span><span class="w"> </span>--WiFiBands<span class="w"> </span><span class="m">5</span><span class="w"> </span>--timeout<span class="w"> </span><span class="m">20</span>
+</pre></div>
+</div>
+<p><strong>Background scan</strong> — the proxy scans continuously and caches results, pushed to
+subscribers via attribute reporting. <code class="docutils literal notranslate"><span class="pre">Timeout</span> <span class="pre">0</span></code> means no expiry:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># start</span>
+./chip-tool<span class="w"> </span>commissioningproxy<span class="w"> </span>proxy-back-ground-scan-start-request<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--WiFiBands<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># read the cache</span>
+./chip-tool<span class="w"> </span>commissioningproxy<span class="w"> </span><span class="nb">read</span><span class="w"> </span>cached-results<span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># stop</span>
+./chip-tool<span class="w"> </span>commissioningproxy<span class="w"> </span>proxy-back-ground-scan-stop-request<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--WiFiBands<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<hr>
+</section>
+<section id="commission-the-end-device-through-the-proxy">
+<h2>8. Commission the End Device through the proxy<a class="headerlink" href="#commission-the-end-device-through-the-proxy" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">pairing</span> <span class="pre">proxy</span></code> to commission the End Device through the proxy.
+The proxy opens a Wi-Fi PAF (NAN) session to the End Device and tunnels the PASE
+and commissioning packets between chip-tool and the device:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chip-tool<span class="w"> </span>pairing<span class="w"> </span>proxy<span class="w"> </span>&lt;node-id&gt;<span class="w"> </span>&lt;ssid&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span>&lt;setup-pin-code&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&lt;ed-discriminator&gt;<span class="w"> </span>&lt;proxy-node-id&gt;<span class="w"> </span>&lt;proxy-connect-timeout&gt;<span class="w"> </span>&lt;proxy-transport&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">[</span>--proxy-endpoint<span class="w"> </span>&lt;endpoint&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--proxy-wifi-band<span class="w"> </span>2g4<span class="p">|</span>5g<span class="o">]</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node-id</span></code></p></td>
+<td><p>Node ID to assign to the new device</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ssid</span></code></p></td>
+<td><p>Wi-Fi network SSID to configure on the device</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>Wi-Fi network password</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">setup-pin-code</span></code></p></td>
+<td><p>Commissionee PASE setup PIN code</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ed-discriminator</span></code></p></td>
+<td><p>Commissionee discriminator (matches step 6)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">proxy-node-id</span></code></p></td>
+<td><p>Node ID of the already-commissioned proxy</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">proxy-connect-timeout</span></code></p></td>
+<td><p>Seconds the proxy may spend connecting to the commissionee; <code class="docutils literal notranslate"><span class="pre">0</span></code> = no limit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">proxy-transport</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wifipaf</span></code> or <code class="docutils literal notranslate"><span class="pre">ble</span></code> — the transport the proxy uses to reach the commissionee</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--proxy-endpoint</span></code></p></td>
+<td><p>Endpoint hosting the cluster. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>; this app uses <code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--proxy-wifi-band</span></code></p></td>
+<td><p>Optional band hint, <code class="docutils literal notranslate"><span class="pre">2g4</span></code> or <code class="docutils literal notranslate"><span class="pre">5g</span></code>; accepted only with <code class="docutils literal notranslate"><span class="pre">wifipaf</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Example — commission device node 1999 onto network “MyNetwork” via proxy 1998:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chip-tool<span class="w"> </span>pairing<span class="w"> </span>proxy<span class="w"> </span><span class="m">1999</span><span class="w"> </span><span class="s2">"MyNetwork"</span><span class="w"> </span><span class="s2">"MyPassword"</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span><span class="w"> </span><span class="m">1998</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>wifipaf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--proxy-endpoint<span class="w"> </span><span class="m">5</span><span class="w"> </span>--proxy-wifi-band<span class="w"> </span>2g4
+</pre></div>
+</div>
+<hr>
+</section>
+<section id="how-wi-fi-paf-is-wired-into-the-cp-device">
+<h2>9. How Wi-Fi PAF is wired into the CP device<a class="headerlink" href="#how-wi-fi-paf-is-wired-into-the-cp-device" title="Link to this heading">#</a></h2>
+<p>The Wi-Fi PAF driver, <code class="docutils literal notranslate"><span class="pre">CommissioningProxyPafTransport</span></code>, ships with the cluster
+as the separate <code class="docutils literal notranslate"><span class="pre">paf-transport</span></code> target, so a build that proxies over BLE only —
+or a platform with no Wi-Fi PAF stack — can leave it out. Its design, the
+transport methods it implements and the shared-scanner rules are documented in
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/src/app/clusters/commissioning-proxy-server/README.md"><code class="docutils literal notranslate"><span class="pre">src/app/clusters/commissioning-proxy-server/README.md</span></code></a>.</p>
+<section id="what-this-app-has-to-supply">
+<h3>What this app has to supply<a class="headerlink" href="#what-this-app-has-to-supply" title="Link to this heading">#</a></h3>
+<p>Session setup and message tunneling are portable. Discovery is not: scanning for
+commissionable devices, and recovering the NAN subscribe id the platform
+assigned, both need platform code. That is the <code class="docutils literal notranslate"><span class="pre">CommissioningProxyPafAdapter</span></code>
+interface, which this app implements in
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/examples/all-devices-app/posix/linux/CommissioningProxyPafAdapter.cpp"><code class="docutils literal notranslate"><span class="pre">posix/linux/CommissioningProxyPafAdapter.cpp</span></code></a>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Adapter method</p></th>
+<th class="head"><p>Linux implementation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StartForegroundScan()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConnectivityMgrImpl().WiFiPAFScan()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">StartBackgroundScan()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConnectivityMgrImpl().WiFiPAFStartBackgroundScan()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StopBackgroundScan()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConnectivityMgrImpl().WiFiPAFStopBackgroundScan()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PendingConnectSubscribeId()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConnectivityMgrImpl().GetPendingConnectSubscribeId()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The adapter is also where the platform’s peer descriptor is unpacked.
+<code class="docutils literal notranslate"><span class="pre">NanPeerInfo</span></code> is Linux-only and owns heap storage for its extended data, so the
+adapter reports each peer as plain scalars and that type never reaches the
+cluster.</p>
+<p>Adapter and driver are both constructed in
+<code class="docutils literal notranslate"><span class="pre">posix/linux/DeviceFactoryPlatformOverride.cpp</span></code>, which composes the driver onto
+the single <code class="docutils literal notranslate"><span class="pre">CommissioningProxyDevice</span></code> with <code class="docutils literal notranslate"><span class="pre">AddTransport()</span></code> — a build with BLE
+adds that driver the same way — and derives the advertised <code class="docutils literal notranslate"><span class="pre">WiFiBand</span></code> from
+<code class="docutils literal notranslate"><span class="pre">--wifipaf</span> <span class="pre">freq_list=</span></code>, since the device itself reads no command line. The same
+parsed list reaches the radio from <code class="docutils literal notranslate"><span class="pre">posix/main.cpp</span></code>.</p>
+<hr>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>10. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="proxy-fails-to-start-with-a-nan-error">
+<h3>Proxy fails to start with a NAN error<a class="headerlink" href="#proxy-fails-to-start-with-a-nan-error" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Confirm the USB Wi-Fi dongle is present (<code class="docutils literal notranslate"><span class="pre">lsusb</span></code>) and its interface exists
+(<code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">link</span></code>).</p></li>
+<li><p>Confirm the patched wpa_supplicant is installed and running:
+<code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">wpa_supplicant</span></code> shows <code class="docutils literal notranslate"><span class="pre">active</span> <span class="pre">(running)</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">strings</span> <span class="pre">/usr/sbin/wpa_supplicant</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-c</span> <span class="pre">nan_usd</span></code> returns &gt; 0.</p></li>
+<li><p>Do not use the on-board RPi Wi-Fi — it does not support NAN USD.</p></li>
+<li><p>Ensure <code class="docutils literal notranslate"><span class="pre">net-tools</span></code> and <code class="docutils literal notranslate"><span class="pre">wireless-tools</span></code> are installed (see section 1); a
+missing <code class="docutils literal notranslate"><span class="pre">iwconfig</span></code> surfaces as <code class="docutils literal notranslate"><span class="pre">CHIP</span> <span class="pre">Error</span> <span class="pre">0x00000003:</span> <span class="pre">Incorrect</span> <span class="pre">state</span></code>.</p></li>
+</ul>
+</section>
+<section id="proxy-connect-times-out-commissioner-gets-status-timeout">
+<h3>Proxy connect times out (Commissioner gets <code class="docutils literal notranslate"><span class="pre">Status::Timeout</span></code>)<a class="headerlink" href="#proxy-connect-times-out-commissioner-gets-status-timeout" title="Link to this heading">#</a></h3>
+<p>The proxy waited for the connect timeout on the NAN session and gave up. Common
+causes:</p>
+<ul class="simple">
+<li><p>The End Device is not running or is on a different NAN channel — confirm
+both sides use the same <code class="docutils literal notranslate"><span class="pre">freq_list</span></code>.</p></li>
+<li><p>The End Device host also needs a NAN-capable USB Wi-Fi dongle.</p></li>
+<li><p>The NAN frequency is not allowed by the regulatory domain. <code class="docutils literal notranslate"><span class="pre">freq_list=2437</span></code>
+(channel 6, 2.4 GHz) is permitted everywhere.</p></li>
+</ul>
+</section>
+<section id="paf-session-closes-mid-commissioning">
+<h3>PAF session closes mid-commissioning<a class="headerlink" href="#paf-session-closes-mid-commissioning" title="Link to this heading">#</a></h3>
+<p>Look for <code class="docutils literal notranslate"><span class="pre">WiFiPAFCloseSession</span></code> in the proxy log — the PAFTP ack-receive timer
+fired. The most common cause is the End Device’s radio going off-channel while
+it scans for and joins the Wi-Fi network. Retrying usually succeeds.</p>
+</section>
+<section id="connectnetwork-is-slow">
+<h3><code class="docutils literal notranslate"><span class="pre">ConnectNetwork</span></code> is slow<a class="headerlink" href="#connectnetwork-is-slow" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ConnectNetwork</span></code> can take 10–15 s while the End Device scans for and joins the
+Wi-Fi AP. This is normal; the proxy extends the Commissioner’s exchange timeout
+for this step.</p>
+</section>
+<section id="chip-tool-pairing-proxy-command-not-found">
+<h3><code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">pairing</span> <span class="pre">proxy</span></code> command not found<a class="headerlink" href="#chip-tool-pairing-proxy-command-not-found" title="Link to this heading">#</a></h3>
+<p>You are running a chip-tool build without the Commissioning Proxy support. Build
+chip-tool from this repository.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Matter Simulated Device Types Catalog</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../oob-accessors/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Out-of-Band (OOB) Control and Simulation Accessors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-prerequisites">1. Hardware prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wpa-supplicant-with-the-matter-nan-patch-proxy-device">2. wpa_supplicant with the Matter NAN patch (proxy device)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-stock-package-is-not-enough">2.1 Why the stock package is not enough</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-patch">2.2 The patch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-install">2.3 Build and install</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-all-devices-app-with-wi-fi-paf">3. Build all-devices-app with Wi-Fi PAF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-commissioning-proxy">4. Run the Commissioning Proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commission-the-proxy-onto-the-fabric">5. Commission the proxy onto the fabric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-end-device-commissionee">6. Run the End Device (commissionee)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-optional">7. Scanning (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commission-the-end-device-through-the-proxy">8. Commission the End Device through the proxy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-wi-fi-paf-is-wired-into-the-cp-device">9. How Wi-Fi PAF is wired into the CP device</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-app-has-to-supply">What this app has to supply</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">10. Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy-fails-to-start-with-a-nan-error">Proxy fails to start with a NAN error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proxy-connect-times-out-commissioner-gets-status-timeout">Proxy connect times out (Commissioner gets <code class="docutils literal notranslate"><span class="pre">Status::Timeout</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paf-session-closes-mid-commissioning">PAF session closes mid-commissioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectnetwork-is-slow"><code class="docutils literal notranslate"><span class="pre">ConnectNetwork</span></code> is slow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chip-tool-pairing-proxy-command-not-found"><code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">pairing</span> <span class="pre">proxy</span></code> command not found</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

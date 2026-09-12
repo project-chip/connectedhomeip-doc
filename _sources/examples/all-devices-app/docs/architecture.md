@@ -1,0 +1,212 @@
+﻿# Architecture & Design
+
+The `all-devices-app` is a reference application demonstrating the **Code-Driven
+Data Model** within the Matter SDK. It implements a runtime-configurable data
+model.
+
+This document describes the architectural layers, core classes, and design
+principles of the application.
+
+---
+
+## 1. The Code-Driven Data Model
+
+The `all-devices-app` implements the **Code-Driven Data Model**:
+
+-   **Dynamic Runtime Registration**: Clusters and endpoints are instantiated as
+    standard C++ objects and registered with the active data model provider at
+    runtime using `provider.AddEndpoint(...)` via `CodeDrivenDataModelProvider`.
+-   **Decoupled Cluster Logic**: Server clusters are implemented by deriving
+    from `DefaultServerCluster` (or similar code-driven base classes).
+    Attributes and commands are strongly typed and encapsulated within the
+    cluster classes.
+-   **Enhanced Testability**: Because devices and clusters are plain C++
+    objects, they can be directly instantiated in standalone unit tests without
+    booting the full Matter network stack.
+
+---
+
+## 2. Platform Separation
+
+The `all-devices-app` enforces platform separation between core logic and target
+drivers:
+
+```mermaid
+graph TD
+    A[Platform-Agnostic Core<br>`all-devices-common/`]
+    B[POSIX Platform<br>`posix/`]
+    C[ESP32 Platform<br>`esp32/`]
+    D[SiLabs Platform<br>`silabs/`]
+    E[Telink Platform<br>`telink/`]
+
+    B -->|Instantiates & Overrides| A
+    C -->|Instantiates & Overrides| A
+    D -->|Instantiates & Overrides| A
+    E -->|Instantiates & Overrides| A
+```
+
+### Platform-Agnostic Core (`all-devices-common/`)
+
+Contains simulated device behaviors and capability management. This layer
+compiles independently of the operating system or hardware drivers. It includes:
+
+-   **`device/types/`**: Concrete implementations of simulated Matter devices
+    (e.g., `OccupancySensor`, `DimmableLight`, `Speaker`).
+-   **`device/api/`**: Base contracts and abstractions (`DeviceInterface`,
+    `SingleEndpoint`, `device/api/allocator/DynamicEndpointIdAllocator.h`).
+-   **`device/capabilities/`**: Reusable device loads and capabilities (e.g.,
+    `OnOffLoad`, `DimmableLoad`, `FanLoad`).
+-   **`device-factory/`**: Registry (`DeviceFactory<Hooks...>`) responsible for
+    mapping CLI device names to creation factories.
+-   **`oob-accessors/`**: Out-of-Band cluster manipulation layer (`OOBAccessor`,
+    `OOBAccessorRegistry`).
+-   **`providers/`**: SDK-level data providers (such as
+    `AllDevicesExampleDeviceInfoProviderImpl`) that supply node lifecycle
+    information, storage interfaces, and descriptor details.
+
+### Platform-Specific Target Builds (`posix/`, `esp32/`, `silabs/`, `telink/`)
+
+These directories contain hardware-specific or OS-specific drivers, entrypoint
+`main()` functions, and build configurations.
+
+-   **Platform Overrides**: Platforms can replace simulated behaviors with
+    hardware drivers. For example, `DeviceFactoryPlatformOverride.h` can
+    register an LED driver for the `on-off-light` device instead of the
+    simulated device.
+
+---
+
+## 3. Key Core Classes
+
+### The Device Interface
+
+All devices in the application implement `DeviceInterface` and its core base
+class, `SingleEndpoint`.
+
+```mermaid
+classDiagram
+    class DeviceInterface {
+        <<interface>>
+        #mDeviceTypes: Span~const DeviceTypeEntry~
+        +Register(EndpointIdAllocator & allocator, CodeDrivenDataModelProvider & provider, EndpointComposition composition)* CHIP_ERROR
+        +Unregister(CodeDrivenDataModelProvider & provider)*
+    }
+
+    class SingleEndpoint {
+        <<abstract>>
+        #mEndpointId: EndpointId
+        +Register(EndpointIdAllocator & allocator, CodeDrivenDataModelProvider & provider, EndpointComposition composition) CHIP_ERROR
+        +Register(EndpointId endpoint, CodeDrivenDataModelProvider & provider, EndpointComposition composition)* CHIP_ERROR
+        +Unregister(CodeDrivenDataModelProvider & provider)*
+        +GetEndpointId() EndpointId
+    }
+
+    class OccupancySensor {
+        #mOccupancySensingCluster: LazyRegisteredServerCluster~OccupancySensingCluster~
+        #mIdentifyCluster: LazyRegisteredServerCluster~IdentifyCluster~
+        +Register(EndpointId endpoint, CodeDrivenDataModelProvider & provider, EndpointComposition composition) CHIP_ERROR
+        +Unregister(CodeDrivenDataModelProvider & provider)
+    }
+
+    DeviceInterface <|-- SingleEndpoint
+    SingleEndpoint <|-- OccupancySensor
+```
+
+-   **`DeviceInterface`** (`all-devices-common/device/api/Interface.h`): Defines
+    the pure virtual lifecycle contracts (`Register`, `Unregister`, etc.)
+    required for registering a block of data model elements into the active
+    server.
+-   **`SingleEndpoint`** (`all-devices-common/device/api/SingleEndpoint.h`):
+    Encapsulates endpoint state, managing its assigned `EndpointId`, its parent
+    endpoint relationship (for bridges or composite devices), and a list of
+    `DeviceTypeEntry` structures.
+-   **Concrete Devices** (e.g., `OccupancySensor`): Inherit from
+    `SingleEndpoint`, own one or more concrete strongly-typed cluster instances
+    (`LazyRegisteredServerCluster`), and bind them to the endpoint during
+    registration.
+
+### The Device Factory
+
+The `DeviceFactory<typename... Hooks>` template class acts as the central device
+creator and post-registration dispatcher:
+
+```mermaid
+sequenceDiagram
+    participant App as Application / main()
+    participant Factory as DeviceFactory<Hooks...>
+    participant Device as Concrete Device
+    participant Provider as CodeDrivenDataModelProvider
+    participant Hook as Registered Hooks
+
+    App->>Factory: Create(deviceType, label)
+    Factory->>Device: new ConcreteDevice(...)
+    Factory-->>App: DeviceRegistrationEntry { device, onDeviceRegistered }
+
+    App->>Device: Register(endpointIdAllocator, Provider)
+    Device->>Provider: AddEndpoint / AddCluster (assigns EndpointId)
+    Device-->>App: CHIP_NO_ERROR
+
+    App->>Factory: onDeviceRegistered()
+    Factory->>Hook: (Hooks::OnDeviceRegistered(*device), ...)
+```
+
+1. **Factory Registration**: Enabled device types register creator lambdas in
+   the `DeviceFactory` constructor.
+2. **Hook Specialization**: Platforms instantiate `DeviceFactory` with
+   target-specific static hooks:
+    - **`NoHooksDeviceFactory`** (`DeviceFactory<>`): Default specialization
+      with no hooks, used by embedded targets (ESP32, SiLabs, Telink) to
+      minimize binary footprint.
+    - **`PosixDeviceFactory`**
+      (`DeviceFactory<OOBAccessorHook, NamedPipe::Hook>`): Specialized for
+      POSIX, dynamically registering OOB cluster accessors and named pipe JSON
+      translators only for instantiated devices.
+3. **Creation & Registration Lifecycle**:
+    - `factory.Create(type, label)` instantiates the device and returns a
+      `DeviceRegistrationEntry` struct containing the
+      `std::unique_ptr<DeviceInterface>` and a
+      `std::function<void()> onDeviceRegistered` callback.
+    - The application registers the endpoint with the
+      `CodeDrivenDataModelProvider`, allocating its valid runtime `EndpointId`.
+    - The application invokes `entry.onDeviceRegistered()`, which expands the
+      `variadic` fold expression `(Hooks::OnDeviceRegistered(*rawDevice), ...)`
+      statically for each configured hook.
+
+---
+
+## 4. Design Principles & Best Practices
+
+When maintaining or extending the `all-devices-app` architecture, adhere to the
+following guidelines:
+
+1. **Platform-Agnostic Core**: Do not introduce OS-specific APIs, direct POSIX
+   calls, or global singletons into `all-devices-common/`. If a capability
+   requires platform integration, define an interface in `all-devices-common/`
+   and provide the implementation in target directories (`posix/`, `esp32/`,
+   etc.).
+2. **Encapsulate Storage via Providers**: Do not write direct persistent files
+   from device classes. Use the injected `DeviceInfoProvider` or
+   `DeviceInstanceInfoProvider` interfaces to handle non-volatile runtime
+   variables and user settings.
+3. **Explicit Lifecycle Management**: Do not rely on RAII or C++ destructor
+   methods for automated endpoint teardown. Core device type implementations
+   must use `~Device() override = default;` and manage lifecycle teardown
+   explicitly by executing `Unregister(provider)`. Teardown must unregister the
+   endpoint first (via `UnregisterDescriptor()`) before removing or destroying
+   individual clusters, as `CodeDrivenDataModelProvider` disallows removing
+   clusters from an actively registered endpoint once started
+   (`CHIP_ERROR_INCORRECT_STATE`).
+4. **Concrete Naming**: Avoid ambiguous umbrella folders or generic utility
+   names. Use specific operational titles (e.g., `DeviceTypeParser.h`,
+   `NetworkInfrastructureManager.h`).
+
+---
+
+## 5. Subsystem Design Documents
+
+Detailed architecture specifications for application subsystems:
+
+-   **[Out-of-Band Control Architecture](design/out_of_band_control.md)**:
+    Unified architecture for external control interfaces (Named Pipes, Pigweed
+    RPC, test runners), separating transport translators from cluster execution
+    backends (`OOBAccessor`).
