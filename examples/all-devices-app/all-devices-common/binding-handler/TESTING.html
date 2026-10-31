@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Testing Binding-Driven Commands in all-devices-app &#8212; Matter  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = "pre.mermaid {\n    /* Same as .mermaid-container > pre */\n    display: block;\n    width: 100%;\n}\n\npre.mermaid > svg {\n    /* Same as .mermaid-container > pre > svg */\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}";
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = ".mermaid-container {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    width: 100%;\n}\n\n.mermaid-container > pre {\n    display: block;\n    width: 100%;\n}\n\n.mermaid-container > pre > svg {\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}\n\n.mermaid-fullscreen-btn {\n    position: absolute;\n    width: 28px;\n    height: 28px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.3);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n    font-size: 14px;\n    line-height: 1;\n    padding: 0;\n    color: #333;\n}\n\n.mermaid-fullscreen-btn:hover {\n    opacity: 100% !important;\n    background: rgba(255, 255, 255, 1);\n    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-btn.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-btn.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal {\n    display: none;\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n    width: 95vw;\n    height: 100vh;\n    background: rgba(255, 255, 255, 0.98);\n    z-index: 9999;\n    padding: 20px;\n    overflow: auto;\n}\n\n.mermaid-fullscreen-modal.dark-theme {\n    background: rgba(0, 0, 0, 0.98);\n}\n\n.mermaid-fullscreen-modal.active {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen {\n    position: relative;\n    width: 95vw;\n    height: 90vh;\n    max-width: 95vw;\n    max-height: 90vh;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);\n    overflow: auto;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen.dark-theme {\n    background: #1a1a1a;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);\n}\n\n.mermaid-container-fullscreen pre.mermaid {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen .mermaid svg {\n    height: 100% !important;\n    width: 100% !important;\n    cursor: grab;\n}\n\n.mermaid-fullscreen-close {\n    position: fixed !important;\n    top: 20px !important;\n    right: 20px !important;\n    width: 40px;\n    height: 40px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.2);\n    border-radius: 50%;\n    cursor: pointer;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    transition: all 0.2s;\n    font-size: 24px;\n    line-height: 1;\n    color: #333;\n}\n\n.mermaid-fullscreen-close:hover {\n    background: white;\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-close.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-close.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal .mermaid-fullscreen-btn {\n    display: none !important;\n}";
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+let _lazyObserver = null;
+let _renderQueue = Promise.resolve();
+let closeModal = () => {};
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Apply d3 zoom to each SVG. Idempotent: an SVG already wrapped is skipped,
+// so this is safe to call both for the initial batch and for diagrams that
+// render lazily once they become visible.
+const addZoomToSvgs = (svgs) => {
+    svgs.each(function() {
+        if (this.getAttribute('data-zoom-applied') === 'true') return;
+        var svg = d3.select(this);
+        svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+        var inner = svg.select("g");
+        var zoom = d3.zoom().on("zoom", function(event) {
+            inner.attr("transform", event.transform);
+        });
+        svg.call(zoom);
+        this.setAttribute('data-zoom-applied', 'true');
+    });
+};
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        // Disconnect any previous lazy rendering observer
+        if (_lazyObserver) {
+            _lazyObserver.disconnect();
+            _lazyObserver = null;
+        }
+
+        all_mermaids.forEach((el) => {
+            el.removeAttribute('data-mermaid-deferred');
+            el.removeAttribute('data-mermaid-render-failed');
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+
+        // Separate visible and hidden elements. Mermaid's layout engine measures
+        // text dimensions via the DOM, which fails for elements hidden by a parent
+        // (e.g., Reveal.js non-active slides, sphinx-design unopened tabs),
+        // producing broken SVGs. Render visible elements now, defer hidden ones.
+        const visible = [];
+        const hidden = [];
+        all_mermaids.forEach((el) => {
+            // offsetParent is null for display:none ancestors.
+            // getClientRects().length > 0 catches position:fixed elements
+            // (which also have null offsetParent but are still visible).
+            if (el.offsetParent !== null || el.getClientRects().length > 0) {
+                visible.push(el);
+            } else {
+                hidden.push(el);
+                el.setAttribute('data-mermaid-deferred', 'true');
+            }
+        });
+
+        if (visible.length > 0) {
+            try {
+                await mermaid.run({ nodes: visible });
+            } catch (e) {
+                console.error("Mermaid rendering failed:", e);
+            }
+        }
+
+        // Lazily render hidden elements when they become visible.
+        // Uses a promise chain (_renderQueue) to serialize rendering,
+        // since IntersectionObserver may report multiple entries at once
+        // and mermaid.run() is not safe to call concurrently.
+        if (hidden.length > 0) {
+            if (typeof IntersectionObserver === 'undefined') {
+                console.warn("IntersectionObserver not available; hidden mermaid diagrams will not render.");
+            } else {
+                _renderQueue = Promise.resolve();
+                _lazyObserver = new IntersectionObserver((entries) => {
+                    for (const entry of entries) {
+                        if (entry.isIntersecting && entry.target.getAttribute("data-processed") !== "true") {
+                            _lazyObserver.unobserve(entry.target);
+                            const el = entry.target;
+                            _renderQueue = _renderQueue.then(async () => {
+                                try {
+                                    await mermaid.run({ nodes: [el] });
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    // Apply zoom to the now-rendered diagram, matching
+                                    // the decoration visible diagrams receive.
+                                    if (false) {
+                                        addZoomToSvgs(d3.selectAll("").select(function() {
+                                            return this.querySelector("svg");
+                                        }));
+                                    }
+                                } catch (e) {
+                                    console.error("Mermaid deferred rendering failed:", e);
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    el.setAttribute('data-mermaid-render-failed', 'true');
+                                }
+                            });
+                        }
+                    }
+                });
+                hidden.forEach((el) => _lazyObserver.observe(el));
+            }
+        }
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    // Exclude deferred (hidden) and render-failed elements from completion checks
+    const mermaids_active = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])");
+    const mermaids_processed = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])[data-processed='true']");
+
+    if (false) {
+        const mermaids_to_add_zoom = 0 === -1 ? mermaids_active.length : 0;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("").select(function() {
+                return this.querySelector("svg");
+            });
+            // Wait until every active (visible) diagram has rendered. Deferred
+            // diagrams are excluded, so a fixed d3_node_count that counts a
+            // hidden diagram no longer loops forever waiting for its SVG.
+            if(mermaids_active.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            }
+            addZoomToSvgs(svgs);
+        }
+    } else if(mermaids_active.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if (!true) return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = "\u26f6";
+        fullscreenBtn.style.opacity = "50%";
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scrollX, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.display = 'block';
+
+                if (false) {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+
+
+const load = async () => {
+    initStyles();
+
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...{"startOnLoad": false},
+                ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...{"startOnLoad": false},
+    ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/all-devices-app/all-devices-common/binding-handler/TESTING';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Matter  documentation - Home"/>
+    <img src="../../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Matter  documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/project-chip/connectedhomeip" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../GLOSSARY.html">Matter Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PROJECT_FLOW.html">Matter Project Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../VSCODE_DEVELOPMENT.html">Visual Studio Code Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../contributing/index.html">Contributing to matter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing/BUG_REPORT.html">Reporting bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing/pr_reviews.html">How Pull Request Reviews Work in the Matter SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing/pull_request_guidelines.html">Guidelines for writing pull requests</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/first_example.html">Compiling, Running, and Controlling Matter examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/changing_examples.html">Changing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/SDKBasics.html">SDK Architecture Overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../ci-cd/index.html">CI/CD Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ci-cd/host_unit_tests.html">Host unit tests in CI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ci-cd/tools/daily_fail_summary.html">Daily Fail Summary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../development_controllers/index.html">Development Controllers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../development_controllers/chip-tool/index.html">chip-tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_controllers/chip-tool/chip_tool_guide.html">Working with the CHIP Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../development_controllers/matter-repl/index.html">matter-repl</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_controllers/matter-repl/matter-repl.html">Matter Python REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_controllers/matter-repl/python_chip_controller_advanced_usage.html">Using Python CHIP Controller advanced features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../development_controllers/matter-repl/python_chip_controller_building.html">Working with Python CHIP Controller</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../ids_and_codes/index.html">IDs and Codes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ids_and_codes/ERROR_CODES.html">Matter SDK <code class="docutils literal notranslate"><span class="pre">CHIP_ERROR</span></code> enums values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ids_and_codes/spec_clusters.html">List of currently defined spec clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ids_and_codes/spec_device_types.html">List of currently defined spec device types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ids_and_codes/zap_clusters.html">List of currently defined ZAP clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cluster_and_device_type_dev/index.html">Cluster and Device Type development</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_and_device_type_dev/cluster_and_device_type_dev.html">Implementing New Clusters &amp; Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_and_device_type_dev/cluster_tester.html">ClusterTester Helper Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_and_device_type_dev/how_to_add_new_dts_and_clusters.html">Adding new clusters and device types to the codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_and_device_type_dev/unit_testing_clusters.html">Designing Clusters for Testing and Portability</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../guides/index.html">Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/BUILDING.html">Building Matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/access-control-guide.html">Access Control Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/batch-commands.html">Accepting Batch Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/darwin.html">Matter Development and Testing with/on Apple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/data_model_errata.html">Data Model Errata Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/device-attestation-revocation-guide.html">Device Attestation Revocation Testing Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/fabric_synchronization_guide.html">Fabric Synchronization Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/joint_fabric_guide.html">Joint Fabric Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/matter_idl_tooling.html">The <code class="docutils literal notranslate"><span class="pre">.matter</span></code> IDL file format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/migrating_ember_cluster_to_code_driven.html">Migrating Ember Clusters to Code-Driven Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/simulated_device_linux.html">Simulated Device How-To (Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/updating-matter-device-guide.html">Guide: Updating a Matter Device Using the OTA Provider Sample App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guides/writing_clusters.html">Writing and Updating Clusters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../platforms/index.html">Platform Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/android/index.html">Android</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/android/android_building.html">Building Android</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/asr/index.html">ASR</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/asr/asr_getting_started_guide.html">ASR Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/bouffalolab/index.html">Bouffalolab</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/bouffalolab/getting_started.html">Checking out the Matter code</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/bouffalolab/matter_factory_data.html">Introduction to Matter factory data</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/bouffalolab/ota_upgrade.html">Build OTA image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/bouffalolab/platform_overview.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> SoCs</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/bouffalolab/rpc_console.html"><code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> with RPC console</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/esp32/index.html">Espressif (ESP32) Getting Started Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/build_app_and_commission.html">ESP32 Application Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/config_options.html">Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/diagnostics.html">Using ESP32 Diagnostic Logs Provider</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/esp_hosted.html">ESP-Hosted Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/factory_data.html">Using ESP32 Factory Data Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/flash_nvs_encryption.html">Flash and NVS encryption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/ota.html">Matter OTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/providers.html">Providers Implemented for ESP32 Platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/rpc_console.html">RPC Console and Device Tracing</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/secure_cert_partition.html">Using esp_secure_cert partition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/setup_idf_chip.html">Setup ESP-IDF and Matter Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/tee_operational_keystore.html">Operational (NOC) keys in ESP-TEE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/esp32/vs_code_development.html">Visual Studio Code Development</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/infineon/index.html">Infineon</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/infineon/infineon_psoc6_software_update.html">Matter Software Update with Infineon PSoC6 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/infineon/infineon_trustm_provisioning.html">Infineon OPTIGA™ Trust M Provisioning for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/linux/index.html">Linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/linux/ble_settings.html">Bluetooth Low Energy (BLE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/linux/debugging_tips.html">Debugging tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/nrf/index.html">NRF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_android_commissioning.html">Commissioning nRF Connect Accessory using Android CHIPTool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_examples_cli.html">Using CLI in nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_examples_configuration.html">Configuring nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_examples_software_update.html">Performing Device Firmware Upgrade in the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_factory_data_configuration.html">Configuring factory data for the nRF Connect examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nrf/nrfconnect_platform_overview.html">nRF Connect platform overview</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/nxp/index.html">NXP</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_RTs_ota_software_update.html">Matter Over-The-Air Software Update with NXP RTs example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_application_architecture.html">NXP Matter Application Architecture for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_examples_freertos_platforms.html">Matter NXP Examples Guide for FreeRTOS platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_imx8m_linux_examples.html">Building and Running CHIP Linux Examples for i.MX 8M Mini EVK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_manufacturing_flow.html">NXP Manufacturing data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_mcxw72_guide.html">Matter NXP MCXW72 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_mcxw_ota_guide.html">NXP MCXW OTA guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_otbr_guide.html">Thread Border Router usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_rt1060_guide.html">MATTER NXP RT1060 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_rt1170_guide.html">MATTER NXP RT1170 Applications Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_rw61x_guide.html">Matter NXP RW61x Applications Guide targeting FreeRTOS OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_se05x_guide.html">NXP SE05x Secure Element Integration in Matter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_zephyr_guide.html">Matter NXP Zephyr Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/nxp/nxp_zephyr_ota_software_update.html">Matter Over-The-Air Software Update with NXP using Zephyr example applications</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/openthread/index.html">OpenThread</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/openthread/openthread_border_router_pi.html">Setup OpenThread Border Router on Raspberry Pi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/openthread/openthread_rcp_nrf_dongle.html">Configuring OpenThread Radio Co-processor on nRF52840 Dongle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/silabs/index.html">Silabs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/silabs/silabs_cli_guide.html">Silabs CLI Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/silabs/silabs_common_app_behavior.html">Standard Application Behavior Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/silabs/silabs_efr32_software_update.html">Matter Software Update with EFR32 example applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/silabs/silabs_extending_base_app_implementation.html">Extending Base App Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/silabs/silabs_getting_started.html">Silicon Labs Matter Solution Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/stm32/index.html">STM32</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/stm32/stm32_getting_started_guide.html">STM32 Getting Started Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/telink/index.html">Telink</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/telink/telink_getting_started.html">Telink Matter Getting Started Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/telink/boards/tl3238x_retention_README.html">TL3238X Retention Light-Switch App Build Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/telink/boards/tl5218x_retention_README.html">TL5218X Retention Light-Switch App Build Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/telink/boards/tl7218x_retention_README.html">TL7218X Retention Light-Switch App Build Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/telink/boards/tl3238x_README.html">TL3238X Lighting App Build Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/telink/boards/tl5218x_README.html">TL5218X Lighting App Build Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/telink/boards/tl7218x_README.html">TL7218X Lighting App Build Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../platforms/ti/index.html">TI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/ti_matter_overview.html">Texas Instruments platform overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/matter-syscfg/getting-started.html">Get started with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/matter-syscfg/sysconfig-board.html">Configure The Board Files with SysConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/matter-users-guide/enabling_icd_on_ti_devices.html">Configuring Intermittently Connected Devices on TI SimpleLink CC13x4_CC26x4 Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/matter-users-guide/ti_factory_data_user_guide.html">Texas Instruments Matter Factory Data Programming User Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../platforms/ti/matter-users-guide/ti_openthread_library_usage.html">Configuring OpenThread libraries on TI CC13x4_CC26x4 Platforms</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../style/index.html">Style Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../style/CODING_STYLE_GUIDE.html">Coding Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../style/STYLE_MAKEFILES.html">CHIP Makefile Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../style/style_guide.html">Matter Documentation Style Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../README.html">Matter Example Applications</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../air_purifier.html">Air Purifier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-purifier-app/air-purifier-common/README.html">CHIP Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-purifier-app/ameba/README.html">CHIP Ameba Air Purifier Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-purifier-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Air Purifier Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-purifier-app/linux/README.html">CHIP Linux Air Purifier Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../air_quality.html">Air Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-quality-sensor-app/linux/README.html">Matter Linux Air Quality Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-quality-sensor-app/silabs/README.html">Matter Air Quality Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../air-quality-sensor-app/telink/README.html">Matter Telink Air Quality Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../all_clusters.html">All clusters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/esp32/README.html">Matter ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/linux/README.html">Matter Linux/Mac All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/nxp/README.html">CHIP NXP All-clusters Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/realtek/common/README.html">Matter All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-app/telink/README.html">Matter Telink All Clusters Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../all_clusters_minimal.html">All clusters minimal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/ameba/README.html">CHIP Ameba All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/asr/README.html">Matter ASR All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/esp32/README.html">CHIP ESP32 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/infineon/psoc6/README.html">CHIP PSoC6 All Clusters Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/nrfconnect/README.html">Matter nRF Connect All Clusters Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../all-clusters-minimal-app/telink/README.html">Matter Telink All Clusters Minimal Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../all_devices.html">All devices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html">Matter All-Devices Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../device/capabilities/README.html">Shared Device Capabilities (Special Case)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../device/types/README.html">Matter Device Types Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../device/types/commissioning-proxy/README.html">Getting Started: Wi-Fi PAF for the Commissioning Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../oob-accessors/README.html">Out-of-Band (OOB) Control and Simulation Accessors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../providers/README.html">All-Devices Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../esp32/README.html">All Devices App for ESP32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../esp32/main/display/README.html">Display Subsystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../silabs/README.html">Matter All-Devices Application — Silabs (EFR32)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../telink/README.html">All Devices App for Telink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../zephyr/README.html">Matter All-Devices App for Zephyr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/adding_new_device.html">How to Add a New Simulated Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/architecture.html">Architecture &amp; Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/starting_up.html">Application Initialization &amp; Command Line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/supported_clusters.html">Matter Clusters Implementation Status (159 total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/supported_device_types.html">Matter Device Types Implementation Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/testing.html">Testing &amp; Simulation Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/writing_code_driven_app.html">Writing a Code-Driven Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/writing_code_driven_app_esp32.html">Writing a Code-Driven Application: ESP32 (CMake)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/writing_code_driven_app_posix.html">Writing a Code-Driven Application: POSIX (GN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/writing_code_driven_app_silabs.html">Writing a Code-Driven Application: Silicon Labs (GN)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docs/design/out_of_band_control.html">Out-of-Band Control Architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../bridge.html">Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../bridge-app/asr/README.html">Matter ASR Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bridge-app/esp32/README.html">Matter ESP32 Bridge App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bridge-app/linux/README.html">Matter Linux Bridge Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../bridge-app/telink/README.html">Matter Telink Bridge Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camera.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../camera-app/linux/README.html">CHIP Linux Camera Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camera-app/linux/doc/camera-app-architecture.html">Camera App Architecture and Design</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../camera_controller.html">Camera</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../camera-controller/README.html">Matter Camera Controller Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../chef.html">CHEF</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/README.html">MATTER CHEF APP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/README_SHELL.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/nrfconnect/README.html">CHIP nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../chef/sample_app_util/README.html">Chef Build Conventions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../chip_tool.html">CHIP Tool example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../chip-tool/README.html">Matter Client Example</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../closure.html">Closure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../closure-app/linux/README.html">CHIP Linux Closure Example App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../closure-app/silabs/README.html">Matter EFR32 Closure Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../contact_sensor.html">Contact Sensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contact-sensor-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contact-sensor-app/linux/README.html">Matter Linux Contact Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contact-sensor-app/nxp/README.html">Matter NXP Contact Sensor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contact-sensor-app/telink/README.html">Matter Telink Contact Sensor Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../darwin.html">CHIP Tool Darwin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../darwin-framework-tool/README.html">Matter darwin-framework-tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../dishwasher.html">Dishwasher</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dishwasher-app/linux/README.html">Matter Linux Dishwasher Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dishwasher-app/silabs/README.html">Matter Silabs dishwasher Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../electrical_protection.html">Electrical Protection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../electrical-protection-app/linux/README.html">CHIP Linux Electrical Protection Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../energy_gateway.html">Energy Gateway</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../energy-gateway-app/esp32/README.html">Matter ESP32 Energy Gateway Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../energy-gateway-app/linux/README.html">Matter Linux Energy Gateway Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../evse.html">EVSE</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evse-app/esp32/README.html">Matter ESP32 EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evse-app/linux/README.html">Matter Linux EVSE Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evse-app/silabs/README.html">Matter EFR32 EVSE Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../fabric_admin.html">Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../fabric-admin/README.html">Matter Fabric Administrator Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../fabric_bridge.html">Fabric Bridge</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../fabric-bridge-app/linux/README.html">Matter Linux Fabric Bridge Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../fabric_sync.html">Fabric Sync</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../fabric-sync/README.html">Matter Linux Fabric Sync Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java_matter_controller.html">Java matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java-matter-controller/README.html">Matter Controller Java App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../joint_fabric_admin.html">Joint Fabric Admin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../jf-admin-app/linux/README.html">Matter Joint Fabric Admin Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../joint_fabric_control.html">Joint Fabric Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../jf-control-app/README.html">Matter Joint Fabric Control Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../kotlin_matter_controller.html">Kotlin matter controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../kotlin-matter-controller/README.html">Matter Controller Kotlin App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../laundry_washer.html">Laundry washer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../laundry-washer-app/nxp/README.html">CHIP NXP Laundry Washer Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../laundry-washer-app/nxp/zephyr/README.html">CHIP NXP Zephyr Laundry Washer Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../light_switch.html">Light switch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/ameba/README.html">CHIP Ameba Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/asr/README.html">Matter ASR Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/esp32/README.html">Matter ESP32 Light-switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/infineon/cyw30739/README.html">Matter CYW30739 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/nrfconnect/README.html">Matter nRF Connect Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/realtek/common/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/silabs/README.html">Matter EFR32 Light Switch Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/telink/README.html">Matter Telink Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/ti/cc13x4_26x4/README.html">Matter Light Switch Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../light-switch-app/qpg/APPLICATION.html">Matter QPG6200 Light Switch Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../lighting.html">Lighting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/ameba/README.html">CHIP Ameba Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/asr/README.html">Matter ASR Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/beken/README.html">Matter BEKEN Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/bouffalolab/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Bouffalo</span> <span class="pre">Lab</span></code> Lighting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/esp32/README.html">Matter ESP32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/esp32_zephyr/README.html">Matter ESP32 Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/infineon/cyw30739/README.html">Matter CYW30739 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/infineon/psoc6/README.html">CHIP PSoC6 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/linux/README.html">CHIP Linux Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/nrfconnect/README.html">Matter nRF Connect Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/nxp/README.html">Matter NXP Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/python/README.html">Python-based lighting example (bridge) device to DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/realtek/common/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/realtek/zephyr/README.html">Matter Realtek Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/silabs/README.html">Matter EFR32 Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/silabs/zephyr/README.html">Matter Silicon Labs Lighting Example (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/stm32/STM32WB5MM-DK/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/stm32/STM32WBA65I-DK1/README.html">Matter STM32 Lighting Example over thread</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../lighting-app/telink/README.html">Matter Telink Lighting Example Application</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../lighting-app/telink/MULTI_ENDPOINT_IDENTIFY.html">Matter Lighting App Multi-Endpoint Configuration Guide</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/ti/cc13x4_26x4/README.html">Matter Lighting Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/tizen/README.html">CHIP Tizen Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app/qpg/APPLICATION.html">Matter QPG6200 Lighting Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../lighting_no_unique_id.html">Lighting without unique id</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting-app-data-mode-no-unique-id/linux/README.html">CHIP Linux Lighting Example (Data Mode, No Unique ID)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../lit_icd.html">Lit ICD</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../lit-icd-app/esp32/README.html">Matter ESP32 LIT ICD Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lit-icd-app/nrfconnect/README.html">Matter nRF Connect LIT ICD Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lit-icd-app/silabs/README.html">Matter EFR32 Lit ICD Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../lock.html">Lock</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/asr/README.html">Matter ASR Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/cc32xx/README.html">Matter <code class="docutils literal notranslate"><span class="pre">CC32XXSF</span></code> Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/esp32/README.html">Matter ESP32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/infineon/cyw30739/README.html">Matter CYW30739 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/infineon/psoc6/README.html">Matter PSoC6 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/linux/README.html">Lock Application for Linux</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/nrfconnect/README.html">Matter nRF Connect Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/nxp/README.html">Matter NXP Door Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/realtek/common/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/silabs/README.html">Matter EFR32 Lock Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/telink/README.html">Matter Telink Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/ti/cc13x4_26x4/README.html">Matter Lock Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lock-app/qpg/APPLICATION.html">Matter QPG6200 Lock Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../log_source.html">Log source</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../log-source-app/linux/README.html">log-source-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../microwave.html">Microwave ovens</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../microwave-oven-app/linux/README.html">Matter Linux Microwave Oven Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../minimal_mdns.html">Minimal MDNS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../minimal-mdns/README.html">Minimal mDNS example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../network_infrastructure_manager.html">Network Infrastructure Manager</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../network-manager-app/README.html">network-manager-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../ota_provider.html">OTA Provider</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-provider-app/esp32/README.html">CHIP ESP32 OTA Provider Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-provider-app/linux/README.html">ota-provider-app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../ota_requestor.html">OTA Requestor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/ameba/README.html">CHIP Ameba OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/asr/README.html">Matter ASR OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/esp32/README.html">CHIP ESP32 OTA Requestor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Lighting Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/linux/README.html">ota-requestor-app (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/realtek/common/README.html">Matter OTA Requestor Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ota-requestor-app/telink/README.html">Supported devices</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../persistent_storage.html">Persistent storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../persistent-storage/esp32/README.html">CHIP ESP32 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../persistent-storage/infineon/psoc6/README.html">CHIP PSoC6 Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../persistent-storage/linux/README.html">CHIP Linux Persistent Storage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../persistent-storage/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../persistent-storage/qpg/APPLICATION.html">CHIP QPG6200 Persistent Storage Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pump.html">Pump</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-app/silabs/README.html">Matter EFR32 Pump Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-app/ti/cc13x4_26x4/README.html">Matter Pump Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../pump_controler.html">Pump controller</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-controller-app/nrfconnect/README.html">Matter nRF Connect Pump Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-controller-app/telink/README.html">Matter Telink Pump Controller Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../pump-controller-app/ti/cc13x4_26x4/README.html">Matter Pump Controller Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../refrigerator.html">Refrigerator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../refrigerator-app/linux/README.html">CHIP Linux Refrigerator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../refrigerator-app/silabs/README.html">Matter Refrigerator and Temperature Controlled Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../rvc.html">RVC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rvc-app/README.html">RVC example app</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../shell.html">Shell</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/README.html">Matter Shell Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/README_DEVICE.html">Matter Shell - Device Layer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/README_OTCLI.html">Matter Shell - OpenThread CLI pass-through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/README_SERVER.html">Matter Shell - App Server module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/cc13x4_26x4/README.html">Matter Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/nrfconnect/README.html">Matter nRF Connect SDK Shell Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../shell/telink/README.html">Matter Telink Shell Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../smoke_co.html">Smoke CO Alarm example</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../smoke-co-alarm-app/silabs/README.html">Matter EFR32 Smoke CO Alarm Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../smoke-co-alarm-app/telink/README.html">Matter Telink Smoke CO Alarm Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tbr.html">Thread Border Router</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../thread-br-app/esp32/README.html">Matter ESP32 Thread Border Router Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../temperature_measurement.html">Temperature measurement</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../temperature-measurement-app/asr/README.html">Matter ASR Temperature Measurement Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../temperature-measurement-app/esp32/README.html">Matter ESP32 Temperature Sensor Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../temperature-measurement-app/telink/README.html">Matter Telink Temperature Measurement Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../thermostat.html">Thermostat</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/asr/README.html">Matter ASR Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/genio/README.html">Matter <code class="docutils literal notranslate"><span class="pre">Genio</span></code> Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/infineon/cyw30739/README.html">Matter CYW30739 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/linux/README.html">Matter Linux Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/nxp/README.html">CHIP NXP Thermostat Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/qpg/README.html">Matter QPG6200 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/realtek/common/README.html">Matter Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/silabs/README.html">Matter EFR32 Thermostat Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/telink/README.html">Matter Telink Thermostat Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../thermostat/qpg/APPLICATION.html">Matter QPG6200 Thermostat Example Application</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tv.html">TV</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-app/README.html">Matter TV Example (Media Player)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-app/android/App/common-api/README.html">Matter tv app common-api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-app/android/App/content-app/README.html">Content App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-app/linux/README.html">Matter TV Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../tv_casting.html">TV casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-casting-app/android/README.html">Matter TV Casting Android App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-casting-app/darwin/README.html">Matter TV Casting Darwin (iOS/macOS) App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-casting-app/darwin/TvCasting/README.html">Matter TV Casting iOS App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-casting-app/linux/README.html">CHIP TV Casting App Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tv-casting-app/APIs.html">Matter Casting APIs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../virtual_device.html">Virtual Device App</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../virtual-device-app/android/README.html">Matter Android Virtual Device App Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../water_heater.html">Water Heater</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../water-heater-app/esp32/README.html">Matter ESP32 Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../water-heater-app/linux/README.html">Matter Linux Water Heater Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../water-heater-app/silabs/README.html">Matter EFR32 Water Heater Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../water_leak_detector.html">Water Leak Detector</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../water-leak-detector-app/linux/README.html">Matter Linux Water Leak Detector Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../window.html">Window</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../window-app/nrfconnect/README.html">Matter nRF Connect Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../window-app/realtek/common/README.html">Matter Window Covering Example Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../window-app/silabs/README.html">Matter EFR32 Window Covering Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../window-app/telink/README.html">Matter Telink Window Example Application</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../product_considerations/index.html">Discussion</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../product_considerations/lwip_ipv6.html">LwIP changes for Matter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../testing/index.html">Testing Guides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/ChipDeviceCtrlAPI.html">ChipDeviceCtrl.py API</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/ci_testing.html">CI testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/fuzz_testing.html">Fuzz testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/integration_test_utilities.html">Integration Test utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/integration_tests.html">Integration and Certification Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/pics_and_pixit.html">PICS and PIXITs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/python.html">Python framework tests</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/unit_testing.html">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml.html">YAML tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml_pseudocluster.html">YAML Pseudo-clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../testing/yaml_schema.html">YAML Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tips_and_troubleshooting/index.html">Tips and Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tips_and_troubleshooting/ci-ccache.html">ccache in CI: troubleshooting and controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tips_and_troubleshooting/discovery_from_a_host_computer.html">Device discovery from a Host computer (mDNS Scanning)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tips_and_troubleshooting/troubleshooting_avahi.html">Troubleshooting Avahi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tools/index.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../src/tools/chip-cert/README.html">Matter/CHIP Certificate Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../src/tools/spake2p/README.html">SPAKE2P Parameters Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/memory/README.html">Memory usage scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/spake2p/README.html">SPAKE2+ Python Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/ELF_SIZE_TOOLING.html">ELF binary size information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/nxp/factory_data_generator/README.html">NXP Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/nxp/ota/README.html">NXP OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/silabs/README.html"><code class="docutils literal notranslate"><span class="pre">FactoryDataProvider</span></code> for EFR32 Matter device</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/silabs/ota/README.html">Silabs OTA image tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/silabs/factory_data_generator/README.html">Silabs Factory Data Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../scripts/tools/telink/readme.html">Manufacturing Partition Generator Utility</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../zap_and_codegen/index.html">ZAP and Codegen</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../zap_and_codegen/code_generation.html">Code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../zap_and_codegen/zap_intro.html">ZAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../upgrading.html">Upgrading notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../issue_triage.html">Project issues</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/project-chip/connectedhomeip/edit/master/docs/examples/all-devices-app/all-devices-common/binding-handler/TESTING.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button"
+   title="Suggest edit"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/examples/all-devices-app/all-devices-common/binding-handler/TESTING.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button type="button" class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Testing Binding-Driven Commands in all-devices-app</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-binding-command-flows">1. How a Binding Command Flows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build">2. Build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-procedure">3. Generic Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#placeholders">Placeholders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clean-up-old-state">Step 1: Clean up old state</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-applications">Step 2: Start the applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-commission-both-nodes">Step 3: Commission both nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-optional-check-endpoints-and-clusters">Step 4 (optional): Check endpoints and clusters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-grant-the-initiator-access-on-the-target">Step 5: Grant the initiator access on the target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-write-the-binding-on-the-initiator">Step 6: Write the binding on the initiator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-trigger-the-initiator">Step 7: Trigger the initiator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-verify">Step 8: Verify</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-doorbell-and-chime-on-two-nodes">4. Example: Doorbell and Chime on Two Nodes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-doorbell-and-chime-on-one-node">5. Example: Doorbell and Chime on One Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-on-off-light-switch-and-on-off-light">6. Example: On/Off Light Switch and On/Off Light</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-procedure-with-another-device">7. Using the Procedure with Another Device</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-multicast-bindings">8. Group (Multicast) Bindings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">9. Unit Tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">10. Troubleshooting</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="testing-binding-driven-commands-in-all-devices-app">
+<h1>Testing Binding-Driven Commands in <code class="docutils literal notranslate"><span class="pre">all-devices-app</span></code><a class="headerlink" href="#testing-binding-driven-commands-in-all-devices-app" title="Link to this heading">#</a></h1>
+<p>This guide shows how to test, end to end, a device that sends Matter commands to
+other devices through the Binding cluster and the
+<a class="reference external" href="https://github.com/project-chip/connectedhomeip/blob/master/BindingHandler.h"><code class="docutils literal notranslate"><span class="pre">BindingHandler</span></code></a> subsystem. It uses <code class="docutils literal notranslate"><span class="pre">all-devices-app</span></code> on
+Linux and <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code>.</p>
+<p>The procedure is generic. Section 3 describes each step with placeholders and
+explains every parameter. Sections 4 and 5 apply it to the Doorbell to Chime
+pair, and Section 6 to the On/Off Light Switch to On/Off Light pair.</p>
+<hr class="docutils" />
+<section id="how-a-binding-command-flows">
+<h2>1. How a Binding Command Flows<a class="headerlink" href="#how-a-binding-command-flows" title="Link to this heading">#</a></h2>
+<pre  class="mermaid">
+        flowchart LR
+    T[&quot;Trigger (named pipe JSON)&quot;] --&gt; D[&quot;Initiator device (local endpoint)&quot;]
+    D --&gt; H[&quot;BindingHandler::DispatchSimple&quot;]
+    H --&gt; M[&quot;Binding::Manager&quot;]
+    M --&gt;|&quot;unicast: CASE session&quot;| R[&quot;Target node / endpoint&quot;]
+    M --&gt;|&quot;multicast: group message&quot;| G[&quot;Group members&quot;]
+    </pre><p>Three pieces of configuration must line up for a command to be delivered:</p>
+<ol class="arabic simple">
+<li><p><strong>The initiator’s binding table</strong> (written with <code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">binding</span> <span class="pre">write</span></code>)
+says <em>where</em> commands from a local endpoint go: a node + endpoint, or a
+group.</p></li>
+<li><p><strong>The target’s Access Control List</strong> (written with
+<code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">accesscontrol</span> <span class="pre">write</span> <span class="pre">acl</span></code>) says <em>who</em> is allowed to invoke commands
+on the target cluster.</p></li>
+<li><p><strong>A trigger</strong> makes the initiator device call
+<code class="docutils literal notranslate"><span class="pre">BindingHandler::DispatchSimple(...)</span></code> for its local endpoint. In the POSIX
+app, triggers are JSON messages written to the named pipe given with
+<code class="docutils literal notranslate"><span class="pre">--app-pipe</span></code>.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="build">
+<h2>2. Build<a class="headerlink" href="#build" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the application</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"./scripts/build/build_examples.py --target linux-x64-all-devices-clang --quiet build"</span>
+
+<span class="c1"># Build chip-tool</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"./scripts/build/build_examples.py --target linux-x64-chip-tool-clang --quiet build"</span>
+</pre></div>
+</div>
+<p>Binaries:</p>
+<ul class="simple">
+<li><p>Application: <code class="docutils literal notranslate"><span class="pre">out/linux-x64-all-devices-clang/all-devices-app</span></code></p></li>
+<li><p>Controller: <code class="docutils literal notranslate"><span class="pre">out/linux-x64-chip-tool-clang/chip-tool</span></code></p></li>
+</ul>
+<p>The commands below use <code class="docutils literal notranslate"><span class="pre">$APP</span></code> and <code class="docutils literal notranslate"><span class="pre">$CHIP_TOOL</span></code> for these paths:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">APP</span><span class="o">=</span>./out/linux-x64-all-devices-clang/all-devices-app
+<span class="nv">CHIP_TOOL</span><span class="o">=</span>./out/linux-x64-chip-tool-clang/chip-tool
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="generic-procedure">
+<h2>3. Generic Procedure<a class="headerlink" href="#generic-procedure" title="Link to this heading">#</a></h2>
+<section id="placeholders">
+<h3>Placeholders<a class="headerlink" href="#placeholders" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Placeholder</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;INIT_TYPE&gt;</span></code></p></td>
+<td><p>Device type of the initiator (the device that sends commands), e.g. <code class="docutils literal notranslate"><span class="pre">doorbell</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;INIT_EP&gt;</span></code></p></td>
+<td><p>Endpoint of the initiator device. Its Binding cluster lives here.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;INIT_NODE&gt;</span></code></p></td>
+<td><p>Node ID that <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> assigns to the initiator during commissioning.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;TARGET_TYPE&gt;</span></code></p></td>
+<td><p>Device type that receives the commands, e.g. <code class="docutils literal notranslate"><span class="pre">chime</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;TARGET_EP&gt;</span></code></p></td>
+<td><p>Endpoint of the target device that hosts the server cluster.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;TARGET_NODE&gt;</span></code></p></td>
+<td><p>Node ID that <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> assigns to the target. Equal to <code class="docutils literal notranslate"><span class="pre">&lt;INIT_NODE&gt;</span></code> on a single node.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;CLUSTER_ID&gt;</span></code></p></td>
+<td><p>Decimal ID of the cluster the command belongs to, e.g. <code class="docutils literal notranslate"><span class="pre">1366</span></code> for Chime.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;PIPE&gt;</span></code></p></td>
+<td><p>Path of the initiator’s named pipe, e.g. <code class="docutils literal notranslate"><span class="pre">/tmp/chip_initiator_fifo</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;TRIGGER_NAME&gt;</span></code></p></td>
+<td><p>Named-pipe action that makes the initiator send the command, e.g. <code class="docutils literal notranslate"><span class="pre">ShortPress</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">112233</span></code></p></td>
+<td><p>Node ID of <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> itself (its default controller node ID).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-1-clean-up-old-state">
+<h3>Step 1: Clean up old state<a class="headerlink" href="#step-1-clean-up-old-state" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_kvs_initiator<span class="w"> </span>/tmp/chip_kvs_target<span class="w"> </span>/tmp/chip_initiator_fifo<span class="w"> </span>/tmp/chip_target_fifo
+</pre></div>
+</div>
+<p>The KVS files hold the fabric, ACL and binding table from earlier runs. Leftover
+state from an earlier run can make commissioning or binding results misleading.</p>
+<blockquote>
+<div><p>[!NOTE] If a stale pipe path exists as a regular file (for example, because
+something was written to it before the app created the FIFO), the app cannot
+create the FIFO there. <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">&lt;PIPE&gt;</span></code> must show a <code class="docutils literal notranslate"><span class="pre">p</span></code> file type.</p>
+</div></blockquote>
+</section>
+<section id="step-2-start-the-applications">
+<h3>Step 2: Start the applications<a class="headerlink" href="#step-2-start-the-applications" title="Link to this heading">#</a></h3>
+<p>Each Matter node is one <code class="docutils literal notranslate"><span class="pre">all-devices-app</span></code> process. Start the target first, then
+the initiator, in separate terminals:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Terminal 1: target node</span>
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>&lt;TARGET_TYPE&gt;:&lt;TARGET_EP&gt;<span class="w"> </span>--port<span class="w"> </span><span class="m">5541</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3841</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_target<span class="w"> </span>--app-pipe<span class="w"> </span>/tmp/chip_target_fifo
+
+<span class="c1"># Terminal 2: initiator node</span>
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>&lt;INIT_TYPE&gt;:&lt;INIT_EP&gt;<span class="w"> </span>--port<span class="w"> </span><span class="m">5540</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3840</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_initiator<span class="w"> </span>--app-pipe<span class="w"> </span>&lt;PIPE&gt;
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">&lt;type&gt;[:&lt;ep&gt;][,parent=&lt;ep&gt;]</span></code></p></td>
+<td><p>Adds a device of <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> on endpoint <code class="docutils literal notranslate"><span class="pre">&lt;ep&gt;</span></code> (default <code class="docutils literal notranslate"><span class="pre">1</span></code>). Repeat the option to host several devices on one node. <code class="docutils literal notranslate"><span class="pre">parent=</span></code> nests the endpoint under another one in the Descriptor tree. Run <code class="docutils literal notranslate"><span class="pre">$APP</span> <span class="pre">--help</span></code> for the list of types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--port</span> <span class="pre">&lt;port&gt;</span></code></p></td>
+<td><p>UDP port for operational (CASE) traffic. Default <code class="docutils literal notranslate"><span class="pre">5540</span></code>. Each process on the same host needs its own port.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--discriminator</span> <span class="pre">&lt;0..4095&gt;</span></code></p></td>
+<td><p>12-bit value advertised while the node is commissionable. Default <code class="docutils literal notranslate"><span class="pre">3840</span></code>. Use a different value per process so <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> can pick the right one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--passcode</span> <span class="pre">&lt;pin&gt;</span></code></p></td>
+<td><p>Setup PIN used for commissioning. Default <code class="docutils literal notranslate"><span class="pre">20202021</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--KVS</span> <span class="pre">&lt;path&gt;</span></code></p></td>
+<td><p>File for persistent storage (fabrics, ACL, bindings). Default <code class="docutils literal notranslate"><span class="pre">/tmp/chip_kvs</span></code>. Use a separate file per process; sharing one file makes the nodes overwrite each other’s state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--app-pipe</span> <span class="pre">&lt;path&gt;</span></code></p></td>
+<td><p>Named pipe (FIFO) the app reads JSON trigger messages from. Only needed on nodes you want to trigger.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-3-commission-both-nodes">
+<h3>Step 3: Commission both nodes<a class="headerlink" href="#step-3-commission-both-nodes" title="Link to this heading">#</a></h3>
+<p>Commission both nodes onto the same <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> fabric:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span>&lt;INIT_NODE&gt;<span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span>&lt;TARGET_NODE&gt;<span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3841</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pairing</span> <span class="pre">onnetwork-long</span> <span class="pre">&lt;node-id&gt;</span> <span class="pre">&lt;setup-pin-code&gt;</span> <span class="pre">&lt;discriminator&gt;</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;node-id&gt;</span></code></p></td>
+<td><p>Operational node ID to assign to the device on the <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> fabric. You choose it; later commands address the node with it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;setup-pin-code&gt;</span></code></p></td>
+<td><p>Must match the app’s <code class="docutils literal notranslate"><span class="pre">--passcode</span></code> (default <code class="docutils literal notranslate"><span class="pre">20202021</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;discriminator&gt;</span></code></p></td>
+<td><p>Must match the app’s <code class="docutils literal notranslate"><span class="pre">--discriminator</span></code>. It selects which commissionable node to pair with.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>[!TIP] Prefer <code class="docutils literal notranslate"><span class="pre">onnetwork-long</span></code> over <code class="docutils literal notranslate"><span class="pre">onnetwork</span></code> when more than one app is
+running. <code class="docutils literal notranslate"><span class="pre">pairing</span> <span class="pre">onnetwork</span> <span class="pre">&lt;node-id&gt;</span> <span class="pre">&lt;pin&gt;</span></code> pairs with whichever
+commissionable node answers first, so it can assign the node IDs to the wrong
+processes.</p>
+</div></blockquote>
+<p>Because both nodes are commissioned by the same <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code>, both share its
+fabric and both see it as fabric index <code class="docutils literal notranslate"><span class="pre">1</span></code> (it is the first fabric on each
+node).</p>
+</section>
+<section id="step-4-optional-check-endpoints-and-clusters">
+<h3>Step 4 (optional): Check endpoints and clusters<a class="headerlink" href="#step-4-optional-check-endpoints-and-clusters" title="Link to this heading">#</a></h3>
+<p>The Descriptor cluster tells you what each endpoint offers. The last two
+arguments of every <code class="docutils literal notranslate"><span class="pre">chip-tool</span> <span class="pre">&lt;cluster&gt;</span> <span class="pre">read</span> <span class="pre">...</span></code> command are
+<code class="docutils literal notranslate"><span class="pre">&lt;destination-node-id&gt;</span> <span class="pre">&lt;endpoint-id&gt;</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiator: the server list must contain 30 (Binding cluster, 0x001E)</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>descriptor<span class="w"> </span><span class="nb">read</span><span class="w"> </span>server-list<span class="w"> </span>&lt;INIT_NODE&gt;<span class="w"> </span>&lt;INIT_EP&gt;
+<span class="c1"># Initiator: the client list shows which clusters it can send commands to</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>descriptor<span class="w"> </span><span class="nb">read</span><span class="w"> </span>client-list<span class="w"> </span>&lt;INIT_NODE&gt;<span class="w"> </span>&lt;INIT_EP&gt;
+<span class="c1"># Target: the server list must contain &lt;CLUSTER_ID&gt;</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>descriptor<span class="w"> </span><span class="nb">read</span><span class="w"> </span>server-list<span class="w"> </span>&lt;TARGET_NODE&gt;<span class="w"> </span>&lt;TARGET_EP&gt;
+</pre></div>
+</div>
+</section>
+<section id="step-5-grant-the-initiator-access-on-the-target">
+<h3>Step 5: Grant the initiator access on the target<a class="headerlink" href="#step-5-grant-the-initiator-access-on-the-target" title="Link to this heading">#</a></h3>
+<p>By default, only the administrator (<code class="docutils literal notranslate"><span class="pre">chip-tool</span></code>) may invoke commands on a node.
+Add an ACL entry on the target that lets the initiator node invoke commands on
+the target cluster:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$CHIP_TOOL</span><span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 5, "authMode": 2, "subjects": [112233], "targets": null },</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 3, "authMode": 2, "subjects": [&lt;INIT_NODE&gt;],</span>
+<span class="s1">    "targets": [{ "cluster": &lt;CLUSTER_ID&gt;, "endpoint": &lt;TARGET_EP&gt;, "deviceType": null }] }</span>
+<span class="s1">]'</span><span class="w"> </span>&lt;TARGET_NODE&gt;<span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">accesscontrol</span> <span class="pre">write</span> <span class="pre">acl</span> <span class="pre">&lt;json-list&gt;</span> <span class="pre">&lt;destination-node-id&gt;</span> <span class="pre">&lt;endpoint-id&gt;</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;json-list&gt;</span></code></p></td>
+<td><p>Full list of ACL entries for this fabric (see fields below).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;destination-node-id&gt;</span></code></p></td>
+<td><p>Node whose ACL is written: the <strong>target</strong> (<code class="docutils literal notranslate"><span class="pre">&lt;TARGET_NODE&gt;</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;endpoint-id&gt;</span></code></p></td>
+<td><p>Always <code class="docutils literal notranslate"><span class="pre">0</span></code>. The Access Control cluster lives on the root endpoint.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>[!WARNING] The write <strong>replaces</strong> the whole ACL of the fabric. Always keep the
+first entry (Administer privilege for <code class="docutils literal notranslate"><span class="pre">112233</span></code>), or <code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> loses access
+to the node and you have to recommission it.</p>
+</div></blockquote>
+<p>Fields of each ACL entry:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fabricIndex</span></code></p></td>
+<td><p>Fabric the entry belongs to. Required by the JSON format, but the node replaces it with the fabric of the writer, so <code class="docutils literal notranslate"><span class="pre">1</span></code> is fine here.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">privilege</span></code></p></td>
+<td><p>Highest privilege granted: <code class="docutils literal notranslate"><span class="pre">1</span></code> View, <code class="docutils literal notranslate"><span class="pre">3</span></code> Operate, <code class="docutils literal notranslate"><span class="pre">4</span></code> Manage, <code class="docutils literal notranslate"><span class="pre">5</span></code> Administer. Use the privilege the command requires: most application commands (e.g. Chime <code class="docutils literal notranslate"><span class="pre">PlayChimeSound</span></code>, On/Off <code class="docutils literal notranslate"><span class="pre">Toggle</span></code>) need <strong>Operate</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">authMode</span></code></p></td>
+<td><p>How the subject authenticated: <code class="docutils literal notranslate"><span class="pre">1</span></code> PASE, <code class="docutils literal notranslate"><span class="pre">2</span></code> CASE, <code class="docutils literal notranslate"><span class="pre">3</span></code> Group. Unicast bindings use CASE (<code class="docutils literal notranslate"><span class="pre">2</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">subjects</span></code></p></td>
+<td><p>Who the entry applies to. For CASE, a list of node IDs: put the <strong>initiator’s</strong> node ID here (and <code class="docutils literal notranslate"><span class="pre">112233</span></code> in the admin entry). For Group auth mode, a list of group IDs. <code class="docutils literal notranslate"><span class="pre">null</span></code> means any subject with that auth mode.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">targets</span></code></p></td>
+<td><p>What the entry covers. <code class="docutils literal notranslate"><span class="pre">null</span></code> means everything on the node. Otherwise a list of <code class="docutils literal notranslate"><span class="pre">{cluster,</span> <span class="pre">endpoint,</span> <span class="pre">deviceType}</span></code>; <code class="docutils literal notranslate"><span class="pre">null</span></code> fields are wildcards. <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> and <code class="docutils literal notranslate"><span class="pre">deviceType</span></code> cannot both be set in one target.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-6-write-the-binding-on-the-initiator">
+<h3>Step 6: Write the binding on the initiator<a class="headerlink" href="#step-6-write-the-binding-on-the-initiator" title="Link to this heading">#</a></h3>
+<p>Tell the initiator’s endpoint where to send commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$CHIP_TOOL</span><span class="w"> </span>binding<span class="w"> </span>write<span class="w"> </span>binding<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "node": &lt;TARGET_NODE&gt;, "endpoint": &lt;TARGET_EP&gt;, "cluster": &lt;CLUSTER_ID&gt; }</span>
+<span class="s1">]'</span><span class="w"> </span>&lt;INIT_NODE&gt;<span class="w"> </span>&lt;INIT_EP&gt;
+
+<span class="c1"># Read it back</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>binding<span class="w"> </span><span class="nb">read</span><span class="w"> </span>binding<span class="w"> </span>&lt;INIT_NODE&gt;<span class="w"> </span>&lt;INIT_EP&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">binding</span> <span class="pre">write</span> <span class="pre">binding</span> <span class="pre">&lt;json-list&gt;</span> <span class="pre">&lt;destination-node-id&gt;</span> <span class="pre">&lt;endpoint-id&gt;</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;json-list&gt;</span></code></p></td>
+<td><p>Full list of binding targets for this endpoint and fabric (see fields below).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;destination-node-id&gt;</span></code></p></td>
+<td><p>Node whose binding table is written: the <strong>initiator</strong> (<code class="docutils literal notranslate"><span class="pre">&lt;INIT_NODE&gt;</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;endpoint-id&gt;</span></code></p></td>
+<td><p>Endpoint whose Binding cluster is written: <code class="docutils literal notranslate"><span class="pre">&lt;INIT_EP&gt;</span></code>. This must be the endpoint the device dispatches from, because the binding manager only uses entries whose local endpoint matches.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>[!NOTE] Like the ACL, this write <strong>replaces</strong> all entries of this endpoint for
+the writer’s fabric. To bind to several targets, put all of them in one list.</p>
+</div></blockquote>
+<p>Fields of each binding entry (exactly one of <code class="docutils literal notranslate"><span class="pre">node</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> must be set):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fabricIndex</span></code></p></td>
+<td><p>Fabric the entry belongs to. Required by the JSON format; the node replaces it with the writer’s fabric.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">node</span></code></p></td>
+<td><p><strong>Unicast</strong>: node ID of the target. The initiator opens a CASE session to this node.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">endpoint</span></code></p></td>
+<td><p><strong>Unicast only</strong>: endpoint on the target node that receives the command. Required with <code class="docutils literal notranslate"><span class="pre">node</span></code>, not allowed with <code class="docutils literal notranslate"><span class="pre">group</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">group</span></code></p></td>
+<td><p><strong>Multicast</strong>: group ID to send the command to, instead of <code class="docutils literal notranslate"><span class="pre">node</span></code> + <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. See Section 8.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code></p></td>
+<td><p>Optional. Restricts the entry to commands of this cluster. If omitted, the entry is a wildcard and receives commands of <strong>every</strong> cluster the initiator sends from this endpoint.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="step-7-trigger-the-initiator">
+<h3>Step 7: Trigger the initiator<a class="headerlink" href="#step-7-trigger-the-initiator" title="Link to this heading">#</a></h3>
+<p>Write a JSON message to the initiator’s pipe:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "&lt;TRIGGER_NAME&gt;", "EndpointId": &lt;INIT_EP&gt;}'</span><span class="w"> </span>&gt;<span class="w"> </span>&lt;PIPE&gt;
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></td>
+<td><p>Action to run. It selects a translator registered for the device type (e.g. <code class="docutils literal notranslate"><span class="pre">ShortPress</span></code> for <code class="docutils literal notranslate"><span class="pre">doorbell</span></code>). Unknown names are logged as <code class="docutils literal notranslate"><span class="pre">NamedPipe::Dispatcher:</span> <span class="pre">Unhandled</span> <span class="pre">action</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EndpointId</span></code></p></td>
+<td><p>Local endpoint of the device to act on: <code class="docutils literal notranslate"><span class="pre">&lt;INIT_EP&gt;</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code> (root endpoint) if omitted, which has no binding-capable device, so always set it.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The message is parsed on the pipe reader thread and then executed on the Matter
+thread, which is where <code class="docutils literal notranslate"><span class="pre">BindingHandler::DispatchSimple</span></code> runs.</p>
+</section>
+<section id="step-8-verify">
+<h3>Step 8: Verify<a class="headerlink" href="#step-8-verify" title="Link to this heading">#</a></h3>
+<p>On the <strong>initiator</strong>, a successful unicast command logs:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[SVR] Binding command (0x&lt;cluster&gt;, 0x&lt;command&gt;) succeeded on endpoint &lt;TARGET_EP&gt;
+</pre></div>
+</div>
+<p>The endpoint in this line comes from the target’s response, so it is the target
+endpoint, not the initiator’s.</p>
+<p>On the <strong>target</strong>, the interaction model logs an <code class="docutils literal notranslate"><span class="pre">InvokeRequestMessage</span></code> with the
+matching <code class="docutils literal notranslate"><span class="pre">EndpointId</span></code>, <code class="docutils literal notranslate"><span class="pre">ClusterId</span></code> and <code class="docutils literal notranslate"><span class="pre">CommandId</span></code>, followed by the device’s own
+log line for the command.</p>
+<p>The first command after startup also sets up the CASE session, so it may take
+noticeably longer than the following ones.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="example-doorbell-and-chime-on-two-nodes">
+<h2>4. Example: Doorbell and Chime on Two Nodes<a class="headerlink" href="#example-doorbell-and-chime-on-two-nodes" title="Link to this heading">#</a></h2>
+<p>Values used: <code class="docutils literal notranslate"><span class="pre">&lt;INIT_TYPE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">doorbell</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;INIT_EP&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;INIT_NODE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">1</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;TARGET_TYPE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">chime</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;TARGET_EP&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;TARGET_NODE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;CLUSTER_ID&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">1366</span></code> (Chime), <code class="docutils literal notranslate"><span class="pre">&lt;TRIGGER_NAME&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">ShortPress</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+---------------------------+                  +-------------------------+
+| Node 1: doorbell          |   CASE session   | Node 2: chime           |
+|  Endpoint 1               | ===============&gt; |  Endpoint 1             |
+|  - Binding (0x001E)       |  PlayChimeSound  |  - Chime (0x0556)       |
++---------------------------+                  +-------------------------+
+              ^
+              | /tmp/chip_doorbell_fifo  {"Name": "ShortPress", "EndpointId": 1}
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean up</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_kvs_doorbell<span class="w"> </span>/tmp/chip_kvs_chime<span class="w"> </span>/tmp/chip_doorbell_fifo<span class="w"> </span>/tmp/chip_chime_fifo
+
+<span class="c1"># Terminal 1: chime (target)</span>
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>chime:1<span class="w"> </span>--port<span class="w"> </span><span class="m">5541</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3841</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_chime<span class="w"> </span>--app-pipe<span class="w"> </span>/tmp/chip_chime_fifo
+
+<span class="c1"># Terminal 2: doorbell (initiator)</span>
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>doorbell:1<span class="w"> </span>--port<span class="w"> </span><span class="m">5540</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3840</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_doorbell<span class="w"> </span>--app-pipe<span class="w"> </span>/tmp/chip_doorbell_fifo
+
+<span class="c1"># Terminal 3: controller</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span><span class="w">   </span><span class="c1"># doorbell -&gt; node 1</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3841</span><span class="w">   </span><span class="c1"># chime    -&gt; node 2</span>
+
+<span class="c1"># Allow node 1 to invoke Chime commands on node 2, endpoint 1 (Operate privilege)</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 5, "authMode": 2, "subjects": [112233], "targets": null },</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 3, "authMode": 2, "subjects": [1],</span>
+<span class="s1">    "targets": [{ "cluster": 1366, "endpoint": 1, "deviceType": null }] }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Bind doorbell endpoint 1 to the Chime cluster on node 2, endpoint 1</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>binding<span class="w"> </span>write<span class="w"> </span>binding<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "node": 2, "endpoint": 1, "cluster": 1366 }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Press the doorbell</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "ShortPress", "EndpointId": 1}'</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/chip_doorbell_fifo
+</pre></div>
+</div>
+<p>Expected logs:</p>
+<ul>
+<li><p>Doorbell (Terminal 2):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[SVR] Doorbell: Short press on endpoint 1
+[SVR] Binding command (0x556, 0x0) succeeded on endpoint 1
+</pre></div>
+</div>
+</li>
+<li><p>Chime (Terminal 1): an <code class="docutils literal notranslate"><span class="pre">InvokeRequestMessage</span></code> for
+<code class="docutils literal notranslate"><span class="pre">EndpointId</span> <span class="pre">=</span> <span class="pre">0x1,</span> <span class="pre">ClusterId</span> <span class="pre">=</span> <span class="pre">0x556,</span> <span class="pre">CommandId</span> <span class="pre">=</span> <span class="pre">0x0</span></code>, then:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[SVR] Chime: Playing sound &lt;sound name&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">ShortPress</span></code> also moves the doorbell’s Switch <code class="docutils literal notranslate"><span class="pre">CurrentPosition</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> and back
+to <code class="docutils literal notranslate"><span class="pre">0</span></code>. You can read it with <code class="docutils literal notranslate"><span class="pre">$CHIP_TOOL</span> <span class="pre">switch</span> <span class="pre">read</span> <span class="pre">current-position</span> <span class="pre">1</span> <span class="pre">1</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="example-doorbell-and-chime-on-one-node">
+<h2>5. Example: Doorbell and Chime on One Node<a class="headerlink" href="#example-doorbell-and-chime-on-one-node" title="Link to this heading">#</a></h2>
+<p>A single process can host both devices on different endpoints. The initiator and
+target node are then the same (<code class="docutils literal notranslate"><span class="pre">&lt;INIT_NODE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">&lt;TARGET_NODE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">1</span></code>), and the
+command goes from endpoint 1 to endpoint 2 of that node.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_kvs_composite<span class="w"> </span>/tmp/chip_composite_fifo
+
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>doorbell:1<span class="w"> </span>--device<span class="w"> </span>chime:2<span class="w"> </span>--port<span class="w"> </span><span class="m">5540</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3840</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_composite<span class="w"> </span>--app-pipe<span class="w"> </span>/tmp/chip_composite_fifo
+
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
+
+<span class="c1"># The subject is the node itself (node 1); the target is the Chime on endpoint 2</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 5, "authMode": 2, "subjects": [112233], "targets": null },</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 3, "authMode": 2, "subjects": [1],</span>
+<span class="s1">    "targets": [{ "cluster": 1366, "endpoint": 2, "deviceType": null }] }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Binding on endpoint 1 that points to node 1, endpoint 2</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>binding<span class="w"> </span>write<span class="w"> </span>binding<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "node": 1, "endpoint": 2, "cluster": 1366 }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "ShortPress", "EndpointId": 1}'</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/chip_composite_fifo
+</pre></div>
+</div>
+<p>The same process logs the short press on endpoint 1 and then
+<code class="docutils literal notranslate"><span class="pre">Chime:</span> <span class="pre">Playing</span> <span class="pre">sound</span> <span class="pre">...</span></code> for endpoint 2.</p>
+</section>
+<hr class="docutils" />
+<section id="example-on-off-light-switch-and-on-off-light">
+<h2>6. Example: On/Off Light Switch and On/Off Light<a class="headerlink" href="#example-on-off-light-switch-and-on-off-light" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">on-off-light-switch</span></code> device sends <code class="docutils literal notranslate"><span class="pre">OnOff</span></code> and <code class="docutils literal notranslate"><span class="pre">Identify</span></code> commands. This
+example hosts the switch on endpoint 1 and the light on endpoint 2 of one node.
+To use two nodes, follow Section 3 with <code class="docutils literal notranslate"><span class="pre">&lt;INIT_TYPE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">on-off-light-switch</span></code>
+and <code class="docutils literal notranslate"><span class="pre">&lt;TARGET_TYPE&gt;</span></code> = <code class="docutils literal notranslate"><span class="pre">on-off-light</span></code>, and use the ACL privilege and binding
+clusters shown below.</p>
+<p>Named-pipe triggers of <code class="docutils literal notranslate"><span class="pre">on-off-light-switch</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">Name</span></code></p></th>
+<th class="head"><p>Extra JSON fields</p></th>
+<th class="head"><p>Command sent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SwitchOn</span></code></p></td>
+<td><p>-</p></td>
+<td><p>On/Off <code class="docutils literal notranslate"><span class="pre">On</span></code> (<code class="docutils literal notranslate"><span class="pre">0x6</span></code>, <code class="docutils literal notranslate"><span class="pre">0x1</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SwitchOff</span></code></p></td>
+<td><p>-</p></td>
+<td><p>On/Off <code class="docutils literal notranslate"><span class="pre">Off</span></code> (<code class="docutils literal notranslate"><span class="pre">0x6</span></code>, <code class="docutils literal notranslate"><span class="pre">0x0</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SwitchToggle</span></code></p></td>
+<td><p>-</p></td>
+<td><p>On/Off <code class="docutils literal notranslate"><span class="pre">Toggle</span></code> (<code class="docutils literal notranslate"><span class="pre">0x6</span></code>, <code class="docutils literal notranslate"><span class="pre">0x2</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SwitchIdentify</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IdentifyTime</span></code> (seconds, required)</p></td>
+<td><p>Identify <code class="docutils literal notranslate"><span class="pre">Identify</span></code> (<code class="docutils literal notranslate"><span class="pre">0x3</span></code>, <code class="docutils literal notranslate"><span class="pre">0x0</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SwitchTriggerEffect</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EffectIdentifier</span></code> (required), <code class="docutils literal notranslate"><span class="pre">EffectVariant</span></code> (default 0)</p></td>
+<td><p>Identify <code class="docutils literal notranslate"><span class="pre">TriggerEffect</span></code> (<code class="docutils literal notranslate"><span class="pre">0x3</span></code>, <code class="docutils literal notranslate"><span class="pre">0x40</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>[!IMPORTANT] Identify <code class="docutils literal notranslate"><span class="pre">Identify</span></code> and <code class="docutils literal notranslate"><span class="pre">TriggerEffect</span></code> require the <strong>Manage</strong>
+privilege (<code class="docutils literal notranslate"><span class="pre">4</span></code>). With Operate (<code class="docutils literal notranslate"><span class="pre">3</span></code>), the On/Off commands work and the Identify
+commands fail with <code class="docutils literal notranslate"><span class="pre">UNSUPPORTED_ACCESS</span></code>.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/chip_kvs_switch<span class="w"> </span>/tmp/chip_switch_fifo
+
+<span class="nv">$APP</span><span class="w"> </span>--device<span class="w"> </span>on-off-light-switch:1<span class="w"> </span>--device<span class="w"> </span>on-off-light:2<span class="w"> </span>--port<span class="w"> </span><span class="m">5540</span><span class="w"> </span>--discriminator<span class="w"> </span><span class="m">3840</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--KVS<span class="w"> </span>/tmp/chip_kvs_switch<span class="w"> </span>--app-pipe<span class="w"> </span>/tmp/chip_switch_fifo
+
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>pairing<span class="w"> </span>onnetwork-long<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20202021</span><span class="w"> </span><span class="m">3840</span>
+
+<span class="c1"># Allow node 1 to invoke On/Off (6) and Identify (3) commands on endpoint 2 (Manage privilege)</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>accesscontrol<span class="w"> </span>write<span class="w"> </span>acl<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 5, "authMode": 2, "subjects": [112233], "targets": null },</span>
+<span class="s1">  { "fabricIndex": 1, "privilege": 4, "authMode": 2, "subjects": [1],</span>
+<span class="s1">    "targets": [{ "cluster": 6, "endpoint": 2, "deviceType": null },</span>
+<span class="s1">                { "cluster": 3, "endpoint": 2, "deviceType": null }] }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Bind switch endpoint 1 to the On/Off and Identify clusters on node 1, endpoint 2</span>
+<span class="nv">$CHIP_TOOL</span><span class="w"> </span>binding<span class="w"> </span>write<span class="w"> </span>binding<span class="w"> </span><span class="s1">'[</span>
+<span class="s1">  { "fabricIndex": 1, "node": 1, "endpoint": 2, "cluster": 6 },</span>
+<span class="s1">  { "fabricIndex": 1, "node": 1, "endpoint": 2, "cluster": 3 }</span>
+<span class="s1">]'</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "SwitchToggle", "EndpointId": 1}'</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/chip_switch_fifo
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "SwitchIdentify", "EndpointId": 1, "IdentifyTime": 30}'</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/chip_switch_fifo
+<span class="nb">echo</span><span class="w"> </span><span class="s1">'{"Name": "SwitchTriggerEffect", "EndpointId": 1, "EffectIdentifier": 0}'</span><span class="w"> </span>&gt;<span class="w"> </span>/tmp/chip_switch_fifo
+</pre></div>
+</div>
+<p>Expected logs:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[DL] LoggingOnOffDelegate::OnOnOffChanged() -&gt; ON
+[SVR] Binding command (0x6, 0x2) succeeded on endpoint 2
+[DL] LoggingIdentifyDelegate: Identify START
+[SVR] Binding command (0x3, 0x0) succeeded on endpoint 2
+[DL] LoggingIdentifyDelegate: TriggerEffect: BlinkEffect / DefaultVariant
+[SVR] Binding command (0x3, 0x40) succeeded on endpoint 2
+</pre></div>
+</div>
+<p>Check the light with <code class="docutils literal notranslate"><span class="pre">$CHIP_TOOL</span> <span class="pre">onoff</span> <span class="pre">read</span> <span class="pre">on-off</span> <span class="pre">1</span> <span class="pre">2</span></code> and
+<code class="docutils literal notranslate"><span class="pre">$CHIP_TOOL</span> <span class="pre">identify</span> <span class="pre">read</span> <span class="pre">identify-time</span> <span class="pre">1</span> <span class="pre">2</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="using-the-procedure-with-another-device">
+<h2>7. Using the Procedure with Another Device<a class="headerlink" href="#using-the-procedure-with-another-device" title="Link to this heading">#</a></h2>
+<p>To test a new binding-capable device type, check the following and then follow
+Section 3:</p>
+<ol class="arabic simple">
+<li><p><strong>Binding cluster on the endpoint.</strong> The device creates a <code class="docutils literal notranslate"><span class="pre">BindingCluster</span></code>
+on its endpoint with the shared <code class="docutils literal notranslate"><span class="pre">Binding::Table</span></code> and <code class="docutils literal notranslate"><span class="pre">Binding::Manager</span></code> (see
+<code class="docutils literal notranslate"><span class="pre">Doorbell</span></code> or <code class="docutils literal notranslate"><span class="pre">OnOffLightSwitch</span></code>). Step 4 shows <code class="docutils literal notranslate"><span class="pre">30</span></code> in its server list.</p></li>
+<li><p><strong>Client clusters declared.</strong> <code class="docutils literal notranslate"><span class="pre">ClientClusters()</span></code> lists the clusters the
+device sends commands to. Step 4 shows them in its client list. This is what
+a controller uses to decide which bindings make sense.</p></li>
+<li><p><strong>A dispatch call.</strong> The device receives the application’s <code class="docutils literal notranslate"><span class="pre">BindingHandler</span></code>
+in its config and calls
+<code class="docutils literal notranslate"><span class="pre">bindingHandler.DispatchSimple(endpointId,</span> <span class="pre">&lt;Command&gt;::Type{...})</span></code> with its
+own endpoint ID, as <code class="docutils literal notranslate"><span class="pre">Doorbell::TriggerChime</span></code> does.</p></li>
+<li><p><strong>A trigger.</strong> An OOB accessor and a named-pipe translator map a JSON <code class="docutils literal notranslate"><span class="pre">Name</span></code>
+to that code path (see
+<span class="xref myst">Out-of-Band Control Architecture</span>).
+Without a trigger, you can still write and read the binding table, but
+nothing is sent.</p></li>
+<li><p><strong>A target.</strong> Some device type (in this app or elsewhere) hosts the server
+side of the cluster, and the ACL entry grants the privilege its command
+requires.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="group-multicast-bindings">
+<h2>8. Group (Multicast) Bindings<a class="headerlink" href="#group-multicast-bindings" title="Link to this heading">#</a></h2>
+<p>A binding entry with <code class="docutils literal notranslate"><span class="pre">group</span></code> instead of <code class="docutils literal notranslate"><span class="pre">node</span></code> + <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> makes the initiator
+send the command as a group message, without a CASE session. A working
+end-to-end group test needs more setup than unicast:</p>
+<ul class="simple">
+<li><p>a group key set and group key map on the initiator (Group Key Management
+cluster), so it can encrypt the message;</p></li>
+<li><p>the same key set on every target, plus group membership on the target
+endpoint (Groups cluster);</p></li>
+<li><p>an ACL entry on each target with <code class="docutils literal notranslate"><span class="pre">authMode</span></code> <code class="docutils literal notranslate"><span class="pre">3</span></code> (Group) and the group ID as
+subject.</p></li>
+</ul>
+<p>None of the target device types in <code class="docutils literal notranslate"><span class="pre">all-devices-app</span></code> currently host a Groups
+cluster, so this guide does not cover group bindings end to end. The group
+dispatch path is covered by the unit tests in Section 9
+(<code class="docutils literal notranslate"><span class="pre">DispatchToGroupBindingInvokesContextAndReleasesIt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DispatchSimpleCommandToGroupBinding</span></code>).</p>
+</section>
+<hr class="docutils" />
+<section id="unit-tests">
+<h2>9. Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># BindingHandler (dispatch, context ownership, group path)</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"ninja -C out/linux-x64-tests-clang examples/all-devices-app/all-devices-common/binding-handler/tests:TestBindingHandler.run"</span>
+
+<span class="c1"># Doorbell device</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"ninja -C out/linux-x64-tests-clang examples/all-devices-app/all-devices-common/device/types/doorbell/tests:TestDoorbell.run"</span>
+
+<span class="c1"># On/Off Light Switch device and its OOB accessor</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"ninja -C out/linux-x64-tests-clang examples/all-devices-app/all-devices-common/device/types/on-off-light-switch/tests:TestOnOffLightSwitch.run"</span>
+
+<span class="c1"># Out-of-band accessors and named-pipe translators (trigger path)</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"ninja -C out/linux-x64-tests-clang examples/all-devices-app/all-devices-common/oob-accessors/tests:TestOOBAccessors.run"</span>
+scripts/run_in_build_env.sh<span class="w"> </span><span class="s2">"ninja -C out/linux-x64-tests-clang examples/all-devices-app/posix/named_pipe/tests:TestNamedPipeTranslators.run"</span>
+</pre></div>
+</div>
+<p>Generate the <code class="docutils literal notranslate"><span class="pre">out/linux-x64-tests-clang</span></code> build directory first if it does not
+exist:
+<code class="docutils literal notranslate"><span class="pre">scripts/run_in_build_env.sh</span> <span class="pre">&quot;./scripts/build/build_examples.py</span> <span class="pre">--target</span> <span class="pre">linux-x64-tests-clang</span> <span class="pre">--quiet</span> <span class="pre">gen&quot;</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>10. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symptom (initiator log unless noted)</p></th>
+<th class="head"><p>Likely cause and fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nothing is logged after writing to the pipe; <code class="docutils literal notranslate"><span class="pre">echo</span></code> blocks</p></td>
+<td><p>No process is reading the pipe. Start the app with <code class="docutils literal notranslate"><span class="pre">--app-pipe</span> <span class="pre">&lt;PIPE&gt;</span></code> and write to the same path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NamedPipe::Dispatcher:</span> <span class="pre">Unhandled</span> <span class="pre">action:</span> <span class="pre">&lt;name&gt;</span></code></p></td>
+<td><p>No translator is registered for that <code class="docutils literal notranslate"><span class="pre">Name</span></code>. Check the trigger name for the device type.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NamedPipe::Dispatcher:</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">execute</span> <span class="pre">action</span> <span class="pre">...</span> <span class="pre">on</span> <span class="pre">endpoint</span> <span class="pre">&lt;n&gt;</span></code></p></td>
+<td><p>Wrong <code class="docutils literal notranslate"><span class="pre">EndpointId</span></code>, or the device on that endpoint does not support the action.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Short press logged, but no <code class="docutils literal notranslate"><span class="pre">Binding</span> <span class="pre">command</span> <span class="pre">...</span></code> line</p></td>
+<td><p>No binding entry matches: the binding was written to another endpoint, its <code class="docutils literal notranslate"><span class="pre">cluster</span></code> differs from the command’s cluster, or the table is empty. Check with <code class="docutils literal notranslate"><span class="pre">binding</span> <span class="pre">read</span> <span class="pre">binding</span> <span class="pre">&lt;INIT_NODE&gt;</span> <span class="pre">&lt;INIT_EP&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BindingHandler:</span> <span class="pre">Dispatch</span> <span class="pre">called</span> <span class="pre">before</span> <span class="pre">Init</span></code></p></td>
+<td><p>The app did not call <code class="docutils literal notranslate"><span class="pre">BindingHandler::Init</span></code> (or already called <code class="docutils literal notranslate"><span class="pre">Shutdown</span></code>). Check the platform <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NotifyBoundClusterChanged</span> <span class="pre">failed:</span> <span class="pre">...</span></code></p></td>
+<td><p>The binding manager could not start CASE session setup to the target (e.g. unknown fabric, target not reachable). The command stays queued for that binding and is only sent if a session to the target is set up later (for example by a later trigger).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BindingHandler:</span> <span class="pre">Peer</span> <span class="pre">device</span> <span class="pre">connection</span> <span class="pre">not</span> <span class="pre">ready</span></code></p></td>
+<td><p>The session to the target was not usable when the queued command was delivered. Check that the target is running and reachable, then trigger again.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Binding</span> <span class="pre">command</span> <span class="pre">(...)</span> <span class="pre">failed:</span> <span class="pre">...</span></code> with <code class="docutils literal notranslate"><span class="pre">UNSUPPORTED_ACCESS</span></code> (<code class="docutils literal notranslate"><span class="pre">0x7E</span></code>)</p></td>
+<td><p>The target rejected the command. Fix the ACL on the target (Step 5): subject must be the initiator’s node ID, and privilege must be high enough for the command.</p></td>
+</tr>
+<tr class="row-even"><td><p>Target never logs an <code class="docutils literal notranslate"><span class="pre">InvokeRequestMessage</span></code></p></td>
+<td><p>Target not running or not reachable, or the binding’s <code class="docutils literal notranslate"><span class="pre">node</span></code> / <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> point to the wrong node. Confirm both nodes were commissioned with the expected node IDs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chip-tool</span></code> gets <code class="docutils literal notranslate"><span class="pre">UNSUPPORTED_ACCESS</span></code> after writing an ACL</p></td>
+<td><p>The admin entry for <code class="docutils literal notranslate"><span class="pre">112233</span></code> was dropped from the ACL list. Recommission the node after clearing its KVS.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-binding-command-flows">1. How a Binding Command Flows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build">2. Build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-procedure">3. Generic Procedure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#placeholders">Placeholders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-clean-up-old-state">Step 1: Clean up old state</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-applications">Step 2: Start the applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-commission-both-nodes">Step 3: Commission both nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-optional-check-endpoints-and-clusters">Step 4 (optional): Check endpoints and clusters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-grant-the-initiator-access-on-the-target">Step 5: Grant the initiator access on the target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-write-the-binding-on-the-initiator">Step 6: Write the binding on the initiator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-trigger-the-initiator">Step 7: Trigger the initiator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-verify">Step 8: Verify</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-doorbell-and-chime-on-two-nodes">4. Example: Doorbell and Chime on Two Nodes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-doorbell-and-chime-on-one-node">5. Example: Doorbell and Chime on One Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-on-off-light-switch-and-on-off-light">6. Example: On/Off Light Switch and On/Off Light</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-procedure-with-another-device">7. Using the Procedure with Another Device</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-multicast-bindings">8. Group (Multicast) Bindings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">9. Unit Tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">10. Troubleshooting</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matter Contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025, Matter Contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
